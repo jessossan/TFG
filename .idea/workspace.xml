@@ -25,13 +25,14 @@
     <session id="578102672">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.52" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -278,8 +279,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32944608" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" visible="true" weight="0.3045822" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.50070524" side_tool="true" visible="true" weight="0.3045822" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49858958" visible="true" weight="0.3045822" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014104" side_tool="true" visible="true" weight="0.3045822" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32944608" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
