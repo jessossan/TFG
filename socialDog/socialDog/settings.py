@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom apps
-    'dogs.apps.DogConfig',
+    'dogs.apps.DogsConfig',
 ]
 
 MIDDLEWARE = [

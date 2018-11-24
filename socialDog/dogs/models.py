@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
@@ -15,7 +16,7 @@ class Dog(models.Model):
         (FEMALE, 'Hembra'),
     )
     name = models.CharField(max_length=50, help_text="Requerido. 50 carácteres como máximo")
-    age = models.IntegerField(default=0, verbose_name='Edad')
+    age = models.PositiveIntegerField(default=0, verbose_name='Edad', validators=[MinValueValidator(0)]) #Y si son meses que?
     gender = models.CharField(max_length=10, choices=GenderType)
     #breed =
     descendant = models.CharField(max_length=200, help_text="Descendencia", null=True, blank=True)
@@ -32,7 +33,7 @@ class Dog(models.Model):
         verbose_name = "Perro"
         verbose_name_plural = "Perros"
 
-class DogAdminPanel(admin.ModelAdmin):
+class DogAdminPanel(admin.ModelAdmin): #Falta BREED
     #Panel de admin
-    list_display = ('name', 'age', 'gender', '', 'descendant', 'details', 'photo')
+    list_display = ('name', 'age', 'gender', 'descendant', 'details', 'awards')
 
