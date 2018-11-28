@@ -39,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom apps
+    'actors.apps.ActorsConfig',
+    'breeds.apps.BreedsConfig',
+    'comments.apps.CommentsConfig',
     'dogs.apps.DogsConfig',
+    'events.apps.EventsConfig',
+    'likesDislikes.apps.LikesDislikesConfig',
+    'MYmessages.apps.MYmessagesConfig',
+    'MYrequests.apps.MYrequestsConfig',
+    'news.apps.NewsConfig',
+    'provinces.apps.ProvincesConfig',
+    'rates.apps.RatesConfig',
 ]
 
 MIDDLEWARE = [
