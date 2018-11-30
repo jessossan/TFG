@@ -118,10 +118,10 @@ class Association(Actor):
                                   validators=[RegexValidator(regex=r'^(\d{5})$',
                                                              message='El formato introducido es incorrecto.')])
     cif = models.CharField(verbose_name='CIF or Center Code', max_length=9,
-                                        validators=[RegexValidator(regex=r'^(\d{8,9})$',
-                                                                                        message='El código de identificación debe estar compuesto de 8 dígitos o 9 dígitos.')],
+                                        validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
+                                                                                        message='El código de identificación debe estar compuesto de 9 dígitos.')],
                                         unique=True,
-                                        help_text='Requerido. CIF para escuelas; Código de Centro para academías.')
+                                        help_text='Requerido. CIF para asociaciones. Empieza por G, seguido de 8 dígitos')
     opening = models.DateTimeField()
     closing = models.DateTimeField()
     # Relación con provincia
