@@ -8,7 +8,7 @@ from django.contrib import admin
 class Event(models.Model):
     # Atributos de la clase Event: title, description, place, creationDate, startDate, finishDate, length
     title = models.CharField(max_length=50, unique=True, help_text="Requerido. 50 carácteres como máximo")
-    description = models.CharField(max_length=50, unique=True, help_text="Requerido. 50 carácteres como máximo")
+    description = models.CharField(max_length=50, help_text="Requerido. 50 carácteres como máximo")
     place = models.CharField(max_length=100, help_text="Requerido. 100 carácteres como máximo")
     creationDate = models.DateTimeField(auto_now_add=True)
     startDate = models.DateTimeField()
@@ -17,7 +17,9 @@ class Event(models.Model):
 
     # Relación con comentario
     # Relación con criador
+    breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con asociación
+    association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con valoración
 
     def __str__(self):

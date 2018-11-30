@@ -30,7 +30,7 @@ class Dog(models.Model):
     breed = models.ForeignKey(Breed, on_delete=models.SET_NULL, null=True)
 
     # Relación con criador
-
+    breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True)
     # Relación con comentario
 
     # Relación con valoración

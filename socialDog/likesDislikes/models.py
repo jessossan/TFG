@@ -3,6 +3,9 @@ from django.contrib import admin
 
 
 # Create your models here.
+from actors.models import Actor
+from comments.models import Comment
+
 
 class LikeDislike(models.Model):
     # Atributos de la clase LikeDislike: like
@@ -10,7 +13,9 @@ class LikeDislike(models.Model):
     like = models.BooleanField(default=False)
 
     # Relación con actor
+    actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True)
     # Relación con comentario
+    comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return str(self.like)
@@ -22,4 +27,4 @@ class LikeDislike(models.Model):
 
 class LikeDislikeAdminPanel(admin.ModelAdmin):
     # Panel de admin
-    list_display = ('like',)
+    list_display = ('like', 'actor', 'comment')

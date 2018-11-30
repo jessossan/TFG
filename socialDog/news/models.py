@@ -13,10 +13,12 @@ class News(models.Model):
     creationDate = models.DateTimeField(auto_now_add=True)
 
     # Relacion con actor asociación
+    association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
     # Relacion con actor que valoración
     # Relacion con actor criador
-    # Relacion con actor que comentario
+    breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE,null=True, blank=True)
 
+    # Relacion con actor que comentario
 
     def __str__(self):
         return str(self.title) + ' - ' + str(self.description) + ' - ' + str(self.creationDate)

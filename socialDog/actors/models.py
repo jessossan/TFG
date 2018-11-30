@@ -7,6 +7,9 @@ from stdnum.util import clean
 
 
 # Create your models here.
+from breeds.models import Breed
+from provinces.models import Province
+
 
 class Actor(models.Model):
     """
@@ -122,6 +125,7 @@ class Association(Actor):
     opening = models.DateTimeField()
     closing = models.DateTimeField()
     # Relación con provincia
+    province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)
 
     def __str__(self):
         return self.centerName + ' (' + self.userAccount.get_username() + ')'
@@ -159,7 +163,9 @@ class Breeder(Actor):
     closing = models.DateTimeField()
 
     # Relación con provincia
+    province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)
     # Relación con razas
+    breeds = models.ManyToManyField(Breed)
 
     def __str__(self):
         return self.userAccount.get_full_name() + ' (' + self.userAccount.get_username() + ')'

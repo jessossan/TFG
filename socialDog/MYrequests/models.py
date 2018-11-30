@@ -3,6 +3,7 @@ from django.contrib import admin
 
 
 # Create your models here.
+from actors.models import Actor
 
 
 class Request(models.Model):
@@ -22,7 +23,9 @@ class Request(models.Model):
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
 
     # Relacion con actor enviado
+    follower = models.ForeignKey(Actor, verbose_name='Follower', on_delete=models.SET_NULL, null=True, related_name='follower')
     # Relacion con actor que recibe
+    followed = models.ForeignKey(Actor, verbose_name='Followed', on_delete=models.SET_NULL, null=True, related_name='followed')
 
     def __str__(self):
         return str(self.status) + ' - ' + str(self.description)
@@ -34,4 +37,4 @@ class Request(models.Model):
 
 class RequestAdminPanel(admin.ModelAdmin):
     # Panel de admin
-    list_display = ('status', 'description')
+    list_display = ('status', 'description', 'follower', 'followed')
