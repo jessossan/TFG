@@ -35,31 +35,36 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
-
+                <!-- Navbar cuando un usuario esta logueado -->
                     {% if user.actor.user %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Animales</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text" >
+                                Animales
+                            </a>
                         </li>
 
                     {% elif user.actor.breeder %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Animales</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text" >
+                                Animales
+                            </a>
                         </li>
 
                     {% elif user.actor.association %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Animales</a>
-                            </li>
-
-                    {% elif user.actor.administrator %}
-
-                        <li class="nav-item">
-                                <a class="nav-link" href="">Animales</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text" >
+                                Animales
+                            </a>
                         </li>
 
+                    {% elif user.actor.administrator %}
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text" >
+                                Animales
+                            </a>
+                        </li>
                     {% endif %}
 
                     </ul>
@@ -81,27 +86,38 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
+                <!-- PAGINA DE BIENVENIDA USUARIO NO AUTENTICADO -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <!-- Elementos principales -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home">Informaci&#243;n</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="#Home" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                                Información
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Animales</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                                Animales
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Criadores</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                                Criadores
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#escuelas-parallax">Asociaciones</a>
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                                Asociaciones
+                            </a>
                         </li>
 
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Iniciar Sesi&#243;n</a>
+                        <!-- PAGINA DE BIENVENIDA USUARIO NO AUTENTICADO -->
+                        <li class="dropdown flex-align-center">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="/login" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                                Iniciar Sesi&#243;n
+                            </a>
                         </li>
                         <li class="dropdown flex-align-center">
                             <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">

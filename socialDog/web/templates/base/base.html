@@ -39,73 +39,21 @@
 							<!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
 							<div class="collapse navbar-collapse">
 									<ul class="navbar-nav mr-auto">
-									{% if user.actor.school %}
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/web/showNotebook?idNotebook=12">Ver Ejemplo</a>
-                                            </li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_teachers' %}">Mis Profesores</a>
-											</li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_students' %}">Mis Alumnos</a>
-											</li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'list_subjects' %}">Mis Asignaturas</a>
-                                            </li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_exercisesS' %}">Ejercicios</a>
-											</li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_own_exercisesS' %}">Mis ejercicios</a>
-											</li>
-
-									{% elif user.actor.programmer %}
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/web/showNotebook?idNotebook=12">Ver Ejemplo</a>
-                                            </li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'createNotebook' %}">Nuevo Ejercicio</a>
-											</li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_exercisesP' %}">Ejercicios</a>
-											</li>
-											<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_own_exercisesP' %}">Mis ejercicios</a>
-											</li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'show_balance' %}">Mi saldo</a>
-                                            </li>
-
-
-									{% elif user.actor.teacher %}
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="/web/showNotebook?idNotebook=12">Ver Ejemplo</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'list_subjects' %}">Asignaturas</a>
-                                                </li>
-												<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_exercisesT' %}">Ejercicios</a>
-												</li>
-												<li class="nav-item">
-													<a class="nav-link" href="{% url 'list_school_exercisesT' %}">Ejercicios de la escuela</a>
-												</li>
-
-									{% elif user.actor.student %}
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/web/showNotebook?idNotebook=12">Ver Ejemplo</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'list_subjects' %}">Asignaturas</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'list_school_exercisesST' %}">Ejercicios</a>
-                                            </li>
-
+									{% if user.actor.user %}
+										<li class="nav-item">
+											<a class="nav-link" href="">Animales</a>
+										</li>
+									{% elif user.actor.breeder %}
+										<li class="nav-item">
+											<a class="nav-link" href="">Animales</a>
+										</li>
+									{% elif user.actor.association %}
+										<li class="nav-item">
+											<a class="nav-link" href="">Animales</a>
+										</li>
 									{% elif user.actor.administrator %}
-
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'createPayout' %}">Realizar pagos</a>
+                                            <a class="nav-link" href="">Animales</a>
                                          </li>
 
 									{% endif %}
@@ -137,23 +85,30 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 							<!-- Elementos principales -->
 							<ul class="navbar-nav mr-auto">
-									<li class="nav-item">
-											<a class="nav-link" href="/">Inicio</a>
-									</li>
+									<li class="dropdown flex-align-center">
+                            			<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+                                		Inicio
+                           				 </a>
+                        			</li>
+
 
 							</ul>
 							<ul class="navbar-nav ml-auto">
 
-									<li class="nav-item">
-											<a class="nav-link" href="/login">Iniciar Sesi&#243;n</a>
-									</li>
+									<li class="dropdown flex-align-center">
+                            			<a style="border-top: 5px solid;border-color: transparent;" href="/login" class="nav-link navbar-text">
+                                		Iniciar Sesi&#243;n
+                            			</a>
+                        			</li>
 									<li class="dropdown flex-align-center">
 											<a style="border-top: 6px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													Registrarse
 											</a>
 											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-													<a class="dropdown-item" href="/register/school">Escuela</a>
-													<a class="dropdown-item" href="/register/programmer">Programador</a>
+													<a class="dropdown-item" href="/register/user">Usuario</a>
+													<a class="dropdown-item" href="/register/breeder">Criador</a>
+													<a class="dropdown-item" href="/register/association">Asociación</a>
+
 											</div>
 									</li>
 							</ul>
