@@ -24,18 +24,18 @@
               <h2 class="text-center">{{ titulo }}</h2>
               <hr class="mb-3"/>
                 <!-- Formulario Login -->
-                <form action="." method="post" class="form-horizontal">
+                <form  action="." method="post" class="form-horizontal">
                     {% csrf_token %}
 
-                        <div class="form-group">
-                            <label for="id_username" class="control-label">Nombre de usuario</label>
+                        <div class="form-group" align="center">
+                            <label for="id_username" class="control-label">Nombre de usuario:</label>
                             <div>
                                 {{ form.username }}
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="id_password" class="control-label">Contrase&#241;a</label>
+                        <div class="form-group" align="center">
+                            <label for="id_password" class="control-label">Contrase&#241;a:</label>
                             <div>
                                 {{ form.password }}
                             </div>
