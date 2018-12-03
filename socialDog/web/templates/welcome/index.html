@@ -1,20 +1,26 @@
-{% extends 'welcome/welcome-base.html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}SocialDog{% endblock %}
 
 {% block content %}
-    <div class="container-fluid bgimg-2 parallax" id="home">
-        <div class="card bg-primary text-white display-middle display-card">
-            <div class="card-body">
-                ¿Qué es SocialDog?
+
+        <div class="container-fluid bgimg-2 parallax" id="home">
+            <div style="" class="card bg-primary text-white display-middle display-card">
+                {% if user.is_authenticated%}
+
+                {% else %}
+                     <div class="card-body">
+                        ¿Qué es SocialDog?
+                    </div>
+                {% endif %}
             </div>
         </div>
-    </div>
-    <br/>
-
-    <div class="container" id="info">
-        <h2>Información</h2>
-        </p>
         <br/>
-    </div>
+
+        <div class="container" id="info">
+            <h2>Información</h2>
+            </p>
+            <br/>
+        </div>
+
 {% endblock %}
