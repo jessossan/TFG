@@ -49,7 +49,7 @@ class ActorAdminPanel(admin.ModelAdmin):
 
 class Administrator(Actor):
     """
-    Clase que define el modelo Administrador.
+    Clase que define el modelo Administrador: dni
     """
     dni = models.CharField(verbose_name='D.N.I.', max_length=9,
                            help_text='Requerido. 8 dígitos y una letra.',
@@ -76,7 +76,7 @@ class AdministratorAdminPanel(admin.ModelAdmin):
 
 class User(Actor):
     """
-    Clase que define el modelo Usuario.
+    Clase que define el modelo Usuario: dni
     """
     dni = models.CharField(verbose_name='D.N.I.', max_length=9,
                            help_text='Requerido. 8 dígitos y una letra.',
@@ -109,7 +109,7 @@ class UserAdminPanel(admin.ModelAdmin):
 
 class Association(Actor):
     """
-    Clase que define el modelo Asociación.
+    Clase que define el modelo Asociación: centerName, address, postalCode, cif, opening, closing, province, private
     """
     centerName = models.CharField(max_length=50, unique=True, help_text='Requerido. 50 carácteres como máximo.')
     address = models.CharField(max_length=50, help_text='Requerido. 50 carácteres como máximo.')
@@ -126,6 +126,7 @@ class Association(Actor):
     closing = models.DateTimeField()
     # Relación con provincia
     province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)
+    private = models.BooleanField(default=False)
 
     def __str__(self):
         return self.centerName + ' (' + self.userAccount.get_username() + ')'
@@ -147,7 +148,7 @@ class AssociationAdminPanel(admin.ModelAdmin):
 
 class Breeder(Actor):
     """
-    Clase que define el modelo Criador.
+    Clase que define el modelo Criador: centerName, address, postalCode, dni, opening, closing, province, private
     """
     centerName = models.CharField(max_length=50, unique=True, help_text='Requerido. 50 carácteres como máximo.')
     address = models.CharField(max_length=50, help_text='Requerido. 50 carácteres como máximo.')
@@ -161,6 +162,7 @@ class Breeder(Actor):
                                                       message='El formato introducido es incorrecto.')])
     opening = models.DateTimeField()
     closing = models.DateTimeField()
+    private = models.BooleanField(default=False)
 
     # Relación con provincia
     province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)
