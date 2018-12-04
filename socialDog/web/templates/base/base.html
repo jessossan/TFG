@@ -68,7 +68,12 @@
 
 
 			{% else %}
-			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-info" style="background: rgb(23,77,84); /* Old browsers */
+                    background: -moz-linear-gradient(left, rgba(23,77,84,1) 0%, rgba(44,83,158,1) 61%, rgba(44,83,158,1) 61%, rgba(107,75,183,1) 80%);
+                    background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
+                    background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
+					<a class="navbar-brand flex-align-center" href="/">
 					<a class="navbar-brand flex-align-center" href="/">
 							<img style="width: auto; height: 50px; border-bottom: 0.4px solid;
   border-color: transparent;
@@ -128,7 +133,9 @@
 									</li>
 							</ul>
 					</div>
-			</nav>
+
+                    </a>
+            </nav>
 			{% endif %}
 	{% endblock %}
 

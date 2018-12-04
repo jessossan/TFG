@@ -5,7 +5,42 @@
 {% block content %}
 
         <div class="container-fluid bgimg-2 parallax" id="home">
-            <div style="" class="card bg-primary text-white display-middle display-card">
+            <div style="background: rgb(255,123,13); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(255,123,13,1) 0%, rgba(255,168,76,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(255,123,13,1) 0%,rgba(255,168,76,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(255,123,13,1) 0%,rgba(255,168,76,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffa84c',GradientType=1 );" class="card bg-primary text-white display-middle display-card">
+                {% if user.is_authenticated%}
+
+                {% else %}
+                     <div class="card-body">
+                        ¿Qué es SocialDog?
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+ <div class="container-fluid bgimg-2 parallax" id="home">
+            <div style="background: rgb(0,110,46); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(0,110,46,1) 0%, rgba(0,132,155,1) 90%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(0,110,46,1) 0%,rgba(0,132,155,1) 90%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(0,110,46,1) 0%,rgba(0,132,155,1) 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006e2e', endColorstr='#00849b',GradientType=1 );" class="card bg-primary text-white display-middle display-card">
+                {% if user.is_authenticated%}
+
+                {% else %}
+                     <div class="card-body">
+                        ¿Qué es SocialDog?
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+<div class="container-fluid bgimg-1 parallax" id="home">
+            <div style="background: rgb(79,133,187); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(79,133,187,1) 0%, rgba(99,66,155,1) 64%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(79,133,187,1) 0%,rgba(99,66,155,1) 64%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(79,133,187,1) 0%,rgba(99,66,155,1) 64%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f85bb', endColorstr='#63429b',GradientType=1 );" class="card bg-primary text-white display-middle display-card">
                 {% if user.is_authenticated%}
 
                 {% else %}
