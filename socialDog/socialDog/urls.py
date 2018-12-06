@@ -20,6 +20,10 @@ from datetime import datetime
 import web.forms
 import web.views
 import django.contrib.auth.views
+from django.conf.urls.static import static
+from socialDog import settings
+
+
 
 admin.autodiscover()
 handler404 = 'web.views.error404'
@@ -57,4 +61,4 @@ urlpatterns = [
 
     url(r'^register/user$', web.views.register_customer, name='registerUser'),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
