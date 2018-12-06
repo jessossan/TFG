@@ -74,7 +74,7 @@ class AdministratorAdminPanel(admin.ModelAdmin):
         return obj.userAccount.get_full_name()
 
 
-class User(Actor):
+class Customer(Actor):
     """
     Clase que define el modelo Usuario: dni
     """
@@ -97,7 +97,7 @@ class User(Actor):
         verbose_name_plural = "Usuarios"
 
 
-class UserAdminPanel(admin.ModelAdmin):
+class CustomerAdminPanel(admin.ModelAdmin):
     """
     Clase que define las propiedades del Usuario que se mostrarán en el panel de administración.
     """

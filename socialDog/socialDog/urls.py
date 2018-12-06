@@ -21,9 +21,6 @@ import web.forms
 import web.views
 import django.contrib.auth.views
 
-
-
-
 admin.autodiscover()
 handler404 = 'web.views.error404'
 handler500 = 'web.views.error500'
@@ -38,16 +35,16 @@ urlpatterns = [
     # Página de bienvenida
     url(r'^$', web.views.index, name='home'),
 
-# Sesión
+    # Sesión
     url(r'^login/$', django.contrib.auth.views.LoginView.as_view(),
         {
             'template_name': 'base/login.html',
             'authentication_form': web.forms.LoginForm,
             'extra_context':
-            {
-                'titulo': 'Inicio de sesión',
-                'year': datetime.now().year,
-            },
+                {
+                    'titulo': 'Inicio de sesión',
+                    'year': datetime.now().year,
+                },
         },
         name='login'),
     url(r'^logout$', django.contrib.auth.views.LogoutView.as_view(),
@@ -55,5 +52,9 @@ urlpatterns = [
             'next_page': '/',
         },
         name='logout'),
+
+    # Registro usuario
+
+    url(r'^register/user$', web.views.register_customer, name='registerUser'),
 
 ]
