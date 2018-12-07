@@ -3,46 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2a9b4435-b66f-4f2a-9129-730cd971fa24" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYmessages/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYmessages/migrations/0002_auto_20181127_2007.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYmessages/migrations/0003_auto_20181129_2135.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0002_auto_20181129_2127.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0003_auto_20181129_2135.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0002_auto_20181129_2127.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0003_breeder_breeds.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0004_auto_20181130_1955.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0005_auto_20181130_1958.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0006_auto_20181201_1736.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0007_auto_20181204_2116.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/migrations/0008_auto_20181206_1307.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/actors/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comments/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comments/migrations/0002_auto_20181127_2007.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comments/migrations/0003_comment_actor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comments/migrations/0004_auto_20181129_2108.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/migrations/0002_auto_20181125_2107.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/migrations/0003_auto_20181127_1929.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/migrations/0004_dog_breeder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/migrations/0002_auto_20181127_2007.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/migrations/0003_auto_20181129_2008.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/migrations/0004_auto_20181129_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/likesDislikes/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/likesDislikes/migrations/0002_likedislike_actor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/likesDislikes/migrations/0003_likedislike_comment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0002_auto_20181129_2008.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0003_auto_20181129_2025.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/migrations/0002_auto_20181128_2031.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/migrations/0003_rate_actor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/migrations/0004_auto_20181129_2058.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/migrations/0005_auto_20181129_2108.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breeds/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/breeds/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socialDog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/socialDog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,8 +68,8 @@
     <session id="-719933603">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
-          <entry key="project.open.time.0" value="3" />
+          <entry key="project.closed" value="17" />
+          <entry key="project.open.time.0" value="4" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.15" value="2" />
@@ -118,55 +81,55 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="11" />
           <entry key="gif" value="1" />
-          <entry key="html" value="61" />
+          <entry key="html" value="63" />
           <entry key="ico" value="2" />
           <entry key="jpg" value="12" />
           <entry key="js" value="5" />
           <entry key="json" value="1" />
           <entry key="png" value="5" />
-          <entry key="py" value="136" />
+          <entry key="py" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="11" />
-          <entry key="HTML" value="61" />
+          <entry key="HTML" value="63" />
           <entry key="Image" value="20" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="5" />
-          <entry key="Python" value="136" />
+          <entry key="Python" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="88" />
-          <entry key="html" value="1588" />
-          <entry key="py" value="4528" />
+          <entry key="html" value="1704" />
+          <entry key="py" value="5303" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="88" />
-          <entry key="HTML" value="1588" />
-          <entry key="Python" value="4528" />
+          <entry key="HTML" value="1704" />
+          <entry key="Python" value="5303" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="95" column="39" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
+            <state relative-caret-position="-136">
+              <caret line="162" column="74" selection-start-line="162" selection-start-column="74" selection-end-line="162" selection-end-column="74" />
               <folding>
                 <element signature="e#46#70#0" expanded="true" />
               </folding>
@@ -177,8 +140,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/actors/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="125" column="30" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
+            <state relative-caret-position="130">
+              <caret line="131" column="30" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dogs/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2125">
-              <caret line="135" column="38" selection-start-line="135" selection-start-column="38" selection-end-line="135" selection-end-column="38" />
+            <state relative-caret-position="65">
+              <caret line="177" column="17" lean-forward="true" selection-start-line="177" selection-end-line="178" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -195,11 +170,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/templates/web/registerAssociation.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/socialDog/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-99">
-              <caret line="86" column="44" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
+            <state relative-caret-position="1105">
+              <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+              <folding>
+                <element signature="e#634#666#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/templates/web/registerBreeder.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="141" column="58" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/breeds/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -216,13 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cuader</find>
-      <find>jpg</find>
-      <find>footer</find>
-      <find>bgimg-1</find>
-      <find>fondo-libro.jpg</find>
-      <find>.jp</find>
-      <find>bgimg-2</find>
       <find>.jpg</find>
       <find>.bgimg-</find>
       <find>login-icon</find>
@@ -239,13 +231,20 @@
       <find>user</find>
       <find>license</find>
       <find>postal</find>
-      <find>cif</find>
       <find>D.N.I.</find>
-      <find>dni</find>
       <find>Customer</find>
       <find>private</find>
       <find>closing</find>
       <find>D.N.I</find>
+      <find>num_usuarios</find>
+      <find>El nombre de usuario ya está ocupado. Por favor, eliga otro para completar su registro</find>
+      <find>cif</find>
+      <find>dni</find>
+      <find>opening</find>
+      <find>openi</find>
+      <find>escuela</find>
+      <find>centerNa</find>
+      <find>centerName</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -260,8 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/breeds/apps.py" />
-        <option value="$PROJECT_DIR$/breeds/models.py" />
         <option value="$PROJECT_DIR$/provinces/models.py" />
         <option value="$PROJECT_DIR$/breeds/admin.py" />
         <option value="$PROJECT_DIR$/comments/admin.py" />
@@ -280,7 +277,6 @@
         <option value="$PROJECT_DIR$/rates/apps.py" />
         <option value="$PROJECT_DIR$/actors/apps.py" />
         <option value="$PROJECT_DIR$/actors/decorators.py" />
-        <option value="$PROJECT_DIR$/dogs/models.py" />
         <option value="$PROJECT_DIR$/events/models.py" />
         <option value="$PROJECT_DIR$/news/models.py" />
         <option value="$PROJECT_DIR$/rates/models.py" />
@@ -306,11 +302,14 @@
         <option value="$PROJECT_DIR$/web/templates/welcome/index.html" />
         <option value="$PROJECT_DIR$/actors/admin.py" />
         <option value="$PROJECT_DIR$/socialDog/settings.py" />
-        <option value="$PROJECT_DIR$/socialDog/urls.py" />
-        <option value="$PROJECT_DIR$/web/views.py" />
         <option value="$PROJECT_DIR$/web/templates/web/registerAssociation.html" />
-        <option value="$PROJECT_DIR$/web/forms.py" />
+        <option value="$PROJECT_DIR$/socialDog/urls.py" />
         <option value="$PROJECT_DIR$/actors/models.py" />
+        <option value="$PROJECT_DIR$/breeds/models.py" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/web/templates/web/registerBreeder.html" />
+        <option value="$PROJECT_DIR$/dogs/models.py" />
+        <option value="$PROJECT_DIR$/web/forms.py" />
       </list>
     </option>
   </component>
@@ -328,7 +327,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -340,6 +338,16 @@
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
               <item name="actors" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
+              <item name="breeds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
+              <item name="dogs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
@@ -372,6 +380,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,17 +389,17 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\web\static\img" />
+      <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog" />
+      <recent name="C:\Users\jesos\PycharmProjects\TFG" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\web\templates\web" />
       <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\web\static\img" />
       <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\web\templates\registration" />
       <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog" />
       <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog\web\static\img" />
-      <recent name="C:\Users\jesos\PycharmProjects\TFG\socialDog" />
-      <recent name="C:\Users\jesos\PycharmProjects\TFG" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -592,7 +601,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19181946" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20239775" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -603,28 +612,37 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32944608" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49788433" visible="true" weight="0.30053908" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49788433" visible="true" weight="0.36657682" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50211567" side_tool="true" weight="0.3045822" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32944608" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20253165" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32884097" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32944608" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49788433" visible="true" weight="0.36677632" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50211567" side_tool="true" weight="0.3045822" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32944608" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/welcome/welcome-base.html" />
-    <entry file="file://$PROJECT_DIR$/templates/base/base.html" />
-    <entry file="file://$PROJECT_DIR$/web/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html" />
     <entry file="file://$PROJECT_DIR$/templates/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -802,13 +820,6 @@
     <entry file="file://$PROJECT_DIR$/actors/forms.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/templates/web/registerUser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="86" column="43" selection-start-line="86" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/models.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -819,44 +830,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/socialDog/urls.py">
+    <entry file="file://$PROJECT_DIR$/web/templates/web/registerAssociation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        <state relative-caret-position="54">
+          <caret line="86" column="44" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/forms.py">
+    <entry file="file://$PROJECT_DIR$/web/templates/web/registerUser.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="95" column="39" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
+        <state relative-caret-position="238">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/django/forms/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="807" selection-start-line="807" selection-end-line="807" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialDog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
           <folding>
-            <element signature="e#46#70#0" expanded="true" />
+            <element signature="e#634#666#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/web/registerBreeder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="141" column="58" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="135" column="38" selection-start-line="135" selection-start-column="38" selection-end-line="135" selection-end-column="38" />
+        <state relative-caret-position="65">
+          <caret line="177" column="17" lean-forward="true" selection-start-line="177" selection-end-line="178" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/models.py">
+    <entry file="file://$PROJECT_DIR$/dogs/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="125" column="30" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
+        <state relative-caret-position="221">
+          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/templates/web/registerAssociation.html">
+    <entry file="file://$PROJECT_DIR$/breeds/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="86" column="44" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
+        <state relative-caret-position="130">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="131" column="30" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="162" column="74" selection-start-line="162" selection-start-column="74" selection-end-line="162" selection-end-column="74" />
+          <folding>
+            <element signature="e#46#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

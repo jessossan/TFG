@@ -14,10 +14,10 @@
             <div class="col-md-12">
 
                 <!-- FORMULARIO -->
-                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'registerAssociation' %}" class="form" role="form">
+                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'registerBreeder' %}" class="form" role="form">
                     {% csrf_token %}
 
-                    <!-- Asociación -->
+                    <!-- Criador -->
                     <h3>Rellena tus datos</h3>
                     <br/>
 
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="email" class="control-label">Email</label>
-                            <input class="form-control" id="email" name="email" placeholder="asociacion@ejemplo.com" type="email" value="{{ form.email.value|default:'' }}" required/>
+                            <input class="form-control" id="email" name="email" placeholder="criador@ejemplo.com" type="email" value="{{ form.email.value|default:'' }}" required/>
                         </div>
                     </div>
                     <div class="row">
@@ -62,9 +62,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="cif" class="control-label">C&#243;digo identificación fiscal</label>
-                            <input type="text" maxlength="9" class="form-control" name="cif" id="cif" placeholder="C&#243;digo de 9 d&#237;gitos para asociaciones"
-                                   value="{{ form.cif.value|default:'' }}" required/>
+                            <label for="dni" class="control-label">D.N.I.</label>
+                            <input type="text" maxlength="9" class="form-control" name="dni" id="dni" placeholder="D.N.I." value="{{ form.dni.value|default:'' }}" required/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="phone" class="control-label">Tel&#233;fono</label>
@@ -122,6 +121,16 @@
                             <label for="photo" class="control-label">Foto de perfil</label>
                             <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto de perfil del usuario" value="{{ form.photo.value|default:'' }}"/>
                         </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="breeds" class="control-label">Seleccione razas</label>
+                                <select multiple class="form-control" id="breeds" name="breeds" >
+                                    {% for breed in breeds %}
+                                        <option value="{{ breed.id }}">{{ breed.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                     </div>
 
                     <hr/>

@@ -63,4 +63,7 @@ urlpatterns = [
     # Registro asociación
     url(r'^register/association$', web.views.register_association, name='registerAssociation'),
 
+    # Registro criador
+    url(r'^register/breeder$', web.views.register_breeder, name='registerBreeder'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

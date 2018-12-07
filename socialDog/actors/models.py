@@ -160,8 +160,8 @@ class Breeder(Actor):
                            help_text='Requerido. 8 dígitos y una letra.',
                            validators=[RegexValidator(regex=r'^([0-9]{8})([TRWAGMYFPDXBNJZSQVHLCKE])$',
                                                       message='El formato introducido es incorrecto.')])
-    opening = models.DateTimeField()
-    closing = models.DateTimeField()
+    opening = models.TimeField()
+    closing = models.TimeField()
     private = models.BooleanField(default=True)
 
     # Relación con provincia
