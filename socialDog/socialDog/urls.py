@@ -58,7 +58,9 @@ urlpatterns = [
         name='logout'),
 
     # Registro usuario
-
     url(r'^register/user$', web.views.register_customer, name='registerUser'),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Registro asociación
+    url(r'^register/association$', web.views.register_association, name='registerAssociation'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -122,11 +122,11 @@ class Association(Actor):
                                                                                         message='El código de identificación debe estar compuesto de 9 dígitos.')],
                                         unique=True,
                                         help_text='Requerido. CIF para asociaciones. Empieza por G, seguido de 8 dígitos')
-    opening = models.DateTimeField()
-    closing = models.DateTimeField()
+    opening = models.TimeField()
+    closing = models.TimeField()
     # Relación con provincia
     province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)
-    private = models.BooleanField(default=False)
+    private = models.BooleanField(default=True)
 
     def __str__(self):
         return self.centerName + ' (' + self.userAccount.get_username() + ')'
@@ -162,7 +162,7 @@ class Breeder(Actor):
                                                       message='El formato introducido es incorrecto.')])
     opening = models.DateTimeField()
     closing = models.DateTimeField()
-    private = models.BooleanField(default=False)
+    private = models.BooleanField(default=True)
 
     # Relación con provincia
     province = models.ForeignKey(Province, on_delete = models.SET_NULL, null = True)

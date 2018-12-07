@@ -1,0 +1,165 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+<div class="container">
+    <br />
+    <h2>{{ title }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-md-12">
+
+                <!-- FORMULARIO -->
+                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'registerAssociation' %}" class="form" role="form">
+                    {% csrf_token %}
+
+                    <!-- Asociación -->
+                    <h3>Rellena tus datos</h3>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="username" class="control-label">Nombre de usuario</label>
+                            <input class="form-control" id="username" name="username" placeholder="Nombre de usuario" type="text" value="{{ form.username.value|default:'' }}" required autofocus/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="email" class="control-label">Email</label>
+                            <input class="form-control" id="email" name="email" placeholder="escuela@ejemplo.com" type="email" value="{{ form.email.value|default:'' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="password" class="control-label">Contrase&#241;a</label>
+                            <input class="form-control" name="password" id="password" type="password" placeholder="Contrase&#241;a" required/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="confirm_password" class="control-label">Confirmar contrase&#241;a</label>
+                            <input class="form-control" name="confirm_password" id="confirm_password" type="password" placeholder="Confirmar contrase&#241;a" required/>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="first_name" class="control-label">Nombre</label>
+                            <input class="form-control" name="first_name" id="first_name" type="text" placeholder="Nombre" value="{{ form.first_name.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="last_name" class="control-label">Apellidos</label>
+                            <input class="form-control" name="last_name" id="last_name" type="text" placeholder="Apellidos" value="{{ form.last_name.value|default:'' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="centerName" class="control-label">Nombre del Centro</label>
+                            <input class="form-control" name="centerName" id="centerName" type="text" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="cif" class="control-label">C&#243;digo identificación fiscal</label>
+                            <input type="text" maxlength="9" class="form-control" name="cif" id="cif" placeholder="C&#243;digo de 9 d&#237;gitos para asociaciones"
+                                   value="{{ form.cif.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="phone" class="control-label">Tel&#233;fono</label>
+                            <input type="text" maxlength="9" class="form-control" name="phone" id="phone" placeholder="Tel&#233;fono" value="{{ form.phone.value|default:'' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="address" class="control-label">Direcci&#243;n</label>
+                            <input type="text" maxlength="50" class="form-control" name="address" id="address" placeholder="Direcci&#243;n"
+                                   value="{{ form.address.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="opening" class="control-label">Hora de apertura</label>
+                            <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
+                                   value="{{ form.opening.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="closing" class="control-label">Hora de cierre</label>
+                            <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
+                                   value="{{ form.closing.value|default:'' }}"required/>
+                        </div>
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="private" class="control-label">Perfil privado</label>
+                            <input type=checkbox checked class="form-control" name="private" id="private" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="province" class="control-label">Provincia</label>
+                            <select class="form-control" id="province" name="province" required>
+                                <!-- Si viene de validaci&#243;n, pinta la anterior -->
+                                {% if provinceSelected != None %}
+                                    <option value="{{ provinceSelected.id }}" selected="selected">{{ provinceSelected.name }}</option>
+                                    {% for p in provinces %}
+                                        <option value="{{ p.id }}">{{ p.name }}</option>
+                                    {% endfor %}
+                                <!-- Si es no, sin selecci&#243;n por defecto -->
+                                {% else %}
+                                <option value="" selected="selected">Seleccione una provincia</option>
+                                    {% for p in provinces %}
+                                        <option value="{{ p.id }}">{{ p.name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="postalCode" class="control-label">C&#243;digo Postal</label>
+                            <input type="text" maxlength="5" class="form-control" name="postalCode" id="postalCode" placeholder="C&#243;digo Postal"
+                                   value="{{ form.postalCode.value|default:'' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="photo" class="control-label">Foto de perfil</label>
+                            <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto de perfil del usuario" value="{{ form.photo.value|default:'' }}"/>
+                        </div>
+                    </div>
+
+                    <hr/>
+                     <!-- Tratamiento de Errores -->
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <hr/>
+
+
+                    <!-- Botones -->
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="submit" value="Registrarse" class="btn btn-primary btn-block" />
+                            <input type="button" class="btn btn-default btn-block" onclick="location.href='/';" value="Cancelar" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}
