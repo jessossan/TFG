@@ -38,6 +38,7 @@
 							<div class="collapse navbar-collapse">
 									<ul class="navbar-nav mr-auto">
 									<!-- NAVBAR USUARIO -->
+
 									{% if user.actor.customer %}
 										<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
@@ -46,37 +47,53 @@
 											 </a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"   aria-expanded="false">
 												Animales
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Amigos
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Amigos</span>
+												</div>
 											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis amigos</a>
+												<a class="dropdown-item" href="">Solicitudes de amistad</a>
+												<a class="dropdown-item" href="">Todos los usuarios</a>
+											</div>
+            							</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text" aria-expanded="false">
 												Asociaciones
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Criadores
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Mis valoraciones
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mi perfil
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
+												Criadores
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
+												Valoraciones
 											</a>
 										</li>
 									</ul>
+
 									<!-- NAVBAR CRIADOR -->
+
 									{% elif user.actor.breeder %}
 									<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
@@ -84,46 +101,74 @@
 												Inicio
 											 </a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Animales
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Animales</span>
+												</div>
 											</a>
-										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mis eventos
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis animales</a>
+												<a class="dropdown-item" href="">Animales</a>
+											</div>
+            							</li>
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Mis eventos</span>
+												</div>
 											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Por realizar</a>
+												<a class="dropdown-item" href="">Finalizados</a>
+											</div>
+            							</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Mis noticias
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Amigos
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Amigos</span>
+												</div>
 											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis amigos</a>
+												<a class="dropdown-item" href="">Solicitudes de amistad</a>
+												<a class="dropdown-item" href="">Todos los usuarios</a>
+											</div>
+            							</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Asociaciones
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Criadores
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Valoraciones
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Valoraciones</span>
+												</div>
 											</a>
-										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mi perfil
-											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis valoraciones</a>
+												<a class="dropdown-item" href="">Valoraciones</a>
+											</div>
+            							</li>
 									</ul>
 									<!-- NAVBAR ASOCIACION -->
 									{% elif user.actor.association %}
@@ -134,45 +179,70 @@
 											 </a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text">
 												Animales
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mis eventos
+											<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text">
+												Razas
 											</a>
 										</li>
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Mis eventos</span>
+												</div>
+											</a>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Por realizar</a>
+												<a class="dropdown-item" href="">Finalizados</a>
+											</div>
+            							</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Mis noticias
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Amigos
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Amigos</span>
+												</div>
 											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis amigos</a>
+												<a class="dropdown-item" href="">Solicitudes de amistad</a>
+												<a class="dropdown-item" href="">Todos los usuarios</a>
+											</div>
+            							</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text">
 												Asociaciones
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text" >
 												Criadores
 											</a>
 										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Valoraciones
+										<li class="dropdown">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text flex-align-center" id="navbarDropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<div>
+													Valoraciones</span>
+												</div>
 											</a>
-										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mi perfil
-											</a>
-										</li>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+												<a class="dropdown-item" href="">Mis valoraciones</a>
+												<a class="dropdown-item" href="">Valoraciones</a>
+											</div>
+            							</li>
 									</ul>
 									<!-- NAVBAR ADMINISTRADOR -->
 									{% elif user.actor.administrator %}
@@ -183,43 +253,38 @@
 											 </a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  aria-expanded="false">
 												Animales
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Mis eventos
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Mis noticias
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Amigos
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Asociaciones
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Criadores
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
 												Valoraciones
-											</a>
-										</li>
-										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
-												Mi perfil
 											</a>
 										</li>
 									</ul>
@@ -264,17 +329,17 @@
                            				 </a>
                         			</li>
 								<li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  aria-expanded="false">
                                 Animales
                             </a>
                         </li>
                         <li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
                                 Criadores
                             </a>
                         </li>
                         <li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+                            <a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  aria-expanded="false">
                                 Asociaciones
                             </a>
                         </li>
@@ -289,10 +354,10 @@
                             			</a>
                         			</li>
 									<li class="dropdown flex-align-center">
-											<a style="border-top: 6px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<a style="border-top: 6px solid;border-color: transparent;" href="#" class="nav-link dropdown-toggle navbar-text" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													Registrarse
 											</a>
-											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
 													<a class="dropdown-item" href="/register/user">Usuario</a>
 													<a class="dropdown-item" href="/register/breeder">Criador</a>
 													<a class="dropdown-item" href="/register/association">Asociación</a>
