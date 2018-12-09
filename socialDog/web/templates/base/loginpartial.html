@@ -25,12 +25,12 @@
                     {% if user.is_staff %}
                         <a class="dropdown-item" href="/admin/">Panel Administraci&#243;n</a>
                         <hr/>
-                    {% elif user.actor.user %}
-                        <a class="dropdown-item" href="">Editar Perfil</a>
+                    {% elif user.actor.customer %}
+
                     {% elif user.actor.breeder %}
-                        <a class="dropdown-item" href="">Editar Perfil</a>
+
                     {% elif user.actor.association %}
-                        <a class="dropdown-item" href="">Editar Perfil</a>
+
                     {% endif %}
                     <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar
                         Sesi&#243;n</a>

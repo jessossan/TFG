@@ -23,7 +23,7 @@
 <body class="d-flex flex-column body-parent">
 	{% block navbar %}
 			{% if user.is_authenticated %}
-
+					<!-- NAVBAR ACTOR AUTENTICADO -->
 					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 							<a class="navbar-brand flex-align-center" href="/">
 									<img style="width: auto; height: 40x; border-bottom: 0.4px solid;
@@ -32,29 +32,197 @@
   align-items: center;
   display: flex;" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
 							</a>
-							<!--Botón de "colapso", se mostrará si la ventana es demasiado pequeña-->
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon"></span>
 							</button>
-							<!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
 							<div class="collapse navbar-collapse">
 									<ul class="navbar-nav mr-auto">
-									{% if user.actor.user %}
-										<li class="nav-item">
-											<a class="nav-link" href="">Animales</a>
+									<!-- NAVBAR USUARIO -->
+									{% if user.actor.customer %}
+										<ul class="navbar-nav mr-auto">
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												Inicio
+											 </a>
 										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Animales
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Amigos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Asociaciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Criadores
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis valoraciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mi perfil
+											</a>
+										</li>
+									</ul>
+									<!-- NAVBAR CRIADOR -->
 									{% elif user.actor.breeder %}
-										<li class="nav-item">
-											<a class="nav-link" href="">Animales</a>
+									<ul class="navbar-nav mr-auto">
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												Inicio
+											 </a>
 										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Animales
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis eventos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis noticias
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Amigos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Asociaciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Criadores
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Valoraciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mi perfil
+											</a>
+										</li>
+									</ul>
+									<!-- NAVBAR ASOCIACION -->
 									{% elif user.actor.association %}
-										<li class="nav-item">
-											<a class="nav-link" href="">Animales</a>
+										<ul class="navbar-nav mr-auto">
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												Inicio
+											 </a>
 										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Animales
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis eventos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis noticias
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Amigos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Asociaciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Criadores
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Valoraciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mi perfil
+											</a>
+										</li>
+									</ul>
+									<!-- NAVBAR ADMINISTRADOR -->
 									{% elif user.actor.administrator %}
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Animales</a>
-                                         </li>
+                                        <ul class="navbar-nav mr-auto">
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												Inicio
+											 </a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Animales
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis eventos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mis noticias
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Amigos
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Asociaciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Criadores
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Valoraciones
+											</a>
+										</li>
+										<li class="dropdown flex-align-center">
+											<a style="border-top: 5px solid;border-color: transparent;" href="#" class="nav-link navbar-text"  daria-haspopup="false" aria-expanded="false">
+												Mi perfil
+											</a>
+										</li>
+									</ul>
 
 									{% endif %}
 

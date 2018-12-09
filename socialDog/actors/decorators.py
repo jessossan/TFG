@@ -1,11 +1,11 @@
 from django.core.exceptions import PermissionDenied
 
 
-def user_is_user(function):
-    """Decorador que verifica que el usuario es de tipo Usuario"""
+def user_is_customer(function):
+    """Decorador que verifica que el usuario es de tipo Customer"""
 
     def wrap(request, *args, **kwargs):
-        if hasattr(request.user.actor, 'user'):
+        if hasattr(request.user.actor, 'customer'):
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
