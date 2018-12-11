@@ -203,13 +203,22 @@ def register_breeder(request):
             login(request, user)
             return HttpResponseRedirect('/')
 
+        else:
+            provinces = Province.objects.all()
+
+            # Busca la provincia específica
+            try:
+                provinceSelected = form.cleaned_data["province"]
+            except:
+                provinceSelected = None
+
     # Si se accede al form vía GET o cualquier otro método
     else:
         form = RegisterBreederForm()
 
     # Datos del modelo (vista)
-    provinces = Province.objects.all()
-    provinceSelected = None
+        provinces = Province.objects.all()
+        provinceSelected = None
     breeds = Breed.objects.all()
     data = {
         'form': form,
