@@ -87,11 +87,12 @@
                             <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
                                    value="{{ form.closing.value|default:'' }}"required/>
                         </div>
-                        <div class="col-xs-12 col-md-12 form-group">
-                            <label for="private" class="control-label">Perfil privado</label>
-                            <input type=checkbox checked class="form-control" name="private" id="private" />
-                        </div>
                     </div>
+                   <hr/>
+                     <div class="col-xs-12 col-md-12 form-group">
+                            <label for="private" class="control-label">Perfil privado <input type=checkbox checked class="form-control" name="private" id="private" /></label>
+                        </div>
+                   <hr/>
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="province" class="control-label">Provincia</label>

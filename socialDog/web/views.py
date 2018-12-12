@@ -128,14 +128,21 @@ def register_association(request):
 
             login(request, user)
             return HttpResponseRedirect('/')
+        else:
+            provinces = Province.objects.all()
 
+            # Busca la provincia específica
+            try:
+                provinceSelected = form.cleaned_data["province"]
+            except:
+                provinceSelected = None
     # Si se accede al form vía GET o cualquier otro método
     else:
         form = RegisterAssociationForm()
 
-    # Datos del modelo (vista)
-    provinces = Province.objects.all()
-    provinceSelected = None
+        # Datos del modelo (vista)
+        provinces = Province.objects.all()
+        provinceSelected = None
     data = {
         'form': form,
         'title': 'Registro de Asociación',

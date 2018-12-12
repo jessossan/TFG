@@ -89,7 +89,8 @@ class RegisterAssociationForm(forms.Form):
                             label='Teléfono')
     photo = forms.ImageField(required=False)
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
-    postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$')], label='Código Postal')
+    postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$',
+                                                                      message='El código postal debe estar compuesto por 5 dígitos.'),], label='Código Postal')
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
     address = forms.CharField(max_length=50, label='Dirección')
     opening = forms.TimeField(label='Hora de apertura')
@@ -151,7 +152,8 @@ class RegisterBreederForm(forms.Form):
                             label='Teléfono')
     photo = forms.ImageField(required=False)
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
-    postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$')], label='Código Postal')
+    postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$',
+                                                                      message='El código postal debe estar compuesto por 5 dígitos.')], label='Código Postal')
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
     address = forms.CharField(max_length=50, label='Dirección')
     opening = forms.TimeField(label='Hora de apertura')
