@@ -131,11 +131,15 @@ def register_association(request):
         else:
             provinces = Province.objects.all()
 
-            # Busca la provincia específica
+            # Busca la provincia específica cuando falla el form
             try:
                 provinceSelected = form.cleaned_data["province"]
+
+                # elimina las provincias duplicadas
+                provincesAux = Province.objects.all().exclude(pk=provinceSelected.pk)
             except:
                 provinceSelected = None
+                provincesAux = None
     # Si se accede al form vía GET o cualquier otro método
     else:
         form = RegisterAssociationForm()
@@ -143,12 +147,14 @@ def register_association(request):
         # Datos del modelo (vista)
         provinces = Province.objects.all()
         provinceSelected = None
+        provincesAux = None
     data = {
         'form': form,
         'title': 'Registro de Asociación',
         'year': datetime.now().year,
         'provinces': provinces,
         'provinceSelected': provinceSelected,
+        'provincesAux': provincesAux,
     }
 
     return render(request, 'web/registerAssociation.html', data)
@@ -213,11 +219,25 @@ def register_breeder(request):
         else:
             provinces = Province.objects.all()
 
-            # Busca la provincia específica
+            # Busca la provincia específica seleccionada antes de que fallara el form
             try:
                 provinceSelected = form.cleaned_data["province"]
+                # elimina las provincias duplicadas
+                provincesAux = Province.objects.all().exclude(pk = provinceSelected.pk)
             except:
                 provinceSelected = None
+                provincesAux = None
+
+            # Busca la provincia específica seleccionada antes de que fallara el form
+            try:
+                breedsSelected = form.cleaned_data["breeds"]
+                # recorre las razas seleccionadas antes de que fallara el form
+                for b in breedsSelected:
+                    # Quita las razas repetidas
+                    breedsAux= Breed.objects.all().exclude(name = b.name)
+
+            except:
+                breedsSelected = None
 
     # Si se accede al form vía GET o cualquier otro método
     else:
@@ -226,6 +246,10 @@ def register_breeder(request):
     # Datos del modelo (vista)
         provinces = Province.objects.all()
         provinceSelected = None
+        breedsSelected = None
+        breedsAux = None
+        provincesAux = None
+
     breeds = Breed.objects.all()
     data = {
         'form': form,
@@ -233,7 +257,10 @@ def register_breeder(request):
         'year': datetime.now().year,
         'provinces': provinces,
         'provinceSelected': provinceSelected,
-        'breeds': breeds
+        'breeds': breeds,
+        'breedsSelected': breedsSelected,
+        'breedsAux': breedsAux,
+        'provincesAux': provincesAux
     }
 
     return render(request, 'web/registerBreeder.html', data)
