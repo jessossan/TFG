@@ -97,7 +97,7 @@ class RegisterAssociationForm(forms.Form):
     closing = forms.TimeField(label='Hora de cierre')
     cif = forms.CharField(max_length=9,
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
-                                                     message='El código de identificación debe estar compuesto de 9 dígitos.')],
+                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
                           label="C.I.F.")
     private = forms.BooleanField(label='Perfil privado',required=False)
 
@@ -166,9 +166,10 @@ class RegisterBreederForm(forms.Form):
     address = forms.CharField(max_length=50, label='Dirección')
     opening = forms.TimeField(label='Hora de apertura')
     closing = forms.TimeField(label='Hora de cierre')
-    dni = forms.CharField(max_length=9, validators=[RegexValidator(regex=r'^([0-9]{8})([TRWAGMYFPDXBNJZSQVHLCKE])$',
-                                                                   message='El D.N.I. debe estar compuesto de 8 dígitos seguidos de 1 letra mayúscula.')],
-                          label='D.N.I.')
+    cif = forms.CharField(max_length=9,
+                          validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
+                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
+                          label="C.I.F.")
     private = forms.BooleanField(label='Perfil privado',required=False)
     breeds = forms.ModelMultipleChoiceField(queryset=Breed.objects.all(), widget=forms.CheckboxSelectMultiple, label='Razas')
 
@@ -184,11 +185,6 @@ class RegisterBreederForm(forms.Form):
                 raise forms.ValidationError(
                     "El nombre de usuario ya está ocupado. Por favor, eliga otro para completar su registro.")
 
-            dni = self.cleaned_data["dni"]
-            try:
-                validate(dni)
-            except Exception as e:
-                raise forms.ValidationError("El formato del DNI no es correcto")
 
             # Valida que la contraseña se haya confirmado correctamente
             password = self.cleaned_data["password"]

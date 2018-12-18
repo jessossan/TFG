@@ -194,7 +194,7 @@ def register_breeder(request):
             address = form.cleaned_data["address"]
             opening = form.cleaned_data["opening"]
             closing = form.cleaned_data["closing"]
-            dni = form.cleaned_data["dni"]
+            cif = form.cleaned_data["cif"]
             phone = form.cleaned_data["phone"]
             photo = form.cleaned_data["photo"]
             private = form.cleaned_data["private"]
@@ -203,7 +203,7 @@ def register_breeder(request):
 
             breeder = Breeder.objects.create(phone=phone, photo=photo, centerName=centerName,
                                                   postalCode=postalCode, province=province, address=address,
-                                                  opening=opening, closing=closing, dni=dni, userAccount=userAccount,
+                                                  opening=opening, closing=closing, cif=cif, userAccount=userAccount,
                                                   people=0, private=private)
             # Añadir las razas al criador
             for breed in breeds:

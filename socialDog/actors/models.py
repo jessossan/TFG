@@ -117,7 +117,7 @@ class Association(Actor):
                                   help_text='Requerido. 5 dígitos como máximo.',
                                   validators=[RegexValidator(regex=r'^(\d{5})$',
                                                              message='El formato introducido es incorrecto.')])
-    cif = models.CharField(verbose_name='CIF or Center Code', max_length=9,
+    cif = models.CharField(verbose_name='CIF', max_length=9,
                                         validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
                                                                                         message='El código de identificación debe estar compuesto de 9 dígitos.')],
                                         unique=True,
@@ -148,7 +148,7 @@ class AssociationAdminPanel(admin.ModelAdmin):
 
 class Breeder(Actor):
     """
-    Clase que define el modelo Criador: centerName, address, postalCode, dni, opening, closing, province, private
+    Clase que define el modelo Criador: centerName, address, postalCode, cif, opening, closing, province, private
     """
     centerName = models.CharField(max_length=50, unique=True, help_text='Requerido. 50 carácteres como máximo.')
     address = models.CharField(max_length=50, help_text='Requerido. 50 carácteres como máximo.')
@@ -156,10 +156,11 @@ class Breeder(Actor):
                                   help_text='Requerido. 5 dígitos como máximo.',
                                   validators=[RegexValidator(regex=r'^(\d{5})$',
                                                              message='El formato introducido es incorrecto.')])
-    dni = models.CharField(verbose_name='D.N.I.', max_length=9,
-                           help_text='Requerido. 8 dígitos y una letra.',
-                           validators=[RegexValidator(regex=r'^([0-9]{8})([TRWAGMYFPDXBNJZSQVHLCKE])$',
-                                                      message='El formato introducido es incorrecto.')])
+    cif = models.CharField(verbose_name='CIF', max_length=9,
+                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
+                                                      message='El código de identificación debe estar compuesto de 9 dígitos.')],
+                           unique=True,
+                           help_text='Requerido. CIF para asociaciones. Empieza por G, seguido de 8 dígitos')
     opening = models.TimeField()
     closing = models.TimeField()
     private = models.BooleanField(default=True)
@@ -172,11 +173,6 @@ class Breeder(Actor):
     def __str__(self):
         return self.userAccount.get_full_name() + ' (' + self.userAccount.get_username() + ')'
 
-    def full_clean(self, exclude=None, validate_unique=True):
-        if not validate(self.dni):
-            raise ValidationError({
-                NON_FIELD_ERRORS: ['El DNI tiene un formato incorrecto', ],
-            })
 
     class Meta:
         verbose_name = "Criador"
@@ -187,7 +183,7 @@ class BreederAdminPanel(admin.ModelAdmin):
     """
     Clase que define las propiedades del Criador que se mostrarán en el panel de administración.
     """
-    list_display = ('userAccount', 'get_full_name', 'people', 'dni', 'centerName', 'address', 'postalCode', 'opening', 'closing')
+    list_display = ('userAccount', 'get_full_name', 'people', 'cif', 'centerName', 'address', 'postalCode', 'opening', 'closing')
 
     def get_full_name(self, obj):
         return obj.userAccount.get_full_name()
