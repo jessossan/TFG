@@ -67,7 +67,7 @@
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.14" value="3" />
+          <entry key="project.open.time.14" value="4" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.2" value="3" />
@@ -84,7 +84,7 @@
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.68" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="34" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -97,7 +97,7 @@
           <entry key="js" value="5" />
           <entry key="json" value="3" />
           <entry key="png" value="5" />
-          <entry key="py" value="199" />
+          <entry key="py" value="200" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -107,7 +107,7 @@
           <entry key="Image" value="20" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="5" />
-          <entry key="Python" value="199" />
+          <entry key="Python" value="200" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -129,16 +129,15 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="228" column="74" lean-forward="true" selection-start-line="182" selection-start-column="4" selection-end-line="228" selection-end-column="74" />
+            <state relative-caret-position="279">
+              <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
               <folding>
                 <element signature="e#457#838#0" />
                 <element signature="e#898#3346#0" />
-                <element signature="e#3396#7850#0" />
               </folding>
             </state>
           </provider>
@@ -147,24 +146,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/actors/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
+            <state relative-caret-position="648">
+              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
-                <element signature="e#294#1606#0" />
-                <element signature="e#1648#3414#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views.py">
+        <entry file="file://$PROJECT_DIR$/actors/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+            <state relative-caret-position="751">
+              <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -280,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
@@ -294,6 +291,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -308,18 +306,12 @@
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -884,16 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -910,7 +892,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
+        <state relative-caret-position="17">
           <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
@@ -918,26 +900,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/actors/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="751">
+          <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="228" column="74" lean-forward="true" selection-start-line="182" selection-start-column="4" selection-end-line="228" selection-end-column="74" />
+        <state relative-caret-position="279">
+          <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
           <folding>
             <element signature="e#457#838#0" />
             <element signature="e#898#3346#0" />
-            <element signature="e#3396#7850#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/actors/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
+        <state relative-caret-position="648">
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#294#1606#0" />
-            <element signature="e#1648#3414#0" />
           </folding>
         </state>
       </provider>
