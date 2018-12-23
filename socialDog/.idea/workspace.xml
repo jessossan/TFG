@@ -97,7 +97,7 @@
           <entry key="js" value="5" />
           <entry key="json" value="3" />
           <entry key="png" value="5" />
-          <entry key="py" value="197" />
+          <entry key="py" value="199" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -107,7 +107,7 @@
           <entry key="Image" value="20" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="5" />
-          <entry key="Python" value="197" />
+          <entry key="Python" value="199" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -115,7 +115,7 @@
           <entry key="css" value="88" />
           <entry key="html" value="4180" />
           <entry key="json" value="4" />
-          <entry key="py" value="9236" />
+          <entry key="py" value="9245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -123,7 +123,7 @@
           <entry key="CSS" value="88" />
           <entry key="HTML" value="4180" />
           <entry key="JSON" value="4" />
-          <entry key="Python" value="9236" />
+          <entry key="Python" value="9245" />
         </counts>
       </usages-collector>
     </session>
@@ -133,17 +133,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="145" column="42" lean-forward="true" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
+            <state relative-caret-position="398">
+              <caret line="228" column="74" lean-forward="true" selection-start-line="182" selection-start-column="4" selection-end-line="228" selection-end-column="74" />
+              <folding>
+                <element signature="e#457#838#0" />
+                <element signature="e#898#3346#0" />
+                <element signature="e#3396#7850#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/templates/web/registerBreeder.html">
+        <entry file="file://$PROJECT_DIR$/actors/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="143" column="46" lean-forward="true" selection-start-line="143" selection-start-column="46" selection-end-line="143" selection-end-column="46" />
+            <state relative-caret-position="291">
+              <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#294#1606#0" />
+                <element signature="e#1648#3414#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -251,14 +273,14 @@
         <option value="$PROJECT_DIR$/web/templates/web/registerAssociation.html" />
         <option value="$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html" />
         <option value="$PROJECT_DIR$/actors/views.py" />
-        <option value="$PROJECT_DIR$/actors/forms.py" />
         <option value="$PROJECT_DIR$/web/templates/web/registerBreeder.html" />
         <option value="$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html" />
         <option value="$PROJECT_DIR$/web/forms.py" />
+        <option value="$PROJECT_DIR$/actors/forms.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
@@ -282,19 +304,11 @@
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="actors" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -547,8 +561,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27503526" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27503526" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -559,7 +574,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32884097" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49788433" visible="true" weight="0.24528302" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49788433" visible="true" weight="0.24528302" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50211567" side_tool="true" weight="0.3045822" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32884097" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -869,26 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="269" column="22" selection-start-line="269" selection-start-column="16" selection-end-line="269" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actors/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="95" column="107" selection-start-line="95" selection-start-column="107" selection-end-line="95" selection-end-column="107" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actors/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -906,17 +901,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/forms.py">
+    <entry file="file://$PROJECT_DIR$/web/templates/web/registerBreeder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="145" column="42" lean-forward="true" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
+        <state relative-caret-position="289">
+          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/templates/web/registerBreeder.html">
+    <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="143" column="46" lean-forward="true" selection-start-line="143" selection-start-column="46" selection-end-line="143" selection-end-column="46" />
+        <state relative-caret-position="528">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="228" column="74" lean-forward="true" selection-start-line="182" selection-start-column="4" selection-end-line="228" selection-end-column="74" />
+          <folding>
+            <element signature="e#457#838#0" />
+            <element signature="e#898#3346#0" />
+            <element signature="e#3396#7850#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#294#1606#0" />
+            <element signature="e#1648#3414#0" />
+          </folding>
         </state>
       </provider>
     </entry>

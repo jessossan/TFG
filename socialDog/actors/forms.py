@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import RegexValidator
-from actors.models import validate
+from actors.models import validate, Association, Breeder
 from django.contrib.auth.models import User
 
 from breeds.models import Breed
@@ -94,6 +94,39 @@ class EditBreederProfile(forms.Form):
                                  label='Código Postal')
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
+
+    # Validaciones propias
+    def clean(self):
+        # Si no se han capturado otros errores, hace las validaciones por orden
+        if not self.errors:
+
+            # Valida que el centro esta ya en uso por una Asociacion
+            centerName = self.cleaned_data["centerName"]
+            num_asociaciones_mismo_centro = Association.objects.filter(centerName=centerName).count()
+            if (num_asociaciones_mismo_centro > 0):
+                raise forms.ValidationError(
+                    "El nombre del centro ya está en uso. Por favor, eliga otro para completar su registro.")
+
+            # Valida que el centro esta ya en uso por un Criador
+            centerName = self.cleaned_data["centerName"]
+            num_criadores_mismo_centro = Breeder.objects.filter(centerName=centerName).count()
+            if (num_criadores_mismo_centro > 0):
+                raise forms.ValidationError(
+                    "El nombre del centro ya está en uso. Por favor, eliga otro para completar su registro.")
+
+            # Valida que el cif esta ya en uso por un Criador
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Breeder.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
+
+            # Valida que el cif esta ya en uso por un Asociación
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Association.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
 
 
 class EditBreederPass(forms.Form):
