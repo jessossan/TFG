@@ -142,6 +142,13 @@ class RegisterAssociationForm(forms.Form):
                 raise forms.ValidationError(
                     "El C.I.F ya está en uso. Por favor, revise su C.I.F")
 
+            # Valida que el cif esta ya en uso por una Asociacion
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Breeder.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
+
 class RegisterBreederForm(forms.Form):
     """Formulario registro como Criador"""
 
@@ -206,3 +213,17 @@ class RegisterBreederForm(forms.Form):
             if (num_criadores_mismo_centro > 0):
                 raise forms.ValidationError(
                     "El nombre del centro ya está en uso. Por favor, eliga otro para completar su registro.")
+
+            # Valida que el cif esta ya en uso por un Criador
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Breeder.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
+
+            # Valida que el cif esta ya en uso por un Asociación
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Association.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
