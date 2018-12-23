@@ -7,9 +7,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from stdnum.es import cif
 
-from actors.decorators import user_is_customer
+from actors.decorators import user_is_customer, user_is_association
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
+from provinces.models import Province
 
 """USUARIO""" # USUARIO
 
@@ -218,6 +219,8 @@ def edit_pass_breeder(request):
 
 """ASSOCIATION""" # ASSOCIATION
 
+@login_required(login_url='/login/')
+@user_is_association
 def edit_profile_association(request):
     """
     Edición del perfil ASSOCIATION
@@ -251,32 +254,54 @@ def edit_profile_association(request):
             email = form.cleaned_data["email"]
             photo = form.cleaned_data["photo"]
             cif = form.cleaned_data["cif"]
+            opening = form.cleaned_data["opening"]
+            closing = form.cleaned_data["closing"]
+            address = form.cleaned_data["address"]
+            private = form.cleaned_data["private"]
+            postalCode = form.cleaned_data["postalCode"]
+            centerName = form.cleaned_data["centerName"]
+            province = form.cleaned_data["province"]
 
             association.phone = phone
             association.photo = photo
             association.cif = cif
             association.email = email
+            association.opening = opening
+            association.closing = closing
+            association.address = address
+            association.private = private
+            association.postalCode = postalCode
+            association.centerName = centerName
+            association.province = province
+
             association.save()
 
             return HttpResponseRedirect('/')
 
     # Si se accede al form vía GET o cualquier otro método
     else:
+        # elimina las provincias duplicadas
+        provincesAux = Province.objects.all().exclude(pk=association.province.pk)
+
         dataForm = {'first_name': association.userAccount.first_name, 'last_name': association.userAccount.last_name,
-                    'email': association.userAccount.email,
-                    'phone': association.phone, 'cif': association.cif, 'photo': association.photo}
+                    'email': association.userAccount.email, 'centerName': association.centerName, 'province': association.province,
+                    'phone': association.phone, 'cif': association.cif, 'photo': association.photo, 'opening': association.opening, 'closing': association.closing,
+                    'address': association.address, 'private': association.private, 'postalCode': association.postalCode}
         form = EditAssociationProfile(dataForm)
 
     # Datos del modelo (vista)
     data = {
         'form': form,
         'association': association,
+        # elimina las provincias duplicadas
+        'provincesAux': Province.objects.all().exclude(pk=association.province.pk),
         'titulo': 'Editar Perfil'
     }
 
     return render(request, 'associations/editAssociationProfile.html', data)
 
-
+@login_required(login_url='/login/')
+@user_is_association
 def edit_pass_association(request):
     """Edición de la clave del association """
     assert isinstance(request, HttpRequest)

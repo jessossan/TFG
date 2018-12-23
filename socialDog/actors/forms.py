@@ -3,6 +3,7 @@ from django.core.validators import RegexValidator
 from actors.models import validate
 from django.contrib.auth.models import User
 
+from provinces.models import Province
 
 """USUARIO""" # USUARIO
 
@@ -133,6 +134,15 @@ class EditAssociationProfile(forms.Form):
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
                                                      message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
                           label="C.I.F.")
+    opening = forms.TimeField(label='Hora de apertura')
+    closing = forms.TimeField(label='Hora de cierre')
+    address = forms.CharField(max_length=50, label='Dirección')
+    private = forms.BooleanField(label='Perfil privado', required=False)
+    postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$',
+                                                                          message='El código postal debe estar compuesto por 5 dígitos.'), ],
+                                 label='Código Postal')
+    centerName = forms.CharField(max_length=50, label="Nombre del centro")
+    province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
 
 
 class EditAssociationPass(forms.Form):

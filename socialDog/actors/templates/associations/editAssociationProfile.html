@@ -51,12 +51,10 @@
                                 <input class="form-control" name="last_name" id="last_name" type="text"
                                        placeholder="Apellidos" value="{{ form.last_name.value|default:'' }}" required/>
                             </div>
-                            <div class="col-xs-6 col-md-6 form-group">
-                                <label for="centerName" class="control-label">Nombre del centro</label>
-                                <input class="form-control" maxlength="50" name="centerName" id="centerName" type="text"
-                                       placeholder="Nombre del centro" value="{{ form.centerName.value|default:'' }}"
-                                       required/>
-                            </div>
+                           <div class="col-xs-12 col-md-12 form-group">
+                            <label for="centerName" class="control-label">Nombre del Centro</label>
+                            <input class="form-control" name="centerName" id="centerName" type="text" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
+                        </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-md-6 form-group">
@@ -79,9 +77,39 @@
                             </div>
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="phone" class="control-label">Tel&#233;fono</label>
-                                <input type="text" maxlength="11" class="form-control" name="phone" id="phone"
+                                <input type="text" maxlength="9" class="form-control" name="phone" id="phone"
                                        placeholder="Tel&#233;fono" value="{{ form.phone.value|default:'' }}" required/>
                             </div>
+
+                             <div class="col-xs-6 col-md-6 form-group">
+                                <label for="opening" class="control-label">Hora de apertura</label>
+                                <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
+                                       value="{{ association.opening|time:'H:i' }}" required/>
+                            </div>
+
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="closing" class="control-label">Hora de cierre</label>
+                                <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
+                                   value="{{ association.closing|time:'H:i'}}"required/>
+                            </div>
+
+                            <div class="col-xs-12 col-md-12 form-group">
+                                <label for="private" class="control-label">Perfil privado <input type=checkbox checked class="form-control" name="private" id="private" /></label>
+                            </div>
+                                <i>Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil</i>
+                            <hr/>
+
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="province" class="control-label">Provincia</label>
+                                <select class="form-control" id="province" name="province" required>
+                                    <!-- Si viene de validacion, pinta la anterior -->
+                                        <option value="{{ association.province.id }}" selected="selected">{{ association.province.name }}</option>
+                                        {% for p in provincesAux %}
+                                            <option value="{{ p.id }}">{{ p.name }}</option>
+                                        {% endfor %}
+                            </select>
+                        </div>
+
 
                             <div class="col-xs-12 col-md-12 form-group">
                                 <label for="photo" class="control-label">Foto de perfil</label>
@@ -91,13 +119,18 @@
                             </div>
                         </div>
 
+
                         <!-- Tratamiento de Errores -->
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
+                                    <!--Evita el error de provincia, ya que se guarda correctamente -->
+                                    {% if field.label != "Provincia" %}
                                     <div class="alert alert-danger">
+                                        <!-- -->
                                         <strong>{{ field.label }}: {{ error|escape }}</strong>
                                     </div>
+                                    {% endif %}
                                 {% endfor %}
                             {% endfor %}
                             {% for error in form.non_field_errors %}
