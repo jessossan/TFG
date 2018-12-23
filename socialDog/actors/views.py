@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from stdnum.es import cif
 
-from actors.decorators import user_is_customer, user_is_association
+from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
 from provinces.models import Province
@@ -118,6 +118,8 @@ def edit_pass_customer(request):
 
 """CRIADOR""" # CRIADOR
 
+@login_required(login_url='/login/')
+@user_is_breeder
 def edit_profile_breeder(request):
     """
     Edición del perfil Breeder
@@ -151,32 +153,53 @@ def edit_profile_breeder(request):
             email = form.cleaned_data["email"]
             photo = form.cleaned_data["photo"]
             cif = form.cleaned_data["cif"]
+            opening = form.cleaned_data["opening"]
+            closing = form.cleaned_data["closing"]
+            address = form.cleaned_data["address"]
+            private = form.cleaned_data["private"]
+            postalCode = form.cleaned_data["postalCode"]
+            centerName = form.cleaned_data["centerName"]
+            province = form.cleaned_data["province"]
 
             breeder.phone = phone
             breeder.photo = photo
             breeder.cif = cif
             breeder.email = email
+            breeder.opening = opening
+            breeder.closing = closing
+            breeder.address = address
+            breeder.private = private
+            breeder.postalCode = postalCode
+            breeder.centerName = centerName
+            breeder.province = province
             breeder.save()
 
             return HttpResponseRedirect('/')
 
     # Si se accede al form vía GET o cualquier otro método
     else:
+        # elimina las provincias duplicadas
+        provincesAux = Province.objects.all().exclude(pk=breeder.province.pk)
+
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
-                    'email': breeder.userAccount.email,
-                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo}
+                    'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
+                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address,
+                    'private': breeder.private, 'postalCode': breeder.postalCode, 'centerName': breeder.centerName,
+                    'province': breeder.province}
         form = EditBreederProfile(dataForm)
 
     # Datos del modelo (vista)
     data = {
         'form': form,
         'breeder': breeder,
+        'provincesAux': Province.objects.all().exclude(pk=breeder.province.pk),
         'titulo': 'Editar Perfil'
     }
 
     return render(request, 'breeders/editBreederProfile.html', data)
 
-
+@login_required(login_url='/login/')
+@user_is_breeder
 def edit_pass_breeder(request):
     """Edición de la clave del usuario """
     assert isinstance(request, HttpRequest)

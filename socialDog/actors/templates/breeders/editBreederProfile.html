@@ -83,6 +83,43 @@
                                        placeholder="Tel&#233;fono" value="{{ form.phone.value|default:'' }}" required/>
                             </div>
 
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="opening" class="control-label">Hora de apertura</label>
+                                <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
+                                       value="{{ breeder.opening|time:'H:i' }}" required/>
+                            </div>
+
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="closing" class="control-label">Hora de cierre</label>
+                                <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
+                                   value="{{ breeder.closing|time:'H:i'}}"required/>
+                            </div>
+
+                            {% if breeder.private == True %}
+                            <div class="col-xs-12 col-md-12 form-group">
+                                <label for="private" class="control-label">Perfil privado
+                                    <input type=checkbox checked class="form-control" name="private" id="private" /></label>
+                            </div>
+                            {% else %}
+                            <div class="col-xs-12 col-md-12 form-group">
+                                <label for="private2" class="control-label">Perfil privado
+                                    <input type=checkbox class="form-control" name="private2" id="private2" /></label>
+                            </div>
+                            {% endif %}
+                                <i>Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil</i>
+                            <hr/>
+
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="province" class="control-label">Provincia</label>
+                                <select class="form-control" id="province" name="province" required>
+                                    <!-- Si viene de validacion, pinta la anterior -->
+                                        <option value="{{ breeder.province.id }}" selected="selected">{{ breeder.province.name }}</option>
+                                        {% for p in provincesAux %}
+                                            <option value="{{ p.id }}">{{ p.name }}</option>
+                                        {% endfor %}
+                                </select>
+                            </div>
+
                             <div class="col-xs-12 col-md-12 form-group">
                                 <label for="photo" class="control-label">Foto de perfil</label>
                                 <input class="form-control" name="photo" id="photo" type="file"
@@ -95,9 +132,12 @@
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ field.label }}: {{ error|escape }}</strong>
-                                    </div>
+                                    <!--Evita el error de provincia, ya que se guarda correctamente -->
+                                    {% if field.label != "Provincia" %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             {% endfor %}
                             {% for error in form.non_field_errors %}
