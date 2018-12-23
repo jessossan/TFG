@@ -26,15 +26,15 @@
                         <a class="dropdown-item" href="/admin/">Panel Administraci&#243;n</a>
                         <hr/>
                     {% elif user.actor.customer %}
-                    <a class="dropdown-item" href="">Editar perfil</a>
+                    <a class="dropdown-item" href="{% url 'edit_profile_customer' %}">Editar perfil</a>
 
                     {% elif user.actor.breeder %}
                     <a class="dropdown-item" href="">Mi perfil</a>
-                    <a class="dropdown-item" href="">Editar perfil</a>
+                    <a class="dropdown-item" href="{% url 'edit_profile_breeder' %}">Editar perfil</a>
                     {% elif user.actor.association %}
 
                     <a class="dropdown-item" href="">Mi perfil</a>
-                    <a class="dropdown-item" href="">Editar perfil</a>
+                    <a class="dropdown-item" href="{% url 'edit_profile_association' %}">Editar perfil</a>
                     {% endif %}
                     <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar
                         Sesi&#243;n</a>

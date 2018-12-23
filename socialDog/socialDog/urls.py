@@ -66,4 +66,7 @@ urlpatterns = [
     # Registro criador
     url(r'^register/breeder$', web.views.register_breeder, name='registerBreeder'),
 
+    # Actors
+    path('actors/', include('actors.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

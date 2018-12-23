@@ -18,6 +18,36 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+# EXCEPCIONES
+
+def error400(request, *args, **kwargs):
+    data = {
+        'user': request.user,
+    }
+    return render(request, '400.html', data)
+
+
+def error403(request, *args, **kwargs):
+    data = {
+        'user': request.user,
+    }
+    return render(request, '403.html', data)
+
+
+def error404(request, *args, **kwargs):
+    data = {
+        'user': request.user,
+    }
+    return render(request, '404.html', data)
+
+
+def error500(request, *args, **kwargs):
+    data = {
+        'user': request.user,
+    }
+    return render(request, '500.html', data)
+
+
 # REGISTROS
 
 def register_customer(request):
