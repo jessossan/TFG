@@ -200,6 +200,53 @@ class EditAssociationProfile(forms.Form):
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
 
+    # Recuperamos el usuario que esta realizando la operación
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super(EditAssociationProfile, self).__init__(*args, **kwargs)
+
+
+    # Validaciones propias
+    def clean(self):
+        # Si no se han capturado otros errores, hace las validaciones por orden
+        if not self.errors:
+            # Recuperamos la asociación que esta realizando la operación
+            association = Association.objects.get(userAccount_id=self.user.id)
+
+            # Recuperamos el nombre del centro y cif del criador que esta modificando el perfil
+            ownCenterName = association.centerName
+            ownCif = association.cif
+
+            # Valida que el centro esta ya en uso por una Asociacion
+            centerName = self.cleaned_data["centerName"]
+            num_asociaciones_mismo_centro = Association.objects.filter(centerName=centerName).exclude(centerName=ownCenterName).count()
+            if (num_asociaciones_mismo_centro > 0):
+                raise forms.ValidationError(
+                    "El nombre del centro ya está en uso. Por favor, eliga otro para completar su registro.")
+
+            # Valida que el centro esta ya en uso por un Criador
+            centerName = self.cleaned_data["centerName"]
+            # Excluye de la lista su propio nombre del centro
+            num_criadores_mismo_centro = Breeder.objects.filter(centerName=centerName).count()
+            if (num_criadores_mismo_centro > 0):
+                raise forms.ValidationError(
+                    "El nombre del centro ya está en uso. Por favor, eliga otro para completar su registro.")
+
+            # Valida que el cif esta ya en uso por un Criador
+            cif = self.cleaned_data["cif"]
+            # Excluye de la lista su propio cif
+            num_mismos_cif = Breeder.objects.filter(cif=cif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
+
+            # Valida que el cif esta ya en uso por un Asociación
+            cif = self.cleaned_data["cif"]
+            num_mismos_cif = Association.objects.filter(cif=cif).exclude(cif=ownCif).count()
+            if (num_mismos_cif > 0):
+                raise forms.ValidationError(
+                    "El C.I.F ya está en uso. Por favor, revise su C.I.F")
+
 
 class EditAssociationPass(forms.Form):
     """ Formulario de edición de las contraseñas del association """

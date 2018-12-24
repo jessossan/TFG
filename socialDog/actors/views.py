@@ -259,7 +259,7 @@ def edit_profile_association(request):
 
     # Si se ha enviado el Form
     if (request.method == 'POST'):
-        form = EditAssociationProfile(request.POST, request.FILES)
+        form = EditAssociationProfile(request.POST, request.FILES, user=request.user)
         if (form.is_valid()):
             # Actualiza el User (model Django) en BD
             email = form.cleaned_data["email"]
@@ -310,7 +310,7 @@ def edit_profile_association(request):
                     'email': association.userAccount.email, 'centerName': association.centerName, 'province': association.province,
                     'phone': association.phone, 'cif': association.cif, 'photo': association.photo, 'opening': association.opening, 'closing': association.closing,
                     'address': association.address, 'private': association.private, 'postalCode': association.postalCode}
-        form = EditAssociationProfile(dataForm)
+        form = EditAssociationProfile(dataForm, user=request.user)
 
     # Datos del modelo (vista)
     data = {
