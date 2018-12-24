@@ -135,7 +135,7 @@ def edit_profile_breeder(request):
 
     # Si se ha enviado el Form
     if (request.method == 'POST'):
-        form = EditBreederProfile(request.POST, request.FILES)
+        form = EditBreederProfile(request.POST, request.FILES, user=request.user)
         if (form.is_valid()):
             # Actualiza el User (model Django) en BD
             email = form.cleaned_data["email"]
@@ -186,7 +186,7 @@ def edit_profile_breeder(request):
                     'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address,
                     'private': breeder.private, 'postalCode': breeder.postalCode, 'centerName': breeder.centerName,
                     'province': breeder.province}
-        form = EditBreederProfile(dataForm)
+        form = EditBreederProfile(dataForm, user=request.user)
 
     # Datos del modelo (vista)
     data = {
