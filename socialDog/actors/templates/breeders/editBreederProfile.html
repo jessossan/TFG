@@ -113,7 +113,7 @@
                                 <label for="province" class="control-label">Provincia</label>
                                 <select class="form-control" id="province" name="province" required>
                                     <!-- Si viene de validacion, pinta la anterior -->
-                                        <option value="{{ breeder.province.id }}" selected="selected">{{ breeder.province.name }}</option>
+                                        <option value="{{ provinceSelected.id }}" selected="selected">{{ provinceSelected.name }}</option>
                                         {% for p in provincesAux %}
                                             <option value="{{ p.id }}">{{ p.name }}</option>
                                         {% endfor %}
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="breeds" class="control-label">Modificar razas</label>
-                                <select multiple class="form-control" id="breeds" name="breeds" >
+                                <select multiple class="form-control" id="breeds" name="breeds" required>
 
                                     <!-- Cuando falla el formulario -->
                                     {% if breedsSelected != None %}

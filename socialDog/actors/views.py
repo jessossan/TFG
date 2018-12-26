@@ -182,13 +182,17 @@ def edit_profile_breeder(request):
 
             breeder.save()
 
-
             return HttpResponseRedirect('/')
         # En el caso de que falle el form
         else:
             # Recupera las fechas de cierre y apertura cuando falla el form
             opening = form.cleaned_data["opening"]
             closing = form.cleaned_data["closing"]
+
+            # Recupera la provincia del formulario en el caso que falle
+            provinceSelected = form.cleaned_data["province"]
+            # elimina las provincias duplicadas
+            provincesAux = Province.objects.all().exclude(pk=provinceSelected.pk)
 
             # Recupera las razas
             breedsSelected = form.cleaned_data["breeds"]
@@ -209,12 +213,18 @@ def edit_profile_breeder(request):
         opening = breeder.opening
         closing = breeder.closing
 
+        # Recupera la provincia del criador
+        provinceSelected = breeder.province
+
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
                     'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
                     'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address,
                     'private': breeder.private, 'postalCode': breeder.postalCode, 'centerName': breeder.centerName,
                     'province': breeder.province}
         form = EditBreederProfile(dataForm, user=request.user)
+
+    # Recupera las provincias del criador sin duplicado
+    provincesAux = Province.objects.all().exclude(pk=breeder.province.pk)
 
     # Datos del modelo (vista)
     data = {
@@ -224,7 +234,8 @@ def edit_profile_breeder(request):
         'breedsSelected': breedsSelected,
         'opening': opening, # Se recupera la hora de apertura para que se muestre correctamente en el form
         'closing': closing, # Se recupera la hora de cierre para que se muestre correctamente en el form
-        'provincesAux': Province.objects.all().exclude(pk=breeder.province.pk), # elimina las provincias duplicadas
+        'provincesAux': provincesAux,
+        'provinceSelected': provinceSelected,
         'titulo': 'Editar Perfil'
     }
 
@@ -349,7 +360,7 @@ def edit_profile_association(request):
         opening = association.opening
         closing = association.closing
 
-        # Recupera la provincia del criador
+        # Recupera la provincia de la asociación
         provinceSelected = association.province
 
         dataForm = {'first_name': association.userAccount.first_name, 'last_name': association.userAccount.last_name,
