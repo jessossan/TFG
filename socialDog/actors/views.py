@@ -332,11 +332,25 @@ def edit_profile_association(request):
             association.save()
 
             return HttpResponseRedirect('/')
+        # En el caso de que falle el form
+        else:
+            # Recupera las horas de cierre y apertura en el caso de que falle el form
+            opening = form.cleaned_data["opening"]
+            closing = form.cleaned_data["closing"]
+
+            # Recupera la provincia del formulario en el caso que falle
+            provinceSelected = form.cleaned_data["province"]
+            # elimina las provincias duplicadas
+            provincesAux = Province.objects.all().exclude(pk=provinceSelected.pk)
 
     # Si se accede al form vía GET o cualquier otro método
     else:
-        # elimina las provincias duplicadas
-        provincesAux = Province.objects.all().exclude(pk=association.province.pk)
+        # Recupera las horas de cierre y apertura del criador
+        opening = association.opening
+        closing = association.closing
+
+        # Recupera la provincia del criador
+        provinceSelected = association.province
 
         dataForm = {'first_name': association.userAccount.first_name, 'last_name': association.userAccount.last_name,
                     'email': association.userAccount.email, 'centerName': association.centerName, 'province': association.province,
@@ -344,12 +358,15 @@ def edit_profile_association(request):
                     'address': association.address, 'private': association.private, 'postalCode': association.postalCode}
         form = EditAssociationProfile(dataForm, user=request.user)
 
+    provincesAux = Province.objects.all().exclude(pk=association.province.pk)
     # Datos del modelo (vista)
     data = {
         'form': form,
         'association': association,
-        # elimina las provincias duplicadas
-        'provincesAux': Province.objects.all().exclude(pk=association.province.pk),
+        'closing': closing,
+        'opening': opening,
+        'provincesAux': provincesAux,
+        'provinceSelected': provinceSelected,
         'titulo': 'Editar Perfil'
     }
 

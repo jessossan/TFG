@@ -84,13 +84,13 @@
                              <div class="col-xs-6 col-md-6 form-group">
                                 <label for="opening" class="control-label">Hora de apertura</label>
                                 <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
-                                       value="{{ association.opening|time:'H:i' }}" required/>
+                                       value="{{ opening|time:'H:i' }}" required/>
                             </div>
 
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="closing" class="control-label">Hora de cierre</label>
                                 <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
-                                   value="{{ association.closing|time:'H:i'}}"required/>
+                                   value="{{ closing|time:'H:i'}}"required/>
                             </div>
 
                             {% if association.private == True %}
@@ -111,7 +111,7 @@
                                 <label for="province" class="control-label">Provincia</label>
                                 <select class="form-control" id="province" name="province" required>
                                     <!-- Si viene de validacion, pinta la anterior -->
-                                        <option value="{{ association.province.id }}" selected="selected">{{ association.province.name }}</option>
+                                        <option value="{{ provinceSelected.id }}" selected="selected">{{ provinceSelected.name }}</option>
                                         {% for p in provincesAux %}
                                             <option value="{{ p.id }}">{{ p.name }}</option>
                                         {% endfor %}
