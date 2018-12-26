@@ -186,6 +186,11 @@ def edit_profile_breeder(request):
             return HttpResponseRedirect('/')
         # En el caso de que falle el form
         else:
+            # Recupera las fechas de cierre y apertura cuando falla el form
+            opening = form.cleaned_data["opening"]
+            closing = form.cleaned_data["closing"]
+
+            # Recupera las razas
             breedsSelected = form.cleaned_data["breeds"]
             # recorre las razas seleccionadas antes de que fallara el form
             for b in breedsSelected:
@@ -194,14 +199,15 @@ def edit_profile_breeder(request):
 
     # Si se accede al form vía GET o cualquier otro método
     else:
-        # elimina las provincias duplicadas
-        provincesAux = Province.objects.all().exclude(pk=breeder.province.pk)
-
         breedsSelected = breeder.breeds.all()
-        # recorre las razas seleccionadas antes de que fallara el form
+        # recorre las razas seleccionadas del criador
         for b in breedsSelected:
             # Quita las razas repetidas
             breedsAux = Breed.objects.all().exclude(name=b.name)
+
+        # Recupera las fechas de apertura y cierre del criador (primera vez que se entra a la vista)
+        opening = breeder.opening
+        closing = breeder.closing
 
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
                     'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
@@ -216,7 +222,9 @@ def edit_profile_breeder(request):
         'breeder': breeder,
         'breedsAux': breedsAux,
         'breedsSelected': breedsSelected,
-        'provincesAux': Province.objects.all().exclude(pk=breeder.province.pk),
+        'opening': opening, # Se recupera la hora de apertura para que se muestre correctamente en el form
+        'closing': closing, # Se recupera la hora de cierre para que se muestre correctamente en el form
+        'provincesAux': Province.objects.all().exclude(pk=breeder.province.pk), # elimina las provincias duplicadas
         'titulo': 'Editar Perfil'
     }
 

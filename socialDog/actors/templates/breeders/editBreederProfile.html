@@ -86,13 +86,13 @@
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="opening" class="control-label">Hora de apertura</label>
                                 <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
-                                       value="{{ breeder.opening|time:'H:i' }}" required/>
+                                       value="{{ opening|time:'H:i' }}" required/>
                             </div>
 
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="closing" class="control-label">Hora de cierre</label>
                                 <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
-                                   value="{{ breeder.closing|time:'H:i'}}"required/>
+                                   value="{{ closing|time:'H:i'}}"required/>
                             </div>
 
                             {% if breeder.private == True %}
