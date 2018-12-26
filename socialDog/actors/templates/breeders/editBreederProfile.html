@@ -126,14 +126,39 @@
                                        placeholder="Foto de perfil del usuario"
                                        value="{{ breeder.photo|default:'' }}"/>
                             </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="breeds" class="control-label">Modificar razas</label>
+                                <select multiple class="form-control" id="breeds" name="breeds" >
+
+                                    <!-- Cuando falla el formulario -->
+                                    {% if breedsSelected != None %}
+                                        <!-- Recupera las razas que habia seleccionado -->
+                                        {% for breedSelec in breedsSelected %}
+                                            <option value="{{ breedSelec.id }}" selected="selected">{{ breedSelec.name }}</option>
+                                        {% endfor %}
+                                        <!-- Recupera las razas restantes, quitando las seleccionadas para que no se repliquen datos -->
+                                        {% for breedS in breedsAux %}
+                                            <option value="{{ breedS.id }}">{{ breedS.name }}</option>
+                                        {% endfor %}
+
+                                    <!-- Cuando se entra al formulario por primera vez -->
+                                    {% else %}
+                                        {% for breed in breeds %}
+                                            <option value="{{ breed.id }}">{{ breed.name }}</option>
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Tratamiento de Errores -->
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
-                                    <!--Evita el error de provincia, ya que se guarda correctamente -->
-                                    {% if field.label != "Provincia" %}
+                                    <!--Evita el error de provincia y razas, ya que se guarda correctamente -->
+                                    {% if field.label != "Provincia" and field.label != "Razas" %}
                                         <div class="alert alert-danger">
                                             <strong>{{ field.label }}: {{ error|escape }}</strong>
                                         </div>

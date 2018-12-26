@@ -10,6 +10,7 @@ from stdnum.es import cif
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
+from breeds.models import Breed
 from provinces.models import Province
 
 """USUARIO""" # USUARIO
@@ -160,6 +161,7 @@ def edit_profile_breeder(request):
             postalCode = form.cleaned_data["postalCode"]
             centerName = form.cleaned_data["centerName"]
             province = form.cleaned_data["province"]
+            breeds = form.cleaned_data["breeds"]
 
             breeder.phone = phone
             breeder.photo = photo
@@ -172,14 +174,34 @@ def edit_profile_breeder(request):
             breeder.postalCode = postalCode
             breeder.centerName = centerName
             breeder.province = province
+
+            # Elimina todas las razas que tenia
+            breeder.breeds.set(Breed.objects.none())
+            # Añade las nuevas razas
+            breeder.breeds.set(breeds)
+
             breeder.save()
 
+
             return HttpResponseRedirect('/')
+        # En el caso de que falle el form
+        else:
+            breedsSelected = form.cleaned_data["breeds"]
+            # recorre las razas seleccionadas antes de que fallara el form
+            for b in breedsSelected:
+                # Quita las razas repetidas
+                breedsAux = Breed.objects.all().exclude(name=b.name)
 
     # Si se accede al form vía GET o cualquier otro método
     else:
         # elimina las provincias duplicadas
         provincesAux = Province.objects.all().exclude(pk=breeder.province.pk)
+
+        breedsSelected = breeder.breeds.all()
+        # recorre las razas seleccionadas antes de que fallara el form
+        for b in breedsSelected:
+            # Quita las razas repetidas
+            breedsAux = Breed.objects.all().exclude(name=b.name)
 
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
                     'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
@@ -192,6 +214,8 @@ def edit_profile_breeder(request):
     data = {
         'form': form,
         'breeder': breeder,
+        'breedsAux': breedsAux,
+        'breedsSelected': breedsSelected,
         'provincesAux': Province.objects.all().exclude(pk=breeder.province.pk),
         'titulo': 'Editar Perfil'
     }

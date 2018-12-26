@@ -94,6 +94,8 @@ class EditBreederProfile(forms.Form):
                                  label='Código Postal')
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
+    breeds = forms.ModelMultipleChoiceField(queryset=Breed.objects.all(), widget=forms.CheckboxSelectMultiple, label='Razas')
+
 
     # Recuperamos el usuario que esta realizando la operación
     def __init__(self, *args, **kwargs):
