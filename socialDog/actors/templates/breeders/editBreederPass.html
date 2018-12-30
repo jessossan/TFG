@@ -16,7 +16,7 @@
             <br/>
             <div class="col-md-12">
 
-                <!-- Formulario Cambio de contrase&#241;a -->
+                <!-- Formulario Cambio de contraseña -->
                 <form id="registro" method="post" action="{% url 'edit_pass_breeder' %}" class="form" role="form">
                     {% csrf_token %}
                     <input type="hidden" name="userAccountId" value="{{ userAccount.id }}">
@@ -26,19 +26,21 @@
                             <label for="userAccount" class="control-label">Usuario</label>
                             <input class="form-control" id="userAccount" disabled value="{{ userAccount.get_full_name }}" />
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="actual_password" class="control-label">Contrase&#241;a actual</label>
-                            <input class="form-control" id="actual_password" name="actual_password" placeholder="Contrase&#241;a actual" type="password" required autofocus/>
+                            <label for="actual_password" class="control-label">Contraseña actual</label>
+                            <input class="form-control" id="actual_password" name="actual_password" placeholder="Contraseña actual" type="password" required autofocus/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="password" class="control-label">Nueva Contrase&#241;a</label>
-                            <input class="form-control" name="password" id="password" type="password" placeholder="Nueva Contrase&#241;a" required/>
+                            <label for="password" class="control-label">Nueva Contraseña</label>
+                            <input class="form-control" name="password" id="password" type="password" placeholder="Nueva Contraseñ;a" required/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="confirm_password" class="control-label">Confirmar nueva contrase&#241;a</label>
-                            <input class="form-control" name="confirm_password" id="confirm_password" type="password" placeholder="Confirmar nueva contrase&#241;a" required/>
+                            <label for="confirm_password" class="control-label">Confirmar nueva contraseña</label>
+                            <input class="form-control" name="confirm_password" id="confirm_password" type="password" placeholder="Confirmar nueva contraseña" required/>
                         </div>
                     </div>
                     <hr/>

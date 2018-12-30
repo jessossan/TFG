@@ -52,7 +52,10 @@ def edit_profile_customer(request):
             dni = form.cleaned_data["dni"]
 
             customer.phone = phone
-            customer.photo = photo
+            # Para que no se actualice la foto cuando se edite el perfil
+            if (photo != None):
+                customer.photo = photo
+
             customer.dni = dni
             customer.email = email
             customer.save()
@@ -164,7 +167,10 @@ def edit_profile_breeder(request):
             breeds = form.cleaned_data["breeds"]
 
             breeder.phone = phone
-            breeder.photo = photo
+
+            # Para que no se actualice la foto cuando se edite el perfil
+            if (photo != None):
+                breeder.photo = photo
             breeder.cif = cif
             breeder.email = email
             breeder.opening = opening
@@ -329,7 +335,11 @@ def edit_profile_association(request):
             province = form.cleaned_data["province"]
 
             association.phone = phone
-            association.photo = photo
+
+            # Para que no se actualice la foto cuando se edite el perfil
+            if (photo != None):
+                association.photo = photo
+
             association.cif = cif
             association.email = email
             association.opening = opening
