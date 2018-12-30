@@ -18,7 +18,6 @@
                     {% csrf_token %}
 
                     <!-- Asociación -->
-                    <h3>Rellena tus datos</h3>
                     <br/>
 
                     <div class="row">
@@ -55,16 +54,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <label for="centerName" class="control-label">Nombre del Centro</label>
                             <input class="form-control" name="centerName" id="centerName" type="text" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="cif" class="control-label">C&#243;digo identificación fiscal</label>
-                            <input type="text" maxlength="9" class="form-control" name="cif" id="cif" placeholder="C&#243;digo de 9 d&#237;gitos para asociaciones"
+                            <label for="cif" class="control-label">CIF o código del centro</label>
+                            <input type="text" maxlength="9" class="form-control" name="cif" id="cif" placeholder="Código de 9 d&#237;gitos para asociaciones"
                                    value="{{ form.cif.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <label for="address" class="control-label">Dirección</label>
+                            <input type="text" maxlength="50" class="form-control" name="address" id="address" placeholder="Dirección"
+                                   value="{{ form.address.value|default:'' }}" required/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="postalCode" class="control-label">Código Postal</label>
+                            <input type="text" maxlength="5" class="form-control" name="postalCode" id="postalCode" placeholder="Código Postal"
+                                   value="{{ form.postalCode.value|default:'' }}" required/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="phone" class="control-label">Tel&#233;fono</label>
@@ -72,17 +79,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
-                            <label for="address" class="control-label">Direcci&#243;n</label>
-                            <input type="text" maxlength="50" class="form-control" name="address" id="address" placeholder="Direcci&#243;n"
-                                   value="{{ form.address.value|default:'' }}" required/>
-                        </div>
-                        <div class="col-xs-12 col-md-12 form-group">
+
+                        <div class="col-xs-6 col-md-6 form-group">
                             <label for="opening" class="control-label">Hora de apertura</label>
                             <input type=time class="form-control" name="opening" id="opening" placeholder="Hora de apertura"
                                    value="{{ form.opening.value|default:'' }}" required/>
                         </div>
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <label for="closing" class="control-label">Hora de cierre</label>
                             <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
                                    value="{{ form.closing.value|default:'' }}"required/>
@@ -113,14 +116,10 @@
                                 {% endif %}
                             </select>
                         </div>
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <label for="postalCode" class="control-label">C&#243;digo Postal</label>
-                            <input type="text" maxlength="5" class="form-control" name="postalCode" id="postalCode" placeholder="C&#243;digo Postal"
-                                   value="{{ form.postalCode.value|default:'' }}" required/>
-                        </div>
+
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <label for="photo" class="control-label">Foto de perfil</label>
                             <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto de perfil del usuario" value="{{ form.photo.value|default:'' }}"/>
                         </div>
@@ -148,10 +147,13 @@
 
                     <!-- Botones -->
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="submit" value="Registrarse" class="btn btn-primary btn-block" />
-                            <input type="button" class="btn btn-default btn-block" onclick="location.href='/';" value="Cancelar" />
+                            <input type="submit" value="Registrarse" class="btn editbutton btn-block" />
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';" value="Cancelar" />
                         </div>
                     </div>
                 </form>

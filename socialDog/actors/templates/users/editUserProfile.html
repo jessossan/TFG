@@ -27,7 +27,7 @@
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="email" class="control-label">Email</label>
                                 <input class="form-control" id="email" name="email"
-                                       placeholder="Direcci&#243;n de correo electr&#243;nico" type="email"
+                                       placeholder="Dirección de correo electrónico" type="email"
                                        value="{{ form.email.value|default:'' }}" required autofocus/>
                             </div>
                         </div>
@@ -91,10 +91,13 @@
                         {% endif %}
                         <!-- Botones -->
                         <div class="row">
-                            <div class="col-xs-12 col-md-12 form-group">
+                            <div class="col-xs-6 col-md-6 form-group">
                                 <input type="hidden" name="next" value="/"/>
-                                <input type="submit" value="Editar" class="btn btn-primary btn-block"/>
-                                <input type="button" class="btn btn-default btn-block" onclick="location.href='/';"
+                                <input type="submit" value="Editar" class="btn editbutton btn-block"/>
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <input type="hidden" name="next" value="/"/>
+                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';"
                                        value="Cancelar"/>
                             </div>
                         </div>

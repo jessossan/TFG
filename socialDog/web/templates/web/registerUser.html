@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <label for="photo" class="control-label">Foto de perfil</label>
                             <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto de perfil del usuario" value="{{ form.photo.value|default:'' }}"/>
                         </div>
@@ -82,10 +82,13 @@
                     {% endif %}
                     <!-- Botones -->
                     <div class="row">
-                        <div class="col-xs-12 col-md-12 form-group">
+                        <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="submit" value="Registrarse" class="btn btn-primary btn-block" />
-                            <input type="button" class="btn btn-default btn-block" onclick="location.href='/';" value="Cancelar" />
+                            <input type="submit" value="Registrarse" class="btn editbutton btn-block" />
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';" value="Cancelar" />
                         </div>
                     </div>
                 </form>

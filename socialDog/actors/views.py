@@ -171,6 +171,7 @@ def edit_profile_breeder(request):
             # Para que no se actualice la foto cuando se edite el perfil
             if (photo != None):
                 breeder.photo = photo
+
             breeder.cif = cif
             breeder.email = email
             breeder.opening = opening

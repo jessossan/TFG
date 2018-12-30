@@ -16,7 +16,7 @@
 
           </div>
 
-            <div class="col-md-4 text-left bordered-panel">
+            <div class="col-md-4 text-left bordered-panel" style="border-color: #2c539e;">
               <div class="login-icon-wrapper">
                 <i class="fas fa-user login-icon"></i>
               </div>
@@ -45,7 +45,7 @@
                     {% if form.errors %}
                         <div class="form-group">
                             <div class="alert alert-danger">
-                                <strong>Por favor, introduzca un nombre de usuario y contraseña v&#225;lidos.</strong>
+                                <strong>Por favor, introduzca un nombre de usuario y contraseña válidos.</strong>
                             </div>
                         </div>
                     {% endif %}
@@ -53,10 +53,10 @@
                     <div class="row mt-4">
                       <div class="col-md-6">
                         <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Iniciar Sesi&#243;n" class="btn btn-primary btn-block" />
+                        <input type="submit" value="Iniciar Sesión" class="btn editbutton btn-block" />
                       </div>
                       <div class="col-md-6">
-                        <input type="button" class="btn btn-orange text-white btn-block" onclick="location.href='/';" value="Cancelar" />
+                        <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';" value="Cancelar" />
                       </div>
                     </div>
 

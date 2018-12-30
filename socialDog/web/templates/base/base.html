@@ -9,7 +9,9 @@
 	{% endblock %}
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!-- {{ STATIC_URL }} no resuelve (vacio) -->
+
+	<!-- STATIC FILES -->
+	<link rel="stylesheet" href="{% static 'css/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -24,7 +26,11 @@
 	{% block navbar %}
 			{% if user.is_authenticated %}
 					<!-- NAVBAR ACTOR AUTENTICADO -->
-					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+					<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background: rgb(23,77,84); /* Old browsers */
+								background: -moz-linear-gradient(left, rgba(23,77,84,1) 0%, rgba(44,83,158,1) 61%, rgba(44,83,158,1) 61%, rgba(107,75,183,1) 80%);
+								background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
+								background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
+								filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
 							<a class="navbar-brand flex-align-center" href="/">
 									<img style="width: auto; height: 40x; border-bottom: 0.4px solid;
   border-color: transparent;
@@ -320,7 +326,7 @@
 							<span class="navbar-toggler-icon"></span>
 					</button>
 					<!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
-					<div class="collapse navbar-collapse" id="navbarNav">
+					<div class="collapse navbar-collapse" id="navbarNav" >
 							<!-- Elementos principales -->
 							<ul class="navbar-nav mr-auto">
 									<li class="dropdown flex-align-center">
@@ -350,7 +356,7 @@
 
 									<li class="dropdown flex-align-center">
                             			<a style="border-top: 5px solid;border-color: transparent;" href="/login" class="nav-link navbar-text">
-                                		Iniciar Sesi&#243;n
+                                		Iniciar Sesión
                             			</a>
                         			</li>
 									<li class="dropdown flex-align-center">

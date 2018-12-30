@@ -1,0 +1,79 @@
+/*********************************
+BOTÓN
+EDITAR
+EN EL FORMULARIO
+**********************************/
+
+.editbutton{
+color:#ffffff;
+background-color:#2c539e;
+border-color:#2c3e50}
+
+.editbutton:focus,.editbutton.focus{
+color:#ffffff;
+background-color: #2c539e;
+border-color:#000000}
+
+.editbutton:hover{
+color:#ffffff;
+background-color:#526e9e;
+border-color:#2c539e}
+
+.editbutton:active,.editbutton.active,.open>.dropdown-toggle.editbutton{
+color:#ffffff;
+background-color:#526e9e;
+border-color:#2c539e}.editbutton:active:hover,.editbutton.active:hover,.open>.dropdown-toggle.editbutton:hover,.editbutton:active:focus,.editbutton.active:focus,.open>.dropdown-toggle.editbutton:focus,.editbutton:active.focus,.editbutton.active.focus,.open>.dropdown-toggle.editbutton.focus{
+color:#ffffff;
+background-color:#0d1318;
+border-color:#000000}
+
+.editbutton:active,.editbutton.active,.open>.dropdown-toggle.editbutton{
+background-image:none}
+
+.editbutton.disabled:hover,.editbutton[disabled]:hover,fieldset[disabled] .editbutton:hover,.editbutton.disabled:focus,.editbutton[disabled]:focus,fieldset[disabled] .editbutton:focus,.editbutton.disabled.focus,.editbutton[disabled].focus,fieldset[disabled] .editbutton.focus{
+background-color:#2c3e50;
+border-color:#2c539e}
+
+.editbutton .badge{
+color:#2c3e50;
+background-color:#ffffff}
+
+/*********************************
+BOTÓN
+CANCELAR
+EN EL FORMULARIO
+**********************************/
+
+.cancelbutton{/*Botón normal*/
+color:#ffffff;
+background-color:#6b4bb7;
+border-color:#2c3e50}
+
+.cancelbutton:focus,.cancelbutton.focus{
+color:#ffffff;
+background-color: #2c539e;
+border-color:#000000}
+
+.cancelbutton:hover{/*Botón con cursor encima*/
+color:#ffffff;
+background-color:#836eb8;
+border-color:#836eb8}
+
+.cancelbutton:active,.cancelbutton.active,.open>.dropdown-toggle.cancelbutton{
+color:#ffffff;
+background-color:#526e9e;
+border-color:#2c539e}.cancelbutton:active:hover,.cancelbutton.active:hover,.open>.dropdown-toggle.cancelbutton:hover,.cancelbutton:active:focus,.cancelbutton.active:focus,.open>.dropdown-toggle.cancelbutton:focus,.cancelbutton:active.focus,.cancelbutton.active.focus,.open>.dropdown-toggle.cancelbutton.focus{
+color:#ffffff;
+background-color:#0d1318;
+border-color:#000000}
+
+.cancelbutton:active,.cancelbutton.active,.open>.dropdown-toggle.cancelbutton{
+background-image:none}
+
+.cancelbutton.disabled:hover,.cancelbutton[disabled]:hover,fieldset[disabled] .cancelbutton:hover,.cancelbutton.disabled:focus,.cancelbutton[disabled]:focus,fieldset[disabled] .cancelbutton:focus,.cancelbutton.disabled.focus,.cancelbutton[disabled].focus,fieldset[disabled] .cancelbutton.focus{
+background-color:#2c3e50;
+border-color:#2c539e}
+
+.cancelbutton .badge{
+color:#2c3e50;
+background-color:#ffffff

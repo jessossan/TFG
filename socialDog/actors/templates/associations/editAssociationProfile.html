@@ -27,7 +27,7 @@
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="email" class="control-label">Email</label>
                                 <input class="form-control" id="email" name="email"
-                                       placeholder="Direcci&#243;n de correo electr&#243;nico" type="email"
+                                       placeholder="Dirección de correo electrónico" type="email"
                                        value="{{ form.email.value|default:'' }}" required autofocus/>
                             </div>
                         </div>
@@ -51,20 +51,21 @@
                                 <input class="form-control" name="last_name" id="last_name" type="text"
                                        placeholder="Apellidos" value="{{ form.last_name.value|default:'' }}" required/>
                             </div>
-                           <div class="col-xs-12 col-md-12 form-group">
+                           <div class="col-xs-6 col-md-6 form-group">
                             <label for="centerName" class="control-label">Nombre del Centro</label>
                             <input class="form-control" name="centerName" id="centerName" type="text" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-md-6 form-group">
+                           </div>
+                           <div class="col-xs-6 col-md-6 form-group">
                                 <label for="cif" class="control-label">CIF o código del centro</label>
                                 <input type="text" maxlength="9" class="form-control" name="cif"
                                        id="cif"
-                                       placeholder="C&#243;digo de identificación fiscal"
+                                       placeholder="Código de identificación fiscal"
                                        value="{{ form.cif.value|default:'' }}" required/>
-                            </div>
-                            <div class="col-xs-6 col-md-6 form-group">
+                           </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-12 form-group">
                                 <label for="address" class="control-label">Dirección</label>
                                 <input class="form-control" maxlength="50" name="address" id="address" type="text"
                                        placeholder="Dirección" value="{{ form.address.value|default:'' }}" required/>
@@ -104,7 +105,11 @@
                                         <input type=checkbox class="form-control" name="private" id="private" /></label>
                                 </div>
                             {% endif %}
-                                <i>Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil</i>
+                                <div class="col-xs-12 col-md-12 form-group">
+                                    <span style="font-style:italic;">
+                                        Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil
+                                    </span>
+                                </div>
                             <hr/>
 
                             <div class="col-xs-6 col-md-6 form-group">
@@ -127,7 +132,6 @@
                             </div>
                         </div>
 
-
                         <!-- Tratamiento de Errores -->
                         {% if form.errors %}
                             {% for field in form %}
@@ -149,10 +153,13 @@
                         {% endif %}
                         <!-- Botones -->
                         <div class="row">
-                            <div class="col-xs-12 col-md-12 form-group">
+                            <div class="col-xs-6 col-md-6 form-group">
                                 <input type="hidden" name="next" value="/"/>
-                                <input type="submit" value="Editar" class="btn btn-primary btn-block"/>
-                                <input type="button" class="btn btn-default btn-block" onclick="location.href='/';"
+                                <input type="submit" value="Editar" class="btn editbutton btn-block"/>
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <input type="hidden" name="next" value="/"/>
+                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';"
                                        value="Cancelar"/>
                             </div>
                         </div>
