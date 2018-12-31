@@ -125,7 +125,7 @@ def edit_pass_customer(request):
 
     return render(request, 'users/editUserPass.html', data)
 
-
+# ELIMINAR LA CUENTA DE UN USUARIO
 @login_required(login_url='/login/')
 @user_is_customer
 def delete_customer_account(request, pk):
@@ -135,7 +135,7 @@ def delete_customer_account(request, pk):
 
     if request.method == 'POST':
         User.objects.filter(pk=request.user.pk).delete()
-        messages.add_message(request, messages.SUCCESS, 'Account deleted')
+        messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
         return HttpResponseRedirect('/logout')
 
     return render(request, 'users/delete.html', {'customer': customer})

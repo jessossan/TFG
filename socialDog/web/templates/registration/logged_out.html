@@ -25,15 +25,17 @@
               <hr class="mb-3"/>
                 <!-- Pantalla de  Logout -->
                     {% csrf_token %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-                    <h3 align="center">Se ha cerrado sesión</h3>
 
+            {% if messages %}
+                <!-- MENSAJES DE QUE SE HA BORRADO CORRECTAMENTE LA CUENTA -->
+                <div class="card bg-success text-white">
+                    {% for message in messages %}
+                        <div class="card-body" align="center">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                    <h3 align="center">Se ha cerrado sesión</h3>
+            {% endif %}
                     <div class="row mt-4">
                       <div class="col-md-6">
                         <input type="hidden" name="next" value="/" />
