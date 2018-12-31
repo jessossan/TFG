@@ -25,7 +25,13 @@
               <hr class="mb-3"/>
                 <!-- Pantalla de  Logout -->
                     {% csrf_token %}
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
                     <h3 align="center">Se ha cerrado sesión</h3>
 
                     <div class="row mt-4">

@@ -1,17 +1,24 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
-
-
-# Create your views here.
-from stdnum.es import cif
-
+from django.contrib.auth.models import User
+from django.urls import reverse
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
+from actors.models import Customer
 from breeds.models import Breed
 from provinces.models import Province
+import django.contrib.auth.views
+from django.contrib import messages
+
+
+
+
+
+# Create your views here.
+
 
 """USUARIO""" # USUARIO
 
@@ -119,6 +126,19 @@ def edit_pass_customer(request):
     return render(request, 'users/editUserPass.html', data)
 
 
+@login_required(login_url='/login/')
+@user_is_customer
+def delete_customer_account(request, pk):
+    customer = get_object_or_404(Customer, pk=pk)
+    if request.user.actor.customer.pk != customer.pk:
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        User.objects.filter(pk=request.user.pk).delete()
+        messages.add_message(request, messages.SUCCESS, 'Account deleted')
+        return HttpResponseRedirect('/logout')
+
+    return render(request, 'users/delete.html', {'customer': customer})
 
 """CRIADOR""" # CRIADOR
 

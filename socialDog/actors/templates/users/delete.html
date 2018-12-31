@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+<!-- CONTENIDO -->
+{% block content %}
+
+    <h2>{{ titulo }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <br/>
+            <div class="col-md-12">
+
+                <!-- Formulario Edición -->
+                <form id="editar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
+                    {% csrf_token %}
+                    <h2><b>    {{ customer.userAccount.first_name }} {{ customer.userAccount.last_name }},</b></h2>
+                    <br>
+                    <h3>¿Está seguro que desea eliminar permanentemente su cuenta?</h3>
+                    <br>
+                    <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                    <a class="btn cancelbutton" href="{% url 'edit_profile_customer' %}">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% endblock %}

@@ -5,7 +5,14 @@
 
 <!-- CONTENIDO -->
 {% block content %}
-    <div class="container">
+
+
+        <div class="container">
+                <div class="container" align="right"  style="padding: 20px 20px 20px 20px;">
+                        <a  class="btn btn-danger" href="/actors/user/edit/profile/delete/{{ customer.pk }}" style="align: center">
+                                    Borrar cuenta
+                        </a>
+        </div>
         <br/>
         <h2>{{ titulo }}</h2>
 
@@ -14,6 +21,8 @@
             <div class="container-fluid">
                 <br/>
                 <div class="col-md-12">
+
+
 
                     <!-- Formulario Edición -->
                     <form id="registro" method="post" enctype="multipart/form-data" action="{% url 'edit_profile_customer' %}" class="form" role="form">
