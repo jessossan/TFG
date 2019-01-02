@@ -23,9 +23,9 @@ class Request(models.Model):
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
 
     # Relacion con actor enviado
-    follower = models.ForeignKey(Actor, verbose_name='Follower', on_delete=models.SET_NULL, null=True, related_name='follower')
+    follower = models.ForeignKey(Actor, verbose_name='Follower', on_delete=models.CASCADE, null=True, related_name='follower')
     # Relacion con actor que recibe
-    followed = models.ForeignKey(Actor, verbose_name='Followed', on_delete=models.SET_NULL, null=True, related_name='followed')
+    followed = models.ForeignKey(Actor, verbose_name='Followed', on_delete=models.CASCADE, null=True, related_name='followed')
 
     def __str__(self):
         return str(self.status) + ' - ' + str(self.description)

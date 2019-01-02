@@ -18,15 +18,15 @@ class Comment(models.Model):
     dislikes = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
 
     # Relación con asociación
-    association = models.ForeignKey('actors.Association', on_delete=models.SET_NULL, null=True, blank=True)
+    association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con criador
-    breeder = models.ForeignKey('actors.Breeder', on_delete=models.SET_NULL, null=True, blank=True)
+    breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con evento
-    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
     # Relación con perro
-    dog = models.ForeignKey(Dog, on_delete=models.SET_NULL, null=True, blank=True)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, null=True, blank=True)
     # Relación con noticia
-    news = models.ForeignKey(News, on_delete=models.SET_NULL, null=True, blank=True)
+    news = models.ForeignKey(News, on_delete=models.CASCADE, null=True, blank=True)
     # Relación con actor
     creator_comment = models.ForeignKey(Actor, verbose_name='Creator', on_delete=models.SET_NULL, null=True, related_name='creator_comment')
 

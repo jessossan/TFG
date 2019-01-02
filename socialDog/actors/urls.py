@@ -10,6 +10,10 @@ urlpatterns = [
     path('breeder/edit/profile', views.edit_profile_breeder, name='edit_profile_breeder'),
     path('breeder/edit/pass', views.edit_pass_breeder, name='edit_pass_breeder'),
 
+    # Borrado de cuenta de Breeder
+    path('', views.delete_breeder_account, name='delete_breeder_account'),
+    path('breeder/edit/profile/delete/<int:pk>', views.delete_breeder_account, name='delete_breeder_account'),
+
     # Edición perfil y pass de Usuario
     path('user/edit/profile', views.edit_profile_customer, name='edit_profile_customer'),
     path('user/edit/pass', views.edit_pass_customer, name='edit_pass_customer'),
@@ -21,5 +25,9 @@ urlpatterns = [
     # Edición perfil y pass de Asociacion
     path('association/edit/profile', views.edit_profile_association, name='edit_profile_association'),
     path('association/edit/pass', views.edit_pass_association, name='edit_pass_association'),
+
+    # Borrado de cuenta de Asociacion
+    path('', views.delete_association_account, name='delete_association_account'),
+    path('association/edit/profile/delete/<int:pk>', views.delete_association_account, name='delete_association_account'),
 
 ]

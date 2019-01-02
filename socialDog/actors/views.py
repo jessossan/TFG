@@ -7,7 +7,7 @@ from django.urls import reverse
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
-from actors.models import Customer
+from actors.models import Customer, Breeder, Association
 from breeds.models import Breed
 from provinces.models import Province
 import django.contrib.auth.views
@@ -308,7 +308,20 @@ def edit_pass_breeder(request):
 
     return render(request, 'breeders/editBreederPass.html', data)
 
+# ELIMINAR LA CUENTA DE UN CRIADOR
+@login_required(login_url='/login/')
+@user_is_breeder
+def delete_breeder_account(request, pk):
+    breeder = get_object_or_404(Breeder, pk=pk)
+    if request.user.actor.breeder.pk != breeder.pk:
+        return HttpResponseForbidden()
 
+    if request.method == 'POST':
+        User.objects.filter(pk=request.user.pk).delete()
+        messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
+        return HttpResponseRedirect('/logout')
+
+    return render(request, 'breeders/delete.html', {'breeder': breeder})
 
 """ASSOCIATION""" # ASSOCIATION
 
@@ -453,3 +466,18 @@ def edit_pass_association(request):
     }
 
     return render(request, 'associations/editAssociationPass.html', data)
+
+# ELIMINAR LA CUENTA DE UNA ASOCIACION
+@login_required(login_url='/login/')
+@user_is_association
+def delete_association_account(request, pk):
+    association = get_object_or_404(Association, pk=pk)
+    if request.user.actor.association.pk != association.pk:
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        User.objects.filter(pk=request.user.pk).delete()
+        messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
+        return HttpResponseRedirect('/logout')
+
+    return render(request, 'associations/delete.html', {'association': association})

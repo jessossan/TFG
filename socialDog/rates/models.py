@@ -17,15 +17,15 @@ class Rate(models.Model):
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
 
     # Relacion con asociación
-    association = models.ForeignKey('actors.Association', on_delete=models.SET_NULL, null=True, blank=True)
+    association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
     # Relacion con evento
-    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
     # Relacion con criador
-    breeder = models.ForeignKey('actors.Breeder', on_delete=models.SET_NULL, null=True, blank=True)
+    breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con noticia
-    news = models.ForeignKey(News, on_delete=models.SET_NULL, null=True, blank=True)
+    news = models.ForeignKey(News, on_delete=models.CASCADE, null=True, blank=True)
     # Relación con perro
-    dog = models.ForeignKey(Dog, on_delete=models.SET_NULL, null=True, blank=True)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, null=True, blank=True)
     # Relación con actor
     creator_rate = models.ForeignKey(Actor, verbose_name='Creator', on_delete=models.SET_NULL, null=True, related_name='creator_rate')
 
