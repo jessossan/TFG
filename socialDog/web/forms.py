@@ -32,7 +32,7 @@ class RegisterCustomerForm(forms.Form):
     password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput, label='Contraseña')
     confirm_password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput,
                                        label='Confirmar contraseña')
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
     first_name = forms.CharField(min_length=2, max_length=32, label='Nombre')
     last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
 
@@ -79,7 +79,7 @@ class RegisterAssociationForm(forms.Form):
     password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput, label='Contraseña')
     confirm_password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput,
                                        label='Confirmar contraseña')
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
     first_name = forms.CharField(min_length=2, max_length=32, label='Nombre')
     last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
 
@@ -157,7 +157,7 @@ class RegisterBreederForm(forms.Form):
     password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput, label='Contraseña')
     confirm_password = forms.CharField(min_length=5, max_length=32, widget=forms.PasswordInput,
                                        label='Confirmar contraseña')
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
     first_name = forms.CharField(min_length=2, max_length=32, label='Nombre')
     last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
 
