@@ -45,18 +45,23 @@ Lista de perros
                             <td>{{ dog.age }}</td>
                             <td>{{ dog.gender }}</td>
                             <td>{{ dog.breed }}</td>
-                            <td>{{ dog.photo }}</td>
+                            <td>
+                                {% if dog.photo %}
+                                    <img src="{{ dog.photo.url }}" alt="photo's dog" width="30%" height="40%">
+                                {% endif %}
+                            </td>
                             <!-- Si es del creador para  editar -->
                             {% if ownDog %}
                             <td>
-                                <!--class="ui-button btn-icon-only btn-primary"-->
-                                <a  title="Editar" href="">
+                                <a  title="Editar"  class="btn editbutton" href="edit/{{ dog.pk }}">
                                     Editar
-                                    <!--<i class="fas fa-edit fa-fw"></i>-->
+                                </a>
+                                <a class="btn btn-danger" href="delete/{{ dog.pk }}">
+                                    Borrar
                                 </a>
                             </td>
                             {% endif %}
-                            <td> <a title="Ver perfil" href=""> Ver perfil</a> </td>
+                            <td> <a title="Ver perfil"  class="btn editbutton" href=""> Ver perfil</a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -119,7 +124,7 @@ Lista de perros
 
         {% if user.actor.breeder %}
             <div class="create">
-                <input type="button" class="btn btn-default btn-primary"
+                <input type="button" class="btn editbutton"
                        onclick="location.href='/dogs/register';"
                        value="Registrar perro"/>
 

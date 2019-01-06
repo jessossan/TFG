@@ -75,7 +75,7 @@
 
                     <div class="row">
                             <div class="col-xs-6 col-md-6 form-group">
-                                <label for="photo" class="control-label">Foto de perfil</label>
+                                <label for="photo" class="control-label">Foto</label>
                                 <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto del animal" value="{{ form.photo.value|default:'' }}"/>
                             </div>
                     </div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';" value="Cancelar" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/dogs/ownList';" value="Cancelar" />
                         </div>
 
                     </div>
