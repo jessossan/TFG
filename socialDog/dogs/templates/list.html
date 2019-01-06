@@ -117,11 +117,11 @@ Lista de perros
             <p>No existen perros.</p>
         {% endif %}
 
-        {% if user.actor.breeder and ownDog %}
+        {% if user.actor.breeder %}
             <div class="create">
                 <input type="button" class="btn btn-default btn-primary"
                        onclick="location.href='/dogs/register';"
-                       value="Crear perro"/>
+                       value="Registrar perro"/>
 
             </div>
 

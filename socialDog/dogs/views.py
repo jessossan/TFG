@@ -12,17 +12,45 @@ from dogs.models import Dog
 
 # Create your views here.
 
+# LISTADO DE ANIMALES
+def list_dogs(request):
+    ownDog = False
+    try:
+        dog_list_aux = Dog.objects.all()
 
+    except Exception as e:
+
+        dog_list_aux = Dog.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(dog_list_aux, 6)
+
+    try:
+        dog_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        dog_list_aux = paginator.page(1)
+    except EmptyPage:
+        dog_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'dog_list': dog_list_aux,
+        'title': 'Listado de perros',
+        'ownDog': ownDog,
+    }
+    return render(request, 'list.html', data)
+
+# LISTADO DE MIS ANIMALES
+@login_required(login_url='/login/')
+@user_is_breeder
 def list_myDogs(request):
-    #user = request.user
-    #breeder = Breeder.objects.get(userAccount_id=user.id)
 
     # Recupera el criador
     breeder = request.user.actor.breeder
+    ownDog = True
 
     try:
         dog_list_aux = Dog.objects.filter(breeder=breeder)
-        ownDog = True
+
     except Exception as e:
 
         dog_list_aux = Dog.objects.none()
@@ -75,29 +103,6 @@ def register_dog(request):
             dog.save()
 
             return HttpResponseRedirect('/dogs/list')
-
-        # else:
-
-        # Busca la provincia específica seleccionada antes de que fallara el form
-        # try:
-        #   provinceSelected = form.cleaned_data["province"]
-        #  # elimina las provincias duplicadas
-        # provincesAux = Province.objects.all().exclude(pk=provinceSelected.pk)
-        # except:
-        #    provinceSelected = None
-        #   provincesAux = None
-
-        # Busca la provincia específica seleccionada antes de que fallara el form
-        # try:
-        #  breedsSelected = form.cleaned_data["breeds"]
-        # recorre las razas seleccionadas antes de que fallara el form
-        # for b in breedsSelected:
-        # Quita las razas repetidas
-        #    breedsAux = Breed.objects.all().exclude(name=b.name)
-
-        # except:
-        #   breedsSelected = None
-        genders = form.fields["gender"].choices
 
     # Si se accede al form vía GET o cualquier otro método
     else:
