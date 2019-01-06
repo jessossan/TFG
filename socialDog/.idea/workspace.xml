@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a9b4435-b66f-4f2a-9129-730cd971fa24" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/templates/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="2a9b4435-b66f-4f2a-9129-730cd971fa24" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +62,7 @@
     <session id="-719933603">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="58" />
+          <entry key="project.closed" value="59" />
           <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="2" />
@@ -104,7 +96,7 @@
         <counts>
           <entry key="css" value="19" />
           <entry key="gif" value="1" />
-          <entry key="html" value="246" />
+          <entry key="html" value="252" />
           <entry key="ico" value="2" />
           <entry key="jpg" value="12" />
           <entry key="js" value="6" />
@@ -116,7 +108,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="19" />
-          <entry key="HTML" value="246" />
+          <entry key="HTML" value="252" />
           <entry key="Image" value="20" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="6" />
@@ -126,7 +118,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="560" />
-          <entry key="html" value="7881" />
+          <entry key="html" value="8198" />
           <entry key="json" value="4" />
           <entry key="py" value="14279" />
         </counts>
@@ -134,7 +126,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="560" />
-          <entry key="HTML" value="7881" />
+          <entry key="HTML" value="8198" />
           <entry key="JSON" value="4" />
           <entry key="Python" value="14279" />
         </counts>
@@ -142,17 +134,55 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dogs/templates/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="49" column="110" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="21" selection-start-line="21" selection-end-line="21" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="476">
+                  <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="527">
+                  <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -164,9 +194,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>details</find>
-      <find>awards</find>
-      <find>age</find>
       <find>pass</find>
       <find>centerName</find>
       <find>email</find>
@@ -194,6 +221,9 @@
       <find>exclude</find>
       <find>dog.breeder.pk</find>
       <find>editar</find>
+      <find>img</find>
+      <find>padding</find>
+      <find>br</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -247,9 +277,7 @@
         <option value="$PROJECT_DIR$/actors/templates/users/editUserPass.html" />
         <option value="$PROJECT_DIR$/actors/templates/breeders/editBreederPass.html" />
         <option value="$PROJECT_DIR$/actors/templates/associations/editAssociationPass.html" />
-        <option value="$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html" />
         <option value="$PROJECT_DIR$/actors/forms.py" />
-        <option value="$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html" />
         <option value="$PROJECT_DIR$/web/templates/web/registerUser.html" />
         <option value="$PROJECT_DIR$/web/templates/web/registerBreeder.html" />
         <option value="$PROJECT_DIR$/web/forms.py" />
@@ -263,6 +291,8 @@
         <option value="$PROJECT_DIR$/dogs/views.py" />
         <option value="$PROJECT_DIR$/dogs/templates/list.html" />
         <option value="$PROJECT_DIR$/actors/templates/users/editUserProfile.html" />
+        <option value="$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html" />
+        <option value="$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html" />
       </list>
     </option>
   </component>
@@ -304,7 +334,14 @@
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
               <item name="actors" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="associations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
+              <item name="actors" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="breeders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
@@ -573,7 +610,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32884097" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32884097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39892185" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -592,8 +629,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32884097" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39892185" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32884097" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892185" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32884097" />
@@ -808,13 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="62" column="69" lean-forward="true" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actors/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -885,13 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="142" column="40" selection-start-line="142" selection-start-column="40" selection-end-line="149" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actors/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -930,17 +953,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
+    <entry file="file://$PROJECT_DIR$/dogs/templates/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="241">
+          <caret line="49" column="110" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="110" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dogs/templates/list.html">
+    <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="49" column="110" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="110" />
+        <state relative-caret-position="306">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

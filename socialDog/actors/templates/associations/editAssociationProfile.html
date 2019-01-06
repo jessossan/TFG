@@ -6,21 +6,36 @@
 <!-- CONTENIDO -->
 {% block content %}
     <div class="container">
-                <div class="container" align="right"  style="padding: 20px 100px 20px 20px;">
-                        <a  class="btn btn-danger" href="/actors/association/edit/profile/delete/{{ association.pk }}" style="align: center">
-                                    Borrar cuenta
-                        </a>
-                </div>
-        <br/>
-        <h2>{{ titulo }}</h2>
+
+
 
         <div class="row">
 
             <div class="container-fluid">
                 <br/>
                 <div class="col-md-12">
+                    <br/>
+                    <h2>{{ titulo }}</h2>
+
+                    <div class="container" align="right"  style="padding: 0px 100px 0px;">
+                        <a  class="btn btn-danger" href="/actors/association/edit/profile/delete/{{ association.pk }}" style="align: center">
+                                    Borrar cuenta
+                        </a>
+                    </div>
+
+                    <!-- Si tiene foto la muestra -->
+                    {% if association.photo %}
+                        <img src="{{ association.photo.url }}" alt="Association photo" width="200px" height="200px">
+                    {% else %}
+                    <!-- Si NO tiene foto muestra el recuadro -->
+                    <div style="border-style: solid; border-width: 2px;width: 200px; height:200px;">
+                        <img src="" alt="Sin foto">
+                        </div>
+                    {% endif %}
 
                     <!-- Formulario Edición -->
+                    <br/>
+                    <br/>
                     <form id="registro" method="post" enctype="multipart/form-data" action="{% url 'edit_profile_association' %}" class="form" role="form">
                         {% csrf_token %}
                         <div class="row">
