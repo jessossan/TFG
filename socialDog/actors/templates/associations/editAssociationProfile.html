@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="email" class="control-label">Email</label>
-                                <input class="form-control" id="email" name="email"
+                                <input class="form-control" id="email" name="email" maxlength="100"
                                        placeholder="Dirección de correo electrónico" type="email"
                                        value="{{ form.email.value|default:'' }}" required autofocus/>
                             </div>
@@ -48,17 +48,17 @@
                         <div class="row">
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="first_name" class="control-label">Nombre</label>
-                                <input class="form-control" name="first_name" id="first_name" type="text"
+                                <input class="form-control" name="first_name" id="first_name" type="text" maxlength="32"
                                        placeholder="Nombre" value="{{ form.first_name.value|default:'' }}" required/>
                             </div>
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="last_name" class="control-label">Apellidos</label>
-                                <input class="form-control" name="last_name" id="last_name" type="text"
+                                <input class="form-control" name="last_name" id="last_name" type="text" maxlength="50"
                                        placeholder="Apellidos" value="{{ form.last_name.value|default:'' }}" required/>
                             </div>
                            <div class="col-xs-6 col-md-6 form-group">
                             <label for="centerName" class="control-label">Nombre del Centro</label>
-                            <input class="form-control" name="centerName" id="centerName" type="text" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
+                            <input class="form-control" name="centerName" id="centerName" type="text" maxlength="50" placeholder="Nombre del Centro" value="{{ form.centerName.value|default:'' }}" required/>
                            </div>
                            <div class="col-xs-6 col-md-6 form-group">
                                 <label for="cif" class="control-label">CIF o código del centro</label>
