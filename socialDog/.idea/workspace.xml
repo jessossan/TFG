@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a9b4435-b66f-4f2a-9129-730cd971fa24" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dogs/templates/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socialDog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/socialDog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/registration/logged_out.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,55 +98,78 @@
         <counts>
           <entry key="css" value="19" />
           <entry key="gif" value="1" />
-          <entry key="html" value="211" />
+          <entry key="html" value="213" />
           <entry key="ico" value="2" />
           <entry key="jpg" value="12" />
           <entry key="js" value="6" />
           <entry key="json" value="3" />
           <entry key="png" value="5" />
-          <entry key="py" value="290" />
+          <entry key="py" value="292" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="19" />
-          <entry key="HTML" value="211" />
+          <entry key="HTML" value="213" />
           <entry key="Image" value="20" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="6" />
-          <entry key="Python" value="290" />
+          <entry key="Python" value="292" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="560" />
-          <entry key="html" value="7146" />
+          <entry key="html" value="7179" />
           <entry key="json" value="4" />
-          <entry key="py" value="12690" />
+          <entry key="py" value="12698" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="560" />
-          <entry key="HTML" value="7146" />
+          <entry key="HTML" value="7179" />
           <entry key="JSON" value="4" />
-          <entry key="Python" value="12690" />
+          <entry key="Python" value="12698" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dogs/templates/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="29" column="106" selection-start-line="29" selection-start-column="106" selection-end-line="29" selection-end-column="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="221">
+                  <caret line="43" column="59" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="59" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/actors/forms.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="175">
+                  <caret line="17" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#0#24#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -242,7 +259,6 @@
         <option value="$PROJECT_DIR$/actors/templates/breeders/delete.html" />
         <option value="$PROJECT_DIR$/actors/templates/associations/delete.html" />
         <option value="$PROJECT_DIR$/actors/templates/breeders/editBreederProfile.html" />
-        <option value="$PROJECT_DIR$/actors/templates/users/editUserProfile.html" />
         <option value="$PROJECT_DIR$/actors/templates/associations/editAssociationProfile.html" />
         <option value="$PROJECT_DIR$/actors/urls.py" />
         <option value="$PROJECT_DIR$/MYmessages/models.py" />
@@ -253,16 +269,17 @@
         <option value="$PROJECT_DIR$/dogs/templates/registerDog.html" />
         <option value="$PROJECT_DIR$/dogs/templates/dog_list.html" />
         <option value="$PROJECT_DIR$/dogs/templates/editDog.html" />
-        <option value="$PROJECT_DIR$/actors/forms.py" />
         <option value="$PROJECT_DIR$/socialDog/urls.py" />
         <option value="$PROJECT_DIR$/dogs/models.py" />
         <option value="$PROJECT_DIR$/dogs/urls.py" />
-        <option value="$PROJECT_DIR$/dogs/templates/list.html" />
         <option value="$PROJECT_DIR$/dogs/forms.py" />
         <option value="$PROJECT_DIR$/web/templates/base/base.html" />
         <option value="$PROJECT_DIR$/actors/views.py" />
         <option value="$PROJECT_DIR$/dogs/views.py" />
         <option value="$PROJECT_DIR$/dogs/templates/register.html" />
+        <option value="$PROJECT_DIR$/dogs/templates/list.html" />
+        <option value="$PROJECT_DIR$/actors/forms.py" />
+        <option value="$PROJECT_DIR$/actors/templates/users/editUserProfile.html" />
       </list>
     </option>
   </component>
@@ -296,13 +313,15 @@
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="dogs" type="462c0819:PsiDirectoryNode" />
+              <item name="actors" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="dogs" type="462c0819:PsiDirectoryNode" />
+              <item name="actors" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
@@ -782,13 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dogs/templates/__init__.py" />
     <entry file="file://$PROJECT_DIR$/web/templates/welcome/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -825,13 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="193" column="3" lean-forward="true" selection-start-line="193" selection-start-column="3" selection-end-line="193" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actors/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -863,13 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="71" column="10" lean-forward="true" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dogs/templates/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="128" column="64" lean-forward="true" selection-start-line="128" selection-start-column="64" selection-end-line="128" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -942,10 +940,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dogs/templates/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dogs/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="29" column="106" selection-start-line="29" selection-start-column="106" selection-end-line="29" selection-end-column="106" />
+          <caret line="29" column="94" selection-start-line="29" selection-start-column="94" selection-end-line="29" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/templates/users/editUserProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

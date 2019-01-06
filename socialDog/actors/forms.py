@@ -13,7 +13,7 @@ class EditCustomerProfile(forms.Form):
     """Formulario registro como Usuario"""
 
     # Campos requeridos por el User model
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
     first_name = forms.CharField(min_length=2, max_length=32, label='Nombre')
     last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
 
@@ -80,7 +80,7 @@ class EditBreederProfile(forms.Form):
     """ Formulario de edición del perfil Breeder """
 
     # Campos editables del User model
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
     first_name = forms.CharField(min_length=2, max_length=32, label='Nombre')
     last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
 
