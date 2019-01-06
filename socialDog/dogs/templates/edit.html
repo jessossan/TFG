@@ -1,0 +1,110 @@
+﻿{% extends 'base/base.html' %}
+
+<!-- TITULO -->
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+    <div class="container">
+
+        <br/>
+        <h1>Edición de perros</h1>
+        <br/>
+
+        <div class="row">
+
+            <div class="container-fluid">
+                <br/>
+                <div class="col-md-12">
+
+                    <!-- Formulario Edición -->
+                    <form id="registro" method="post" enctype="multipart/form-data" action="{% url '' %}" class="form" role="form">
+                        {% csrf_token %}
+                        <!-- CUENTA -->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="name" class="control-label">Nombre </label>
+                                <input class="form-control" id="name" name="name" type="text"
+                                       value="{{ form.name.value|default:'' }}" required autofocus/>
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="age" class="control-label">Edad</label>
+                                <input class="form-control" id="age" name="age"
+                                       placeholder="0" type="age"
+                                       value="{{ form.age.value|default:'' }}" required/>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="gender" class="control-label">Nombre</label>
+                                <input class="form-control" name="gender" id="gender"
+                                        required/>
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="descendant" class="control-label">Descendencia</label>
+                                <input class="form-control" name="descendant" id="descendant" type="text"
+                                       placeholder="Descendencia" value="{{ form.descendant.value|default:'' }}" />
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="details" class="control-label">Dirección</label>
+                                <input class="form-control"  name="details" id="details" type="text"
+                                       placeholder="Detalles" value="{{ form.details.value|default:'' }}" />
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="awards" class="control-label">Premios</label>
+                                <input class="form-control"  name="awards" id="awards" type="text"
+                                       placeholder="Premios" value="{{ form.awards.value|default:'' }}" />
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="photo" class="control-label">Foto de perfil</label>
+                                <input class="form-control" name="photo" id="photo" type="file"
+                                       placeholder="Foto del perro"
+                                       value="{{ dog.photo|default:'' }}"/>
+                            </div>
+                        </div>
+
+                        <!-- Tratamiento de Errores -->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                        </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Botones -->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <input type="hidden" name="next" value="/"/>
+                                <input type="submit" value="Editar" class="btn editbutton btn-block"/>
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <input type="hidden" name="next" value="/"/>
+                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';"
+                                       value="Cancelar"/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% endblock %}

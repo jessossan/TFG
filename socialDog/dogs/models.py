@@ -17,13 +17,13 @@ class Dog(models.Model):
         (MALE, 'Macho'),
         (FEMALE, 'Hembra'),
     )
-    name = models.CharField(max_length=50, unique=True, help_text="Requerido. 50 carácteres como máximo")
+    name = models.CharField(max_length=50, help_text="Requerido. 50 carácteres como máximo")
     age = models.PositiveIntegerField(default=0, help_text="Edad, requerido",
                                       validators=[MinValueValidator(0)])
     gender = models.CharField(max_length=10, choices=GenderType)
     descendant = models.CharField(max_length=200, help_text="Descendencia, no requerido", null=True, blank=True)
     details = models.CharField(max_length=200, help_text="Detalles, no requerido", null=True, blank=True)
-    photo = models.ImageField(null=True, blank=True, upload_to='uploads/')  # Donde va uploads?
+    photo = models.ImageField(null=True, blank=True, upload_to='uploads/')
     awards = models.CharField(max_length=200, help_text="Premios, no requerido", null=True, blank=True)
 
     # Relación con raza

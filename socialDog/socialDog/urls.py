@@ -69,4 +69,7 @@ urlpatterns = [
     # Actors
     path('actors/', include('actors.urls')),
 
+    # Dogs
+    path('dogs/', include('dogs.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

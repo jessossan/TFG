@@ -28,11 +28,15 @@
 
             {% if messages %}
                 <!-- MENSAJES DE QUE SE HA BORRADO CORRECTAMENTE LA CUENTA -->
-                <div class="card bg-success text-white">
+                <!--<div class="card bg-success text-white">
                     {% for message in messages %}
                         <div class="card-body" align="center">{{ message }}</div>
                     {% endfor %}
-                </div>
+                </div>-->
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>¡Completado!</strong> Se ha eliminado la cuenta correctamente.
+			    </div>
             {% else %}
                     <h3 align="center">Se ha cerrado sesión</h3>
             {% endif %}

@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+<div class="container">
+    <br />
+    <h2>{{ title }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-md-12">
+
+                <!-- FORMULARIO -->
+                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'register_dog' %}" class="form" role="form">
+                    {% csrf_token %}
+
+                    <!-- Criador -->
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="name" class="control-label">Nombre</label>
+                            <input class="form-control" id="name" name="name" maxlength="50" placeholder="Nombre" type="text" value="{{ form.name.value|default:'' }}" required autofocus/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="age" class="control-label">Edad</label>
+                            <input class="form-control" id="age" name="age" max="100" min="0" placeholder="0" type="number" value="{{ form.age.value|default:'0' }}" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="gender" class="control-label">Género</label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="" selected="selected">Seleccione un género</option>
+                                    {% for gender in genders %}
+                                        <option value="{{ gender.0 }}">{{ gender.0 }}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="descendant" class="control-label">Descendencia</label>
+                            <input class="form-control" name="descendant" maxlength="200" id="descendant" type="text" placeholder="Descendencia" value="{{ form.descendant.value|default:'' }}"/>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="details" class="control-label">Detalles</label>
+                            <textarea class="form-control" name="details" id="details" maxlength="200" rows="3" placeholder="Detalles" value="{{ form.details.value|default:'' }}"></textarea>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="awards" class="control-label">Premios</label>
+                            <textarea class="form-control" name="awards" maxlength="200" id="awards" rows="3" placeholder="Premios" value="{{ form.awards.value|default:'' }}"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                                <label for="breed" class="control-label">Seleccione la raza</label>
+                                <select class="form-control" id="breed" name="breed" required>
+                                    <option value="" selected="selected">Seleccione una Raza</option>
+                                    {% for breed in breeds %}
+                                        <option value="{{ breed.id }}">{{ breed.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="photo" class="control-label">Foto de perfil</label>
+                                <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto del animal" value="{{ form.photo.value|default:'' }}"/>
+                            </div>
+                    </div>
+
+                     <!-- Tratamiento de Errores -->
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+
+                    <!-- Botones -->
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="submit" value="Registrar" class="btn editbutton btn-block" />
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';" value="Cancelar" />
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}
