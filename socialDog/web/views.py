@@ -83,6 +83,10 @@ def register_customer(request):
             dni = form.cleaned_data["dni"]
             userAccount = user
 
+            # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/default.jpg'
+
             customer = Customer.objects.create(phone=phone, photo=photo, dni=dni, userAccount=userAccount, people=0)
 
             user = User.objects.get(username=username)
@@ -146,6 +150,10 @@ def register_association(request):
             photo = form.cleaned_data["photo"]
             private = form.cleaned_data["private"]
             userAccount = user
+
+            # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/default.jpg'
 
             association = Association.objects.create(phone=phone, photo=photo, centerName=centerName,
                                                   postalCode=postalCode, province=province, address=address,
@@ -230,6 +238,10 @@ def register_breeder(request):
             private = form.cleaned_data["private"]
             breeds = form.cleaned_data["breeds"]
             userAccount = user
+
+            # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/default.jpg'
 
             breeder = Breeder.objects.create(phone=phone, photo=photo, centerName=centerName,
                                                   postalCode=postalCode, province=province, address=address,

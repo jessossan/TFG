@@ -100,6 +100,10 @@ def register_dog(request):
             awards = form.cleaned_data["awards"]
             breed = form.cleaned_data["breed"]
 
+            # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/default-dog.png'
+
             dog = Dog.objects.create(name=name, age=age, gender=gender, descendant=descendant,
                                      details=details, photo=photo, awards=awards, breeder=breeder, breed=breed)
 
@@ -210,7 +214,7 @@ def edit_dog(request, pk):
         'breeds': breeds,
         'genders': genders,
         'breed': dog.breed,
-        'breedsAux':  Breed.objects.all().exclude(pk=dog.breed.pk), # Elimina la raza duplicada
+        'breedsAux': Breed.objects.all().exclude(pk=dog.breed.pk),  # Elimina la raza duplicada
     }
 
     return render(request, 'edit.html', data)
