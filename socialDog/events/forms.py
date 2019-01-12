@@ -10,26 +10,25 @@ class CreateBreederEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    name = forms.CharField(max_length=50, label='Nombre')
-    age = forms.IntegerField(validators=[MinValueValidator(0)], label='Edad')
-    gender = forms.ChoiceField(choices=Dog.GenderType, label='Género')
-    descendant = forms.CharField(max_length=200, required=False, label='Descendencia')
-    details = forms.CharField(max_length=200, required=False, label='Detalles')
-    photo = forms.ImageField(required=False, label='Foto del perro')
-    awards = forms.CharField(max_length=200, help_text="Premios, no requerido", required=False)
-    breed = forms.ModelChoiceField(queryset=Breed.objects.all(), empty_label=None, label='Raza')
+    title = forms.CharField(max_length=50, label='Nombre')
+    description = forms.CharField(max_length=200, label='Descripción')
+    place = forms.CharField(max_length=50, label='Lugar')
+    startDate = forms.DateField(label='Fecha de inicio')
+    startTime = forms.TimeField(label='Hora de inicio')
 
+    finishDate = forms.DateField(label='Fecha de fin')
+    finishTime = forms.TimeField(label='Hora de fin')
+
+    length = forms.TimeField(required=False, label='Duración')
 
 class EditBreederEventForm(forms.Form):
     """Formulario de edición de un evento del criador"""
 
     # Campos requeridos por el Evento
 
-    name = forms.CharField(max_length=50, label='Nombre')
-    age = forms.IntegerField(validators=[MinValueValidator(0)], label='Edad')
-    gender = forms.ChoiceField(choices=Dog.GenderType, label='Género')
-    descendant = forms.CharField(max_length=200, required=False, label='Descendencia')
-    details = forms.CharField(max_length=200, required=False, label='Detalles')
-    photo = forms.ImageField(required=False, label='Foto del perro')
-    awards = forms.CharField(max_length=200, help_text="Premios, no requerido", required=False)
-    breed = forms.ModelChoiceField(queryset=Breed.objects.all(), empty_label=None, label='Raza')
+    title = forms.CharField(max_length=50, label='Nombre')
+    description = forms.CharField(max_length=200, label='Descripción')
+    place = forms.CharField(max_length=50, label='Lugar')
+    startDate = forms.DateTimeField(label='Fecha de comienzo')
+    finishDate = forms.DateTimeField(label='Fecha de fin')
+    length = forms.TimeField(required=False, label='Duración')

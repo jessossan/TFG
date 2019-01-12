@@ -25,7 +25,8 @@ Lista de eventos
                         <th>Descripción</th>
                         <th>Lugar</th>
                         <th>Fecha de comienzo</th>
-                        <th>Fecha fin (duración)</th>
+                        <th>Fecha fin</th>
+                        <th>Duración</th>
                         <!-- Para la columna de la foto-->
                         <th></th>
                         <!-- Si es del creador para la columna editar -->
@@ -45,7 +46,9 @@ Lista de eventos
                             <td>{{ event.title }}</td>
                             <td>{{ event.description }}</td>
                             <td>{{ event.place }}</td>
-                            <td>{{ event.startDate }}</td>
+                            <td>{{ event.startDate|date:'d/m/y' }} &nbsp;- {{ event.startTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
+                            <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
+                            <td>{{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</td>
                             <td>
                                 {% if event.photo %}
                                     <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px">

@@ -26,24 +26,39 @@
                             <input class="form-control" id="title" name="title" maxlength="50" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="description" class="control-label">Descripción</label>
-                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción" value="{{ form.description.value|default:'' }}"></textarea>
+                            <label for="place" class="control-label">Lugar</label>
+                            <input class="form-control" id="place" name="place" maxlength="50" placeholder="Lugar" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="description" class="control-label">Descripción</label>
+                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción"></textarea>
+                        </div>
+                    </div>
 
+                    <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="startDate" class="control-label">Fecha de comienzo</label>
                             <input class="form-control" id="startDate" name="startDate" placeholder="Fecha de comienzo" type="date" value="{{ form.startDate.value|default:'' }}" required/>
+                        </div>
+                         <div class="col-xs-6 col-md-6 form-group">
+                            <label for="startTime" class="control-label">Hora de comienzo</label>
+                            <input class="form-control" id="startTime" name="startTime" placeholder="Hora de comienzo" type="time" value="{{ form.startTime.value|default:'' }}" required/>
                         </div>
 
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="finishDate" class="control-label">Fecha de fin</label>
                             <input class="form-control" id="finishDate" name="finishDate" placeholder="Fecha de fin" type="date" value="{{ form.finishDate.value|default:'' }}" />
                         </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="finishTime" class="control-label">Hora de fin</label>
+                            <input class="form-control" id="finishTime" name="finishTime" placeholder="Hora de fin" type="time" value="{{ form.finishTime.value|default:'' }}" />
+                        </div>
 
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="length" class="control-label">Duración</label>
-                            <input class="form-control" id="length" name="length" placeholder="Duración" type="text" value="{{ form.length.value|default:'' }}"/>
+                            <input class="form-control" id="length" name="length" type="time" value="{{ form.length.value|default:'' }}"/>
                         </div>
+
                     </div>
 
                     <hr/>
@@ -82,7 +97,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/dogs/ownList';" value="Cancelar" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/events/ownList';" value="Cancelar" />
                         </div>
 
                     </div>

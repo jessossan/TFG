@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib import admin
@@ -11,9 +13,11 @@ class Event(models.Model):
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
     place = models.CharField(max_length=100, help_text="Requerido. 100 carácteres como máximo")
     creationDate = models.DateTimeField(auto_now_add=True)
-    startDate = models.DateTimeField()
-    finishDate = models.DateTimeField()
-    length = models.PositiveIntegerField(validators=[MinValueValidator(0)], null=True)
+    startDate = models.DateField()
+    startTime = models.TimeField(default=datetime.time(00, 00))
+    finishDate = models.DateField()
+    finishTime = models.TimeField(default=datetime.time(00, 00))
+    length = models.TimeField(null=True, blank=True)
 
     # Relación con comentario
     # Relación con criador

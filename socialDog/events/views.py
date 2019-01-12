@@ -31,17 +31,20 @@ def create_breeder_event(request):
             description = form.cleaned_data["description"]
             place = form.cleaned_data["place"]
             startDate = form.cleaned_data["startDate"]
+            startTime = form.cleaned_data["startTime"]
             finishDate = form.cleaned_data["finishDate"]
+            finishTime = form.cleaned_data["finishTime"]
             length = form.cleaned_data["length"]
+            datetime.timetz()
 
             # Asigna imagen por defecto si no añade imagen
 
             event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
-                                         finishDate=finishDate, length=length, breeder=breeder)
+                                         startTime=startTime,finishDate=finishDate, finishTime= finishTime, length=length, breeder=breeder)
 
             event.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/events/ownList')
 
     # Si se accede al form vía GET o cualquier otro método
     else:
@@ -55,7 +58,7 @@ def create_breeder_event(request):
         'year': datetime.now().year,
     }
 
-    return render(request, 'create.html', data)
+    return render(request, 'create_event.html', data)
 
 
 @login_required(login_url='/login/')
