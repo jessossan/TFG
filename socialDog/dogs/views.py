@@ -39,10 +39,10 @@ def list_dogs(request):
         'title': 'Listado de perros',
         'ownDog': ownDog,
     }
-    return render(request, 'list.html', data)
+    return render(request, 'list_dog.html', data)
 
 
-# LISTADO DE MIS ANIMALES
+# CRIADOR: ANIMALES
 @login_required(login_url='/login/')
 @user_is_breeder
 def list_myDogs(request):
@@ -72,7 +72,7 @@ def list_myDogs(request):
         'title': 'Listado de mis perros',
         'ownDog': ownDog,
     }
-    return render(request, 'list.html', data)
+    return render(request, 'list_dog.html', data)
 
 
 @login_required(login_url='/login/')
@@ -127,7 +127,7 @@ def register_dog(request):
         'genders': genders,
     }
 
-    return render(request, 'register.html', data)
+    return render(request, 'register_dog.html', data)
 
 
 @login_required(login_url='/login/')
@@ -148,7 +148,7 @@ def delete_dog(request, pk):
         'dog': dog,
     }
 
-    return render(request, 'delete.html', data)
+    return render(request, 'delete_dog.html', data)
 
 
 @login_required(login_url='/login/')
@@ -217,4 +217,4 @@ def edit_dog(request, pk):
         'breedsAux': Breed.objects.all().exclude(pk=dog.breed.pk),  # Elimina la raza duplicada
     }
 
-    return render(request, 'edit.html', data)
+    return render(request, 'edit_dog.html', data)

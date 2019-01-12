@@ -1,0 +1,149 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Lista de eventos
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+
+        <br/>
+        <h1>Lista de mis eventos</h1>
+        <br/>
+
+        <!-- Listado -->
+        {% if event_list %}
+        <div class="panel panel-default panel-table mb-3">
+          <div class="panel-heading">
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped table-curved table-hover table-bordered">
+
+
+                    <thead class="thead-primary">
+                    <tr>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Lugar</th>
+                        <th>Fecha de comienzo</th>
+                        <th>Fecha fin (duración)</th>
+                        <!-- Para la columna de la foto-->
+                        <th></th>
+                        <!-- Si es del creador para la columna editar -->
+                        {% if ownEvent %}
+                        <th></th>
+                        {% endif %}
+                        <!-- Para la columna de ver perfil-->
+                        <th></th>
+
+                    </tr>
+                  </thead>
+
+                    <tbody>
+                    {% for event in event_list %}
+
+                        <tr>
+                            <td>{{ event.title }}</td>
+                            <td>{{ event.description }}</td>
+                            <td>{{ event.place }}</td>
+                            <td>{{ event.startDate }}</td>
+                            <td>
+                                {% if event.photo %}
+                                    <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px">
+                                {% endif %}
+                            </td>
+                            <!-- Si es del creador para  editar -->
+                            {% if ownEvent %}
+                            <td>
+                                <a  title="Editar"  class="btn editbutton" href="">
+                                    Editar
+                                </a>
+                                <a class="btn btn-danger" href="">
+                                    Borrar
+                                </a>
+                            </td>
+                            {% endif %}
+                            <td> <a title="Ver perfil"  class="btn editbutton" href=""> Ver detalles</a> </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+            </table>
+          </div>
+          <div class="panel-footer table-header-primary table-footer">
+            {% if event_list.has_other_pages %}
+                <ul class="pagination">
+                    {% if event_list.has_previous %}
+                        <li>
+                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ event_list.previous_page_number }}">
+                            <i class="fas fa-angle-double-left"></i>
+                          </a>
+                        </li>
+                    {% else %}
+                    <li>
+                      <a  class="ui-button ui-pagination ui-pagination-prev ui-pagination-disabled" href="#">
+                        <i class="fas fa-angle-double-left"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                    {% for i in event_list.paginator.page_range %}
+                        {% if event_list.number == i %}
+                        <li>
+                          <a class="ui-button ui-pagination ui-pagination-current" href="#">
+                            <span>{{ i }}</span>
+                          </a>
+                        </li>
+                        {% else %}
+                        <li>
+                          <a class="ui-button ui-pagination ui-pagination-page" href="?page={{ i }}">
+                            <span>{{ i }}</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if event_list.has_next %}
+                    <li>
+                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ event_list.next_page_number }}">
+                        <i class="fas fa-angle-double-right"></i>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="ui-button ui-pagination ui-pagination-next ui-pagination-disabled" href="#">
+                        <i class="fas fa-angle-double-right"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                </ul>
+              {% endif %}
+          </div>
+        </div>
+
+        {% else %}
+            <p></p>
+            <p>No existen eventos.</p>
+        {% endif %}
+
+        {% if user.actor.breeder %}
+            <div class="create">
+                <input type="button" class="btn editbutton"
+                       onclick="location.href='/events/breeder/create';"
+                       value="Crear evento"/>
+
+            </div>
+
+        {% endif %}
+
+        {% if user.actor.association %}
+            <div class="create">
+                <input type="button" class="btn editbutton"
+                       onclick="location.href='/events/association/create';"
+                       value="Crear evento"/>
+
+            </div>
+
+        {% endif %}
+
+
+
+    </div>
+{% endblock %}
