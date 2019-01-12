@@ -138,7 +138,7 @@ def delete_customer_account(request, pk):
         messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
         return HttpResponseRedirect('/logout')
 
-    return render(request, 'users/delete.html', {'customer': customer})
+    return render(request, 'users/delete_user.html', {'customer': customer})
 
 """CRIADOR""" # CRIADOR
 
@@ -323,7 +323,7 @@ def delete_breeder_account(request, pk):
         messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
         return HttpResponseRedirect('/logout')
 
-    return render(request, 'breeders/delete.html', {'breeder': breeder})
+    return render(request, 'breeders/delete_breeder.html', {'breeder': breeder})
 
 """ASSOCIATION""" # ASSOCIATION
 
@@ -484,4 +484,4 @@ def delete_association_account(request, pk):
         messages.add_message(request, messages.SUCCESS, 'Se ha borrado su cuenta correctamente')
         return HttpResponseRedirect('/logout')
 
-    return render(request, 'associations/delete.html', {'association': association})
+    return render(request, 'associations/delete_association.html', {'association': association})
