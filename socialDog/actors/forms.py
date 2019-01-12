@@ -101,6 +101,7 @@ class EditBreederProfile(forms.Form):
                                                                           message='El código postal debe estar compuesto por 5 dígitos.'), ],
                                  label='Código Postal')
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
+    notes = forms.CharField(max_length=200, required=False, label="Observaciones sobre el horario")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
     breeds = forms.ModelMultipleChoiceField(queryset=Breed.objects.all(), widget=forms.CheckboxSelectMultiple,
                                             label='Razas')
@@ -216,6 +217,7 @@ class EditAssociationProfile(forms.Form):
                                                                           message='El código postal debe estar compuesto por 5 dígitos.'), ],
                                  label='Código Postal')
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
+    notes = forms.CharField(max_length=200, required=False, label="Observaciones sobre el horario")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
 
     # Recuperamos el usuario que esta realizando la operación

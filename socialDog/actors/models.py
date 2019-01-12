@@ -113,6 +113,7 @@ class Association(Actor):
     """
     centerName = models.CharField(max_length=50, unique=True, help_text='Requerido. 50 carácteres como máximo.')
     address = models.CharField(max_length=50, help_text='Requerido. 50 carácteres como máximo.')
+    notes = models.CharField(max_length=200, null=True, blank=True, help_text='No requerido. 200 carácteres como máximo.')
     postalCode = models.CharField(verbose_name='Código postal', max_length=5,
                                   help_text='Requerido. 5 dígitos como máximo.',
                                   validators=[RegexValidator(regex=r'^(\d{5})$',
@@ -161,6 +162,7 @@ class Breeder(Actor):
                                                       message='El código de identificación debe estar compuesto de 9 dígitos.')],
                            unique=True,
                            help_text='Requerido. CIF para asociaciones. Empieza por G, seguido de 8 dígitos')
+    notes = models.CharField(max_length=200, null=True, blank=True, help_text='No requerido. 200 carácteres como máximo.')
     opening = models.TimeField()
     closing = models.TimeField()
     private = models.BooleanField(default=True)

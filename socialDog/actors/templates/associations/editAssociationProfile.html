@@ -114,6 +114,11 @@
                                    value="{{ closing|time:'H:i'}}"required/>
                             </div>
 
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="notes" class="control-label">Observaciones sobre el horario</label>
+                                <textarea class="form-control" name="notes" id="notes" maxlength="200" rows="3" placeholder="Opcional">{{ form.notes.value|default:'' }}</textarea>
+                            </div>
+
                             {% if association.private == True %}
                                 <div class="col-xs-12 col-md-12 form-group">
                                     <label for="private" class="control-label">Perfil privado

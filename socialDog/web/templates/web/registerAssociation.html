@@ -90,6 +90,10 @@
                             <input type=time  class="form-control" name="closing" id="closing" placeholder="Hora de cierre"
                                    value="{{ form.closing.value|default:'' }}"required/>
                         </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                                <label for="notes" class="control-label">Observaciones sobre el horario</label>
+                                <textarea class="form-control" name="notes" id="notes" maxlength="200" rows="3" placeholder="Opcional"> {{ form.notes.value|default:'' }}</textarea>
+                        </div>
                     </div>
                    <hr/>
                      <div class="col-xs-12 col-md-12 form-group">

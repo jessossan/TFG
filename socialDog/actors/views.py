@@ -183,6 +183,7 @@ def edit_profile_breeder(request):
             private = form.cleaned_data["private"]
             postalCode = form.cleaned_data["postalCode"]
             centerName = form.cleaned_data["centerName"]
+            notes = form.cleaned_data["notes"]
             province = form.cleaned_data["province"]
             breeds = form.cleaned_data["breeds"]
 
@@ -200,6 +201,7 @@ def edit_profile_breeder(request):
             breeder.private = private
             breeder.postalCode = postalCode
             breeder.centerName = centerName
+            breeder.notes = notes
             breeder.province = province
 
             # Elimina todas las razas que tenia
@@ -245,7 +247,7 @@ def edit_profile_breeder(request):
 
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
                     'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
-                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address,
+                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address, 'notes': breeder.notes,
                     'private': breeder.private, 'postalCode': breeder.postalCode, 'centerName': breeder.centerName,
                     'province': breeder.province}
         form = EditBreederProfile(dataForm, user=request.user)
@@ -366,6 +368,7 @@ def edit_profile_association(request):
             private = form.cleaned_data["private"]
             postalCode = form.cleaned_data["postalCode"]
             centerName = form.cleaned_data["centerName"]
+            notes = form.cleaned_data["notes"]
             province = form.cleaned_data["province"]
 
             association.phone = phone
@@ -382,6 +385,7 @@ def edit_profile_association(request):
             association.private = private
             association.postalCode = postalCode
             association.centerName = centerName
+            association.notes = notes
             association.province = province
 
             association.save()
@@ -408,7 +412,7 @@ def edit_profile_association(request):
         provinceSelected = association.province
 
         dataForm = {'first_name': association.userAccount.first_name, 'last_name': association.userAccount.last_name,
-                    'email': association.userAccount.email, 'centerName': association.centerName, 'province': association.province,
+                    'email': association.userAccount.email, 'centerName': association.centerName, 'notes':association.notes, 'province': association.province,
                     'phone': association.phone, 'cif': association.cif, 'photo': association.photo, 'opening': association.opening, 'closing': association.closing,
                     'address': association.address, 'private': association.private, 'postalCode': association.postalCode}
         form = EditAssociationProfile(dataForm, user=request.user)

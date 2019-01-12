@@ -149,6 +149,7 @@ def register_association(request):
             phone = form.cleaned_data["phone"]
             photo = form.cleaned_data["photo"]
             private = form.cleaned_data["private"]
+            notes = form.cleaned_data["notes"]
             userAccount = user
 
             # Asigna imagen por defecto si no añade imagen
@@ -158,7 +159,7 @@ def register_association(request):
             association = Association.objects.create(phone=phone, photo=photo, centerName=centerName,
                                                   postalCode=postalCode, province=province, address=address,
                                                   opening=opening, closing=closing, cif=cif, userAccount=userAccount,
-                                                  people=0, private = private)
+                                                  people=0, private=private, notes=notes)
 
             user = User.objects.get(username=username)
 
@@ -237,6 +238,7 @@ def register_breeder(request):
             photo = form.cleaned_data["photo"]
             private = form.cleaned_data["private"]
             breeds = form.cleaned_data["breeds"]
+            notes = form.cleaned_data["notes"]
             userAccount = user
 
             # Asigna imagen por defecto si no añade imagen
@@ -246,7 +248,7 @@ def register_breeder(request):
             breeder = Breeder.objects.create(phone=phone, photo=photo, centerName=centerName,
                                                   postalCode=postalCode, province=province, address=address,
                                                   opening=opening, closing=closing, cif=cif, userAccount=userAccount,
-                                                  people=0, private=private)
+                                                  people=0, private=private, notes=notes)
             # Añadir las razas al criador
             for breed in breeds:
                 breeder.breeds.add(breed)

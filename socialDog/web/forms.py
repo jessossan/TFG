@@ -91,6 +91,7 @@ class RegisterAssociationForm(forms.Form):
     centerName = forms.CharField(max_length=50, label="Nombre del centro")
     postalCode = forms.CharField(max_length=5, validators=[RegexValidator(regex=r'^(\d{5})$',
                                                                       message='El código postal debe estar compuesto por 5 dígitos.'),], label='Código Postal')
+    notes = forms.CharField(max_length=200, required=False, label="Observaciones sobre el horario")
     province = forms.ModelChoiceField(queryset=Province.objects.all(), empty_label=None, label='Provincia')
     address = forms.CharField(max_length=50, label='Dirección')
     opening = forms.TimeField(label='Hora de apertura')
@@ -177,6 +178,7 @@ class RegisterBreederForm(forms.Form):
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
                                                      message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
                           label="C.I.F.")
+    notes = forms.CharField(max_length=200, required=False, label="Observaciones sobre el horario")
     private = forms.BooleanField(label='Perfil privado',required=False)
     breeds = forms.ModelMultipleChoiceField(queryset=Breed.objects.all(), widget=forms.CheckboxSelectMultiple, label='Razas')
 

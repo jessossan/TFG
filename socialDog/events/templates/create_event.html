@@ -63,14 +63,6 @@
 
                     <hr/>
 
-
-                    <div class="row">
-                            <div class="col-xs-6 col-md-6 form-group">
-                                <label for="photo" class="control-label">Foto</label>
-                                <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto del animal" value="{{ form.photo.value|default:'' }}"/>
-                            </div>
-                    </div>
-
                      <!-- Tratamiento de Errores -->
                     {% if form.errors %}
                         {% for field in form %}

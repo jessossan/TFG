@@ -19,12 +19,10 @@ class Event(models.Model):
     finishTime = models.TimeField(default=datetime.time(00, 00))
     length = models.TimeField(null=True, blank=True)
 
-    # Relación con comentario
     # Relación con criador
     breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True, blank=True)
     # Relación con asociación
     association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
-    # Relación con valoración
 
     def __str__(self):
         return str(self.title) + ' - ' + str(self.description) + ' - ' + str(self.place) + ' - ' + str(
