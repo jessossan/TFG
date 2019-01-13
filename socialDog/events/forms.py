@@ -21,14 +21,19 @@ class CreateBreederEventForm(forms.Form):
 
     length = forms.TimeField(required=False, label='Duración')
 
-class EditBreederEventForm(forms.Form):
-    """Formulario de edición de un evento del criador"""
+
+class EditEventForm(forms.Form):
+    """Formulario de edición de un evento del criador o de la asociacion"""
 
     # Campos requeridos por el Evento
 
     title = forms.CharField(max_length=50, label='Nombre')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
-    startDate = forms.DateTimeField(label='Fecha de comienzo')
-    finishDate = forms.DateTimeField(label='Fecha de fin')
+    startDate = forms.DateField(label='Fecha de inicio')
+    startTime = forms.TimeField(label='Hora de inicio')
+
+    finishDate = forms.DateField(label='Fecha de fin')
+    finishTime = forms.TimeField(label='Hora de fin')
+
     length = forms.TimeField(required=False, label='Duración')

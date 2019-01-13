@@ -22,79 +22,52 @@
 
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="name" class="control-label">Nombre</label>
-                            <input class="form-control" id="name" name="name" maxlength="50" placeholder="Nombre" type="text" value="{{ form.name.value|default:'' }}" required autofocus/>
+                            <label for="title" class="control-label">Título</label>
+                            <input class="form-control" id="title" name="title" maxlength="50" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="age" class="control-label">Edad</label>
-                            <input class="form-control" id="age" name="age" max="100" min="0" placeholder="0" type="number" value="{{ form.age.value|default:'0' }}" required/>
+                            <label for="place" class="control-label">Lugar</label>
+                            <input class="form-control" id="place" name="place" maxlength="50" placeholder="Lugar" type="text" value="{{ form.place.value|default:'' }}" required autofocus/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="description" class="control-label">Descripción</label>
+                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción" required>{{ form.description.value|default:'' }}</textarea>
                         </div>
                     </div>
+
+                    <hr/>
                     <div class="row">
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <label for="gender" class="control-label">Género</label>
-                            <select class="form-control" id="gender" name="gender" required>
-                                    <!-- Recupera el género -->
-                                    {% for gender in genders %}
-                                        {% if gender.0  == form.gender.value %}
-                                        <option value="{{ gender.0 }}" selected="selected">{{ gender.0 }}</option>
-                                        {% else %}
-                                        <option value="{{ gender.0 }}">{{ gender.0 }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                            </select>
+                        <div class="col-xs-3 col-md-3 form-group">
+                            <label for="startDate" class="control-label">Fecha de comienzo</label>
+                            <input class="form-control" id="startDate" name="startDate" placeholder="Fecha de comienzo" type="date" value="{{ startDate|date:'Y-m-d' }}" required/>
+                            <br/>
+                            <label for="startTime" class="control-label">Hora de comienzo</label>
+                            <input class="form-control" id="startTime" name="startTime" placeholder="Hora de comienzo" type="time" value="{{ startTime|time:'H:i' }}" required/>
                         </div>
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <label for="descendant" class="control-label">Descendencia</label>
-                            <input class="form-control" name="descendant" maxlength="200" id="descendant" type="text" placeholder="Descendencia" value="{{ form.descendant.value|default:'' }}"/>
+
+                        <div class="col-xs-3 col-md-3 form-group">
+                            <label for="finishDate" class="control-label">Fecha de fin</label>
+                            <input class="form-control" id="finishDate" name="finishDate" placeholder="Fecha de fin" type="date" value="{{ finishDate|date:'Y-m-d' }}" required/>
+                            <br/>
+                            <label for="finishTime" class="control-label">Hora de fin</label>
+                            <input class="form-control" id="finishTime" name="finishTime" placeholder="Hora de fin" type="time" value="{{ finishTime|time:'H:i' }}" required/>
+                        </div>
+
+                        <div class="col-xs-3 col-md-3 form-group">
+                            <label for="length" class="control-label">Duración (opcional)</label>
+                            <input class="form-control" id="length" name="length" type="time" value="{{ length|time:'H:i' }}"/>
                         </div>
                     </div>
 
                     <hr/>
 
-                    <div class="row">
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <label for="details" class="control-label">Detalles</label>
-                            <textarea class="form-control" name="details" id="details" maxlength="200" rows="3" placeholder="Detalles" value="{{ form.details.value|default:'' }}"></textarea>
-                        </div>
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <label for="awards" class="control-label">Premios</label>
-                            <textarea class="form-control" name="awards" maxlength="200" id="awards" rows="3" placeholder="Premios" value="{{ form.awards.value|default:'' }}"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-md-6 form-group">
-                                <label for="breed" class="control-label">Seleccione la raza</label>
-                                <select class="form-control" id="breed" name="breed" required>
-                                        <!-- Recupera las razas que habia seleccionado -->
-                                        <option value="{{ breed.id }}" selected="selected">{{ breed.name }}</option>
-                                        <!-- Recupera las razas restantes, quitando la seleccionada para que no se repliquen datos -->
-                                        {% for breedS in breedsAux %}
-                                            <option value="{{ breedS.id }}">{{ breedS.name }}</option>
-                                        {% endfor %}
-                                </select>
-                            </div>
-                        <div class="col-xs-6 col-md-6 form-group">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                            <div class="col-xs-6 col-md-6 form-group">
-                                <label for="photo" class="control-label">Foto de perfil</label>
-                                <input class="form-control" name="photo" id="photo" type="file" placeholder="Foto del animal" value="{{ form.photo.value|default:'' }}"/>
-                            </div>
-                    </div>
-
                      <!-- Tratamiento de Errores -->
                     {% if form.errors %}
                         {% for field in form %}
                             {% for error in field.errors %}
-                                    <!--Evita el error raza, ya que se guarda correctamente -->
-                                    {% if field.label != "Raza" %}
-                                        <div class="alert alert-danger">
-                                            <strong>{{ field.label }}: {{ error|escape }}</strong>
-                                        </div>
-                                    {% endif %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                </div>
                             {% endfor %}
                         {% endfor %}
                         {% for error in form.non_field_errors %}
@@ -114,7 +87,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/dogs/ownList';" value="Cancelar" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/events/ownList';" value="Cancelar" />
                         </div>
 
                     </div>

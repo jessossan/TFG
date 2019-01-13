@@ -27,13 +27,12 @@ Lista de eventos
                         <th>Fecha de comienzo</th>
                         <th>Fecha fin</th>
                         <th>Duración</th>
-                        <!-- Para la columna de la foto-->
-                        <th></th>
+
                         <!-- Si es del creador para la columna editar -->
                         {% if ownEvent %}
                         <th></th>
                         {% endif %}
-                        <!-- Para la columna de ver perfil-->
+                        <!-- Para la columna de ver detalles-->
                         <th></th>
 
                     </tr>
@@ -47,20 +46,19 @@ Lista de eventos
                             <td>{{ event.description }}</td>
                             <td>{{ event.place }}</td>
                             <td>{{ event.startDate|date:'d/m/y' }} &nbsp;- {{ event.startTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                            <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                            <td>{{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</td>
-                            <td>
-                                {% if event.photo %}
-                                    <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px">
-                                {% endif %}
-                            </td>
+                                <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
+                            {% if event.length %}
+                                <td>{{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</td>
+                            {% else %}
+                                <td align="center">--</td>
+                            {% endif %}
                             <!-- Si es del creador para  editar -->
                             {% if ownEvent %}
                             <td>
-                                <a  title="Editar"  class="btn editbutton" href="">
+                                <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
                                     Editar
                                 </a>
-                                <a class="btn btn-danger" href="">
+                                <a class="btn btn-danger" href="delete/{{ event.pk }}">
                                     Borrar
                                 </a>
                             </td>
