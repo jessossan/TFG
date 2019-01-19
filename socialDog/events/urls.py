@@ -22,4 +22,7 @@ urlpatterns = [
     # Registro de Evento del criador
     path('breeder/create', views.create_breeder_event, name='create_breeder_event'),
 
+    # Registro de Evento de la asociacion
+    path('association/create', views.create_association_event, name='create_association_event'),
+
 ]

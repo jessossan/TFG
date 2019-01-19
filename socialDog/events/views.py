@@ -2,15 +2,15 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
-from actors.decorators import user_is_breeder
-from events.forms import CreateBreederEventForm, EditEventForm
+from actors.decorators import user_is_breeder, user_is_association
+from events.forms import CreateBreederEventForm, EditEventForm, CreateAssociationEventForm
 from events.models import Event
 from datetime import datetime, date
 
 
 # Create your views here.
 
-
+# CREACION EVENTO CRIADOR
 @login_required(login_url='/login/')
 @user_is_breeder
 def create_breeder_event(request):
@@ -58,7 +58,59 @@ def create_breeder_event(request):
         'year': datetime.now().year,
     }
 
-    return render(request, 'create_event.html', data)
+    return render(request, 'create_breeder_event.html', data)
+
+
+# CREACION EVENTO ASOCIACION
+@login_required(login_url='/login/')
+@user_is_association
+def create_association_event(request):
+    """
+	Registro del evento en el sistema.
+	"""
+    assert isinstance(request, HttpRequest)
+
+    # Recupera la associacion
+    association = request.user.actor.association
+
+    # Si se ha enviado el Form
+    if (request.method == 'POST'):
+        form = CreateAssociationEventForm(request.POST, request.FILES)
+        if (form.is_valid()):
+            # Crea el evento
+            title = form.cleaned_data["title"]
+            description = form.cleaned_data["description"]
+            place = form.cleaned_data["place"]
+            startDate = form.cleaned_data["startDate"]
+            startTime = form.cleaned_data["startTime"]
+            finishDate = form.cleaned_data["finishDate"]
+            finishTime = form.cleaned_data["finishTime"]
+            length = form.cleaned_data["length"]
+
+            # Asigna imagen por defecto si no añade imagen
+
+            event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
+                                         startTime=startTime, finishDate=finishDate, finishTime=finishTime,
+                                         length=length, association=association)
+
+            event.save()
+
+            return HttpResponseRedirect('/events/ownList')
+
+    # Si se accede al form vía GET o cualquier otro método
+    else:
+        form = CreateAssociationEventForm()
+
+        # Datos del modelo (vista)
+
+    data = {
+        'form': form,
+        'title': 'Creación de evento',
+        'year': datetime.now().year,
+    }
+
+    return render(request, 'create_association_event.html', data)
+
 
 # LISTADO DE TODOS MIS EVENTOS CRIADOR/ASOCIACIÓN
 @login_required(login_url='/login/')
@@ -99,6 +151,7 @@ def list_myEvents(request):
         'myEvents': True,
     }
     return render(request, 'list_event.html', data)
+
 
 # LISTADO DE MIS EVENTOS POR REALIZAR CRIADOR/ASOCIACION
 @login_required(login_url='/login/')
@@ -141,6 +194,7 @@ def list_myFutureEvents(request):
     }
     return render(request, 'list_event.html', data)
 
+
 # LISTADO DE MIS EVENTOS FINALIZADOS CRIADOR/ASOCIACION
 @login_required(login_url='/login/')
 def list_myPastEvents(request):
@@ -180,6 +234,7 @@ def list_myPastEvents(request):
         'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
     }
     return render(request, 'list_event.html', data)
+
 
 @login_required(login_url='/login/')
 def delete_event(request, pk):
@@ -289,7 +344,8 @@ def edit_event(request, pk):
     # Si se accede al form vía GET o cualquier otro método
     else:
         # Datos del modelo (vista)
-        dataForm = {'title': event.title,'place': event.place, 'description': event.description, 'startDate': event.startDate, 'startTime': event.startTime,
+        dataForm = {'title': event.title, 'place': event.place, 'description': event.description,
+                    'startDate': event.startDate, 'startTime': event.startTime,
                     'finishDate': event.finishDate, 'finishTime': event.finishTime, 'length': event.length, }
         form = EditEventForm(dataForm)
 
