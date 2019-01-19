@@ -10,6 +10,7 @@ class CreateBreederEventForm(forms.Form):
     title = forms.CharField(max_length=50, label='Nombre')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
+
     startDate = forms.DateField(label='Fecha de inicio')
     startTime = forms.TimeField(label='Hora de inicio')
 
@@ -51,6 +52,7 @@ class EditEventForm(forms.Form):
     title = forms.CharField(max_length=50, label='Nombre')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
+
     startDate = forms.DateField(label='Fecha de inicio')
     startTime = forms.TimeField(label='Hora de inicio')
 
@@ -65,6 +67,7 @@ class EditEventForm(forms.Form):
         if not self.errors:
 
             startDate = self.cleaned_data["startDate"]
+            finishDate = self.cleaned_data["finishDate"]
 
             # Comprobamos que la fecha de comienzo del evento no sea no sea una fecha pasada
             if (startDate < date.today()):
@@ -77,4 +80,7 @@ class EditEventForm(forms.Form):
                 raise forms.ValidationError(
                     "No se puede cambiar la fecha con menos de un día de antelación")
 
-
+            # Comprobamos que la fecha de fin sea posterior a la de comienzo
+            if (finishDate < startDate):
+                raise forms.ValidationError(
+                    "La fecha de fin debe ser posterior a la fecha de comienzo")
