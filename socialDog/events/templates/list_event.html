@@ -7,7 +7,13 @@ Lista de eventos
     <div class="container-fluid">
 
         <br/>
-        <h1>Lista de mis eventos</h1>
+        {% if myEvents %}
+            <h1>Mis eventos</h1>
+        {% elif myFutureEvents %}
+            <h1>Mis eventos por realizar</h1>
+        {% else %}
+            <h1>Mis eventos finalizados</h1>
+        {% endif %}
         <br/>
 
         <!-- Listado -->

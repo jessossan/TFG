@@ -60,7 +60,7 @@ def create_breeder_event(request):
 
     return render(request, 'create_event.html', data)
 
-
+# LISTADO DE TODOS MIS EVENTOS CRIADOR/ASOCIACIÓN
 @login_required(login_url='/login/')
 def list_myEvents(request):
     if hasattr(request.user.actor, 'breeder'):
@@ -95,10 +95,91 @@ def list_myEvents(request):
         # la fecha de hoy para que no salga el botón editar eventos pasados
         'today': date.today(),
         # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
-        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1)
+        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        'myEvents': True,
     }
     return render(request, 'list_event.html', data)
 
+# LISTADO DE MIS EVENTOS POR REALIZAR CRIADOR/ASOCIACION
+@login_required(login_url='/login/')
+def list_myFutureEvents(request):
+    if hasattr(request.user.actor, 'breeder'):
+        # Recupera el criador
+        breeder = request.user.actor.breeder
+        # Filtro para recuperar los eventos del criador        Filtro para recuperar los eventos de hoy y futuros
+        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__gte=date.today())
+        ownEvent = True
+
+    elif hasattr(request.user.actor, 'association'):
+        # Recupera la asociación
+        association = request.user.actor.association
+        event_list_aux = Event.objects.filter(association=association).filter(startDate__gte=date.today())
+        ownEvent = True
+
+    else:
+        return HttpResponseForbidden()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(event_list_aux, 6)
+
+    try:
+        event_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        event_list_aux = paginator.page(1)
+    except EmptyPage:
+        event_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'event_list': event_list_aux,
+        'title': 'Listado de mis eventos',
+        'ownEvent': ownEvent,
+        # la fecha de hoy para que no salga el botón editar eventos pasados
+        'today': date.today(),
+        # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
+        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        'myFutureEvents': True,
+    }
+    return render(request, 'list_event.html', data)
+
+# LISTADO DE MIS EVENTOS FINALIZADOS CRIADOR/ASOCIACION
+@login_required(login_url='/login/')
+def list_myPastEvents(request):
+    if hasattr(request.user.actor, 'breeder'):
+        # Recupera el criador
+        breeder = request.user.actor.breeder
+        # Filtro para recuperar los eventos del criador        Filtro para recuperar los eventos de hoy y futuros
+        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__lt=date.today())
+        ownEvent = True
+
+    elif hasattr(request.user.actor, 'association'):
+        # Recupera la asociación
+        association = request.user.actor.association
+        event_list_aux = Event.objects.filter(association=association).filter(startDate__lt=date.today())
+        ownEvent = True
+
+    else:
+        return HttpResponseForbidden()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(event_list_aux, 6)
+
+    try:
+        event_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        event_list_aux = paginator.page(1)
+    except EmptyPage:
+        event_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'event_list': event_list_aux,
+        'title': 'Listado de mis eventos',
+        'ownEvent': ownEvent,
+        # la fecha de hoy para que no salga el botón editar eventos pasados
+        'today': date.today(),
+        # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
+        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+    }
+    return render(request, 'list_event.html', data)
 
 @login_required(login_url='/login/')
 def delete_event(request, pk):
