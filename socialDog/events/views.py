@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from actors.decorators import user_is_breeder
 from events.forms import CreateBreederEventForm, EditEventForm
 from events.models import Event
-from datetime import datetime
+from datetime import datetime, date
 
 
 # Create your views here.
@@ -92,6 +92,10 @@ def list_myEvents(request):
         'event_list': event_list_aux,
         'title': 'Listado de mis eventos',
         'ownEvent': ownEvent,
+        # la fecha de hoy para que no salga el botón editar eventos pasados
+        'today': date.today(),
+        # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
+        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1)
     }
     return render(request, 'list_event.html', data)
 
@@ -208,6 +212,12 @@ def edit_event(request, pk):
                     'finishDate': event.finishDate, 'finishTime': event.finishTime, 'length': event.length, }
         form = EditEventForm(dataForm)
 
+    # Comprobación de que se pueda editar
+    canEdit = True
+    startDateAux = date(event.startDate.year, event.startDate.month, event.startDate.day - 1)
+    # si la fecha de comienzo del evento es pasada o menos de un día no se puede editar
+    if (event.startDate < date.today() or startDateAux <= date.today()):
+        canEdit = False
     data = {
         'form': form,
         'title': 'Edición de evento',
@@ -217,6 +227,7 @@ def edit_event(request, pk):
         'finishDate': event.finishDate,
         'finishTime': event.finishTime,
         'length': event.length,
+        'canEdit': canEdit,
     }
 
     return render(request, 'edit_event.html', data)

@@ -1,8 +1,5 @@
 from django import forms
-from django.core.validators import MinValueValidator
-
-from breeds.models import Breed
-from dogs.models import Dog
+from datetime import datetime, date
 
 
 class CreateBreederEventForm(forms.Form):
@@ -21,6 +18,30 @@ class CreateBreederEventForm(forms.Form):
 
     length = forms.TimeField(required=False, label='Duración')
 
+    # Validaciones propias
+    def clean(self):
+        # Si no se han capturado otros errores, hace las validaciones por orden
+        if not self.errors:
+
+            startDate = self.cleaned_data["startDate"]
+            finishDate = self.cleaned_data["finishDate"]
+
+            # Comprobamos que la fecha de comienzo no sea no sea una fecha pasada
+            if (startDate < date.today()):
+                raise forms.ValidationError(
+                    "No se puede crear un evento con una fecha pasada o cambiar a una fecha pasada")
+
+            # Comprobamos que la fecha de comienzo no sea menos de un día de antelación
+            startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
+            if (startDateAux <= date.today()):
+                raise forms.ValidationError(
+                    "No se puede registrar una fecha con menos de un día de antelación")
+
+            # Comprobamos que la fecha de fin sea posterior a la de comienzo
+            if (finishDate < startDate):
+                raise forms.ValidationError(
+                    "La fecha de fin debe ser posterior a la fecha de comienzo")
+
 
 class EditEventForm(forms.Form):
     """Formulario de edición de un evento del criador o de la asociacion"""
@@ -37,3 +58,23 @@ class EditEventForm(forms.Form):
     finishTime = forms.TimeField(label='Hora de fin')
 
     length = forms.TimeField(required=False, label='Duración')
+
+    # Validaciones propias
+    def clean(self):
+        # Si no se han capturado otros errores, hace las validaciones por orden
+        if not self.errors:
+
+            startDate = self.cleaned_data["startDate"]
+
+            # Comprobamos que la fecha de comienzo del evento no sea no sea una fecha pasada
+            if (startDate < date.today()):
+                raise forms.ValidationError(
+                    "No se puede editar un evento pasado o cambiar")
+
+            # Comprobamos que la fecha de comienzo del evento sea menos de un día de antelación
+            startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
+            if (startDateAux <= date.today()):
+                raise forms.ValidationError(
+                    "No se puede cambiar la fecha con menos de un día de antelación")
+
+

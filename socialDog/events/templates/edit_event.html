@@ -19,7 +19,7 @@
 
                     <!-- Criador -->
                     <br/>
-
+            {% if canEdit %}
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="title" class="control-label">Título</label>
@@ -58,7 +58,9 @@
                             <input class="form-control" id="length" name="length" type="time" value="{{ length|time:'H:i' }}"/>
                         </div>
                     </div>
+            {% else %}
 
+             {% endif %}
                     <hr/>
 
                      <!-- Tratamiento de Errores -->
@@ -81,10 +83,12 @@
 
                     <!-- Botones -->
                     <div class="row">
-                        <div class="col-xs-6 col-md-6 form-group">
-                            <input type="hidden" name="next" value="/" />
-                            <input type="submit" value="Editar" class="btn editbutton btn-block" />
-                        </div>
+                        {% if canEdit %}
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <input type="hidden" name="next" value="/" />
+                                <input type="submit" value="Editar" class="btn editbutton btn-block" />
+                            </div>
+                        {% endif %}
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
                             <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/events/ownList';" value="Cancelar" />

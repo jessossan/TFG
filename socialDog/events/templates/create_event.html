@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="description" class="control-label">Descripción</label>
-                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción" required></textarea>
+                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción" required>{{ form.description.value|default:'' }}</textarea>
                         </div>
                     </div>
 

@@ -55,9 +55,12 @@ Lista de eventos
                             <!-- Si es del creador para  editar -->
                             {% if ownEvent %}
                             <td>
-                                <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
-                                    Editar
-                                </a>
+                                <!--Si es un evento con fecha pasada o con menos de un dia de antelacion no se muestra -->
+                                {% if event.startDate > today and event.startDate != tomorrow %}
+                                    <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
+                                        Editar
+                                    </a>
+                                {% endif %}
                                 <a class="btn btn-danger" href="delete/{{ event.pk }}">
                                     Borrar
                                 </a>
