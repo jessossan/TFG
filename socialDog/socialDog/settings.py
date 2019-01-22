@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/web/eventsNews'
 # Application definition
 
 INSTALLED_APPS = [
