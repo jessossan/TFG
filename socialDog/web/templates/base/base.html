@@ -21,7 +21,7 @@
     <!-- Material icons de Google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-	<title>{% block title %}Document {% endblock %}</title>
+	<title>{% block title %}Social Dog{% endblock %}</title>
 </head>
 <body class="d-flex flex-column body-parent">
 	{% block navbar %}
@@ -32,7 +32,7 @@
 								background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
-							<a class="navbar-brand flex-align-center" href="/">
+							<a class="navbar-brand flex-align-center" href="{% url 'list_eventsNews' %}">
 									<img style="width: auto; height: 40x; border-bottom: 0.4px solid;
   border-color: transparent;
                     justify-content: center;
@@ -49,7 +49,7 @@
 									{% if user.actor.customer %}
 										<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
 												Inicio
 											 </a>
 										</li>
@@ -104,7 +104,7 @@
 									{% elif user.actor.breeder %}
 									<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
 												Inicio
 											 </a>
 										</li>
@@ -182,7 +182,7 @@
 									{% elif user.actor.association %}
 										<ul class="navbar-nav mr-auto">
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
 													Inicio
 												 </a>
 											</li>
@@ -257,7 +257,7 @@
 									{% elif user.actor.administrator %}
                                         <ul class="navbar-nav mr-auto">
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="/" class="nav-link navbar-text">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
 													Inicio
 												 </a>
 											</li>
@@ -315,6 +315,7 @@
 					{% endif %}-->
 
 			{% else %}
+					<!--NAVBAR SIN AUTENTICAR -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-info" style="background: rgb(23,77,84); /* Old browsers */
                     background: -moz-linear-gradient(left, rgba(23,77,84,1) 0%, rgba(44,83,158,1) 61%, rgba(44,83,158,1) 61%, rgba(107,75,183,1) 80%);
                     background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
@@ -329,11 +330,9 @@
   display: flex;" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
 					</a>
 
-					<!--Botón de "colapso", se mostrará si la ventana es demasiado pequeña-->
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 					</button>
-					<!-- Sección "colapsable", se agruparán si la ventana es demasiado pequeña -->
 					<div class="collapse navbar-collapse" id="navbarNav" >
 							<!-- Elementos principales -->
 							<ul class="navbar-nav mr-auto">

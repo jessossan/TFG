@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="title" class="control-label">Título</label>
-                            <input class="form-control" id="title" name="title" maxlength="50" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
+                            <input class="form-control" id="title" name="title" maxlength="25" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="place" class="control-label">Lugar</label>
@@ -66,9 +66,19 @@
                     {% if form.errors %}
                         {% for field in form %}
                             {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ field.label }}: {{ error|escape }}</strong>
-                                </div>
+                                {% if field.label == 'Fecha de inicio' %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
+                                    </div>
+                                {% elif field.label == 'Fecha de fin'%}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
+                                    </div>
+                                {% else %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                         {% for error in form.non_field_errors %}

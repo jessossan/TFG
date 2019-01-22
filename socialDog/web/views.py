@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
@@ -8,6 +9,7 @@ from django.template import loader
 # Create your views here.
 from actors.models import Customer, Association, Breeder
 from breeds.models import Breed
+from events.models import Event
 from provinces.models import Province
 from web.forms import RegisterCustomerForm, RegisterAssociationForm, RegisterBreederForm
 
@@ -308,3 +310,19 @@ def register_breeder(request):
     }
 
     return render(request, 'web/registerBreeder.html', data)
+
+
+# LISTADOS DE EVENTOS/NOTICIAS
+
+@login_required(login_url='/login/')
+def list_eventsNews(request):
+
+    # Orden inverso para que los eventos nuevos creados salgan arriba de la lista
+    events_list = Event.objects.all().order_by('-creationDate')
+
+    data = {
+        'event_list': events_list,
+        'title': 'Listado de eventos',
+
+    }
+    return render(request, 'welcome/eventsNews.html', data)

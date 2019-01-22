@@ -8,7 +8,7 @@ class CreateBreederEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    title = forms.CharField(max_length=50, label='Nombre')
+    title = forms.CharField(max_length=25, label='Nombre')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
 
@@ -73,7 +73,7 @@ class EditEventForm(forms.Form):
             # Comprobamos que la fecha de comienzo del evento no sea no sea una fecha pasada
             if (startDate < date.today()):
                 raise forms.ValidationError(
-                    "No se puede editar un evento pasado o cambiar")
+                    "No se puede editar un evento pasado")
 
             # Comprobamos que la fecha de comienzo del evento sea menos de un día de antelación
             startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
@@ -94,7 +94,7 @@ class CreateAssociationEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    title = forms.CharField(max_length=50, label='Nombre')
+    title = forms.CharField(max_length=25, label='Nombre')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
 

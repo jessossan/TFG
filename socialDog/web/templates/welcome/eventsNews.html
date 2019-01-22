@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Lista de eventos
+{% endblock %}
+{% block content %}
+
+<div style="float: left; width: 690px">
+</br>
+<h1 style="padding: 0px 250px 0px"> Eventos</h1>
+</br>
+
+{% if event_list %}
+    {% for event in event_list %}
+        <div class="card border-dark mb-3">
+          <div class="card-header">{{ event.title }}</div>
+          <div class="card-body text-dark">
+            <h5 class="card-title">{{ event.place }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no existen eventos</p>
+{% endif %}
+</div>
+
+<div style="float: left; width: 730px;padding: 0px 20px 0px ">
+</br>
+<h1 style="padding: 0px 250px 0px"> Noticias</h1>
+</br>
+
+{% if news_list %}
+    {% for news in news_list %}
+        <div class="card border-dark mb-3">
+          <div class="card-header">{{ news.title }}</div>
+          <div class="card-body text-dark">
+            <h5 class="card-title">{{ news.place }}</h5>
+            <p class="card-text">{{ news.description }}</p>
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no existen noticias</p>
+{% endif %}
+</div>
+{% endblock %}

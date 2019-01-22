@@ -28,7 +28,6 @@ Lista de eventos
                     <thead class="thead-primary">
                     <tr>
                         <th>Título</th>
-                        <th>Descripción</th>
                         <th>Lugar</th>
                         <th>Fecha de comienzo</th>
                         <th>Fecha fin</th>
@@ -49,7 +48,6 @@ Lista de eventos
 
                         <tr>
                             <td>{{ event.title }}</td>
-                            <td>{{ event.description }}</td>
                             <td>{{ event.place }}</td>
                             <td>{{ event.startDate|date:'d/m/y' }} &nbsp;- {{ event.startTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
                                 <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>

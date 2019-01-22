@@ -75,4 +75,7 @@ urlpatterns = [
     # Events
     path('events/', include('events.urls')),
 
+    # Web
+    path('web/', include('web.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
