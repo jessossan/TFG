@@ -35,12 +35,13 @@ def create_breeder_event(request):
             finishDate = form.cleaned_data["finishDate"]
             finishTime = form.cleaned_data["finishTime"]
             length = form.cleaned_data["length"]
+            photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
 
             event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
                                          startTime=startTime, finishDate=finishDate, finishTime=finishTime,
-                                         length=length, breeder=breeder)
+                                         length=length,photo=photo, breeder=breeder)
 
             event.save()
 
@@ -86,12 +87,13 @@ def create_association_event(request):
             finishDate = form.cleaned_data["finishDate"]
             finishTime = form.cleaned_data["finishTime"]
             length = form.cleaned_data["length"]
+            photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
 
             event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
                                          startTime=startTime, finishDate=finishDate, finishTime=finishTime,
-                                         length=length, association=association)
+                                         length=length, photo=photo, association=association)
 
             event.save()
 
@@ -327,6 +329,7 @@ def edit_event(request, pk):
             finishDate = form.cleaned_data["finishDate"]
             finishTime = form.cleaned_data["finishTime"]
             length = form.cleaned_data["length"]
+            photo = form.cleaned_data["photo"]
 
             event.title = title
             event.place = place
@@ -336,6 +339,8 @@ def edit_event(request, pk):
             event.finishDate = finishDate
             event.finishTime = finishTime
             event.length = length
+            if photo != None:
+                event.photo = photo
 
             event.save()
 
@@ -346,7 +351,7 @@ def edit_event(request, pk):
         # Datos del modelo (vista)
         dataForm = {'title': event.title, 'place': event.place, 'description': event.description,
                     'startDate': event.startDate, 'startTime': event.startTime,
-                    'finishDate': event.finishDate, 'finishTime': event.finishTime, 'length': event.length, }
+                    'finishDate': event.finishDate, 'finishTime': event.finishTime, 'length': event.length, 'photo': event.photo}
         form = EditEventForm(dataForm)
 
     # Comprobación de que se pueda editar
@@ -365,6 +370,7 @@ def edit_event(request, pk):
         'finishTime': event.finishTime,
         'length': event.length,
         'canEdit': canEdit,
+        'event': event,
     }
 
     return render(request, 'edit_event.html', data)

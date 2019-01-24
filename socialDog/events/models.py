@@ -18,6 +18,7 @@ class Event(models.Model):
     finishDate = models.DateField()
     finishTime = models.TimeField(default=datetime.time(00, 00))
     length = models.TimeField(null=True, blank=True)
+    photo = models.ImageField(null=True, blank=True, help_text='No requerido')
 
     # Relación con criador
     breeder = models.ForeignKey('actors.Breeder', on_delete=models.CASCADE, null=True, blank=True)

@@ -19,6 +19,7 @@ class CreateBreederEventForm(forms.Form):
     finishTime = forms.TimeField(label='Hora de fin')
 
     length = forms.TimeField(required=False, label='Duración')
+    photo = forms.ImageField(required=False, label='Foto del evento')
 
     # Validaciones propias
     def clean(self):
@@ -61,7 +62,7 @@ class EditEventForm(forms.Form):
     finishTime = forms.TimeField(label='Hora de fin')
 
     length = forms.TimeField(required=False, label='Duración')
-
+    photo = forms.ImageField(required=False, label='Foto del evento')
     # Validaciones propias
     def clean(self):
         # Si no se han capturado otros errores, hace las validaciones por orden
@@ -105,6 +106,7 @@ class CreateAssociationEventForm(forms.Form):
     finishTime = forms.TimeField(label='Hora de fin')
 
     length = forms.TimeField(required=False, label='Duración')
+    photo = forms.ImageField(required=False, label='Foto del evento')
 
     # Validaciones propias
     def clean(self):
