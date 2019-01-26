@@ -18,22 +18,19 @@
                 <form id="registro" enctype="multipart/form-data" method="post" action="" class="form" role="form">
                     {% csrf_token %}
                     <!-- Si tiene foto la muestra -->
-                        {% if event.photo %}
-                            <img src="{{ event.photo.url }}" alt="Event photo" width="250px" height="200px">
+                        {% if news.photo %}
+                            <img src="{{ news.photo.url }}" alt="News photo" width="250px" height="200px">
                         {% endif %}
                     <br/>
 
                     <!-- Criador -->
                     <br/>
-            {% if canEdit %}
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="title" class="control-label">Título</label>
                             <input class="form-control" id="title" name="title" maxlength="50" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="place" class="control-label">Lugar</label>
-                            <input class="form-control" id="place" name="place" maxlength="50" placeholder="Lugar" type="text" value="{{ form.place.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="description" class="control-label">Descripción</label>
@@ -43,36 +40,13 @@
 
                     <hr/>
                     <div class="row">
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="startDate" class="control-label">Fecha de comienzo</label>
-                            <input class="form-control" id="startDate" name="startDate" placeholder="Fecha de comienzo" type="date" value="{{ startDate|date:'Y-m-d' }}" required/>
-                            <br/>
-                            <label for="startTime" class="control-label">Hora de comienzo</label>
-                            <input class="form-control" id="startTime" name="startTime" placeholder="Hora de comienzo" type="time" value="{{ startTime|time:'H:i' }}" required/>
-                        </div>
-
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="finishDate" class="control-label">Fecha de fin</label>
-                            <input class="form-control" id="finishDate" name="finishDate" placeholder="Fecha de fin" type="date" value="{{ finishDate|date:'Y-m-d' }}" required/>
-                            <br/>
-                            <label for="finishTime" class="control-label">Hora de fin</label>
-                            <input class="form-control" id="finishTime" name="finishTime" placeholder="Hora de fin" type="time" value="{{ finishTime|time:'H:i' }}" required/>
-                        </div>
-
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="length" class="control-label">Duración (opcional)</label>
-                            <input class="form-control" id="length" name="length" type="time" value="{{ length|time:'H:i' }}"/>
-                        </div>
-
                         <div class="col-xs-6 col-md-6 form-group">
-                                <label for="photo" class="control-label">Foto del evento  </label>
+                                <label for="photo" class="control-label">Foto de la noticia</label>
                                 <input class="form-control" name="photo" id="photo" type="file"
-                                       placeholder="Foto del evento"/>
+                                       placeholder="Foto de la noticia"/>
                         </div>
                     </div>
-            {% else %}
 
-             {% endif %}
                     <hr/>
 
                      <!-- Tratamiento de Errores -->
@@ -95,15 +69,13 @@
 
                     <!-- Botones -->
                     <div class="row">
-                        {% if canEdit %}
                             <div class="col-xs-6 col-md-6 form-group">
                                 <input type="hidden" name="next" value="/" />
                                 <input type="submit" value="Editar" class="btn editbutton btn-block" />
                             </div>
-                        {% endif %}
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/events/ownList';" value="Cancelar" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/news/ownList';" value="Cancelar" />
                         </div>
 
                     </div>

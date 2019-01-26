@@ -14,10 +14,10 @@
             <div class="col-md-12">
 
                 <!-- FORMULARIO -->
-                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'create_breeder_event' %}" class="form" role="form">
+                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'create_breeder_news' %}" class="form" role="form">
                     {% csrf_token %}
 
-                    <!-- Criador evento -->
+                    <!-- Criador noticia -->
                     <br/>
 
                     <div class="row">
@@ -26,59 +26,29 @@
                             <input class="form-control" id="title" name="title" maxlength="25" placeholder="Título" type="text" value="{{ form.title.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                            <label for="place" class="control-label">Lugar</label>
-                            <input class="form-control" id="place" name="place" maxlength="50" placeholder="Lugar" type="text" value="{{ form.place.value|default:'' }}" required autofocus/>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="description" class="control-label">Descripción</label>
                             <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción" required>{{ form.description.value|default:'' }}</textarea>
                         </div>
-                    </div>
-
-                    <hr/>
-
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="startDate" class="control-label">Fecha de comienzo</label>
-                            <input class="form-control" id="startDate" name="startDate" placeholder="Fecha de comienzo" type="date" value="{{ form.startDate.value|default:'' }}" required/>
-                            <br/>
-                            <label for="startTime" class="control-label">Hora de comienzo</label>
-                            <input class="form-control" id="startTime" name="startTime" placeholder="Hora de comienzo" type="time" value="{{ form.startTime.value|default:'' }}" required/>
+                        <div class="col-xs-6 col-md-6 form-group">
                         </div>
 
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="finishDate" class="control-label">Fecha de fin</label>
-                            <input class="form-control" id="finishDate" name="finishDate" placeholder="Fecha de fin" type="date" value="{{ form.finishDate.value|default:'' }}" required/>
-                            <br/>
-                            <label for="finishTime" class="control-label">Hora de fin</label>
-                            <input class="form-control" id="finishTime" name="finishTime" placeholder="Hora de fin" type="time" value="{{ form.finishTime.value|default:'' }}" required/>
-                        </div>
-
-                        <div class="col-xs-3 col-md-3 form-group">
-                            <label for="length" class="control-label">Duración (opcional)</label>
-                            <input class="form-control" id="length" name="length" type="time" value="{{ form.length.value|default:'' }}"/>
+                        <div class="col-xs-6 col-md-6 form-group">
+                                <label for="photo" class="control-label">Foto de la noticia</label>
+                                <input class="form-control" name="photo" id="photo" type="file"
+                                       placeholder="Foto de la noticia"/>
                         </div>
                     </div>
-
                     <hr/>
 
                      <!-- Tratamiento de Errores -->
                     {% if form.errors %}
                         {% for field in form %}
                             {% for error in field.errors %}
-                                {% if field.label == 'Fecha de inicio' %}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
-                                    </div>
-                                {% elif field.label == 'Fecha de fin'%}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
-                                    </div>
-                                {% else %}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ field.label }}: Introduzca una fecha válida</strong>
-                                    </div>
-                                {% endif %}
+                                <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                </div>
                             {% endfor %}
                         {% endfor %}
                         {% for error in form.non_field_errors %}
@@ -98,7 +68,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <input type="hidden" name="next" value="/" />
-                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/events/ownList';" value="Cancelar" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/news/ownList';" value="Cancelar" />
                         </div>
 
                     </div>

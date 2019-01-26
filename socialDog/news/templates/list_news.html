@@ -1,23 +1,16 @@
 {% extends 'base/base.html' %}
 {% block title %}
-Lista de eventos
+Lista de noticias
 {% endblock %}
 {% block content %}
 
     <div class="container-fluid">
-
         <br/>
-        {% if myEvents %}
-            <h1>Mis eventos</h1>
-        {% elif myFutureEvents %}
-            <h1>Mis eventos por realizar</h1>
-        {% else %}
-            <h1>Mis eventos finalizados</h1>
-        {% endif %}
+        <h1>Mis noticias</h1>
         <br/>
 
         <!-- Listado -->
-        {% if event_list %}
+        {% if news_list %}
         <div class="panel panel-default panel-table mb-3">
           <div class="panel-heading">
           </div>
@@ -28,13 +21,12 @@ Lista de eventos
                     <thead class="thead-primary">
                     <tr>
                         <th>Título</th>
-                        <th>Lugar</th>
-                        <th>Fecha de comienzo</th>
-                        <th>Fecha fin</th>
-                        <th>Duración</th>
+                        <th>Descripción</th>
+                        <!-- Foto-->
+                        <th></th>
 
                         <!-- Si es del creador para la columna editar -->
-                        {% if ownEvent %}
+                        {% if ownNews %}
                         <th></th>
                         {% endif %}
                         <!-- Para la columna de ver detalles-->
@@ -44,33 +36,28 @@ Lista de eventos
                   </thead>
 
                     <tbody>
-                    {% for event in event_list %}
+                    {% for news in news_list %}
 
                         <tr>
-                            <td>{{ event.title }}</td>
-                            <td>{{ event.place }}</td>
-                            <td>{{ event.startDate|date:'d/m/y' }} &nbsp;- {{ event.startTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                                <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                            {% if event.length %}
-                                <td>{{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</td>
-                            {% else %}
-                                <td align="center">--</td>
-                            {% endif %}
-                            <!-- Si es del creador para  editar -->
-                            {% if ownEvent %}
+                            <td>{{ news.title }}</td>
+                            <td>{{ news.description }}</td>
                             <td>
-                                <!--Si es un evento con fecha pasada o con menos de un dia de antelacion no se muestra -->
-                                {% if event.startDate > today and event.startDate != tomorrow %}
-                                    <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
-                                        Editar
-                                    </a>
+                                {% if news.photo %}
+                                    <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px">
                                 {% endif %}
-                                <a class="btn btn-danger" href="delete/{{ event.pk }}">
+                            </td>
+                            <!-- Si es del creador para  editar -->
+                            {% if ownNews %}
+                            <td>
+                                <a  title="Editar"  class="btn editbutton" href="edit/{{ news.pk }}">
+                                        Editar
+                                </a>
+                                <a class="btn btn-danger" href="delete/{{ news.pk }}">
                                     Borrar
                                 </a>
                             </td>
                             {% endif %}
-                            <td> <a title="Ver perfil"  class="btn editbutton" href=""> Ver detalles</a> </td>
+                            <td> <a title="Ver detalles"  class="btn editbutton" href=""> Ver detalles</a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -78,11 +65,11 @@ Lista de eventos
             </table>
           </div>
           <div class="panel-footer table-header-primary table-footer">
-            {% if event_list.has_other_pages %}
+            {% if news_list.has_other_pages %}
                 <ul class="pagination">
-                    {% if event_list.has_previous %}
+                    {% if news_list.has_previous %}
                         <li>
-                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ event_list.previous_page_number }}">
+                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ news_list.previous_page_number }}">
                             <i class="fas fa-angle-double-left"></i>
                           </a>
                         </li>
@@ -93,8 +80,8 @@ Lista de eventos
                       </a>
                     </li>
                     {% endif %}
-                    {% for i in event_list.paginator.page_range %}
-                        {% if event_list.number == i %}
+                    {% for i in news_list.paginator.page_range %}
+                        {% if news_list.number == i %}
                         <li>
                           <a class="ui-button ui-pagination ui-pagination-current" href="#">
                             <span>{{ i }}</span>
@@ -108,9 +95,9 @@ Lista de eventos
                         </li>
                         {% endif %}
                     {% endfor %}
-                    {% if event_list.has_next %}
+                    {% if news_list.has_next %}
                     <li>
-                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ event_list.next_page_number }}">
+                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ news_list.next_page_number }}">
                         <i class="fas fa-angle-double-right"></i>
                       </a>
                     </li>
@@ -128,14 +115,14 @@ Lista de eventos
 
         {% else %}
             <p></p>
-            <p>No existen eventos.</p>
+            <p>No existen noticias.</p>
         {% endif %}
 
         {% if user.actor.breeder %}
             <div class="create">
                 <input type="button" class="btn editbutton"
-                       onclick="location.href='/events/breeder/create';"
-                       value="Crear evento"/>
+                       onclick="location.href='/news/breeder/create';"
+                       value="Crear noticia"/>
 
             </div>
 
@@ -144,8 +131,8 @@ Lista de eventos
         {% if user.actor.association %}
             <div class="create">
                 <input type="button" class="btn editbutton"
-                       onclick="location.href='/events/association/create';"
-                       value="Crear evento"/>
+                       onclick="location.href='/news/association/create';"
+                       value="Crear noticia"/>
 
             </div>
 
