@@ -21,7 +21,6 @@ Lista de noticias
                     <thead class="thead-primary">
                     <tr>
                         <th>Título</th>
-                        <th>Descripción</th>
                         <!-- Foto-->
                         <th></th>
 
@@ -40,7 +39,6 @@ Lista de noticias
 
                         <tr>
                             <td>{{ news.title }}</td>
-                            <td>{{ news.description }}</td>
                             <td>
                                 {% if news.photo %}
                                     <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px">

@@ -8,8 +8,8 @@ from django.shortcuts import render, get_object_or_404
 
 
 # CREACION NOTICIA CRIADOR
-from actors.decorators import user_is_breeder
-from news.forms import CreateBreederNewsForm, EditNewsForm
+from actors.decorators import user_is_breeder, user_is_association
+from news.forms import CreateBreederNewsForm, EditNewsForm, CreateAssociationNewsForm
 from news.models import News
 
 
@@ -54,6 +54,48 @@ def create_breeder_news(request):
     }
 
     return render(request, 'create_breeder_news.html', data)
+
+@login_required(login_url='/login/')
+@user_is_association
+def create_association_news(request):
+    """
+	Registro de la noticia en el sistema.
+	"""
+    assert isinstance(request, HttpRequest)
+
+    # Recupera la asociación
+    association = request.user.actor.association
+
+    # Si se ha enviado el Form
+    if (request.method == 'POST'):
+        form = CreateAssociationNewsForm(request.POST, request.FILES)
+        if (form.is_valid()):
+            # Crea la noticia
+            title = form.cleaned_data["title"]
+            description = form.cleaned_data["description"]
+            photo = form.cleaned_data["photo"]
+
+            # Asigna imagen por defecto si no añade imagen
+
+            news = News.objects.create(title=title, description=description, photo=photo, association=association)
+
+            news.save()
+
+            return HttpResponseRedirect('/news/ownList')
+
+    # Si se accede al form vía GET o cualquier otro método
+    else:
+        form = CreateAssociationNewsForm()
+
+        # Datos del modelo (vista)
+
+    data = {
+        'form': form,
+        'title': 'Creación de la noticia',
+        'year': datetime.now().year,
+    }
+
+    return render(request, 'create_association_news.html', data)
 
 
 # LISTADO DE TODOS MIS NOTICIAS CRIADOR/ASOCIACIÓN

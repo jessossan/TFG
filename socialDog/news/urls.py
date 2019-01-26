@@ -17,6 +17,6 @@ urlpatterns = [
     path('breeder/create', views.create_breeder_news, name='create_breeder_news'),
 
     # Registro de noticia de la asociacion
-    #path('association/create', views.create_association_news, name='create_association_news'),
+    path('association/create', views.create_association_news, name='create_association_news'),
 
 ]
