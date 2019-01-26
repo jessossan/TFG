@@ -8,7 +8,7 @@ class CreateBreederEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    title = forms.CharField(max_length=25, label='Nombre')
+    title = forms.CharField(max_length=25, label='Título')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
 
@@ -51,7 +51,7 @@ class EditEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    title = forms.CharField(max_length=50, label='Nombre')
+    title = forms.CharField(max_length=25, label='Título')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
 
@@ -95,7 +95,7 @@ class CreateAssociationEventForm(forms.Form):
 
     # Campos requeridos por el Evento
 
-    title = forms.CharField(max_length=25, label='Nombre')
+    title = forms.CharField(max_length=25, label='Título')
     description = forms.CharField(max_length=200, label='Descripción')
     place = forms.CharField(max_length=50, label='Lugar')
 

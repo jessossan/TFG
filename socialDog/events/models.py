@@ -9,7 +9,7 @@ from django.contrib import admin
 
 class Event(models.Model):
     # Atributos de la clase Event: title, description, place, creationDate, startDate, finishDate, length
-    title = models.CharField(max_length=50, unique=True, help_text="Requerido. 50 carácteres como máximo")
+    title = models.CharField(max_length=50, help_text="Requerido. 50 carácteres como máximo")
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
     place = models.CharField(max_length=100, help_text="Requerido. 100 carácteres como máximo")
     creationDate = models.DateTimeField(auto_now_add=True)

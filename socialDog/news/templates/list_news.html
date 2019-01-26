@@ -18,11 +18,11 @@ Lista de eventos
 
         <!-- Listado -->
         {% if event_list %}
-        <div class="panel panel-default panel-table mb-1">
+        <div class="panel panel-default panel-table mb-3">
           <div class="panel-heading">
           </div>
           <div class="panel-body">
-            <table class="table table-bordered"  width="10%">
+            <table class="table table-striped table-curved table-hover table-bordered">
 
 
                     <thead class="thead-primary">
@@ -32,8 +32,6 @@ Lista de eventos
                         <th>Fecha de comienzo</th>
                         <th>Fecha fin</th>
                         <th>Duración</th>
-                        <!-- Foto -->
-                        <th></th>
 
                         <!-- Si es del creador para la columna editar -->
                         {% if ownEvent %}
@@ -58,13 +56,6 @@ Lista de eventos
                             {% else %}
                                 <td align="center">--</td>
                             {% endif %}
-                            <td>
-                                {% if event.photo %}
-                                    <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px">
-                                {% endif %}
-
-                            </td>
-
                             <!-- Si es del creador para  editar -->
                             {% if ownEvent %}
                             <td>

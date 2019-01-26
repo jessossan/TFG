@@ -58,6 +58,12 @@
                             <label for="length" class="control-label">Duración (opcional)</label>
                             <input class="form-control" id="length" name="length" type="time" value="{{ form.length.value|default:'' }}"/>
                         </div>
+
+                        <div class="col-xs-6 col-md-6 form-group">
+                                <label for="photo" class="control-label">Foto del evento</label>
+                                <input class="form-control" name="photo" id="photo" type="file"
+                                       placeholder="Foto del evento"/>
+                        </div>
                     </div>
 
                     <hr/>
