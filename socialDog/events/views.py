@@ -38,6 +38,8 @@ def create_breeder_event(request):
             photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'event-default.png'
 
             event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
                                          startTime=startTime, finishDate=finishDate, finishTime=finishTime,
@@ -90,6 +92,8 @@ def create_association_event(request):
             photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'event-default.png'
 
             event = Event.objects.create(title=title, description=description, place=place, startDate=startDate,
                                          startTime=startTime, finishDate=finishDate, finishTime=finishTime,

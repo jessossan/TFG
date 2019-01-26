@@ -12,10 +12,33 @@ Lista de eventos
 {% if event_list %}
     {% for event in event_list %}
         <div class="card border-dark mb-3">
-          <div class="card-header">{{ event.title }}</div>
+          <div class="card-header" align="center"><h4><b>{{ event.title }}</b></h4></div>
           <div class="card-body text-dark">
             <h5 class="card-title">{{ event.place }}</h5>
             <p class="card-text">{{ event.description }}</p>
+
+              {% if event.photo %}
+                  <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px" align="right">
+                {% endif %}
+
+              </br>
+
+              <h5 class="card-text">Comienzo: {{ event.startDate|date:'d/m/y' }}</h5>
+              <h5 class="card-text">Termina:&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</h5>
+              <h5 class="card-text">
+                  {% if event.length %}
+                    Duración:&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m
+                  {% endif %}
+              </h5>
+                </br>
+                </br>
+              <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
+                  {% if event.breeder %}
+                        <a href="">{{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}</a>
+                  {% elif event.association %}
+                        <a href="">{{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}</a>
+                  {% endif %}
+              </p>
           </div>
         </div>
     {% endfor %}
@@ -32,11 +55,25 @@ Lista de eventos
 {% if news_list %}
     {% for news in news_list %}
         <div class="card border-dark mb-3">
-          <div class="card-header">{{ news.title }}</div>
-          <div class="card-body text-dark">
-            <h5 class="card-title">{{ news.place }}</h5>
-            <p class="card-text">{{ news.description }}</p>
-          </div>
+              <div class="card-header" align="center"><h4><b>{{ news.title }}</b></h4></div>
+
+              <div class="card-body text-dark">
+                <h5 class="card-text" align="right">Fecha: {{ news.creationDate|date:'d/m/y' }}</h5>
+                <p class="card-text">{{ news.description }}</p>
+                    {% if news.photo %}
+                      <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px" align="right">
+                    {% endif %}
+
+                    </br>
+
+                    <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
+                        {% if news.breeder %}
+                          <a href="">{{ news.breeder.userAccount.first_name }} {{ news.breeder.userAccount.last_name }}</a>
+                        {% elif news.association %}
+                          <a href="">{{ news.association.userAccount.first_name }} {{ news.association.userAccount.last_name }}</a>
+                        {% endif %}
+                    </p>
+              </div>
         </div>
     {% endfor %}
 {% else %}

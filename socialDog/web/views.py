@@ -10,6 +10,7 @@ from django.template import loader
 from actors.models import Customer, Association, Breeder
 from breeds.models import Breed
 from events.models import Event
+from news.models import News
 from provinces.models import Province
 from web.forms import RegisterCustomerForm, RegisterAssociationForm, RegisterBreederForm
 
@@ -320,9 +321,13 @@ def list_eventsNews(request):
     # Orden inverso para que los eventos nuevos creados salgan arriba de la lista
     events_list = Event.objects.all().order_by('-creationDate')
 
+    # Orden inverso para que las noticias nuevas creados salgan arriba de la lista
+    news_list = News.objects.all().order_by('-creationDate')
+
     data = {
         'event_list': events_list,
-        'title': 'Listado de eventos',
+        'news_list': news_list,
+        'title': 'Listado de eventos y noticias',
 
     }
     return render(request, 'welcome/eventsNews.html', data)

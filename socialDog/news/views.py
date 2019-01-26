@@ -34,6 +34,8 @@ def create_breeder_news(request):
             photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/news-default.png'
 
             news = News.objects.create(title=title, description=description, photo=photo, breeder=breeder)
 
@@ -76,6 +78,8 @@ def create_association_news(request):
             photo = form.cleaned_data["photo"]
 
             # Asigna imagen por defecto si no añade imagen
+            if photo == None:
+                photo = 'uploads/news-default.png'
 
             news = News.objects.create(title=title, description=description, photo=photo, association=association)
 
