@@ -160,9 +160,9 @@ def register_association(request):
                 photo = 'uploads/default.jpg'
 
             association = Association.objects.create(phone=phone, photo=photo, centerName=centerName,
-                                                  postalCode=postalCode, province=province, address=address,
-                                                  opening=opening, closing=closing, cif=cif, userAccount=userAccount,
-                                                  people=0, private=private, notes=notes)
+                                                     postalCode=postalCode, province=province, address=address,
+                                                     opening=opening, closing=closing, cif=cif, userAccount=userAccount,
+                                                     people=0, private=private, notes=notes)
 
             user = User.objects.get(username=username)
 
@@ -249,9 +249,9 @@ def register_breeder(request):
                 photo = 'uploads/default.jpg'
 
             breeder = Breeder.objects.create(phone=phone, photo=photo, centerName=centerName,
-                                                  postalCode=postalCode, province=province, address=address,
-                                                  opening=opening, closing=closing, cif=cif, userAccount=userAccount,
-                                                  people=0, private=private, notes=notes)
+                                             postalCode=postalCode, province=province, address=address,
+                                             opening=opening, closing=closing, cif=cif, userAccount=userAccount,
+                                             people=0, private=private, notes=notes)
             # Añadir las razas al criador
             for breed in breeds:
                 breeder.breeds.add(breed)
@@ -270,7 +270,7 @@ def register_breeder(request):
             try:
                 provinceSelected = form.cleaned_data["province"]
                 # elimina las provincias duplicadas
-                provincesAux = Province.objects.all().exclude(pk = provinceSelected.pk)
+                provincesAux = Province.objects.all().exclude(pk=provinceSelected.pk)
             except:
                 provinceSelected = None
                 provincesAux = None
@@ -281,7 +281,7 @@ def register_breeder(request):
                 # recorre las razas seleccionadas antes de que fallara el form
                 for b in breedsSelected:
                     # Quita las razas repetidas
-                    breedsAux= Breed.objects.all().exclude(name = b.name)
+                    breedsAux = Breed.objects.all().exclude(name=b.name)
 
             except:
                 breedsSelected = None
@@ -290,7 +290,7 @@ def register_breeder(request):
     else:
         form = RegisterBreederForm()
 
-    # Datos del modelo (vista)
+        # Datos del modelo (vista)
         provinces = Province.objects.all()
         provinceSelected = None
         breedsSelected = None
@@ -317,14 +317,14 @@ def register_breeder(request):
 
 @login_required(login_url='/login/')
 def list_events(request):
-
     # Orden inverso para que los eventos nuevos creados salgan arriba de la lista
     events_list = Event.objects.all().order_by('-creationDate')
-
 
     data = {
         'event_list': events_list,
         'title': 'Listado de eventos',
+        #Comprobación para controlar el color de boton de la vista
+        'isEvent': True,
 
     }
     return render(request, 'welcome/events.html', data)
@@ -334,13 +334,14 @@ def list_events(request):
 
 @login_required(login_url='/login/')
 def list_news(request):
-
     # Orden inverso para que las noticias nuevas creados salgan arriba de la lista
     news_list = News.objects.all().order_by('-creationDate')
 
     data = {
         'news_list': news_list,
         'title': 'Listado de noticias',
+        # Comprobación para controlar el color de boton de la vista
+        'isEvent': False,
 
     }
     return render(request, 'welcome/news.html', data)

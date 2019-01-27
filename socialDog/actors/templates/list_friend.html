@@ -11,15 +11,39 @@ Amigos
         <br/>
 
 <div align="left">
-    <input type="button"  class="btn editbutton"
-                           onclick="location.href='/actors/friends';"
-                           value="Amigos"/>&nbsp
-    <input type="button"  class="btn editbutton"
-                           onclick=""
-                           value="Solicitudes de amistad"/>&nbsp
-    <input type="button"  class="btn editbutton"
-                           onclick="location.href='/actors/users';"
-                           value="Buscar usuarios"/>
+    {% if isFriends %}
+        <input type="button"  class="btn"
+                               onclick="location.href='/actors/friends';"
+                               value="Amigos"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick=""
+                               value="Solicitudes de amistad"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href='/actors/users';"
+                               value="Buscar usuarios"/>
+    {% elif isAllUsers %}
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href='/actors/friends';"
+                               value="Amigos"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick=""
+                               value="Solicitudes de amistad"/>&nbsp
+        <input type="button"  class="btn"
+                               onclick="location.href='/actors/users';"
+                               value="Buscar usuarios"/>
+
+    {% else %}
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href='/actors/friends';"
+                               value="Amigos"/>&nbsp
+        <input type="button"  class="btn"
+                               onclick=""
+                               value="Solicitudes de amistad"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href='/actors/users';"
+                               value="Buscar usuarios"/>
+
+    {% endif %}
 </div>
         </br>
         <!-- Listado -->

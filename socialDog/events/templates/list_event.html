@@ -16,15 +16,37 @@ Mis eventos
         {% endif %}
         <br/>
 
-        <input type="button" class="btn editbutton"
-                       onclick="location.href='/events/ownList';"
-                       value="Mis eventos"/>
-        <input type="button" class="btn editbutton"
-                       onclick="location.href='/events/ownFutureList';"
-                       value="Por realizar"/>
-        <input type="button" class="btn editbutton"
-                       onclick="location.href='/events/ownPastList';"
-                       value="Finalizados"/><br/><br/>
+        {% if myEvents %}
+            <input type="button" class="btn"
+                           onclick="location.href='/events/ownList';"
+                           value="Mis eventos"/>
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownFutureList';"
+                           value="Por realizar"/>
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownPastList';"
+                           value="Finalizados"/><br/><br/>
+        {% elif myFutureEvents %}
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownList';"
+                           value="Mis eventos"/>
+            <input type="button" class="btn"
+                           onclick="location.href='/events/ownFutureList';"
+                           value="Por realizar"/>
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownPastList';"
+                           value="Finalizados"/><br/><br/>
+        {% else %}
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownList';"
+                           value="Mis eventos"/>
+            <input type="button" class="btn editbutton"
+                           onclick="location.href='/events/ownFutureList';"
+                           value="Por realizar"/>
+            <input type="button" class="btn"
+                           onclick="location.href='/events/ownPastList';"
+                           value="Finalizados"/><br/><br/>
+        {% endif %}
 
         <!-- Listado -->
         {% if event_list %}

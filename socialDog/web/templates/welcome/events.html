@@ -6,12 +6,22 @@ Eventos
 
 </br>
 <div align="center">
-    <input type="button" style="font-size: 24px;" class="btn editbutton"
-                           onclick="location.href='/web/events';"
-                           value="Eventos"/>&nbsp&nbsp
-    <input type="button" style="font-size: 24px;" class="btn editbutton"
-                           onclick="location.href='/web/news';"
-                           value="Noticias"/>
+
+    {% if isEvent %}
+        <input type="button" style="font-size: 24px;" class="btn"
+                               onclick="location.href='/web/events';"
+                               value="Eventos"/>&nbsp&nbsp
+        <input type="button" style="font-size: 24px;" class="btn editbutton"
+                               onclick="location.href='/web/news';"
+                               value="Noticias"/>
+    {% else %}
+        <input type="button" style="font-size: 24px;" class="btn editbutton"
+                               onclick="location.href='/web/events';"
+                               value="Eventos"/>&nbsp&nbsp
+        <input type="button" style="font-size: 24px;" class="btn default"
+                               onclick="location.href='/web/news';"
+                               value="Noticias"/>
+    {% endif %}
 </div>
 
 

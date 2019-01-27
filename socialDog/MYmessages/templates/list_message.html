@@ -7,9 +7,31 @@ Mensajes
     <div class="container-fluid">
 
         <br/>
-        <h1>Lista de mensajes</h1>
+        {% if received %}
+            <h1>Mensajes recibidos</h1>
+        {% else %}
+            <h1>Mensajes enviados</h1>
+        {% endif %}
         <br/>
 
+<div align="left">
+    {% if received %}
+        <input type="button" class="btn"
+                               onclick="location.href='/messages/received';"
+                               value="Recibidos"/>&nbsp
+        <input type="button" class="btn editbutton"
+                               onclick="location.href='/messages/sent';"
+                               value="Enviados"/>
+    {% else %}
+        <input type="button" class="btn editbutton"
+                               onclick="location.href='/messages/received';"
+                               value="Recibidos"/>&nbsp
+        <input type="button" class="btn"
+                               onclick="location.href='/messages/sent';"
+                               value="Enviados"/>
+    {% endif %}
+</div>
+        <br/>
         <!-- Listado -->
         {% if message_list %}
         <div class="panel panel-default panel-table mb-3">
@@ -21,10 +43,15 @@ Mensajes
 
                     <thead class="thead-primary">
                     <tr>
-                        <th>Subject</th>
-                        <!-- La columna borrar -->
-                        <th></th>
+                        <th>Asunto</th>
+                        <th>Texto</th>
                         <!-- Para la columna de ver perfil del receptor-->
+                        {% if received %}
+                            <th>Enviado por</th>
+                        {% else %}
+                            <th>Enviado a</th>
+                        {% endif %}
+                        <!-- La columna borrar -->
                         <th></th>
 
                     </tr>
@@ -35,14 +62,18 @@ Mensajes
 
                         <tr>
                             <td>{{ message.subject }}</td>
-
+                            <td>{{ message.text }}</td>
+                            {% if message.copy %}
+                            <td> <a href=""> {{ message.sender }}</a> </td>
+                            {% else %}
+                            <td> <a href=""> {{ message.recipient }}</a> </td>
+                            {% endif %}
                             <!-- Si es del creador para  editar -->
                             <td>
                                 <a class="btn btn-danger" href="delete/{{ message.pk }}">
                                     Borrar
                                 </a>
                             </td>
-                            <td> <a href=""> {{ message.recipient }}</a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -104,9 +135,16 @@ Mensajes
         {% endif %}
 
             <div class="create">
-                <input type="button" class="btn editbutton"
-                       onclick="location.href='/MYmessages/create';"
-                       value="Registrar perro"/>
+
+                {% if received %}
+                    <input type="button" class="btn editbutton"
+                               onclick="location.href='/messages/createFromReceived';"
+                               value="Nuevo mensaje"/>
+                {% else %}
+                    <input type="button" class="btn editbutton"
+                               onclick="location.href='/messages/createFromSent';"
+                               value="Nuevo mensaje"/>
+                {% endif %}
 
             </div>
     </div>

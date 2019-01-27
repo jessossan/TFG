@@ -524,6 +524,8 @@ def list_friends(request):
     data = {
         'friend_list': friend_list_aux,
         'title': 'Listado de amigos',
+        # Controlar la vista para los botones
+        'isFriends': True,
     }
     return render(request, 'list_friend.html', data)
 
@@ -551,5 +553,7 @@ def list_actors(request):
     data = {
         'actor_list': actor_list_aux,
         'title': 'Listado de usuarios',
+        # Controlar la vista para los botones
+        'isAllUsers': True,
     }
     return render(request, 'list_actor.html', data)
