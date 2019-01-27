@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+<div class="container">
+    <br />
+    <h2>{{ title }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-md-12">
+
+                <!-- FORMULARIO -->
+                <form id="registro" enctype="multipart/form-data" method="post" action="{% url 'create_message' %}" class="form" role="form">
+                    {% csrf_token %}
+
+                    <!-- Mensaje -->
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="subject" class="control-label">Asunto</label>
+                            <input class="form-control" id="subject" name="subject" maxlength="50" placeholder="Asunto" type="text" value="{{ form.subject.value|default:'' }}" required autofocus/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="text" class="control-label">Texto</label>
+                            <textarea class="form-control" name="text" id="text" maxlength="200" rows="3" placeholder="Texto"  required>{{ form.text.value|default:'' }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                                <label for="recipient" class="control-label">Enviar a</label>
+                                <select class="form-control" id="recipient" name="recipient" required>
+                                    <option value="" selected="selected">Seleccione usuario</option>
+                                    {% for actor in actors %}
+
+                                        <option value="{{ actor.userAccount.id }}"> {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                     <!-- Tratamiento de Errores -->
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+
+                    <!-- Botones -->
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="submit" value="Enviar" class="btn editbutton btn-block" />
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/" />
+                            <input type="button" class="btn cancelbutton btn-block" onclick="location.href='';" value="Cancelar" />
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}

@@ -51,11 +51,11 @@
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="details" class="control-label">Detalles</label>
-                            <textarea class="form-control" name="details" id="details" maxlength="200" rows="3" placeholder="Detalles" value="{{ form.details.value|default:'' }}"></textarea>
+                            <textarea class="form-control" name="details" id="details" maxlength="200" rows="3" placeholder="Detalles" >{{ form.details.value|default:'' }}</textarea>
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="awards" class="control-label">Premios</label>
-                            <textarea class="form-control" name="awards" maxlength="200" id="awards" rows="3" placeholder="Premios" value="{{ form.awards.value|default:'' }}"></textarea>
+                            <textarea class="form-control" name="awards" maxlength="200" id="awards" rows="3" placeholder="Premios" >{{ form.awards.value|default:'' }}</textarea>
                         </div>
                     </div>
 

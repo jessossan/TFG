@@ -11,8 +11,8 @@
             <br/>
             <div class="col-md-12">
 
-                <!-- Formulario Edición -->
-                <form id="editar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
+                <!-- Formulario Borrado -->
+                <form id="borrar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
                     {% csrf_token %}
                     <h2><b>    {{ customer.userAccount.first_name }} {{ customer.userAccount.last_name }},</b></h2>
                     <br>
