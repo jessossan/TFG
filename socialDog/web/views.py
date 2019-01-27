@@ -313,21 +313,34 @@ def register_breeder(request):
     return render(request, 'web/registerBreeder.html', data)
 
 
-# LISTADOS DE EVENTOS/NOTICIAS
+# LISTADOS DE EVENTOS
 
 @login_required(login_url='/login/')
-def list_eventsNews(request):
+def list_events(request):
 
     # Orden inverso para que los eventos nuevos creados salgan arriba de la lista
     events_list = Event.objects.all().order_by('-creationDate')
+
+
+    data = {
+        'event_list': events_list,
+        'title': 'Listado de eventos',
+
+    }
+    return render(request, 'welcome/events.html', data)
+
+
+# LISTADOS DE NOTICIAS
+
+@login_required(login_url='/login/')
+def list_news(request):
 
     # Orden inverso para que las noticias nuevas creados salgan arriba de la lista
     news_list = News.objects.all().order_by('-creationDate')
 
     data = {
-        'event_list': events_list,
         'news_list': news_list,
-        'title': 'Listado de eventos y noticias',
+        'title': 'Listado de noticias',
 
     }
-    return render(request, 'welcome/eventsNews.html', data)
+    return render(request, 'welcome/news.html', data)

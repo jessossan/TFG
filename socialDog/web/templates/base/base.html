@@ -32,7 +32,7 @@
 								background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
-							<a class="navbar-brand flex-align-center" href="{% url 'list_eventsNews' %}">
+							<a class="navbar-brand flex-align-center" href="{% url 'list_news' %}">
 									<img style="width: auto; height: 40x; border-bottom: 0.4px solid;
   border-color: transparent;
                     justify-content: center;
@@ -49,7 +49,7 @@
 									{% if user.actor.customer %}
 										<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
+											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_news' %}" class="nav-link navbar-text">
 												Inicio
 											 </a>
 										</li>
@@ -104,7 +104,7 @@
 									{% elif user.actor.breeder %}
 									<ul class="navbar-nav mr-auto">
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
+											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_news' %}" class="nav-link navbar-text">
 												Inicio
 											 </a>
 										</li>
@@ -173,7 +173,7 @@
 									{% elif user.actor.association %}
 										<ul class="navbar-nav mr-auto">
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_news' %}" class="nav-link navbar-text">
 													Inicio
 												 </a>
 											</li>
@@ -239,7 +239,7 @@
 									{% elif user.actor.administrator %}
                                         <ul class="navbar-nav mr-auto">
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_eventsNews' %}" class="nav-link navbar-text">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_news' %}" class="nav-link navbar-text">
 													Inicio
 												 </a>
 											</li>

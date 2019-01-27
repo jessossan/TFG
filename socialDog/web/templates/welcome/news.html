@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Noticias
+{% endblock %}
+{% block content %}
+
+</br>
+<div align="center">
+    <input type="button" style="font-size: 24px;" class="btn editbutton"
+                           onclick="location.href='/web/events';"
+                           value="Eventos"/>&nbsp&nbsp
+    <input type="button" style="font-size: 24px;" class="btn editbutton"
+                           onclick="location.href='/web/news';"
+                           value="Noticias"/>
+</div>
+
+<div align="center">
+</br>
+<h1 align="center"> Noticias</h1>
+</br>
+
+{% if news_list %}
+    {% for news in news_list %}
+        <div class="card border-dark mb-4" style="max-width: 60rem;">
+              <div class="card-header" align="center"><h4><b>{{ news.title }}</b></h4></div>
+
+              <div class="card-body text-dark">
+                <h5 class="card-text" align="right">Fecha: {{ news.creationDate|date:'d/m/y' }}</h5>
+                <p class="card-text">{{ news.description }}</p>
+                    {% if news.photo %}
+                      <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px" align="right">
+                    {% endif %}
+
+                    </br>
+
+                    <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
+                        {% if news.breeder %}
+                          <a href="">{{ news.breeder.userAccount.first_name }} {{ news.breeder.userAccount.last_name }}</a>
+                        {% elif news.association %}
+                          <a href="">{{ news.association.userAccount.first_name }} {{ news.association.userAccount.last_name }}</a>
+                        {% endif %}
+                    </p>
+              </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no existen noticias</p>
+{% endif %}
+</div>
+{% endblock %}

@@ -3,7 +3,10 @@ from . import views
 
 urlpatterns = [
 
-    # NOTICIAS Y EVENTOS
-    path('eventsNews', views.list_eventsNews, name='list_eventsNews'),
+    # EVENTOS
+    path('events', views.list_events, name='list_events'),
+
+    # NOTICIAS
+    path('news', views.list_news, name='list_news'),
 
 ]
