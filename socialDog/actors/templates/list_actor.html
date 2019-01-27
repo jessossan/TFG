@@ -1,17 +1,30 @@
 {% extends 'base/base.html' %}
 {% block title %}
-Animales
+Usuarios
 {% endblock %}
 {% block content %}
 
     <div class="container-fluid">
 
         <br/>
-        <h1>Lista de animales</h1>
+        <h1>Buscar usuarios</h1>
         <br/>
 
+<div align="left">
+    <input type="button"  class="btn editbutton"
+                           onclick="location.href='/actors/friends';"
+                           value="Amigos"/>&nbsp
+    <input type="button"  class="btn editbutton"
+                           onclick=""
+                           value="Solicitudes de amistad"/>&nbsp
+    <input type="button"  class="btn editbutton"
+                           onclick="location.href='/actors/users';"
+                           value="Buscar usuarios"/>
+</div>
+        </br>
+
         <!-- Listado -->
-        {% if dog_list %}
+        {% if actor_list %}
         <div class="panel panel-default panel-table mb-3">
           <div class="panel-heading">
           </div>
@@ -22,58 +35,41 @@ Animales
                     <thead class="thead-primary">
                     <tr>
                         <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Género</th>
-                        <th>Raza</th>
-                        <!-- Para la columna de la foto-->
+                        <th>Usuario</th>
+                        <!-- Enviar petición de amistad-->
                         <th></th>
-                        <!-- Si es del creador para la columna editar -->
-                        {% if ownDog %}
+                        <!-- Ver perfil-->
                         <th></th>
-                        {% endif %}
-                        <!-- Para la columna de ver perfil-->
-                        <th></th>
-
                     </tr>
                   </thead>
 
                     <tbody>
-                    {% for dog in dog_list %}
-
+                    {% for actor in actor_list %}
                         <tr>
-                            <td>{{ dog.name }}</td>
-                            <td>{{ dog.age }}</td>
-                            <td>{{ dog.gender }}</td>
-                            <td>{{ dog.breed }}</td>
-                            <td>
-                                {% if dog.photo %}
-                                    <img src="{{ dog.photo.url }}" alt="photo's dog" width="150px" height="150px">
-                                {% endif %}
-                            </td>
-                            <!-- Si es del creador para  editar -->
-                            {% if ownDog %}
-                            <td>
-                                <a  title="Editar"  class="btn editbutton" href="edit/{{ dog.pk }}">
-                                    Editar
-                                </a>
-                                <a class="btn btn-danger" href="delete/{{ dog.pk }}">
-                                    Borrar
-                                </a>
-                            </td>
+                            <td>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</td>
+                            {% if actor.breeder %}
+                                <td>Criador</td>
+                            {% elif actor.association %}
+                                <td>Asociación</td>
+                            {% elif actor.customer %}
+                                <td>Usuario</td>
                             {% endif %}
-                            <td> <a title="Ver perfil"  class="btn editbutton" href=""> Ver perfil</a> </td>
+                            <td> <a href="">petición de amistad</a></td>
+                            <td> <a href="">ver perfil</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
 
             </table>
           </div>
+
+          <!-- PAGINACION -->
           <div class="panel-footer table-header-primary table-footer">
-            {% if dog_list.has_other_pages %}
+            {% if actor_list.has_other_pages %}
                 <ul class="pagination">
-                    {% if dog_list.has_previous %}
+                    {% if actor_list.has_previous %}
                         <li>
-                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ dog_list.previous_page_number }}">
+                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ actor_list.previous_page_number }}">
                             <i class="fas fa-angle-double-left"></i>
                           </a>
                         </li>
@@ -84,8 +80,8 @@ Animales
                       </a>
                     </li>
                     {% endif %}
-                    {% for i in dog_list.paginator.page_range %}
-                        {% if dog_list.number == i %}
+                    {% for i in actor_list.paginator.page_range %}
+                        {% if actor_list.number == i %}
                         <li>
                           <a class="ui-button ui-pagination ui-pagination-current" href="#">
                             <span>{{ i }}</span>
@@ -99,9 +95,9 @@ Animales
                         </li>
                         {% endif %}
                     {% endfor %}
-                    {% if dog_list.has_next %}
+                    {% if actor_list.has_next %}
                     <li>
-                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ dog_list.next_page_number }}">
+                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ actor_list.next_page_number }}">
                         <i class="fas fa-angle-double-right"></i>
                       </a>
                     </li>
@@ -119,20 +115,7 @@ Animales
 
         {% else %}
             <p></p>
-            <p>No existen perros.</p>
+            <p>Aún tienes amigos.</p>
         {% endif %}
-
-        {% if user.actor.breeder %}
-            <div class="create">
-                <input type="button" class="btn editbutton"
-                       onclick="location.href='/dogs/register';"
-                       value="Registrar perro"/>
-
-            </div>
-
-        {% endif %}
-
-
-
     </div>
 {% endblock %}

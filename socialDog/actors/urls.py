@@ -30,4 +30,10 @@ urlpatterns = [
     path('', views.delete_association_account, name='delete_association_account'),
     path('association/edit/profile/delete/<int:pk>', views.delete_association_account, name='delete_association_account'),
 
+    # Listado de amigos
+    path('friends', views.list_friends, name='list_friends'),
+
+    # Listado de usuarios
+    path('users', views.list_actors, name='list_actors'),
+
 ]

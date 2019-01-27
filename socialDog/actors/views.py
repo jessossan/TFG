@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, HttpResponseForbidden
@@ -7,20 +8,17 @@ from django.urls import reverse
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
-from actors.models import Customer, Breeder, Association
+from actors.models import Customer, Breeder, Association, Actor
 from breeds.models import Breed
 from provinces.models import Province
 import django.contrib.auth.views
 from django.contrib import messages
 
-
-
-
-
 # Create your views here.
 
 
-"""USUARIO""" # USUARIO
+"""USUARIO"""  # USUARIO
+
 
 @login_required(login_url='/login/')
 @user_is_customer
@@ -85,6 +83,7 @@ def edit_profile_customer(request):
 
     return render(request, 'users/editUserProfile.html', data)
 
+
 @login_required(login_url='/login/')
 @user_is_customer
 def edit_pass_customer(request):
@@ -125,6 +124,7 @@ def edit_pass_customer(request):
 
     return render(request, 'users/editUserPass.html', data)
 
+
 # ELIMINAR LA CUENTA DE UN USUARIO
 @login_required(login_url='/login/')
 @user_is_customer
@@ -140,7 +140,9 @@ def delete_customer_account(request, pk):
 
     return render(request, 'users/delete_user.html', {'customer': customer})
 
-"""CRIADOR""" # CRIADOR
+
+"""CRIADOR"""  # CRIADOR
+
 
 @login_required(login_url='/login/')
 @user_is_breeder
@@ -246,8 +248,9 @@ def edit_profile_breeder(request):
         provinceSelected = breeder.province
 
         dataForm = {'first_name': breeder.userAccount.first_name, 'last_name': breeder.userAccount.last_name,
-                    'email': breeder.userAccount.email,'opening': breeder.opening, 'closing': breeder.closing,
-                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address, 'notes': breeder.notes,
+                    'email': breeder.userAccount.email, 'opening': breeder.opening, 'closing': breeder.closing,
+                    'phone': breeder.phone, 'cif': breeder.cif, 'photo': breeder.photo, 'address': breeder.address,
+                    'notes': breeder.notes,
                     'private': breeder.private, 'postalCode': breeder.postalCode, 'centerName': breeder.centerName,
                     'province': breeder.province}
         form = EditBreederProfile(dataForm, user=request.user)
@@ -261,14 +264,15 @@ def edit_profile_breeder(request):
         'breeder': breeder,
         'breedsAux': breedsAux,
         'breedsSelected': breedsSelected,
-        'opening': opening, # Se recupera la hora de apertura para que se muestre correctamente en el form
-        'closing': closing, # Se recupera la hora de cierre para que se muestre correctamente en el form
+        'opening': opening,  # Se recupera la hora de apertura para que se muestre correctamente en el form
+        'closing': closing,  # Se recupera la hora de cierre para que se muestre correctamente en el form
         'provincesAux': provincesAux,
         'provinceSelected': provinceSelected,
         'titulo': 'Editar Perfil'
     }
 
     return render(request, 'breeders/editBreederProfile.html', data)
+
 
 @login_required(login_url='/login/')
 @user_is_breeder
@@ -310,6 +314,7 @@ def edit_pass_breeder(request):
 
     return render(request, 'breeders/editBreederPass.html', data)
 
+
 # ELIMINAR LA CUENTA DE UN CRIADOR
 @login_required(login_url='/login/')
 @user_is_breeder
@@ -325,7 +330,9 @@ def delete_breeder_account(request, pk):
 
     return render(request, 'breeders/delete_breeder.html', {'breeder': breeder})
 
-"""ASSOCIATION""" # ASSOCIATION
+
+"""ASSOCIATION"""  # ASSOCIATION
+
 
 @login_required(login_url='/login/')
 @user_is_association
@@ -412,9 +419,12 @@ def edit_profile_association(request):
         provinceSelected = association.province
 
         dataForm = {'first_name': association.userAccount.first_name, 'last_name': association.userAccount.last_name,
-                    'email': association.userAccount.email, 'centerName': association.centerName, 'notes':association.notes, 'province': association.province,
-                    'phone': association.phone, 'cif': association.cif, 'photo': association.photo, 'opening': association.opening, 'closing': association.closing,
-                    'address': association.address, 'private': association.private, 'postalCode': association.postalCode}
+                    'email': association.userAccount.email, 'centerName': association.centerName,
+                    'notes': association.notes, 'province': association.province,
+                    'phone': association.phone, 'cif': association.cif, 'photo': association.photo,
+                    'opening': association.opening, 'closing': association.closing,
+                    'address': association.address, 'private': association.private,
+                    'postalCode': association.postalCode}
         form = EditAssociationProfile(dataForm, user=request.user)
 
     provincesAux = Province.objects.all().exclude(pk=association.province.pk)
@@ -430,6 +440,7 @@ def edit_profile_association(request):
     }
 
     return render(request, 'associations/editAssociationProfile.html', data)
+
 
 @login_required(login_url='/login/')
 @user_is_association
@@ -471,6 +482,7 @@ def edit_pass_association(request):
 
     return render(request, 'associations/editAssociationPass.html', data)
 
+
 # ELIMINAR LA CUENTA DE UNA ASOCIACION
 @login_required(login_url='/login/')
 @user_is_association
@@ -485,3 +497,59 @@ def delete_association_account(request, pk):
         return HttpResponseRedirect('/logout')
 
     return render(request, 'associations/delete_association.html', {'association': association})
+
+
+"""AMIGOS"""
+
+@login_required(login_url='/login/')
+def list_friends(request):
+    try:
+        # Falta hacer el filtro de amigos
+        friend_list_aux = Actor.objects.all()
+
+    except Exception as e:
+
+        friend_list_aux = Actor.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(friend_list_aux, 6)
+
+    try:
+        friend_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        friend_list_aux = paginator.page(1)
+    except EmptyPage:
+        friend_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'friend_list': friend_list_aux,
+        'title': 'Listado de amigos',
+    }
+    return render(request, 'list_friend.html', data)
+
+"""TODOS LOS ACTORES"""
+
+@login_required(login_url='/login/')
+def list_actors(request):
+    try:
+        actor_list_aux = Actor.objects.all()
+
+    except Exception as e:
+
+        actor_list_aux = Actor.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(actor_list_aux, 6)
+
+    try:
+        actor_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        actor_list_aux = paginator.page(1)
+    except EmptyPage:
+        actor_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'actor_list': actor_list_aux,
+        'title': 'Listado de usuarios',
+    }
+    return render(request, 'list_actor.html', data)
