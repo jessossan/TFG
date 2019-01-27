@@ -16,6 +16,16 @@ Lista de eventos
         {% endif %}
         <br/>
 
+        <input type="button" class="btn editbutton"
+                       onclick="location.href='/events/ownList';"
+                       value="Mis eventos"/>
+        <input type="button" class="btn editbutton"
+                       onclick="location.href='/events/ownFutureList';"
+                       value="Por realizar"/>
+        <input type="button" class="btn editbutton"
+                       onclick="location.href='/events/ownPastList';"
+                       value="Finalizados"/><br/><br/>
+
         <!-- Listado -->
         {% if event_list %}
         <div class="panel panel-default panel-table mb-1">
