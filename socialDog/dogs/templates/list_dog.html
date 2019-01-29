@@ -7,9 +7,32 @@ Animales
     <div class="container-fluid">
 
         <br/>
-        <h1>Lista de animales</h1>
+        {% if ownDog %}
+            <h1>Mis animales</h1>
+        {% else %}
+            <h1>Animales</h1>
+        {% endif %}
         <br/>
-
+{% if user.actor.breeder %}
+        <div align="left">
+            {% if ownDog %}
+                <input type="button" class="btn editbutton"
+                                       onclick="location.href='/dogs/list';"
+                                       value="Animales"/>&nbsp
+                <input type="button" class="btn pulsado" style="border-color:#2c539e"
+                                       onclick="location.href='/dogs/ownList';"
+                                       value="Mis animales"/>
+            {% else %}
+                <input type="button" class="btn pulsado" style="border-color:#2c539e"
+                                       onclick="location.href='/dogs/list';"
+                                       value="Animales"/>&nbsp
+                <input type="button"   class="btn editbutton"
+                                       onclick="location.href='/dogs/ownList';"
+                                       value="Mis animales"/>
+            {% endif %}
+        </div>
+        </br>
+{% endif %}
         <!-- Listado -->
         {% if dog_list %}
         <div class="panel panel-default panel-table mb-3">
