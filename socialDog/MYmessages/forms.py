@@ -12,3 +12,12 @@ class CreateMessageForm(forms.Form):
     subject = forms.CharField(max_length=50, label='Asunto')
     text = forms.CharField(max_length=200, label='Texto')
     recipient = forms.ModelChoiceField(queryset=Actor.objects.all(), empty_label=None, label='Usuario')
+
+
+class ReplyMessageForm(forms.Form):
+    """Formulario respuesta del mensaje"""
+
+    # Campos requeridos por el Message
+
+    subject = forms.CharField(max_length=50, label='Asunto')
+    text = forms.CharField(max_length=200, label='Texto')
