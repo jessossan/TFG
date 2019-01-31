@@ -319,3 +319,49 @@ def list_messages_sent(request):
         'received': False,
     }
     return render(request, 'list_message.html', data)
+
+
+# BORRAR MENSAJES RECIBIDOS
+@login_required(login_url='/login/')
+def delete_message_received(request, pk):
+    messageReceived = get_object_or_404(Message, pk=pk)
+
+    actor = request.user.actor
+
+    # Comprueba que sea su mensaje y que es copia
+    if messageReceived.recipient != actor or not messageReceived.copy:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        messageReceived.delete()
+        return HttpResponseRedirect('/messages/received')
+
+    data = {
+        'actor': actor,
+        'message': messageReceived,
+    }
+
+    return render(request, 'delete_message_received.html', data)
+
+
+# BORRAR MENSAJES ENVIADOS
+@login_required(login_url='/login/')
+def delete_message_sent(request, pk):
+    messageSent = get_object_or_404(Message, pk=pk)
+
+    actor = request.user.actor
+
+    # Comprueba que sea su mensaje y que es copia
+    if messageSent.sender != actor or messageSent.copy:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        messageSent.delete()
+        return HttpResponseRedirect('/messages/sent')
+
+    data = {
+        'actor': actor,
+        'message': messageSent,
+    }
+
+    return render(request, 'delete_message_sent.html', data)

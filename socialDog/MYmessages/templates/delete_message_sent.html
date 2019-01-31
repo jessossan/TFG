@@ -16,10 +16,10 @@
                     {% csrf_token %}
                     <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
                     <br>
-                    <h3>¿Está seguro que desea eliminar a <b>{{ message.subject }}</b>?</h3>
+                    <h3>¿Está seguro que desea eliminar (solo para ti) el mensaje enviado, <b>{{ message.subject }}</b>?</h3>
                     <br>
                     <button class="btn btn-danger" type="submit">Sí, eliminar</button>
-                    <a class="btn cancelbutton" href="">Cancelar</a>
+                    <a class="btn cancelbutton" href="/messages/sent">Cancelar</a>
 
                 </form>
 

@@ -22,7 +22,10 @@ urlpatterns = [
     # Crear mensaje desde enviados
     path('createFromSent', views.create_message_sent, name='create_message_sent'),
 
-    # Eliminar mensaje
-    #path('delete/<int:pk>', views.delete_message, name='delete_message'),
+    # Eliminar mensaje recibido
+    path('deleteReceived/<int:pk>', views.delete_message_received, name='delete_message_received'),
+
+    # Eliminar mensaje enviado
+    path('deleteSent/<int:pk>', views.delete_message_sent, name='delete_message_sent'),
 
 ]

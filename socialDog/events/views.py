@@ -153,7 +153,7 @@ def list_myEvents(request):
         # la fecha de hoy para que no salga el botón editar eventos pasados
         'today': date.today(),
         # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
-        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        #'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
         'myEvents': True,
     }
     return render(request, 'list_event.html', data)

@@ -76,9 +76,15 @@ Mensajes
                             {% endif %}
                             <!-- Si es del creador para  editar -->
                             <td>
-                                <a class="btn btn-danger" href="delete/{{ message.pk }}">
-                                    Borrar
-                                </a>
+                                {% if received %}
+                                    <a class="btn btn-danger" href="{% url 'delete_message_received' message.pk %}">
+                                        Borrar
+                                    </a>
+                                {% else %}
+                                    <a class="btn btn-danger" href="{% url 'delete_message_sent' message.pk %}">
+                                        Borrar
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
