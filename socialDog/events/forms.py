@@ -32,11 +32,27 @@ class CreateBreederEventForm(forms.Form):
             # Comprobamos que la fecha de comienzo no sea no sea una fecha pasada
             if (startDate < date.today()):
                 raise forms.ValidationError(
-                    "No se puede crear un evento con una fecha pasada o cambiar a una fecha pasada")
+                    "No se puede crear un evento con una fecha pasada")
+
+            try:
+                # Intenta sumar un dia
+                tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+            except Exception as e:
+                # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+                error = e.args[0]
+                dayOutOfRange = ''.join(['day is out of range for month', ])
+                monthOutOfRange = ''.join(['month must be in 1..12', ])
+
+                if error == dayOutOfRange:
+                    tomorrow = date(date.today().year, date.today().month + 1, 1)
+
+                # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+                elif error == monthOutOfRange:
+                    tomorrow = date(date.today().year + 1, 1, 1)
 
             # Comprobamos que la fecha de comienzo no sea menos de un día de antelación
-            startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
-            if (startDateAux <= date.today()):
+            if (tomorrow == startDate) or startDate == date.today():
                 raise forms.ValidationError(
                     "No se puede registrar una fecha con menos de un día de antelación")
 
@@ -76,11 +92,27 @@ class EditEventForm(forms.Form):
                 raise forms.ValidationError(
                     "No se puede editar un evento pasado")
 
-            # Comprobamos que la fecha de comienzo del evento sea menos de un día de antelación
-            startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
-            if (startDateAux <= date.today()):
+            try:
+                # Intenta sumar un dia
+                tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+            except Exception as e:
+                # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+                error = e.args[0]
+                dayOutOfRange = ''.join(['day is out of range for month', ])
+                monthOutOfRange = ''.join(['month must be in 1..12', ])
+
+                if error == dayOutOfRange:
+                    tomorrow = date(date.today().year, date.today().month + 1, 1)
+
+                # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+                elif error == monthOutOfRange:
+                    tomorrow = date(date.today().year + 1, 1, 1)
+
+            # Comprobamos que la fecha de comienzo no sea menos de un día de antelación
+            if tomorrow == startDate or startDate == date.today():
                 raise forms.ValidationError(
-                    "No se puede cambiar la fecha con menos de un día de antelación")
+                    "No se puede registrar una fecha con menos de un día de antelación")
 
             # Comprobamos que la fecha de fin sea posterior a la de comienzo
             if (finishDate < startDate):
@@ -119,11 +151,27 @@ class CreateAssociationEventForm(forms.Form):
             # Comprobamos que la fecha de comienzo no sea no sea una fecha pasada
             if (startDate < date.today()):
                 raise forms.ValidationError(
-                    "No se puede crear un evento con una fecha pasada o cambiar a una fecha pasada")
+                    "No se puede crear un evento con una fecha pasada")
+
+            try:
+                # Intenta sumar un dia
+                tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+            except Exception as e:
+                # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+                error = e.args[0]
+                dayOutOfRange = ''.join(['day is out of range for month', ])
+                monthOutOfRange = ''.join(['month must be in 1..12', ])
+
+                if error == dayOutOfRange:
+                    tomorrow = date(date.today().year, date.today().month + 1, 1)
+
+                # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+                elif error == monthOutOfRange:
+                    tomorrow = date(date.today().year + 1, 1, 1)
 
             # Comprobamos que la fecha de comienzo no sea menos de un día de antelación
-            startDateAux = date(startDate.year, startDate.month, startDate.day - 1)
-            if (startDateAux <= date.today()):
+            if (tomorrow == startDate) or startDate == date.today():
                 raise forms.ValidationError(
                     "No se puede registrar una fecha con menos de un día de antelación")
 

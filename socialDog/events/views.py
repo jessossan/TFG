@@ -146,6 +146,23 @@ def list_myEvents(request):
     except EmptyPage:
         event_list_aux = paginator.page(paginator.num_pages)
 
+    try:
+        # Intenta sumar un dia
+        tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+    except Exception as e:
+        # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+        error = e.args[0]
+        dayOutOfRange = ''.join(['day is out of range for month',])
+        monthOutOfRange = ''.join(['month must be in 1..12',])
+
+        if error == dayOutOfRange:
+            tomorrow = date(date.today().year, date.today().month+1, 1)
+
+        # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+        elif error == monthOutOfRange:
+            tomorrow = date(date.today().year +1, 1, 1)
+
     data = {
         'event_list': event_list_aux,
         'title': 'Listado de mis eventos',
@@ -153,7 +170,7 @@ def list_myEvents(request):
         # la fecha de hoy para que no salga el botón editar eventos pasados
         'today': date.today(),
         # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
-        #'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        'tomorrow': tomorrow,
         'myEvents': True,
     }
     return render(request, 'list_event.html', data)
@@ -188,6 +205,23 @@ def list_myFutureEvents(request):
     except EmptyPage:
         event_list_aux = paginator.page(paginator.num_pages)
 
+    try:
+        # Intenta sumar un dia
+        tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+    except Exception as e:
+        # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+        error = e.args[0]
+        dayOutOfRange = ''.join(['day is out of range for month',])
+        monthOutOfRange = ''.join(['month must be in 1..12',])
+
+        if error == dayOutOfRange:
+            tomorrow = date(date.today().year, date.today().month+1, 1)
+
+        # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+        elif error == monthOutOfRange:
+            tomorrow = date(date.today().year +1, 1, 1)
+
     data = {
         'event_list': event_list_aux,
         'title': 'Listado de mis eventos',
@@ -195,7 +229,7 @@ def list_myFutureEvents(request):
         # la fecha de hoy para que no salga el botón editar eventos pasados
         'today': date.today(),
         # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
-        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        'tomorrow': tomorrow,
         'myFutureEvents': True,
     }
     return render(request, 'list_event.html', data)
@@ -230,6 +264,23 @@ def list_myPastEvents(request):
     except EmptyPage:
         event_list_aux = paginator.page(paginator.num_pages)
 
+    try:
+        # Intenta sumar un dia
+        tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+    except Exception as e:
+        # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+        error = e.args[0]
+        dayOutOfRange = ''.join(['day is out of range for month',])
+        monthOutOfRange = ''.join(['month must be in 1..12',])
+
+        if error == dayOutOfRange:
+            tomorrow = date(date.today().year, date.today().month+1, 1)
+
+        # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+        elif error == monthOutOfRange:
+            tomorrow = date(date.today().year +1, 1, 1)
+
     data = {
         'event_list': event_list_aux,
         'title': 'Listado de mis eventos',
@@ -237,7 +288,7 @@ def list_myPastEvents(request):
         # la fecha de hoy para que no salga el botón editar eventos pasados
         'today': date.today(),
         # la fecha de mañana para que no salga el boton de editar eventos con un día de antelación
-        'tomorrow': date(date.today().year, date.today().month, date.today().day + 1),
+        'tomorrow': tomorrow,
     }
     return render(request, 'list_event.html', data)
 
@@ -359,10 +410,27 @@ def edit_event(request, pk):
         form = EditEventForm(dataForm)
 
     # Comprobación de que se pueda editar
+    try:
+        # Intenta sumar un dia
+        tomorrow = date(date.today().year, date.today().month, date.today().day + 1)
+
+    except Exception as e:
+        # En caso de que sea ultimo dia del mes, suma 1 al mes y convierte el dia en 1
+        error = e.args[0]
+        dayOutOfRange = ''.join(['day is out of range for month', ])
+        monthOutOfRange = ''.join(['month must be in 1..12', ])
+
+        if error == dayOutOfRange:
+            tomorrow = date(date.today().year, date.today().month + 1, 1)
+
+        # En caso de que sea ultimo mes del año, establece mes 1 dia 1 y suma 1 año
+        elif error == monthOutOfRange:
+            tomorrow = date(date.today().year + 1, 1, 1)
+
     canEdit = True
-    startDateAux = date(event.startDate.year, event.startDate.month, event.startDate.day - 1)
+
     # si la fecha de comienzo del evento es pasada o menos de un día no se puede editar
-    if (event.startDate < date.today() or startDateAux <= date.today()):
+    if (event.startDate <= date.today() or tomorrow == event.startDate):
         canEdit = False
     data = {
         'form': form,
