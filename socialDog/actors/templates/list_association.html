@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Asociaciones
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+
+        <br/>
+        <h1>Asociaciones</h1>
+        <br/>
+
+        <!-- Listado -->
+        {% if association_list %}
+        <div class="panel panel-default panel-table mb-3">
+          <div class="panel-heading">
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped table-curved table-hover table-bordered">
+
+
+                    <thead class="thead-primary">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Provincia</th>
+                        <th>Comentarios</th>
+                        <th>Valoraciones</th>
+                        <!-- Ver perfil-->
+                        <th></th>
+                    </tr>
+                  </thead>
+
+                    <tbody>
+                    {% for association in association_list %}
+                        <tr>
+                            <td>{{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</td>
+                            <td>{{ association.address }}</td>
+                            <td>{{ association.province }}</td>
+                            <td></td>
+                            <td></td>
+                            <td> <a href="">ver perfil</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+            </table>
+          </div>
+
+          <!-- PAGINACION -->
+          <div class="panel-footer table-header-primary table-footer">
+            {% if association_list.has_other_pages %}
+                <ul class="pagination">
+                    {% if association_list.has_previous %}
+                        <li>
+                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ association_list.previous_page_number }}">
+                            <i class="fas fa-angle-double-left"></i>
+                          </a>
+                        </li>
+                    {% else %}
+                    <li>
+                      <a  class="ui-button ui-pagination ui-pagination-prev ui-pagination-disabled" href="#">
+                        <i class="fas fa-angle-double-left"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                    {% for i in association_list.paginator.page_range %}
+                        {% if association_list.number == i %}
+                        <li>
+                          <a class="ui-button ui-pagination ui-pagination-current" href="#">
+                            <span>{{ i }}</span>
+                          </a>
+                        </li>
+                        {% else %}
+                        <li>
+                          <a class="ui-button ui-pagination ui-pagination-page" href="?page={{ i }}">
+                            <span>{{ i }}</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if association_list.has_next %}
+                    <li>
+                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ association_list.next_page_number }}">
+                        <i class="fas fa-angle-double-right"></i>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="ui-button ui-pagination ui-pagination-next ui-pagination-disabled" href="#">
+                        <i class="fas fa-angle-double-right"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                </ul>
+              {% endif %}
+          </div>
+        </div>
+
+        {% else %}
+            <p></p>
+            <p>No hay registradas asociaciones.</p>
+        {% endif %}
+    </div>
+{% endblock %}

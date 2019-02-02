@@ -36,4 +36,7 @@ urlpatterns = [
     # Listado de usuarios
     path('users', views.list_actors, name='list_actors'),
 
+    # Listado de asociaciones
+    path('associations', views.list_associations, name='list_associations'),
+
 ]

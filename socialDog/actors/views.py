@@ -501,6 +501,7 @@ def delete_association_account(request, pk):
 
 """AMIGOS"""
 
+
 @login_required(login_url='/login/')
 def list_friends(request):
     try:
@@ -529,7 +530,9 @@ def list_friends(request):
     }
     return render(request, 'list_friend.html', data)
 
+
 """TODOS LOS ACTORES"""
+
 
 @login_required(login_url='/login/')
 def list_actors(request):
@@ -557,3 +560,32 @@ def list_actors(request):
         'isAllUsers': True,
     }
     return render(request, 'list_actor.html', data)
+
+"""LISTADO DE ASOCIACIONES"""
+
+def list_associations(request):
+    try:
+        associacion_list_aux = Association.objects.all()
+
+        if hasattr(request.user.actor, 'association'):
+            associacion_list_aux = Association.objects.all().exclude(pk=request.user.actor.pk)
+
+    except Exception as e:
+
+        associacion_list_aux = Association.objects.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(associacion_list_aux, 6)
+
+    try:
+        associacion_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        associacion_list_aux = paginator.page(1)
+    except EmptyPage:
+        associacion_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'association_list': associacion_list_aux,
+        'title': 'Listado de usuarios',
+    }
+    return render(request, 'list_association.html', data)
