@@ -84,4 +84,7 @@ urlpatterns = [
     # MYmessages
     path('messages/', include('MYmessages.urls')),
 
+    # Breeds
+    path('breeds/', include('breeds.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

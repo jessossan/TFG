@@ -59,6 +59,11 @@
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeds' %}" class="nav-link navbar-text">
+													Razas
+												</a>
+										</li>
+										<li class="dropdown flex-align-center">
 											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_associations' %}" class="nav-link navbar-text" aria-expanded="false">
 												Asociaciones
 											</a>
@@ -99,6 +104,11 @@
 												Animales
 											</a>
 										</li>
+										<li class="dropdown flex-align-center">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeds' %}" class="nav-link navbar-text">
+													Razas
+												</a>
+											</li>
 										<li class="dropdown flex-align-center">
 											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_myEvents' %}" class="nav-link navbar-text">
 												Mis eventos
@@ -157,7 +167,7 @@
 												</a>
 											</li>
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="" class="nav-link navbar-text">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeds' %}" class="nav-link navbar-text">
 													Razas
 												</a>
 											</li>
@@ -216,6 +226,11 @@
 											<li class="dropdown flex-align-center">
 												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_dogs' %}" class="nav-link navbar-text"  aria-expanded="false">
 													Animales
+												</a>
+											</li>
+											<li class="dropdown flex-align-center">
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeds' %}" class="nav-link navbar-text">
+													Razas
 												</a>
 											</li>
 											<li class="dropdown flex-align-center">
@@ -298,23 +313,21 @@
                                 		Inicio
                            				 </a>
                         			</li>
-								<li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_dogs' %}" class="nav-link navbar-text"  aria-expanded="false">
-                                Animales
-                            </a>
-                        </li>
-                        <li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeders' %}" class="nav-link navbar-text"  aria-expanded="false">
-                                Criadores
-                            </a>
-                        </li>
-                        <li class="dropdown flex-align-center">
-                            <a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_associations' %}" class="nav-link navbar-text"  aria-expanded="false">
-                                Asociaciones
-                            </a>
-                        </li>
-
-
+									<li class="dropdown flex-align-center">
+										<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_dogs' %}" class="nav-link navbar-text"  aria-expanded="false">
+											Animales
+										</a>
+                        			</li>
+									<li class="dropdown flex-align-center">
+										<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_breeders' %}" class="nav-link navbar-text"  aria-expanded="false">
+											Criadores
+										</a>
+									</li>
+									<li class="dropdown flex-align-center">
+										<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_associations' %}" class="nav-link navbar-text"  aria-expanded="false">
+											Asociaciones
+										</a>
+									</li>
 							</ul>
 							<ul class="navbar-nav ml-auto">
 
