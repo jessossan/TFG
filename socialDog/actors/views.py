@@ -586,6 +586,36 @@ def list_associations(request):
 
     data = {
         'association_list': associacion_list_aux,
-        'title': 'Listado de usuarios',
+        'title': 'Listado de asociaciones',
     }
     return render(request, 'list_association.html', data)
+
+
+"""LISTADO DE CRIADORES"""
+
+def list_breeders(request):
+    try:
+        breeder_list_aux = Breeder.objects.all()
+
+        if hasattr(request.user.actor, 'breeder'):
+            breeder_list_aux = Breeder.objects.all().exclude(pk=request.user.actor.pk)
+
+    except Exception as e:
+
+        breeder_list_aux = Breeder.objects.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(breeder_list_aux, 6)
+
+    try:
+        breeder_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        breeder_list_aux = paginator.page(1)
+    except EmptyPage:
+        breeder_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'breeder_list': breeder_list_aux,
+        'title': 'Listado de criadores',
+    }
+    return render(request, 'list_breeder.html', data)

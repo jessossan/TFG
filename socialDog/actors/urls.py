@@ -39,4 +39,7 @@ urlpatterns = [
     # Listado de asociaciones
     path('associations', views.list_associations, name='list_associations'),
 
+    # Listado de criadores
+    path('breeders', views.list_breeders, name='list_breeders'),
+
 ]
