@@ -21,6 +21,7 @@ class Request(models.Model):
     )
     status = models.CharField(max_length=10, choices=StatusType, default=PENDING)
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
+    copy = models.BooleanField(default=False)
 
     # Relacion con actor enviado
     follower = models.ForeignKey(Actor, verbose_name='Follower', on_delete=models.CASCADE, null=True, related_name='follower')

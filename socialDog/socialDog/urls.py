@@ -84,6 +84,9 @@ urlpatterns = [
     # MYmessages
     path('messages/', include('MYmessages.urls')),
 
+    # MYrequest
+    path('requests/', include('MYrequests.urls')),
+
     # Breeds
     path('breeds/', include('breeds.urls')),
 

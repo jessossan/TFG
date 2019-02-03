@@ -54,7 +54,7 @@ def create_message_received(request):
 
         # Datos del modelo (vista)
 
-    # Excluye al actor que esta creando el mensaje # FALTA FILTRAR POR AMIGOS
+    # Excluye al actor que esta creando el mensaje # TODO: FALTA FILTRAR POR AMIGOS
     actors = Actor.objects.all().exclude(pk=actor.pk)
     data = {
         'form': form,
@@ -242,7 +242,7 @@ def create_message_sent(request):
 
         # Datos del modelo (vista)
 
-    # Excluye al actor que esta creando el mensaje # FALTA FILTRAR POR AMIGOS
+    # Excluye al actor que esta creando el mensaje # TODO: FALTA FILTRAR POR AMIGOS
     actors = Actor.objects.all().exclude(pk=actor.pk)
     data = {
         'form': form,

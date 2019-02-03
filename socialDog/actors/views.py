@@ -505,7 +505,7 @@ def delete_association_account(request, pk):
 @login_required(login_url='/login/')
 def list_friends(request):
     try:
-        # Falta hacer el filtro de amigos
+        # TODO: Falta hacer el filtro de amigos
         friend_list_aux = Actor.objects.all()
 
     except Exception as e:

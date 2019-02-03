@@ -12,12 +12,9 @@ Usuarios
 
 <div align="left">
     {% if isFriends %}
-        <input type="button"  class="btn"
+        <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/actors/friends';"
                                value="Amigos"/>&nbsp
-        <input type="button"  class="btn editbutton"
-                               onclick=""
-                               value="Solicitudes de amistad"/>&nbsp
         <input type="button"  class="btn editbutton"
                                onclick="location.href='/actors/users';"
                                value="Buscar usuarios"/>
@@ -25,24 +22,9 @@ Usuarios
         <input type="button"  class="btn editbutton"
                                onclick="location.href='/actors/friends';"
                                value="Amigos"/>&nbsp
-        <input type="button"  class="btn editbutton"
-                               onclick=""
-                               value="Solicitudes de amistad"/>&nbsp
-        <input type="button"  class="btn"
+        <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/actors/users';"
                                value="Buscar usuarios"/>
-
-    {% else %}
-        <input type="button"  class="btn editbutton"
-                               onclick="location.href='/actors/friends';"
-                               value="Amigos"/>&nbsp
-        <input type="button"  class="btn"
-                               onclick=""
-                               value="Solicitudes de amistad"/>&nbsp
-        <input type="button"  class="btn editbutton"
-                               onclick="location.href='/actors/users';"
-                               value="Buscar usuarios"/>
-
     {% endif %}
 </div>
         </br>
@@ -139,7 +121,7 @@ Usuarios
 
         {% else %}
             <p></p>
-            <p>Aún tienes amigos.</p>
+            <p>No hay usuarios registrados.</p>
         {% endif %}
     </div>
 {% endblock %}

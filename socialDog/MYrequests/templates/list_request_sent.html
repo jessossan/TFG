@@ -1,35 +1,37 @@
 {% extends 'base/base.html' %}
 {% block title %}
-Amigos
+Solicitudes
 {% endblock %}
 {% block content %}
 
     <div class="container-fluid">
 
         <br/>
-        <h1>Lista de amigos</h1>
+        <h1>Solicitudes</h1>
         <br/>
 
 <div align="left">
-    {% if isFriends %}
-        <input type="button"  class="btn pulsado" style="border-color:#2c539e"
-                               onclick="location.href='/actors/friends';"
-                               value="Amigos"/>&nbsp
+
+    {% if isSent %}
         <input type="button"  class="btn editbutton"
-                               onclick="location.href='/actors/users';"
-                               value="Buscar usuarios"/>
-    {% elif isAllUsers %}
-        <input type="button"  class="btn editbutton"
-                               onclick="location.href='/actors/friends';"
-                               value="Amigos"/>&nbsp
+                               onclick="location.href='/requests/listReceived';"
+                               value="Solicitudes recibidas"/>&nbsp
         <input type="button"  class="btn pulsado" style="border-color:#2c539e"
-                               onclick="location.href='/actors/users';"
-                               value="Buscar usuarios"/>
+                               onclick="location.href='/requests/listSent';"
+                               value="Solicitudes enviadas"/>
+    {% else %}
+        <input type="button"  class="btn pulsado" style="border-color:#2c539e"
+                               onclick="location.href='/requests/listReceived';"
+                               value="Solicitudes recibidas"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href=location.href='/requests/listSent';"
+                               value="Solicitudes enviadas"/>
     {% endif %}
 </div>
         </br>
+
         <!-- Listado -->
-        {% if friend_list %}
+        {% if request_list %}
         <div class="panel panel-default panel-table mb-3">
           <div class="panel-heading">
           </div>
@@ -40,30 +42,25 @@ Amigos
                     <thead class="thead-primary">
                     <tr>
                         <th>Nombre</th>
-                        <th>Usuario</th>
-                        <!-- Enviar mensaje-->
-                        <th></th>
-                        <!-- Ver perfil-->
-                        <th></th>
-                        <!-- Dejar de ser amigo-->
-                        <th></th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
                     </tr>
                   </thead>
 
                     <tbody>
-                    {% for friend in friend_list %}
+                    {% for request in request_list %}
                         <tr>
-                            <td>{{ friend.userAccount.first_name }}  {{ friend.userAccount.last_name }}</td>
-                            {% if friend.breeder %}
-                                <td>Criador</td>
-                            {% elif friend.association %}
-                                <td>Asociación</td>
-                            {% elif friend.customer %}
-                                <td>Usuario</td>
-                            {% endif %}
-                            <td> <a href="">enviar mensaje</a></td>
-                            <td> <a href="">ver perfil</a></td>
-                            <td> <a href="">borrar amigo</a></td>
+                            <td>{{ request.followed.userAccount.first_name }}  {{ request.followed.userAccount.last_name }}</td>
+                            <td>{{ request.description }}</td>
+                            <td>
+                                {% if request.status == 'Pendiente' %}
+                                    <b>{{ request.status }}</b>
+                                {% elif request.status == 'Aceptada' %}
+                                    <b style="color:green;">{{ request.status }}</b>
+                                {% else %}
+                                    <b style="color:red;">{{ request.status }}</b>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -73,11 +70,11 @@ Amigos
 
           <!-- PAGINACION -->
           <div class="panel-footer table-header-primary table-footer">
-            {% if friend_list.has_other_pages %}
+            {% if request_list.has_other_pages %}
                 <ul class="pagination">
-                    {% if friend_list.has_previous %}
+                    {% if request_list.has_previous %}
                         <li>
-                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ friend_list.previous_page_number }}">
+                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ request_list.previous_page_number }}">
                             <i class="fas fa-angle-double-left"></i>
                           </a>
                         </li>
@@ -88,8 +85,8 @@ Amigos
                       </a>
                     </li>
                     {% endif %}
-                    {% for i in friend_list.paginator.page_range %}
-                        {% if friend_list.number == i %}
+                    {% for i in request_list.paginator.page_range %}
+                        {% if request_list.number == i %}
                         <li>
                           <a class="ui-button ui-pagination ui-pagination-current" href="#">
                             <span>{{ i }}</span>
@@ -103,9 +100,9 @@ Amigos
                         </li>
                         {% endif %}
                     {% endfor %}
-                    {% if friend_list.has_next %}
+                    {% if request_list.has_next %}
                     <li>
-                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ friend_list.next_page_number }}">
+                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ request_list.next_page_number }}">
                         <i class="fas fa-angle-double-right"></i>
                       </a>
                     </li>
@@ -123,7 +120,14 @@ Amigos
 
         {% else %}
             <p></p>
-            <p>Aún tienes amigos.</p>
+            <p>No tienes solicitudes enviadas.</p>
         {% endif %}
+
+        <div class="create">
+            <input type="button" class="btn editbutton"
+                               onclick="location.href='/requests/create';"
+                               value="Crear solicitud"/>
+        </div>
+
     </div>
 {% endblock %}
