@@ -22,8 +22,8 @@ def list_requests_sent(request):
     actor = request.user.actor
 
     try:
-        # Ordenado por Aceptada, Denegada y Pendiente
-        request_list_aux = Request.objects.all().filter(follower=actor).filter(copy=False).order_by('status')
+        # Ordenado por Aceptada, Denegada y Pendiente # Filtramos las que ha enviado el actor NO copia y NO borradas
+        request_list_aux = Request.objects.all().filter(follower=actor, copy=False, deleted=False).order_by('status')
 
     except Exception as e:
 
@@ -57,7 +57,7 @@ def list_requests_received(request):
 
     try:
         # Ordenado por Pendiente, Denegada y Aceptada
-        request_list_aux = Request.objects.all().filter(followed=actor).filter(copy=False).order_by('-status')
+        request_list_aux = Request.objects.all().filter(followed=actor).filter(copy=True).order_by('-status')
 
     except Exception as e:
 
@@ -101,12 +101,13 @@ def create_request(request):
             description = form.cleaned_data["description"]
             followed = form.cleaned_data["followed"]
 
-            # Se comprueba que no sea el mismo usuario, que no sea amigo ya
+            # Se comprueba que no sea el mismo usuario
             if followed == actor:
                 raise PermissionDenied
 
             # Mensaje para el que envia
-            pendingRequest = Request.objects.create(description=description, follower=actor, followed=followed, copy=False)
+            pendingRequest = Request.objects.create(description=description, follower=actor, followed=followed,
+                                                    copy=False)
 
             # Copia del mensaje para el receptor
             requestCopy = Request.objects.create(description=description, follower=actor, followed=followed, copy=True)
@@ -160,15 +161,15 @@ def accept_request(request, pk):
     # Recupera la solicitud enviada
     pendingRequest = get_object_or_404(Request, pk=pk)
 
-    # Recupera la request copia
+    # Recupera la request autentica
     pendingRequestCopy = Request.objects.get(follower=pendingRequest.follower, followed=pendingRequest.followed,
-                                             copy=True)
+                                             copy=False)
 
     # Recupera el actor logueado
     actor = request.user.actor
 
-    # Comprueba que sea su solicitud y que es copia
-    if pendingRequest.followed != actor or pendingRequest.copy or pendingRequest.status != 'Pending':
+    # Comprueba que sea su solicitud, que es copia y que está pendiente
+    if pendingRequest.followed != actor or not pendingRequest.copy or pendingRequest.status != 'Pendiente':
         raise PermissionDenied
 
     # Setea el estado a Aceptada en la solicitud enviada
@@ -189,15 +190,15 @@ def reject_request(request, pk):
     # Recupera la solicitud enviada
     pendingRequest = get_object_or_404(Request, pk=pk)
 
-    # Recupera la request copia
+    # Recupera la request autentica
     pendingRequestCopy = Request.objects.get(follower=pendingRequest.follower, followed=pendingRequest.followed,
-                                             copy=True)
+                                             copy=False)
 
     # Recupera el actor logueado
     actor = request.user.actor
 
     # Comprueba que sea su solicitud, que sea copia y que esté en Pendiente
-    if pendingRequest.followed != actor or pendingRequest.copy or pendingRequest.status != 'Pending':
+    if pendingRequest.followed != actor or not pendingRequest.copy or pendingRequest.status != 'Pendiente':
         raise PermissionDenied
 
     # Setea el estado a Rechazada en la solicitud enviada
@@ -209,3 +210,74 @@ def reject_request(request, pk):
     pendingRequestCopy.save()
 
     return HttpResponseRedirect('/requests/listReceived')
+
+
+# BORRAR PETICIONES ENVIADAS (solo no las mostramos)
+@login_required(login_url='/login/')
+def delete_request_sent(request, pk):
+    requestSent = get_object_or_404(Request, pk=pk)
+
+    actor = request.user.actor
+
+    # Comprueba que sea su solicitud enviada y que no es copia
+    if requestSent.follower != actor or requestSent.copy:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        # Si aun está la solicitud pendiente y quiere cancelarla
+        if requestSent.status == 'Pendiente':
+            # Recupera la request copia para borrarla
+            requestSentCopy = Request.objects.get(follower=requestSent.follower, followed=requestSent.followed,
+                                                  copy=True)
+
+            requestSent.delete()
+            requestSentCopy.delete()
+
+        else:
+            # No borramos, seteamos el atributo boolean a True
+            requestSent.deleted = True
+            requestSent.save()
+
+        return HttpResponseRedirect('/requests/listSent')
+
+    data = {
+        'actor': actor,
+        'requestSent': requestSent,
+    }
+
+    return render(request, 'delete_request_sent.html', data)
+
+
+# BORRAR PETICIONES RECIBIDAS
+@login_required(login_url='/login/')
+def delete_request_received(request, pk):
+    requestReceived = get_object_or_404(Request, pk=pk)
+
+    actor = request.user.actor
+
+    # Comprueba que sea su solicitud enviada y es copia
+    if requestReceived.followed != actor or not requestReceived.copy:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        # Si esta pendiente la deniega
+        if requestReceived.status == 'Pendiente':
+            # Borramos la copia
+            requestReceived.delete()
+            # Recuperamos la autentica y la seteamos a Denegada
+            requestReceivedCopy = Request.objects.get(follower=requestReceived.follower, followed=requestReceived.followed,
+                                                      copy=False)
+            requestReceivedCopy.status = Request.StatusType[2][0]
+            requestReceivedCopy.save()
+        else:
+            # Borramos la copia
+            requestReceived.delete()
+
+        return HttpResponseRedirect('/requests/listReceived')
+
+    data = {
+        'actor': actor,
+        'requestReceived': requestReceived,
+    }
+
+    return render(request, 'delete_request_received.html', data)

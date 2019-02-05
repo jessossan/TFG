@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+
+<!-- CONTENIDO -->
+{% block content %}
+
+    <h2>{{ titulo }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <br/>
+            <div class="col-md-12">
+
+                <!-- Formulario Borrado -->
+                <form id="borrar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
+                    {% csrf_token %}
+                    <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
+                    <br>
+                    {% if requestSent.deleted %}
+                        <h3>¿Está seguro que desea eliminar (solo para ti) la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>
+                    {% else %}
+                        <h3>¿Está seguro que desea cancelar la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>
+                    {% endif %}
+                    <br>
+                    <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                    <a class="btn cancelbutton" href="/requests/listSent">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% endblock %}

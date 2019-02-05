@@ -21,4 +21,10 @@ urlpatterns = [
     # Rechazar solicitud
     path('reject/<int:pk>', views.reject_request, name='reject_request'),
 
+    # Borrar solicitud enviada
+    path('deleteSent/<int:pk>', views.delete_request_sent, name='delete_request_sent'),
+
+    # Borrar solicitud recibida
+    path('deleteReceived/<int:pk>', views.delete_request_received, name='delete_request_received'),
+
 ]

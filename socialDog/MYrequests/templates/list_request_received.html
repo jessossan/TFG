@@ -46,6 +46,8 @@ Solicitudes
                         <th>Estado</th>
                         <!-- Ver perfil-->
                         <th></th>
+                        <!--Borrar-->
+                        <th></th>
                     </tr>
                   </thead>
 
@@ -70,6 +72,9 @@ Solicitudes
                                 {% else %}
                                     <a href="">ver perfil</a>
                                 {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{% url 'delete_request_received' request.pk %}">Borrar</a>
                             </td>
                         </tr>
                     {% endfor %}
