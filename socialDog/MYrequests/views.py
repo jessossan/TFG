@@ -123,6 +123,7 @@ def create_request(request):
 
         # Datos del modelo (vista)
 
+    # TODO las request denegadas si que se pueden volver a solicitar despues
     # Recupera todas las peticiones que ha enviado el actor
     actorFollower = Request.objects.filter(follower=actor, copy=False)
 
@@ -228,7 +229,7 @@ def delete_request_sent(request, pk):
         if requestSent.status == 'Pendiente':
             # Recupera la request copia para borrarla
             requestSentCopy = Request.objects.get(follower=requestSent.follower, followed=requestSent.followed,
-                                                  copy=True)
+                                                  copy=True, status='Pendiente')
 
             requestSent.delete()
             requestSentCopy.delete()
@@ -266,7 +267,7 @@ def delete_request_received(request, pk):
             requestReceived.delete()
             # Recuperamos la autentica y la seteamos a Denegada
             requestReceivedCopy = Request.objects.get(follower=requestReceived.follower, followed=requestReceived.followed,
-                                                      copy=False)
+                                                      copy=False, status='Pendiente')
             requestReceivedCopy.status = Request.StatusType[2][0]
             requestReceivedCopy.save()
         else:
@@ -337,8 +338,6 @@ def send_request(request, pk):
     if isFriend:
         messages.error(request, "Ya es su amigo, vuelva atrás y recargue la página")
         raise PermissionDenied
-
-    # TODO COMPROBAR QUE NO TIENE UNA REQUEST ENVIADA YA
 
     # Recupera las peticiones que ha enviado a ese actor
     reqSentToActor = Request.objects.filter(follower=actor, followed=followed, copy=False)
