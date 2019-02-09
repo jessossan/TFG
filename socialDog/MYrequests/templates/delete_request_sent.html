@@ -16,7 +16,7 @@
                     {% csrf_token %}
                     <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
                     <br>
-                    {% if requestSent.deleted %}
+                    {% if requestSent.status != 'Pendiente' %}
                         <h3>¿Está seguro que desea eliminar (solo para ti) la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>
                     {% else %}
                         <h3>¿Está seguro que desea cancelar la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>

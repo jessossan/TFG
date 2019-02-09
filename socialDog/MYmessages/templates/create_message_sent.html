@@ -38,9 +38,13 @@
                                 <label for="recipient" class="control-label">Enviar a</label>
                                 <select class="form-control" id="recipient" name="recipient" required>
                                     <option value="" selected="selected">Seleccione usuario</option>
-                                    {% for actor in actors %}
-
-                                        <option value="{{ actor.userAccount.id }}"> {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }}</option>
+                                    {% for request in friends %}
+                                        <!-- Recibe lista de solicitudes, coge el follower o followed que no es el actor logueado -->
+                                        {% if request.follower != actor %}
+                                            <option value="{{ request.follower.userAccount.id }}"> {{ request.follower.userAccount.first_name }} {{ request.follower.userAccount.last_name }}</option>
+                                        {% elif request.followed != actor %}
+                                            <option value="{{ request.followed.userAccount.id }}"> {{ request.followed.userAccount.first_name }} {{ request.followed.userAccount.last_name }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </div>

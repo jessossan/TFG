@@ -53,13 +53,26 @@ Amigos
                     <tbody>
                     {% for friend in friend_list %}
                         <tr>
-                            <td>{{ friend.userAccount.first_name }}  {{ friend.userAccount.last_name }}</td>
-                            {% if friend.breeder %}
-                                <td>Criador</td>
-                            {% elif friend.association %}
-                                <td>Asociación</td>
-                            {% elif friend.customer %}
-                                <td>Usuario</td>
+                            <!-- Recibe lista de solicitudes, coge el follower si no es el actor logueado -->
+                            {% if friend.follower != actor %}
+                                <td>{{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</td>
+                                {% if friend.follower.breeder %}
+                                    <td>Criador</td>
+                                {% elif friend.follower.association %}
+                                    <td>Asociación</td>
+                                {% elif friend.follower.customer %}
+                                    <td>Usuario</td>
+                                {% endif %}
+                             <!-- Recibe lista de solicitudes, coge  followed si no es el actor logueado -->
+                            {% elif friend.followed != actor %}
+                                <td>{{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</td>
+                                    {% if friend.followed.breeder %}
+                                        <td>Criador</td>
+                                    {% elif friend.followed.association %}
+                                        <td>Asociación</td>
+                                    {% elif friend.followed.customer %}
+                                        <td>Usuario</td>
+                                    {% endif %}
                             {% endif %}
                             <td> <a href="">enviar mensaje</a></td>
                             <td> <a href="">ver perfil</a></td>

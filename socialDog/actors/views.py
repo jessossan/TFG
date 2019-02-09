@@ -5,6 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, HttpRes
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+from MYrequests.models import Request
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
 from actors.forms import EditBreederPass, EditBreederProfile, EditCustomerPass, EditCustomerProfile, \
     EditAssociationProfile, EditAssociationPass
@@ -505,8 +507,20 @@ def delete_association_account(request, pk):
 @login_required(login_url='/login/')
 def list_friends(request):
     try:
-        # TODO: Falta hacer el filtro de amigos
-        friend_list_aux = Actor.objects.all()
+
+        # Recuperamos el actor que esta realizando logueado
+        actor = request.user.actor
+
+        acceptedStatus = Request.StatusType[1][0]
+
+        # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+        actorFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+        # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+        actorFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+        # Unimos ambas listas
+        friend_list_aux = actorFollowers | actorFolloweds
 
     except Exception as e:
 
@@ -527,6 +541,7 @@ def list_friends(request):
         'title': 'Listado de amigos',
         # Controlar la vista para los botones
         'isFriends': True,
+        'actor': actor,
     }
     return render(request, 'list_friend.html', data)
 
@@ -537,8 +552,39 @@ def list_friends(request):
 @login_required(login_url='/login/')
 def list_actors(request):
     try:
-        actor_list_aux = Actor.objects.all()
+        actor = request.user.actor
+        acceptedStatus = Request.StatusType[1][0]
 
+        # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+        requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+        # Inicializa la lista que se va a devolver con todos los actores
+        actor_list_aux = Actor.objects.all().exclude(pk=actor.pk)
+
+        actors = Actor.objects.none()
+        actorsFollower = Actor.objects.none()
+        actorsFollowed = Actor.objects.none()
+
+        # Recupera los actores de las solicitudes enviadas aceptadas
+        for reqFollower in requestFollowers:
+            actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
+
+        # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+        requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+        # Recupera los actores de las solicitudes recibidas aceptadas
+        for reqFollowed in requestFolloweds:
+            actorsFollowed = actorsFollowed | Actor.objects.all().filter(pk=reqFollowed.follower.pk)
+
+        # Lista de amigos del actor logueado
+        actors = actorsFollower | actorsFollowed
+
+        # Recorremos la lista de amigos y lo quitamos de la lista de actores
+        for friend in actors:
+            actor_list_aux = Actor.objects.all().exclude(pk=friend.pk)
+
+        # Excluye el actor logueado
+        actor_list_aux = actor_list_aux.exclude(pk=actor.pk)
     except Exception as e:
 
         actor_list_aux = Actor.objects.none()

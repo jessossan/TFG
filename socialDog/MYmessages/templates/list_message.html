@@ -67,13 +67,32 @@ Mensajes
                         <tr>
                             <td>{{ message.subject }}</td>
                             <td>{{ message.text }}</td>
+
+                            <!-- Si es Mensaje recibido -->
                             {% if message.copy %}
-                            <td> <a href="">{{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}</a> </td>
-                            <td> <a href="{% url 'reply_message_received' message.pk %}">Responder</a> </td>
+                                    <td> <a href="">{{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}</a> </td>
+                                    <td>
+                                        {% for friend in friends %}
+                                        <!--Si el que ha enviado el mensaje sigue siendo amigo, puede responder -->
+                                            {% if friend == message.sender %}
+                                                <a href="{% url 'reply_message_received' message.pk %}">Responder</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                            <!-- Si es Mensaje enviado -->
                             {% else %}
-                            <td> <a href="">{{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}</a> </td>
-                            <td> <a href="{% url 'reply_message_sent' message.pk %}">Volver a responder</a> </td>
+                                    <td> <a href="">{{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}</a> </td>
+                                    <td>
+                                        {% for friend in friends %}
+                                            <!--Si al que ha enviado el mensaje sigue siendo amigo, puede volver a responder -->
+                                            {% if friend == message.recipient %}
+                                                <a href="{% url 'reply_message_sent' message.pk %}">Volver a responder</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
                             {% endif %}
+
+
                             <!-- Si es del creador para  editar -->
                             <td>
                                 {% if received %}
