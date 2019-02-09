@@ -47,8 +47,8 @@ class CreateRequestForm(forms.Form):
                         "Ya existe una solicitud entre ambos, compruebe sus solicitudes recibidas")
 
 
-class ReplyRequestForm(forms.Form):
-    """Formulario respuesta de solicitud de amistad"""
+class SendRequestForm(forms.Form):
+    """Formulario envío de solicitud de amistad"""
 
     # Campos requeridos por la Request
 

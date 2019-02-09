@@ -27,4 +27,7 @@ urlpatterns = [
     # Borrar solicitud recibida
     path('deleteReceived/<int:pk>', views.delete_request_received, name='delete_request_received'),
 
+    # Borrar solicitud recibida
+    path('send/<int:pk>', views.send_request, name='send_request'),
+
 ]

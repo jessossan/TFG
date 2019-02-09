@@ -60,7 +60,7 @@ Usuarios
                             {% elif actor.customer %}
                                 <td>Usuario</td>
                             {% endif %}
-                            <td> <a href="">petición de amistad</a></td>
+                            <td> <a href="{% url 'send_request' actor.pk %}">petición de amistad</a></td>
                             <td> <a href="">ver perfil</a></td>
                         </tr>
                     {% endfor %}

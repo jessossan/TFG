@@ -8,8 +8,8 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-
-from MYrequests.forms import CreateRequestForm
+from django.contrib import messages
+from MYrequests.forms import CreateRequestForm, SendRequestForm
 from MYrequests.models import Request
 from actors.models import Actor
 
@@ -163,7 +163,7 @@ def accept_request(request, pk):
 
     # Recupera la request autentica
     pendingRequestCopy = Request.objects.get(follower=pendingRequest.follower, followed=pendingRequest.followed,
-                                             copy=False)
+                                             copy=False, status='Pendiente')
 
     # Recupera el actor logueado
     actor = request.user.actor
@@ -192,7 +192,7 @@ def reject_request(request, pk):
 
     # Recupera la request autentica
     pendingRequestCopy = Request.objects.get(follower=pendingRequest.follower, followed=pendingRequest.followed,
-                                             copy=False)
+                                             copy=False, status='Pendiente')
 
     # Recupera el actor logueado
     actor = request.user.actor
@@ -281,3 +281,115 @@ def delete_request_received(request, pk):
     }
 
     return render(request, 'delete_request_received.html', data)
+
+
+# ENVIAR PETICIÓN (listado usuarios NO amigos)
+@login_required(login_url='/login/')
+def send_request(request, pk):
+    """
+	Enviar solicitud.
+	"""
+    assert isinstance(request, HttpRequest)
+
+    # Recupera el actor
+    actor = request.user.actor
+
+    # Recupera el actor al que va a enviar la petición
+    followed = get_object_or_404(Actor, pk=pk)
+
+    # Se comprueba que no sea el mismo usuario
+    if followed == actor:
+        raise PermissionDenied
+
+    # COMPROBAR QUE YA ES AMIGO
+    acceptedStatus = Request.StatusType[1][0]
+
+    # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+    requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+    actors = Actor.objects.none()
+    actorsFollower = Actor.objects.none()
+    actorsFollowed = Actor.objects.none()
+
+    # Recupera los actores de las solicitudes enviadas aceptadas
+    for reqFollower in requestFollowers:
+        actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
+
+    # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+    requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+    # Recupera los actores de las solicitudes recibidas aceptadas
+    for reqFollowed in requestFolloweds:
+        actorsFollowed = actorsFollowed | Actor.objects.all().filter(pk=reqFollowed.follower.pk)
+
+    # Lista de amigos del actor logueado
+    actors = actorsFollower | actorsFollowed
+
+    isFriend = False
+
+    # Recorre la lista de amigos
+    for friend in actors:
+        # Si el destinatario esta en su lista de amigos
+        if friend == followed:
+            isFriend = True
+
+    # En el caso de que sea amigo no puede enviar
+    if isFriend:
+        messages.error(request, "Ya es su amigo, vuelva atrás y recargue la página")
+        raise PermissionDenied
+
+    # TODO COMPROBAR QUE NO TIENE UNA REQUEST ENVIADA YA
+
+    # Recupera las peticiones que ha enviado a ese actor
+    reqSentToActor = Request.objects.filter(follower=actor, followed=followed, copy=False)
+
+    # En el caso de que exista una solicitud entre ambos actores, comprueba que no esté pendiente o aceptada
+    for reqSent in reqSentToActor:
+        if reqSent.status == 'Pendiente' or reqSent.status == 'Aceptada':
+            messages.error(request, "Ya existe una solicitud pendiente, vuelva atrás y recargue la página")
+            raise PermissionDenied
+
+    # Recupera todas las peticiones que ha recibido el actor
+    reqReceivedFromActor = Request.objects.filter(follower=followed, followed=actor, copy=False)
+
+    # En el caso de que exista una solicitud entre ambos actores, comprueba que no esté pendiente o aceptada
+    for reqReceived in reqReceivedFromActor:
+        if reqReceived.status == 'Pendiente' or reqReceived.status == 'Aceptada':
+            messages.error(request, "Ya existe una solicitud pendiente, vuelva atrás y recargue la página")
+            raise PermissionDenied
+
+    # Si se ha enviado el Form
+    if (request.method == 'POST'):
+        form = SendRequestForm(request.POST)
+        if (form.is_valid()):
+            # Crea la solicitud
+            description = form.cleaned_data["description"]
+
+
+            # Solicitud para el que envia
+            pendingRequest = Request.objects.create(description=description, follower=actor, followed=followed,
+                                                    copy=False)
+
+            # Copia del mensaje para el receptor
+            requestCopy = Request.objects.create(description=description, follower=actor, followed=followed, copy=True)
+
+            pendingRequest.save()
+            requestCopy.save()
+
+            return HttpResponseRedirect('/requests/listSent')
+
+    # Si se accede al form vía GET o cualquier otro método
+    else:
+        form = SendRequestForm()
+
+        # Datos del modelo (vista)
+
+    data = {
+        'form': form,
+        'title': 'Envía la solicitud',
+        'year': datetime.now().year,
+        # Actor al que se envia la petición
+        'followed': followed,
+    }
+
+    return render(request, 'send_request.html', data)

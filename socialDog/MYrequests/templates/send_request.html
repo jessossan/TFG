@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+<div class="container">
+    <br/>
+    <h2>{{ title }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-md-12">
+
+                <!-- FORMULARIO -->
+                <form id="registro" enctype="multipart/form-data" method="post" class="form" role="form">
+                    {% csrf_token %}
+
+                    <!-- Mensaje -->
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="description" class="control-label">Descripción</label>
+                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3"
+                                      placeholder="Descripción" required>{{ form.description.value|default:'' }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 form-group">
+                            <p><h2>Destinatario: {{ followed.userAccount.first_name }} {{ followed.userAccount.last_name }}</h2></p>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <!-- Tratamiento de Errores -->
+                    {% if form.errors %}
+                        {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+                    <!-- Botones -->
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/"/>
+                            <input type="submit" value="Enviar" class="btn editbutton btn-block"/>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <input type="hidden" name="next" value="/"/>
+                            <input type="button" class="btn cancelbutton btn-block"
+                                   onclick="location.href='/actors/users';" value="Cancelar"/>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}

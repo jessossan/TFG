@@ -552,6 +552,7 @@ def list_friends(request):
 @login_required(login_url='/login/')
 def list_actors(request):
     try:
+        # TODO EXCLUIR LOS ACTORES QUE TIENEN SOLICITUD PENDIENTE YA
         actor = request.user.actor
         acceptedStatus = Request.StatusType[1][0]
 
@@ -559,7 +560,7 @@ def list_actors(request):
         requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
 
         # Inicializa la lista que se va a devolver con todos los actores
-        actor_list_aux = Actor.objects.all().exclude(pk=actor.pk)
+        actor_list_aux = Actor.objects.all()
 
         actors = Actor.objects.none()
         actorsFollower = Actor.objects.none()
@@ -581,7 +582,7 @@ def list_actors(request):
 
         # Recorremos la lista de amigos y lo quitamos de la lista de actores
         for friend in actors:
-            actor_list_aux = Actor.objects.all().exclude(pk=friend.pk)
+            actor_list_aux = actor_list_aux.exclude(pk=friend.pk)
 
         # Excluye el actor logueado
         actor_list_aux = actor_list_aux.exclude(pk=actor.pk)
