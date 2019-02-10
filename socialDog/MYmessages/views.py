@@ -519,3 +519,100 @@ def delete_message_sent(request, pk):
     }
 
     return render(request, 'delete_message_sent.html', data)
+
+
+# ENVIAR MENSAJE
+# RESPONDER MENSAJE RECIBIDO
+@login_required(login_url='/login/')
+def send_message(request, pk):
+    """
+	Responder mensaje recibido.
+	"""
+    assert isinstance(request, HttpRequest)
+
+    # Recupera el actor
+    actor = request.user.actor
+
+    # Recupera el destinatario del mensaje
+    recipient = get_object_or_404(Actor, pk=pk)
+
+    acceptedStatus = Request.StatusType[1][0]
+
+    # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+    requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+    actors = Actor.objects.none()
+    actorsFollower = Actor.objects.none()
+    actorsFollowed = Actor.objects.none()
+
+    # Recupera los actores de las solicitudes enviadas aceptadas
+    for reqFollower in requestFollowers:
+        actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
+
+    # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+    requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+    # Recupera los actores de las solicitudes recibidas aceptadas
+    for reqFollowed in requestFolloweds:
+        actorsFollowed = actorsFollowed | Actor.objects.all().filter(pk=reqFollowed.follower.pk)
+
+    # Lista de amigos del actor logueado
+    actors = actorsFollower | actorsFollowed
+
+    isFriend = False
+
+    # Recorre la lista de amigos
+    for friend in actors:
+        # Si el destinatario esta en su lista de amigos
+        if friend == recipient:
+            isFriend = True
+
+    # Comprobación de que no se responda a si mismo
+    if recipient == actor:
+        raise PermissionDenied
+
+    # Si el destinatario no está en la lista de amigos
+    if (not isFriend):
+        messages.error(request, "No es su amigo, vuelva atrás y recargue la página")
+        raise PermissionDenied
+
+    # Si se ha enviado el Form
+    if (request.method == 'POST'):
+        form = ReplyMessageForm(request.POST)
+        if (form.is_valid()):
+            # Crea el mensaje
+            subject = form.cleaned_data["subject"]
+            text = form.cleaned_data["text"]
+
+            # Controlar que no se envie mensaje a sí mismo
+            if recipient == actor:
+                return HttpResponseForbidden()
+
+            # Mensaje para el que envia
+            message = Message.objects.create(subject=subject, copy=False, text=text, sender=actor,
+                                             recipient=recipient)
+
+            # Mensaje para el que recibe (se duplica el mensaje para que no afecte al borrado)
+            messageCopy = Message.objects.create(subject=subject, copy=True, text=text, sender=actor,
+                                                 recipient=recipient)
+
+            message.save()
+            messageCopy.save()
+
+            return HttpResponseRedirect('/messages/sent')
+
+    # Si se accede al form vía GET o cualquier otro método
+    else:
+        form = ReplyMessageForm()
+
+        # Datos del modelo (vista)
+
+    data = {
+        'form': form,
+        'title': 'Crea el mensaje',
+        'year': datetime.now().year,
+        'recipient': recipient,
+        # Recuperar el asunto del mensaje contestado
+    }
+
+    return render(request, 'send_message.html', data)

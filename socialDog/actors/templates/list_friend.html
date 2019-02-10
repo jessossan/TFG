@@ -74,7 +74,12 @@ Amigos
                                         <td>Usuario</td>
                                     {% endif %}
                             {% endif %}
-                            <td> <a href="">enviar mensaje</a></td>
+
+                            {% if friend.follower != actor %}
+                                <td> <a href="{% url 'send_message' friend.follower.pk %}">enviar mensaje</a></td>
+                            {% elif friend.followed != actor %}
+                                <td> <a href="{% url 'send_message' friend.followed.pk %}">enviar mensaje</a></td>
+                            {% endif %}
                             <td> <a href="">ver perfil</a></td>
                             <td> <a href="">borrar amigo</a></td>
                         </tr>

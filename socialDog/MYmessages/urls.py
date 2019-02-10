@@ -28,4 +28,7 @@ urlpatterns = [
     # Eliminar mensaje enviado
     path('deleteSent/<int:pk>', views.delete_message_sent, name='delete_message_sent'),
 
+    # Enviar mensaje
+    path('send/<int:pk>', views.send_message, name='send_message'),
+
 ]

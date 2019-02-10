@@ -123,7 +123,6 @@ def create_request(request):
 
         # Datos del modelo (vista)
 
-    # TODO las request denegadas si que se pueden volver a solicitar despues
     # Recupera todas las peticiones pendientes ha enviado el actor
     actorFollower = Request.objects.filter(follower=actor, copy=False, status='Pendiente')
 
