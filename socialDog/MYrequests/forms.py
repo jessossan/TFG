@@ -28,11 +28,17 @@ class CreateRequestForm(forms.Form):
             # Recuperamos el actor al que está intentando seguir
             followed = self.cleaned_data["followed"]
 
-            # Recupera todas las peticiones que ha enviado el actor(seguidor)
-            actorFollower = Request.objects.filter(follower=actor, copy=False)
+            # Recupera todas las peticiones pendientes que ha enviado el actor(seguidor)
+            actorFollower = Request.objects.filter(follower=actor, copy=False, status='Pendiente')
 
-            # Recupera todas las peticiones que ha recibido el actor
-            actorFollowed = Request.objects.filter(followed=actor, copy=False)
+            # Recupera todas las peticiones aceptadas que ha enviado el actor(seguidor)
+            actorFollower = actorFollower | Request.objects.filter(follower=actor, copy=False, status='Aceptada')
+
+            # Recupera todas las peticiones pendientes que ha recibido el actor
+            actorFollowed = Request.objects.filter(followed=actor, copy=False, status='Pendiente')
+
+            # Recupera todas las peticiones aceptadas que ha recibido el actor
+            actorFollowed = actorFollowed | Request.objects.filter(followed=actor, copy=False, status='Aceptada')
 
             # Comprueba si el actor logueado ha enviado una peticion ya a ese followed
             for requestSent in actorFollower:

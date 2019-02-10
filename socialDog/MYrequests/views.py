@@ -124,11 +124,17 @@ def create_request(request):
         # Datos del modelo (vista)
 
     # TODO las request denegadas si que se pueden volver a solicitar despues
-    # Recupera todas las peticiones que ha enviado el actor
-    actorFollower = Request.objects.filter(follower=actor, copy=False)
+    # Recupera todas las peticiones pendientes ha enviado el actor
+    actorFollower = Request.objects.filter(follower=actor, copy=False, status='Pendiente')
 
-    # Recupera todas las peticiones que ha recibido el actor
-    actorFollowed = Request.objects.filter(followed=actor, copy=False)
+    # Recupera todas las peticiones aceptadas ha enviado el actor
+    actorFollower = actorFollower | Request.objects.filter(follower=actor, copy=False, status='Aceptada')
+
+    # Recupera todas las peticiones pendientes que ha recibido el actor
+    actorFollowed = Request.objects.filter(followed=actor, copy=False, status='Pendiente')
+
+    # Recupera todas las peticiones aceptadas que ha recibido el actor
+    actorFollowed = actorFollowed | Request.objects.filter(followed=actor, copy=False, status='Aceptada')
 
     actors = Actor.objects.all()
 
@@ -138,11 +144,11 @@ def create_request(request):
             actors = actors.exclude(pk=requestSent.followed.pk)
 
     # Excluye a los actores de los que ha recibido una petición
-    for requestSent in actorFollowed:
-        if requestSent.followed == actor:
-            actors = actors.exclude(pk=requestSent.follower.pk)
+    for requestReceived in actorFollowed:
+        if requestReceived.followed == actor:
+            actors = actors.exclude(pk=requestReceived.follower.pk)
 
-    # Excluye al actor que esta creando el mensaje
+    # Excluye al actor que esta creando la solicitud
     actors = actors.exclude(pk=actor.pk)
 
     data = {

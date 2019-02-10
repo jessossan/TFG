@@ -552,7 +552,6 @@ def list_friends(request):
 @login_required(login_url='/login/')
 def list_actors(request):
     try:
-        # TODO EXCLUIR LOS ACTORES QUE TIENEN SOLICITUD PENDIENTE YA
         actor = request.user.actor
         acceptedStatus = Request.StatusType[1][0]
 
@@ -566,12 +565,33 @@ def list_actors(request):
         actorsFollower = Actor.objects.none()
         actorsFollowed = Actor.objects.none()
 
+        actorsFollowerPending = Actor.objects.none()
+        actorsFollowedPending = Actor.objects.none()
+
         # Recupera los actores de las solicitudes enviadas aceptadas
         for reqFollower in requestFollowers:
             actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
 
         # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
         requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+        # Recupera todas las peticiones pendientes que ha recibido el actor
+        requestReceivedPending = Request.objects.filter(followed=actor, copy=False, status='Pendiente')
+
+        # Recupera los actores con solicitudes pendientes
+        for reqRecPending in requestReceivedPending:
+            actorsFollowerPending = actorsFollowerPending | Actor.objects.all().filter(pk=reqRecPending.follower.pk)
+
+        # Recupera todas las peticiones pendientes que ha enviado el actor
+        requestSentPending = Request.objects.filter(follower=actor, copy=False, status='Pendiente')
+
+        # Recupera los actores con solicitudes pendientes
+        for reqSentPending in requestSentPending:
+            actorsFollowedPending = actorsFollowedPending | Actor.objects.all().filter(pk=reqSentPending.followed.pk)
+
+        actorsPending = actorsFollowerPending | actorsFollowedPending
+        # Elimina duplicados
+        actorsPending = actorsPending.distinct()
 
         # Recupera los actores de las solicitudes recibidas aceptadas
         for reqFollowed in requestFolloweds:
@@ -583,6 +603,10 @@ def list_actors(request):
         # Recorremos la lista de amigos y lo quitamos de la lista de actores
         for friend in actors:
             actor_list_aux = actor_list_aux.exclude(pk=friend.pk)
+
+        # Excluye la lista de actores con solicitudes pendientes
+        for actPend in actorsPending:
+            actor_list_aux = actor_list_aux.exclude(pk=actPend.pk)
 
         # Excluye el actor logueado
         actor_list_aux = actor_list_aux.exclude(pk=actor.pk)
@@ -605,10 +629,13 @@ def list_actors(request):
         'title': 'Listado de usuarios',
         # Controlar la vista para los botones
         'isAllUsers': True,
+        'actorsPending': actorsPending,
     }
     return render(request, 'list_actor.html', data)
 
+
 """LISTADO DE ASOCIACIONES"""
+
 
 def list_associations(request):
     try:
@@ -639,6 +666,7 @@ def list_associations(request):
 
 
 """LISTADO DE CRIADORES"""
+
 
 def list_breeders(request):
     try:
