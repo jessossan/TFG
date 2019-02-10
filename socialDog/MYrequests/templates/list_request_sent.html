@@ -18,14 +18,20 @@ Solicitudes
                                value="Solicitudes recibidas"/>&nbsp
         <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/requests/listSent';"
-                               value="Solicitudes enviadas"/>
+                               value="Solicitudes enviadas"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href=location.href='/actors/friends';"
+                               value="Ir a amigos"/>
     {% else %}
         <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/requests/listReceived';"
                                value="Solicitudes recibidas"/>&nbsp
         <input type="button"  class="btn editbutton"
                                onclick="location.href=location.href='/requests/listSent';"
-                               value="Solicitudes enviadas"/>
+                               value="Solicitudes enviadas"/>&nbsp
+        <input type="button"  class="btn editbutton"
+                               onclick="location.href=location.href='/actors/friends';"
+                               value="Ir a amigos"/>
     {% endif %}
 </div>
         </br>

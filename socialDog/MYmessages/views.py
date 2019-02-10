@@ -522,7 +522,6 @@ def delete_message_sent(request, pk):
 
 
 # ENVIAR MENSAJE
-# RESPONDER MENSAJE RECIBIDO
 @login_required(login_url='/login/')
 def send_message(request, pk):
     """

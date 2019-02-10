@@ -397,3 +397,50 @@ def send_request(request, pk):
     }
 
     return render(request, 'send_request.html', data)
+
+
+# BORRAR AMIGO
+@login_required(login_url='/login/')
+def delete_friend(request, pk):
+    # Amigo que se va a borrar
+    followed = get_object_or_404(Actor, pk=pk)
+
+    actor = request.user.actor
+
+    # Comprueba que es su amigo
+    acceptedStatus = Request.StatusType[1][0]
+
+    # Recupera las solicitudes enviadas por el actor al amigo aceptadas
+    requestSentAccepted = Request.objects.all().filter(follower=actor, followed=followed, status=acceptedStatus)
+
+    # Recupera las solicitudes recibidas por el amigo al actor aceptadas
+    requestReceivedAccepted = Request.objects.all().filter(follower=followed, followed=actor, status=acceptedStatus)
+
+    # Todas las solicitudes entre ambos actores
+    requestBetweenActors = requestSentAccepted | requestReceivedAccepted
+
+    # Si la lista no está vacia son amigos
+    if (not requestBetweenActors):
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        # Recupera las solicitudes enviadas por el actor al amigo
+        requestSent = Request.objects.all().filter(follower=actor, followed=followed)
+
+        # Recupera las solicitudes recibidas por el amigo al actor aceptadas
+        requestReceived = Request.objects.all().filter(follower=followed, followed=actor)
+
+        allRequests = requestSent | requestReceived
+
+        # Recorre todas las solicitudes entre ambos actores y las borra
+        for reqDelete in allRequests:
+            reqDelete.delete()
+
+        return HttpResponseRedirect('/actors/friends')
+
+    data = {
+        'actor': actor,
+        'friend': followed,
+    }
+
+    return render(request, 'delete_friend.html', data)

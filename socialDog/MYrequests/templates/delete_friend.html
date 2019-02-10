@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+<!-- CONTENIDO -->
+{% block content %}
+
+    <h2>{{ titulo }}</h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <br/>
+            <div class="col-md-12">
+
+                <!-- Formulario Borrado -->
+                <form id="borrar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
+                    {% csrf_token %}
+                    <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
+                    <br>
+                        <h3>¿Está seguro que desea dejar de ser amigo de  <b>{{ friend.userAccount.first_name }} {{ friend.userAccount.last_name }}</b>?</h3>
+                    <br>
+                    <button class="btn btn-danger" type="submit">Dejar de ser amigo</button>
+                    <a class="btn cancelbutton" href="/actors/friends">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% endblock %}
