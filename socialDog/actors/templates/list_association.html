@@ -35,10 +35,25 @@ Asociaciones
                             <td>{{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</td>
                             <td>{{ association.address }}</td>
                             <td>{{ association.province }}</td>
-                            <td> <button class="btn btn-info" onclick="location.href='/actors/profile/{{ association.pk }}';">
-                                    <span class="fa fa-user"></span>
-                                    Ver perfil
-                                </button></td>
+                            {% if not user.is_authenticated %}
+                                    {% if association.private %}
+                                        <td></td>
+                                    {% else %}
+                                        <td>
+                                            <button class="btn btn-info" onclick="location.href='/web/profile/{{ association.pk }}';">
+                                                <span class="fa fa-user"></span>
+                                                Ver perfil
+                                            </button>
+                                        </td>
+                                    {% endif %}
+                            {% else %}
+                                 <td>
+                                    <button class="btn btn-info" onclick="location.href='/actors/profile/{{ association.pk }}';">
+                                        <span class="fa fa-user"></span>
+                                        Ver perfil
+                                    </button>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -9,4 +9,7 @@ urlpatterns = [
     # NOTICIAS
     path('news', views.list_news, name='list_news'),
 
+    # Perfil de actor usuario no acutenticado
+    path('profile/<int:pk>', views.profile, name='profile'),
+
 ]

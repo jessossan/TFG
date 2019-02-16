@@ -35,12 +35,25 @@ Criadores
                             <td>{{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}</td>
                             <td>{{ breeder.address }}</td>
                             <td>{{ breeder.province }}</td>
-                            <td>
-                                <button class="btn btn-info" onclick="location.href='/actors/profile/{{ breeder.pk }}';">
-                                    <span class="fa fa-user"></span>
-                                    Ver perfil
-                                </button>
-                            </td>
+                            {% if not user.is_authenticated %}
+                                    {% if breeder.private %}
+                                        <td></td>
+                                    {% else %}
+                                        <td>
+                                            <button class="btn btn-info" onclick="location.href='/web/profile/{{ breeder.pk }}';">
+                                                <span class="fa fa-user"></span>
+                                                Ver perfil
+                                            </button>
+                                        </td>
+                                    {% endif %}
+                            {% else %}
+                                 <td>
+                                    <button class="btn btn-info" onclick="location.href='/actors/profile/{{ breeder.pk }}';">
+                                        <span class="fa fa-user"></span>
+                                        Ver perfil
+                                    </button>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

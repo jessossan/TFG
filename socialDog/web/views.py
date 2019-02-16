@@ -2,12 +2,12 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime, date
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
 
 # Create your views here.
-from actors.models import Customer, Association, Breeder
+from actors.models import Customer, Association, Breeder, Actor
 from breeds.models import Breed
 from events.models import Event
 from news.models import News
@@ -323,7 +323,7 @@ def list_events(request):
     data = {
         'event_list': events_list,
         'title': 'Listado de eventos',
-        #Comprobación para controlar el color de boton de la vista
+        # Comprobación para controlar el color de boton de la vista
         'isEvent': True,
 
     }
@@ -345,3 +345,30 @@ def list_news(request):
 
     }
     return render(request, 'welcome/news.html', data)
+
+
+## PERFIL USUARIO NO AUTENTICADO
+
+
+def profile(request, pk):
+    actor = get_object_or_404(Actor, pk=pk)
+
+    try:
+        if actor.breeder:
+            actor = get_object_or_404(Breeder, pk=pk)
+            if actor.private:
+                return HttpResponseRedirect('/login/')
+    except:
+        try:
+            if actor.association:
+                actor = get_object_or_404(Association, pk=pk)
+                if actor.private:
+                    return HttpResponseRedirect('/login/')
+        except:
+            return HttpResponseForbidden()
+
+    data = {
+        'actor': actor,
+        'title': 'Perfil del actor',
+    }
+    return render(request, 'web/profile.html', data)
