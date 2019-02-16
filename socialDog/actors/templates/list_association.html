@@ -24,8 +24,6 @@ Asociaciones
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Provincia</th>
-                        <th>Comentarios</th>
-                        <th>Valoraciones</th>
                         <!-- Ver perfil-->
                         <th></th>
                     </tr>
@@ -37,8 +35,6 @@ Asociaciones
                             <td>{{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</td>
                             <td>{{ association.address }}</td>
                             <td>{{ association.province }}</td>
-                            <td></td>
-                            <td></td>
                             <td> <a href="">ver perfil</a></td>
                         </tr>
                     {% endfor %}

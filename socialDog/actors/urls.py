@@ -42,4 +42,7 @@ urlpatterns = [
     # Listado de criadores
     path('breeders', views.list_breeders, name='list_breeders'),
 
+    # Perfil del actor
+    path('profile/<int:pk>', views.show_profile, name='show_profile'),
+
 ]

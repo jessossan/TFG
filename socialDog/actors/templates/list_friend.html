@@ -47,7 +47,7 @@ Amigos
                     <thead class="thead-primary">
                     <tr>
                         <th>Nombre</th>
-                        <th>Usuario</th>
+                        <!--<th>Usuario</th> -->
                         <!-- Enviar mensaje-->
                         <th></th>
                         <!-- Ver perfil-->
@@ -63,23 +63,23 @@ Amigos
                             <!-- Recibe lista de solicitudes, coge el follower si no es el actor logueado -->
                             {% if friend.follower != actor %}
                                 <td>{{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</td>
-                                {% if friend.follower.breeder %}
-                                    <td>Criador</td>
-                                {% elif friend.follower.association %}
-                                    <td>Asociación</td>
-                                {% elif friend.follower.customer %}
-                                    <td>Usuario</td>
-                                {% endif %}
+                                    <!--{% if friend.follower.breeder %}
+                                        <td>Criador</td>
+                                    {% elif friend.follower.association %}
+                                        <td>Asociación</td>
+                                    {% elif friend.follower.customer %}
+                                        <td>Usuario</td>
+                                    {% endif %}-->
                              <!-- Recibe lista de solicitudes, coge  followed si no es el actor logueado -->
                             {% elif friend.followed != actor %}
                                 <td>{{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</td>
-                                    {% if friend.followed.breeder %}
+                                     <!--{% if friend.followed.breeder %}
                                         <td>Criador</td>
                                     {% elif friend.followed.association %}
                                         <td>Asociación</td>
                                     {% elif friend.followed.customer %}
                                         <td>Usuario</td>
-                                    {% endif %}
+                                    {% endif %}-->
                             {% endif %}
 
                             {% if friend.follower != actor %}

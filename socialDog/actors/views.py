@@ -694,3 +694,26 @@ def list_breeders(request):
         'title': 'Listado de criadores',
     }
     return render(request, 'list_breeder.html', data)
+
+
+## MOSTRAR PERFIL DEL ACTOR
+
+
+@login_required(login_url='/login/')
+def show_profile(request, pk):
+    actor = get_object_or_404(Actor, pk=pk)
+
+    if actor.breeder:
+        actor = get_object_or_404(Breeder, pk=pk)
+
+    elif actor.association:
+        actor = get_object_or_404(Association, pk=pk)
+
+    else:
+        return HttpResponseForbidden()
+
+    data = {
+        'actor': actor,
+        'title': 'Perfil del criador',
+    }
+    return render(request, 'show_profile.html', data)

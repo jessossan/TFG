@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Perfil
+{% endblock %}
+{% block content %}
+
+<!------ Include the above in your HEAD tag ---------->
+<div>
+    </br>
+    	 <div class="well profile">
+            <div class="col-sm-12" align="center">
+                <div class="col-xs-12 col-sm-8">
+                    <img src="{{ actor.photo.url }}" alt="Actor photo" width="300px" height="300px">
+                         <h2>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</h2>
+
+                <div class="col-sm-5 text-left">
+                        <p><strong>Centro: </strong> {{ actor.centerName }} </p>
+                        <p><strong>Horario: </strong> De {{ actor.opening|time:'H' }}:{{ actor.opening|time:'i' }}  a {{ actor.closing|time:'H' }}:{{ breeder.closing|time:'i' }}</p>
+                        {% if breeder.notes %}
+                            <p><i>{{ actor.notes }}</i></p>
+                        {% endif %}
+                        <p><strong>Dirección: </strong> {{ actor.address }} </p>
+                        <p><strong>Contacto: </strong> {{ actor.userAccount.email }}</p>
+                        <p><strong>Tlf: </strong> +34 {{ actor.phone }}</p>
+                        <p align="center"><strong> {{ actor.province }} - C.P. {{ actor.postalCode }}</strong></p>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-2 text-center">
+                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle" >
+                        </span>Amistad
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-2 text-center">
+                    <button class="btn btn-success btn-block"><span class="fa fa-envelope pull-right" >
+                        </span>Mensaje
+                    </button>
+                </div>
+            </div>
+
+
+            </div>
+
+</div>
+{% endblock %}

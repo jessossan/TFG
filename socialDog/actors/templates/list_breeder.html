@@ -24,8 +24,6 @@ Criadores
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Provincia</th>
-                        <th>Comentarios</th>
-                        <th>Valoraciones</th>
                         <!-- Ver perfil-->
                         <th></th>
                     </tr>
@@ -37,9 +35,12 @@ Criadores
                             <td>{{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}</td>
                             <td>{{ breeder.address }}</td>
                             <td>{{ breeder.province }}</td>
-                            <td></td>
-                            <td></td>
-                            <td> <a href="">ver perfil</a></td>
+                            <td>
+                                <button class="btn btn-info" onclick="location.href='/actors/profile/{{ breeder.pk }}';">
+                                    <span class="fa fa-user"></span>
+                                    Ver perfil
+                                </button>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

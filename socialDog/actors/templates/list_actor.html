@@ -47,7 +47,7 @@ Usuarios
                     <thead class="thead-primary">
                     <tr>
                         <th>Nombre</th>
-                        <th>Usuario</th>
+                       <!-- <th>Usuario</th> -->
                         <!-- Enviar petición de amistad-->
                         <th></th>
                         <!-- Ver perfil-->
@@ -59,13 +59,13 @@ Usuarios
                     {% for actor in actor_list %}
                         <tr>
                             <td>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</td>
-                            {% if actor.breeder %}
-                                <td>Criador</td>
-                            {% elif actor.association %}
-                                <td>Asociación</td>
-                            {% elif actor.customer %}
-                                <td>Usuario</td>
-                            {% endif %}
+                                <!--{% if actor.breeder %}
+                                    <td>Criador</td>
+                                {% elif actor.association %}
+                                    <td>Asociación</td>
+                                {% elif actor.customer %}
+                                    <td>Usuario</td>
+                                {% endif %} -->
                             <td> <a href="{% url 'send_request' actor.pk %}">petición de amistad</a></td>
                             <td> <a href="">ver perfil</a></td>
                         </tr>
