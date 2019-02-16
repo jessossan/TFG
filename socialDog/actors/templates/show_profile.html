@@ -4,7 +4,6 @@ Perfil
 {% endblock %}
 {% block content %}
 
-<!------ Include the above in your HEAD tag ---------->
 <div>
     </br>
     	 <div class="well profile">
@@ -15,8 +14,8 @@ Perfil
 
                 <div class="col-sm-5 text-left">
                         <p><strong>Centro: </strong> {{ actor.centerName }} </p>
-                        <p><strong>Horario: </strong> De {{ actor.opening|time:'H' }}:{{ actor.opening|time:'i' }}  a {{ actor.closing|time:'H' }}:{{ breeder.closing|time:'i' }}</p>
-                        {% if breeder.notes %}
+                        <p><strong>Horario: </strong> De {{ actor.opening|time:'H' }}:{{ actor.opening|time:'i' }}  a {{ actor.closing|time:'H' }}:{{ actor.closing|time:'i' }}</p>
+                        {% if actor.notes %}
                             <p><i>{{ actor.notes }}</i></p>
                         {% endif %}
                         <p><strong>Dirección: </strong> {{ actor.address }} </p>

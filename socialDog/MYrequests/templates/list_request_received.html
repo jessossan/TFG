@@ -73,10 +73,11 @@ Solicitudes
                                 {% endif %}
                             </td>
                             <td>
-                                {% if request.follower.customer %}
-                                    Usuario
-                                {% else %}
-                                    <a href="">ver perfil</a>
+                                {% if not request.follower.customer %}
+                                    <button class="btn btn-info" onclick="location.href='/actors/profile/{{ request.follower.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            Ver perfil
+                                        </button>
                                 {% endif %}
                             </td>
                             <td>

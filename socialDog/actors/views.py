@@ -703,14 +703,15 @@ def list_breeders(request):
 def show_profile(request, pk):
     actor = get_object_or_404(Actor, pk=pk)
 
-    if actor.breeder:
-        actor = get_object_or_404(Breeder, pk=pk)
-
-    elif actor.association:
-        actor = get_object_or_404(Association, pk=pk)
-
-    else:
-        return HttpResponseForbidden()
+    try:
+        if actor.breeder:
+            actor = get_object_or_404(Breeder, pk=pk)
+    except:
+        try:
+            if actor.association:
+                actor = get_object_or_404(Association, pk=pk)
+        except:
+                return HttpResponseForbidden()
 
     data = {
         'actor': actor,

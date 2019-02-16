@@ -67,7 +67,14 @@ Usuarios
                                     <td>Usuario</td>
                                 {% endif %} -->
                             <td> <a href="{% url 'send_request' actor.pk %}">petición de amistad</a></td>
-                            <td> <a href="">ver perfil</a></td>
+                            <td>
+                                {% if not actor.customer %}
+                                    <button class="btn btn-info" onclick="location.href='/actors/profile/{{ actor.pk }}';">
+                                        <span class="fa fa-user"></span>
+                                        Ver perfil
+                                    </button>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
