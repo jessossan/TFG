@@ -70,23 +70,39 @@ Mensajes
 
                             <!-- Si es Mensaje recibido -->
                             {% if message.copy %}
-                                    <td> <a href="">{{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}</a> </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ message.sender.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}
+                                        </button>
+                                    </td>
                                     <td>
                                         {% for friend in friends %}
                                         <!--Si el que ha enviado el mensaje sigue siendo amigo, puede responder -->
                                             {% if friend == message.sender %}
-                                                <a href="{% url 'reply_message_received' message.pk %}">Responder</a>
+                                                <button class="btn btn-success" onclick="location.href='/messages/replyReceived/{{  message.pk }}';">
+                                                    <span class="fa fa-envelope pull-right" >
+                                                    </span>Responder
+                                                </button>
                                             {% endif %}
                                         {% endfor %}
                                     </td>
                             <!-- Si es Mensaje enviado -->
                             {% else %}
-                                    <td> <a href="">{{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}</a> </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{  message.recipient.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}
+                                        </button>
+                                    </td>
                                     <td>
                                         {% for friend in friends %}
                                             <!--Si al que ha enviado el mensaje sigue siendo amigo, puede volver a responder -->
                                             {% if friend == message.recipient %}
-                                                <a href="{% url 'reply_message_sent' message.pk %}">Volver a responder</a>
+                                                <button class="btn btn-success" onclick="location.href='/messages/replySender/{{  message.pk }}';">
+                                                    <span class="fa fa-envelope pull-right" >
+                                                    </span>Volver a enviar
+                                                </button>
                                             {% endif %}
                                         {% endfor %}
                                     </td>

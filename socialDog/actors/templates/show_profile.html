@@ -24,16 +24,26 @@ Perfil
                         <p align="center"><strong> {{ actor.province }} - C.P. {{ actor.postalCode }}</strong></p>
                     </div>
                 </div>
-
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle" >
-                        </span>Amistad
-                    </button>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-success btn-block"><span class="fa fa-envelope pull-right" >
+                <div class="col-xs-6 col-sm-2 text-center">
+                    <!--Si es criador, muestra sus perros -->
+                {% if actor.breeder %}
+                        <button class="btn editbutton btn-block" onclick="location.href='/dogs/profile/breeder/{{ actor.pk }}';">
+                            <span class="fas fa-dog">
+                            </span>Perros
+                        </button>
+                {% endif %}
+                 <!--Si son amigos, puede enviar mensaje -->
+                {% if isFriend %}
+                    <button class="btn btn-success btn-block" onclick="location.href='/messages/send/{{ actor.pk }}';">
+                        <span class="fa fa-envelope pull-right" >
                         </span>Mensaje
                     </button>
+                {% elif not isRequested %}
+                    <button class="btn btn-success btn-block" onclick="location.href='/requests/send/{{ actor.pk }}';">
+                        <span class="fa fa-plus-circle">
+                        </span>Amistad
+                    </button>
+                {% endif %}
                 </div>
             </div>
 

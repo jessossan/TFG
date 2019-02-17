@@ -10,6 +10,9 @@ urlpatterns = [
     # Listado de mis perros
     path('ownList', views.list_myDogs, name='list_myDogs'),
 
+    # Listado de los perros de un perfil
+    path('profile/breeder/<int:pk>', views.list_profile_dogs, name='list_profile_dogs'),
+
     # Registro de Perro
     path('register', views.register_dog, name='register_dog'),
 

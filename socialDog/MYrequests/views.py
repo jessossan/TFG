@@ -350,7 +350,7 @@ def send_request(request, pk):
     # En el caso de que exista una solicitud entre ambos actores, comprueba que no esté pendiente o aceptada
     for reqSent in reqSentToActor:
         if reqSent.status == 'Pendiente' or reqSent.status == 'Aceptada':
-            messages.error(request, "Ya existe una solicitud pendiente, vuelva atrás y recargue la página")
+            messages.error(request, "Ya existe una solicitud pendiente, revise sus peticiones y recargue la página")
             raise PermissionDenied
 
     # Recupera todas las peticiones que ha recibido el actor
@@ -359,7 +359,7 @@ def send_request(request, pk):
     # En el caso de que exista una solicitud entre ambos actores, comprueba que no esté pendiente o aceptada
     for reqReceived in reqReceivedFromActor:
         if reqReceived.status == 'Pendiente' or reqReceived.status == 'Aceptada':
-            messages.error(request, "Ya existe una solicitud pendiente, vuelva atrás y recargue la página")
+            messages.error(request, "Ya existe una solicitud pendiente,revise sus peticiones y recargue la página")
             raise PermissionDenied
 
     # Si se ha enviado el Form

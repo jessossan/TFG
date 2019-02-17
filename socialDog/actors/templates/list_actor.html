@@ -66,7 +66,12 @@ Usuarios
                                 {% elif actor.customer %}
                                     <td>Usuario</td>
                                 {% endif %} -->
-                            <td> <a href="{% url 'send_request' actor.pk %}">petición de amistad</a></td>
+                            <td>
+                                <button class="btn btn-success" onclick="location.href='/requests/send/{{ actor.pk }}';">
+                                    <span class="fa fa-plus-circle">
+                                    </span>Amistad
+                                </button>
+                            </td>
                             <td>
                                 {% if not actor.customer %}
                                     <button class="btn btn-info" onclick="location.href='/actors/profile/{{ actor.pk }}';">

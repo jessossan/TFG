@@ -218,3 +218,35 @@ def edit_dog(request, pk):
     }
 
     return render(request, 'edit_dog.html', data)
+
+
+# PERFIL: MOSTRAR ANIMALES
+@login_required(login_url='/login/')
+def list_profile_dogs(request, pk):
+    # Recupera el criador
+    breeder = get_object_or_404(Breeder, pk=pk)
+    ownDog = False
+
+    try:
+        dog_list_aux = Dog.objects.filter(breeder=breeder)
+
+    except Exception as e:
+
+        dog_list_aux = Dog.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(dog_list_aux, 6)
+
+    try:
+        dog_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        dog_list_aux = paginator.page(1)
+    except EmptyPage:
+        dog_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'dog_list': dog_list_aux,
+        'title': 'Listado de perros del criador',
+        'ownDog': ownDog,
+    }
+    return render(request, 'list_dog.html', data)

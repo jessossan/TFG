@@ -701,20 +701,77 @@ def list_breeders(request):
 
 @login_required(login_url='/login/')
 def show_profile(request, pk):
-    actor = get_object_or_404(Actor, pk=pk)
+    # Actor del que va a ver el perfil
+    recipient = get_object_or_404(Actor, pk=pk)
+
+    # Recupera el actor logueado
+    actor = request.user.actor
+
+    # COMPROBUEBA QUE SEA SU AMIGO
+    acceptedStatus = Request.StatusType[1][0]
+
+    # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+    requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+    actors = Actor.objects.none()
+    actorsFollower = Actor.objects.none()
+    actorsFollowed = Actor.objects.none()
+
+    # Recupera los actores de las solicitudes enviadas aceptadas
+    for reqFollower in requestFollowers:
+        actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
+
+    # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+    requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+    # Recupera los actores de las solicitudes recibidas aceptadas
+    for reqFollowed in requestFolloweds:
+        actorsFollowed = actorsFollowed | Actor.objects.all().filter(pk=reqFollowed.follower.pk)
+
+    # Lista de amigos del actor logueado
+    actors = actorsFollower | actorsFollowed
+
+    isFriend = False
+
+    # Recorre la lista de amigos
+    for friend in actors:
+        # Si el destinatario esta en su lista de amigos
+        if friend == recipient:
+            isFriend = True
+
+    isRequested = False
+
+    # COMPROBUEBA QUE TENGA UNA SOLICITUD PENDIENTE
+    pendingStatus = Request.StatusType[0][0]
+
+    # Recupera todas las peticiones que ha enviado al actor y estan pendientes
+    requestPendingFollowers = Request.objects.filter(follower=actor, followed=recipient, copy=False, status=pendingStatus)
+
+    # Recupera todas las peticiones que ha recibido del actor y estan pendientes
+    requestPendingFolloweds = Request.objects.filter(follower=recipient, followed=actor, copy=False, status=pendingStatus)
+
+    # Une ambas listas
+    allRequestPending = requestPendingFollowers | requestPendingFolloweds
+
+    # Si existe alguna pendiente
+    if allRequestPending.count() > 0:
+        isRequested = True
+
 
     try:
-        if actor.breeder:
-            actor = get_object_or_404(Breeder, pk=pk)
+        if recipient.breeder:
+            recipient = get_object_or_404(Breeder, pk=pk)
     except:
         try:
-            if actor.association:
-                actor = get_object_or_404(Association, pk=pk)
+            if recipient.association:
+                recipient = get_object_or_404(Association, pk=pk)
         except:
                 return HttpResponseForbidden()
 
     data = {
-        'actor': actor,
+        'actor': recipient,
         'title': 'Perfil del criador',
+        'isFriend': isFriend,
+        'isRequested': isRequested,
     }
     return render(request, 'show_profile.html', data)
