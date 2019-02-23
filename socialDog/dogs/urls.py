@@ -22,4 +22,7 @@ urlpatterns = [
     # Editar perro
     path('edit/<int:pk>', views.edit_dog, name='edit_dog'),
 
+    # Perfil del perro
+    path('profile/<int:pk>', views.dog_profile, name='dog_profile'),
+
 ]

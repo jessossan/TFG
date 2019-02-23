@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Perfil
+{% endblock %}
+{% block content %}
+
+<div>
+    </br>
+    	 <div class="well profile">
+            <div class="col-sm-12" align="center">
+                <div class="col-xs-12 col-sm-8">
+                    <img src="{{ dog.photo.url }}" alt="Dog photo" width="300px" height="300px">
+                    <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ dog.breeder.pk }}';">
+                        <span class="fa fa-user"></span>
+                        {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
+                    </button>
+
+                <div class="col-sm-5 text-left">
+
+                        <p><strong>Nombre: </strong> {{ dog.name }} </p>
+                        <p><strong>Edad: </strong> {{ dog.age }} años</p>
+                        <p><strong>Género: </strong> {{ dog.gender }}</p>
+                        <p><strong>Raza: </strong> {{ dog.breed }}</p>
+                        {% if dog.details %}
+                            <p>{{ dog.details }}</p>
+                        {% endif %}
+                        {% if dog.awards %}
+                            <p>{{ dog.awards }}</p>
+                        {% endif %}
+                        {% if dog.descendant %}
+                            <p>{{ dog.descendant }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-2 text-center">
+
+                 <!--Comentar -->
+                {% if not ownDog %}
+                    <button class="btn btn-success btn-block" onclick="location.href='';">
+                        <span class="fa fa-envelope pull-right" >
+                        </span>Comentar
+                    </button>
+                    <button class="btn btn-success btn-block" onclick="location.href='';">
+                        <span class="fa fa-envelope pull-right" >
+                        </span>Valorar
+                    </button>
+                {% endif %}
+                </div>
+            </div>
+
+
+            </div>
+
+</div>
+{% endblock %}

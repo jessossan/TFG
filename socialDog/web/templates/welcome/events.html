@@ -55,9 +55,15 @@ Eventos
                 </br>
               <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
                   {% if event.breeder %}
-                        <a href="">{{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}</a>
+                        <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  event.breeder.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}
+                        </button>
                   {% elif event.association %}
-                        <a href="">{{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}</a>
+                      <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}
+                        </button>
                   {% endif %}
               </p>
           </div>

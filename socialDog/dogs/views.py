@@ -250,3 +250,21 @@ def list_profile_dogs(request, pk):
         'ownDog': ownDog,
     }
     return render(request, 'list_dog.html', data)
+
+
+@login_required(login_url='/login/')
+def dog_profile(request, pk):
+    # Actor del que va a ver el perfil
+    dog = get_object_or_404(Dog, pk=pk)
+
+    ownDog = False
+
+    # Recupera el actor logueado
+    actor = request.user.actor
+
+    data = {
+        'dog': dog,
+        'ownDog': ownDog,
+        'title': 'Perfil del perro',
+    }
+    return render(request, 'dog_profile.html', data)
