@@ -23,6 +23,10 @@ def create_comment(request, pk):
     # Recupera el perro al que va a comentar
     dog = get_object_or_404(Dog, pk=pk)
 
+    # Comprueba que no comente el criador a su perro
+    if hasattr(request.user.actor, 'breeder') and dog.breeder == request.user.actor.breeder:
+        return HttpResponseForbidden()
+
     # Si se ha enviado el Form
     if (request.method == 'POST'):
         form = CreateCommentForm(request.POST)
@@ -30,13 +34,14 @@ def create_comment(request, pk):
 
             # Crea el comentario
             text = form.cleaned_data["text"]
+            title = form.cleaned_data["title"]
 
             # Creación del comentario
-            comment = Comment.objects.create(text=text, creator_comment=actor, dog=dog)
+            comment = Comment.objects.create(title=title, text=text, creator_comment=actor, dog=dog)
 
             comment.save()
 
-            return HttpResponseRedirect('/profile/listSent')
+            return HttpResponseRedirect('/dogs/profile/'+str(dog.pk))
 
     # Si se accede al form vía GET o cualquier otro método
     else:

@@ -36,7 +36,7 @@ Perfil
 
                  <!--Comentar -->
                 {% if not ownDog %}
-                    <button class="btn btn-success btn-block" onclick="location.href='';">
+                    <button class="btn btn-success btn-block" onclick="location.href='/comments/create/dog/{{ dog.pk }}';">
                         <span class="fa fa-envelope pull-right" >
                         </span>Comentar
                     </button>
@@ -51,5 +51,46 @@ Perfil
 
             </div>
 
+</div>
+
+
+
+<div align="center">
+</br>
+<h1 align="center"> Comentarios</h1>
+</br>
+
+{% if comment_list %}
+    {% for comment in comment_list %}
+        <div class="card border-dark mb-4" style="max-width: 60rem;">
+          <div class="card-header" align="center"><h4><b>{{ comment.title }}</b></h4></div>
+          <div class="card-body text-dark">
+            <p class="card-text">{{ comment.text }}</p>
+
+              <p class="card-text" >
+                <img src="{{ comment.creator_comment.photo.url }}" alt="Dog photo" width="75px" height="75px">
+                  </br>
+                  {% if comment.creator_comment.breeder %}
+                        <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ comment.creator_comment.breeder.userAccount.first_name }} {{ comment.creator_comment.breeder.userAccount.last_name }}
+                        </button>
+                  {% elif comment.creator_comment.association %}
+                      <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ comment.creator_comment.association.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ comment.creator_comment.association.userAccount.first_name }} {{ comment.creator_comment.association.userAccount.last_name }}
+                        </button>
+                  {% else %}
+                            {{ comment.creator_comment.userAccount.first_name }} {{ comment.creator_comment.userAccount.last_name }}
+                  {% endif %}
+
+              </p>
+
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no hay comentarios</p>
+{% endif %}
 </div>
 {% endblock %}

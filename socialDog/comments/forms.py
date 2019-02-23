@@ -9,6 +9,7 @@ class CreateCommentForm(forms.Form):
 
     # Campos requeridos por el comentario
 
+    title = forms.CharField(max_length=25, label='Título')
     text = forms.CharField(max_length=200, label='Texto')
 
 

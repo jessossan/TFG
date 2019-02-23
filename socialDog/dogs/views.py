@@ -6,8 +6,9 @@ from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from actors.decorators import user_is_breeder
-from actors.models import Breeder
+from actors.models import Breeder, Actor
 from breeds.models import Breed
+from comments.models import Comment
 from dogs.forms import RegisterDogForm, EditDogForm
 from dogs.models import Dog
 
@@ -254,16 +255,38 @@ def list_profile_dogs(request, pk):
 
 @login_required(login_url='/login/')
 def dog_profile(request, pk):
-    # Actor del que va a ver el perfil
+
+    # Perro del que va a ver el perfil
     dog = get_object_or_404(Dog, pk=pk)
 
+    # Comprueba que si es su propio perro no puede comentar
     ownDog = False
+    if hasattr(request.user.actor, 'breeder') and dog.breeder == request.user.actor.breeder:
+        ownDog = True
+
+    try:
+        comment_list_aux = Comment.objects.all().filter(dog=dog)
+
+    except Exception as e:
+
+        comment_list_aux = Comment.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list_aux, 6)
+
+    try:
+        comment_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        comment_list_aux = paginator.page(1)
+    except EmptyPage:
+        comment_list_aux = paginator.page(paginator.num_pages)
 
     # Recupera el actor logueado
     actor = request.user.actor
 
     data = {
         'dog': dog,
+        'comment_list': comment_list_aux,
         'ownDog': ownDog,
         'title': 'Perfil del perro',
     }
