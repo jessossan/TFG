@@ -309,6 +309,7 @@ def dog_profile(request, pk):
 
     data = {
         'dog': dog,
+        'actor': actor,
         'comment_list': comment_list_aux,
         'rate_list': rate_list_aux,
         'ownDog': ownDog,

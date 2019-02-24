@@ -94,8 +94,14 @@ Perfil
                   {% endif %}
 
               </p>
-
           </div>
+            <!-- Edición  y Borrado del comentario -->
+            {% if comment.creator_comment == actor %}
+                <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
+                    <a href="{% url 'edit_comment' comment.pk %}" style="font-size:20px;" >Editar</a>
+                    <a  class="btn btn-danger" href="{% url 'delete_comment' comment.pk %}">Borrar</a>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 {% else %}
