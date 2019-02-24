@@ -16,10 +16,10 @@
                     {% csrf_token %}
                     <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
                     <br>
-                    <h3>¿Está seguro que desea eliminar el comentario a <b>{{ dog.name }}</b>?</h3>
+                    <h3>¿Está seguro que desea eliminar la valoración a <b>{{ dog.name }}</b>?</h3>
                     <br>
                     <button class="btn btn-danger" type="submit">Sí, eliminar</button>
-                    <a class="btn cancelbutton" href="">Cancelar</a>
+                    <a class="btn cancelbutton" href="/dogs/profile/{{ dog.pk }}">Cancelar</a>
 
                 </form>
 

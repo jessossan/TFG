@@ -1,6 +1,6 @@
 from datetime import datetime
 from dogs.models import Dog
-from rates.forms import CreateRateForm
+from rates.forms import CreateRateForm, EditRateForm
 from rates.models import Rate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect
@@ -37,10 +37,10 @@ def create_rate(request, pk):
                 stars = 0
             description = form.cleaned_data["description"]
 
-            # Creación del comentario
-            comment = Rate.objects.create(stars=stars, description=description, creator_rate=actor, dog=dog)
+            # Creación de la valoración
+            rate = Rate.objects.create(stars=stars, description=description, creator_rate=actor, dog=dog)
 
-            comment.save()
+            rate.save()
 
             return HttpResponseRedirect('/dogs/profile/' + str(dog.pk))
 
@@ -59,3 +59,83 @@ def create_rate(request, pk):
     }
 
     return render(request, 'create_rate.html', data)
+
+
+@login_required(login_url='/login/')
+def delete_rate(request, pk):
+    actor = request.user.actor
+
+    # Recupera la valoración que esta editando
+    rate = get_object_or_404(Rate, pk=pk)
+
+    # Recupera el perro al que ha comentado
+    dog = get_object_or_404(Dog, pk=rate.dog.pk)
+
+    # Comprueba que sea su valoración
+    if actor != rate.creator_rate:
+        return HttpResponseForbidden()
+
+    # Comprobar que no comente a su perro
+    if request.method == 'POST':
+        rate.delete()
+        return HttpResponseRedirect('/dogs/profile/' + str(dog.pk))
+
+    data = {
+        'actor': actor,
+        'dog': dog,
+        'rate': rate,
+    }
+
+    return render(request, 'delete_rate.html', data)
+
+
+@login_required(login_url='/login/')
+def edit_rate(request, pk):
+    """
+	Edición de la valoración.
+	"""
+    assert isinstance(request, HttpRequest)
+
+    # Recupera el actor logueado
+    actor = request.user.actor
+
+    # Recupera la valoración que esta editando
+    rate = get_object_or_404(Rate, pk=pk)
+
+    # Recupera el perro al que ha comentado
+    dog = get_object_or_404(Dog, pk=rate.dog.pk)
+
+    # Comprueba que sea su valoración
+    if actor != rate.creator_rate:
+        return HttpResponseForbidden()
+
+    # Si se ha enviado el Form
+    if (request.method == 'POST'):
+        form = EditRateForm(request.POST, request.FILES)
+        if (form.is_valid()):
+            # Recupera la valoración
+            stars = form.cleaned_data["stars"]
+            description = form.cleaned_data["description"]
+
+            rate.stars = stars
+            rate.description = description
+
+            rate.save()
+
+            return HttpResponseRedirect('/dogs/profile/' + str(dog.pk))
+
+    # Si se accede al form vía GET o cualquier otro método
+    else:
+        # Datos del modelo (vista)
+        dataForm = {'stars': rate.stars, 'description': rate.description}
+        form = EditRateForm(dataForm)
+
+    data = {
+        'form': form,
+        'title': 'Edición de la valoración',
+        'year': datetime.now().year,
+        'rate': rate,
+        'dog': dog,
+    }
+
+    return render(request, 'edit_rate.html', data)
