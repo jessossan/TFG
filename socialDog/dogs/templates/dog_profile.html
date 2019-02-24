@@ -4,6 +4,7 @@ Perfil
 {% endblock %}
 {% block content %}
 
+
 <div>
     </br>
     	 <div class="well profile">
@@ -53,11 +54,19 @@ Perfil
 
 </div>
 
-
-
-<div align="center">
 </br>
-<h1 align="center"> Comentarios</h1>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#menu1" style="font-size:30px;"> Comentarios</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+    <li><a data-toggle="tab" href="#menu2" style="font-size:30px;">Valoraciones</a></li>
+  </ul>
+
+
+  <div class="tab-content">
+      <!--COMENTARIOS -->
+    <div id="menu1" class="tab-pane fade">
+     <div align="center">
+</br>
 </br>
 
 {% if comment_list %}
@@ -93,4 +102,93 @@ Perfil
     <p style="padding: 0px 250px 0px">no hay comentarios</p>
 {% endif %}
 </div>
+    </div>
+
+      <!--Valoraciones -->
+    <div id="menu2" class="tab-pane fade">
+
+        <div align="center">
+</br>
+</br>
+
+{% if rate_list %}
+    {% for rate in rate_list %}
+        <div class="card border-dark mb-4" style="max-width: 60rem;">
+          <div class="card-header" align="center">
+              {% if rate.stars == 0 %}
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 1 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 2 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 3 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 4 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 5 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+              {% endif %}
+          </div>
+          <div class="card-body text-dark">
+            <p class="card-text">{{ rate.description }}</p>
+
+              <p class="card-text" >
+                <img src="{{ rate.creator_rate.photo.url }}" alt="Dog photo" width="75px" height="75px">
+                  </br>
+                  {% if rate.creator_rate.breeder %}
+                        <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ rate.creator_rate.breeder.userAccount.first_name }} {{ rate.creator_rate.breeder.userAccount.last_name }}
+                        </button>
+                  {% elif rate.creator_rate.association %}
+                      <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ rate.creator_rate.association.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ rate.creator_rate.association.userAccount.first_name }} {{ rate.creator_rate.association.userAccount.last_name }}
+                        </button>
+                  {% else %}
+                            {{ rate.creator_rate.userAccount.first_name }} {{ rate.creator_rate.userAccount.last_name }}
+                  {% endif %}
+
+              </p>
+
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no hay valoraciones</p>
+{% endif %}
+</div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+</div>
+
 {% endblock %}

@@ -16,6 +16,9 @@ from dogs.models import Dog
 # Create your views here.
 
 # LISTADO DE ANIMALES
+from rates.models import Rate
+
+
 def list_dogs(request):
     ownDog = False
     try:
@@ -264,6 +267,8 @@ def dog_profile(request, pk):
     if hasattr(request.user.actor, 'breeder') and dog.breeder == request.user.actor.breeder:
         ownDog = True
 
+
+    ############# COMENTARIOS  ########################
     try:
         comment_list_aux = Comment.objects.all().filter(dog=dog)
 
@@ -281,12 +286,31 @@ def dog_profile(request, pk):
     except EmptyPage:
         comment_list_aux = paginator.page(paginator.num_pages)
 
+    ######### VALORACIONES ########################
+    try:
+        rate_list_aux = Rate.objects.all().filter(dog=dog)
+
+    except Exception as e:
+
+        rate_list_aux = Rate.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(rate_list_aux, 6)
+
+    try:
+        rate_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        rate_list_aux = paginator.page(1)
+    except EmptyPage:
+        rate_list_aux = paginator.page(paginator.num_pages)
+
     # Recupera el actor logueado
     actor = request.user.actor
 
     data = {
         'dog': dog,
         'comment_list': comment_list_aux,
+        'rate_list': rate_list_aux,
         'ownDog': ownDog,
         'title': 'Perfil del perro',
     }
