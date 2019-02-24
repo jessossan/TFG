@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+<div class="container">
+    <br />
+    <h2>{{ title }} para <b> {{ dog.name }} </b></h2>
+
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-md-12">
+
+                <!-- FORMULARIO -->
+                <form id="registro" enctype="multipart/form-data" method="post"  class="form" role="form">
+                    {% csrf_token %}
+
+                    <!-- Crear valoración -->
+                    <br/>
+
+                    <div class="row">
+
+                        <ul class="rate-area">
+                          <input type="radio" id="5star" name="stars" value="5" />
+                          <label for="5star" title="Amazing">5 stars</label>
+
+                          <input type="radio" id="4star" name="stars" value="4" />
+                          <label for="4star" title="Good">4 stars</label>
+
+                          <input type="radio" id="3star" name="stars" value="3" />
+                          <label for="3star" title="Average">3 stars</label>
+
+                          <input type="radio" id="2star" name="stars" value="2" />
+                          <label for="2star" title="Not Good">2 stars</label>
+
+                          <input type="radio" id="1star" name="stars" value="1" />
+                          <label for="1star" title="Bad">1 star</label>
+                        </ul>
+
+                        <div class="col-xs-6 col-md-6 form-group">
+
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for="description" class="control-label">Descripción</label>
+                            <textarea class="form-control" name="description" id="description" maxlength="200" rows="3" placeholder="Descripción"  required>{{ form.description.value|default:'' }}</textarea>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="col-xs-3 col-md-3 form-group">
+                                <input type="hidden" name="next" value="/" />
+                                <input type="submit" value="Valorar" class="btn editbutton btn-block" />
+                        </div>
+                        <div class="col-xs-3 col-md-3 form-group">
+                                <input type="hidden" name="next" value="/" />
+                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/dogs/profile/{{ dog.pk }}';" value="Cancelar" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <hr/>
+
+                         <!-- Tratamiento de Errores -->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ field.label }}: {{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}

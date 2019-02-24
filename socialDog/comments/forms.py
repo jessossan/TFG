@@ -18,5 +18,5 @@ class EditCommentForm(forms.Form):
     """Formulario de edición de comentario"""
 
     # Campos requeridos por el comentario
-
+    title = forms.CharField(max_length=25, label='Título')
     text = forms.CharField(max_length=200, label='Texto')

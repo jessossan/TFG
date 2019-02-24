@@ -53,7 +53,7 @@ def create_comment(request, pk):
         'form': form,
         'title': 'Crea el comentario',
         'year': datetime.now().year,
-        # Actor al que se envia el comentario
+        # Perro al que se envia el comentario
         'dog': dog,
     }
 
