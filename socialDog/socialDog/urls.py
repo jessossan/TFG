@@ -96,4 +96,7 @@ urlpatterns = [
     # Rates
     path('rates/', include('rates.urls')),
 
+    # Likes/Dislikes
+    path('likesDislikes/', include('likesDislikes.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

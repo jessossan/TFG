@@ -16,6 +16,7 @@ from dogs.models import Dog
 # Create your views here.
 
 # LISTADO DE ANIMALES
+from likesDislikes.models import LikeDislike
 from rates.models import Rate
 
 
@@ -262,6 +263,9 @@ def dog_profile(request, pk):
     # Perro del que va a ver el perfil
     dog = get_object_or_404(Dog, pk=pk)
 
+    # Recupera el actor logueado
+    actor = request.user.actor
+
     # Comprueba que si es su propio perro no puede comentar
     ownDog = False
     if hasattr(request.user.actor, 'breeder') and dog.breeder == request.user.actor.breeder:
@@ -270,7 +274,7 @@ def dog_profile(request, pk):
 
     ############# COMENTARIOS  ########################
     try:
-        comment_list_aux = Comment.objects.all().filter(dog=dog)
+        comment_list_aux = Comment.objects.all().filter(dog=dog).order_by('-creationDate')
 
     except Exception as e:
 
@@ -288,7 +292,31 @@ def dog_profile(request, pk):
 
     ######### VALORACIONES ########################
     try:
-        rate_list_aux = Rate.objects.all().filter(dog=dog)
+        rate_list_aux = Rate.objects.all().filter(dog=dog).order_by('-creationDate')
+
+    except Exception as e:
+
+        rate_list_aux = Rate.objects.none()
+
+    ########## LIKES / DISLIKES ####################
+    commentWithLikes = Comment.objects.none()
+    commentWithDislikes = Comment.objects.none()
+    try:
+        # Recupera los likes del actor
+        likes = LikeDislike.objects.all().filter(actor=actor, like=True)
+
+        # Recupera los dislikes del actor
+        dislikes = LikeDislike.objects.all().filter(actor=actor, like=False)
+
+
+
+        # Recupera los comentarios con like del actor al perro del perfil
+        for commentLiked in likes:
+            commentWithLikes = commentWithLikes | Comment.objects.all().filter(pk=commentLiked.comment.pk, dog=dog)
+
+        # Recupera los comentarios con dislike del actor al perro del perfil
+        for commentDisliked in dislikes:
+            commentWithDislikes = commentWithDislikes | Comment.objects.all().filter(pk=commentDisliked.comment.pk, dog=dog)
 
     except Exception as e:
 
@@ -304,9 +332,6 @@ def dog_profile(request, pk):
     except EmptyPage:
         rate_list_aux = paginator.page(paginator.num_pages)
 
-    # Recupera el actor logueado
-    actor = request.user.actor
-
     data = {
         'dog': dog,
         'actor': actor,
@@ -314,5 +339,7 @@ def dog_profile(request, pk):
         'rate_list': rate_list_aux,
         'ownDog': ownDog,
         'title': 'Perfil del perro',
+        'commentWithLikes': commentWithLikes,
+        'commentWithDislikes': commentWithDislikes,
     }
     return render(request, 'dog_profile.html', data)

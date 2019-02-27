@@ -15,6 +15,7 @@ class Rate(models.Model):
 
     stars = models.PositiveIntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(5)])
     description = models.CharField(max_length=200, help_text="Requerido. 200 carácteres como máximo")
+    creationDate = models.DateTimeField(auto_now_add=True)
 
     # Relacion con asociación
     association = models.ForeignKey('actors.Association', on_delete=models.CASCADE, null=True, blank=True)
@@ -31,7 +32,7 @@ class Rate(models.Model):
 
 
     def __str__(self):
-        return str(self.stars) + ' - ' + str(self.description)
+        return str(self.stars) + ' - ' + str(self.description) + str(self.creationDate)
 
     class Meta:
         verbose_name = "Valoración"
@@ -40,4 +41,4 @@ class Rate(models.Model):
 
 class RateAdminPanel(admin.ModelAdmin):
     # Panel de admin
-    list_display = ('stars', 'description', 'creator_rate')
+    list_display = ('stars', 'description', 'creator_rate', 'creationDate')

@@ -38,11 +38,11 @@ Perfil
                  <!--Comentar -->
                 {% if not ownDog %}
                     <button class="btn btn-success btn-block" onclick="location.href='/comments/create/dog/{{ dog.pk }}';">
-                        <span class="fa fa-envelope pull-right" >
+                        <span class="fa fa-comment" >
                         </span>Comentar
                     </button>
                     <button class="btn btn-success btn-block" onclick="location.href='/rates/create/dog/{{ dog.pk }}';">
-                        <span class="fa fa-envelope pull-right" >
+                        <span class="fa fa-star" >
                         </span>Valorar
                     </button>
                 {% endif %}
@@ -98,9 +98,59 @@ Perfil
             <!-- Edición  y Borrado del comentario -->
             {% if comment.creator_comment == actor %}
                 <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
+                    <!-- Número de likes y dislikes -->
+
+                    <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
+                    {{ comment.likes }}
+                    &nbsp;&nbsp;
+
+                    <i class="fa fa-thumbs-o-down" style="font-size:30px"></i>
+                    {{ comment.dislikes }}
+                    &nbsp;&nbsp;
+
                     <a href="{% url 'edit_comment' comment.pk %}" style="font-size:20px;" >Editar</a>
+                    &nbsp;
                     <a  class="btn btn-danger" href="{% url 'delete_comment' comment.pk %}">Borrar</a>
                 </div>
+            {% else %}
+                <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
+                    <!-- Like / Dislike -->
+                    <!-- Si tiene like, muestra la mano verde y la otra oscura -->
+                            {% if comment in commentWithLikes %}
+                                <i class="fa fa-thumbs-up" style="font-size:30px;color:green"></i>
+                                    {{ comment.likes }}
+                                &nbsp;&nbsp;
+                                <a href="{% url 'dislike_comment' comment.pk %}">
+                                    <i class="fa fa-thumbs-o-down" style="font-size:30px"></i>
+
+                                </a>{{ comment.dislikes }}
+                                &nbsp;&nbsp;
+                            <!-- Si tiene dislike, muestra la mano roja y la otra oscura -->
+                            {% elif comment in commentWithDislikes  %}
+                                <a href="{% url 'like_comment' comment.pk %}">
+                                    <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
+
+                                </a>{{ comment.likes }}
+                                &nbsp;&nbsp;
+
+                                <i class="fa fa-thumbs-down" style="font-size:30px;color:red"></i>
+                                {{ comment.dislikes }}
+
+                                &nbsp;&nbsp;
+                            {% else %}
+                                <a href="{% url 'like_comment' comment.pk %}">
+                                    <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
+
+                                </a>{{ comment.likes }}
+                                &nbsp;&nbsp;
+                                <a href="{% url 'dislike_comment' comment.pk %}">
+                                    <i class="fa fa-thumbs-o-down" style="font-size:30px"></i>
+
+                                </a>{{ comment.dislikes }}
+                                &nbsp;&nbsp;
+                            {% endif %}
+                </div>
+
             {% endif %}
         </div>
     {% endfor %}
