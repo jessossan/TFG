@@ -76,12 +76,13 @@ Solicitudes
                                 {% if not request.follower.customer %}
                                     <button class="btn btn-info" onclick="location.href='/actors/profile/{{ request.follower.pk }}';">
                                             <span class="fa fa-user"></span>
-                                            Ver perfil
                                         </button>
                                 {% endif %}
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="{% url 'delete_request_received' request.pk %}">Borrar</a>
+                                <a class="btn btn-danger" href="{% url 'delete_request_received' request.pk %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -6,11 +6,10 @@ Mensajes
 
     <div class="container-fluid">
 
-        <br/>
         {% if received %}
-            <h1>Mensajes recibidos</h1>
+            <h3>Mensajes recibidos</h3>
         {% else %}
-            <h1>Mensajes enviados</h1>
+            <h3>Mensajes enviados</h3>
         {% endif %}
         <br/>
 
@@ -81,8 +80,8 @@ Mensajes
                                         <!--Si el que ha enviado el mensaje sigue siendo amigo, puede responder -->
                                             {% if friend == message.sender %}
                                                 <button class="btn btn-success" onclick="location.href='/messages/replyReceived/{{  message.pk }}';">
-                                                    <span class="fa fa-envelope pull-right" >
-                                                    </span>Responder
+                                                    <span class="fa fa-envelope">
+                                                    </span>
                                                 </button>
                                             {% endif %}
                                         {% endfor %}
@@ -100,8 +99,8 @@ Mensajes
                                             <!--Si al que ha enviado el mensaje sigue siendo amigo, puede volver a responder -->
                                             {% if friend == message.recipient %}
                                                 <button class="btn btn-success" onclick="location.href='/messages/replySender/{{  message.pk }}';">
-                                                    <span class="fa fa-envelope pull-right" >
-                                                    </span>Volver a enviar
+                                                    <span class="fa fa-envelope">
+                                                    </span>
                                                 </button>
                                             {% endif %}
                                         {% endfor %}
@@ -113,11 +112,11 @@ Mensajes
                             <td>
                                 {% if received %}
                                     <a class="btn btn-danger" href="{% url 'delete_message_received' message.pk %}">
-                                        Borrar
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 {% else %}
                                     <a class="btn btn-danger" href="{% url 'delete_message_sent' message.pk %}">
-                                        Borrar
+                                         <i class="fa fa-trash"></i>
                                     </a>
                                 {% endif %}
                             </td>

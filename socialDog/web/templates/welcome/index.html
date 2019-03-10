@@ -4,31 +4,71 @@
 
 {% block content %}
 
-        <div class="container-fluid bgimg-2 parallax" id="home">
-
-        </div>
-
-<div class="container-fluid bgimg-1 parallax" id="home2">
-            <div style="background: rgb(79,133,187); /* Old browsers */
-                    background: -moz-linear-gradient(left, rgba(79,133,187,1) 0%, rgba(99,66,155,1) 64%); /* FF3.6-15 */
-                    background: -webkit-linear-gradient(left, rgba(79,133,187,1) 0%,rgba(99,66,155,1) 64%); /* Chrome10-25,Safari5.1-6 */
-                    background: linear-gradient(to right, rgba(79,133,187,1) 0%,rgba(99,66,155,1) 64%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f85bb', endColorstr='#63429b',GradientType=1 );" class="card bg-primary text-white display-middle display-card">
                 {% if user.is_authenticated%}
 
                 {% else %}
-                     <div class="card-body">
-                        ¿Qué es SocialDog?
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        <br/>
+                   <div class="container-fluid bgimg-2 parallax" id="ejercicios-parallax">
 
-        <div class="container" id="info">
-            <h2>Información</h2>
-            </p>
-            <br/>
+                            <div class="row">
+                            </div>
+                       <div class="row">
+                                 <div class="col-xs-12 col-md-12 form-group">
+                                 </div>
+                           <div class="col-xs-3 col-md-3 form-group">
+                           </div>
+                                <div class="col-xs-3 col-md-6 form-group">
+                                        <div class="card" style="width: 700px; height:190px;">
+                                            <p align="center" style="font-family:Cooper Black;font-size:50px;"> Social Dog</p>
+                                            <p align="center" class="card-text">
+                                                Busca unir a los amantes de los perros, así como interesados en el mundo de este<br/>
+                                                animal o a sus criadores, pudiendo ver los eventos existentes y comunicarse <br/>
+                                                entre ellos de una forma más cómoda
+                                            </p>
+                                        </div>
+                                </div>
+
+                            </div>
+                      </div>
+                {% endif %}
+
+    <div class="col-md-12">
+
+        <div class="row">
+                <div class="col-xs-4 col-md-4 form-group">
+                    <div class="col" >
+                          <div class="tile" style="background-color:#D0D9E0;">
+                            <img src="static/img/animales.png" alt="Animales" style="width:340px;height:210px;" >
+                            <h3 class="tile-title">Animales</h3>
+                              <p></p>
+                            <a class="btn editbutton btn-large btn-block" href="/dogs/list">Ver</a>
+                          </div>
+                        </div>
+                    </div>
+
+                <div class="col-xs-4 col-md-4 form-group">
+                    <div class="col">
+                        <div class="tile" style="background-color:#D0D9E0;">
+                            <img src="static/img/criador1.jpg" alt="Criadores" style="width:340px;height:210px;">
+                            <h3 class="tile-title">Criadores</h3>
+                              <p></p>
+                            <a class="btn editbutton btn-large btn-block" href="/actors/breeders">Ver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4 col-md-4 form-group">
+                    <div class="col">
+                        <div class="tile" style="background-color:#D0D9E0;">
+                            <img src="static/img/asociacion.png" alt="Asociaciones" style="width:340px;height:210px;">
+                            <h3 class="tile-title">Asociaciones</h3>
+                             <p></p>
+                            <a class="btn cancelbutton btn-large btn-block" href="/actors/associations">Ver</a>
+                        </div>
+                    </div>
+                </div>
         </div>
+    </div>
+
+
 
 {% endblock %}

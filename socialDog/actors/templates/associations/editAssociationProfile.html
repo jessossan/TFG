@@ -16,12 +16,11 @@ Edición de perfil
             <div class="container-fluid">
                 <br/>
                 <div class="col-md-12">
-                    <br/>
-                    <h2>{{ titulo }}</h2>
+                    <h3>{{ titulo }}</h3>
 
                     <div class="container" align="right"  style="padding: 0px 100px 0px;">
                         <a  class="btn btn-danger" href="/actors/association/edit/profile/delete/{{ association.pk }}" style="align: center">
-                                    Borrar cuenta
+                            <i class="fa fa-trash"></i>
                         </a>
                     </div>
 
@@ -186,7 +185,7 @@ Edición de perfil
                             </div>
                             <div class="col-xs-6 col-md-6 form-group">
                                 <input type="hidden" name="next" value="/"/>
-                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/';"
+                                <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/web/news';"
                                        value="Cancelar"/>
                             </div>
                         </div>

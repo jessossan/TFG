@@ -3,12 +3,14 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    opacity:0.5;
 }
 
 
 .bgimg-1 {
-    background-image: url('/static/img/perrov2.jpg');
+    background-image: url('/static/img/perro.jpg');
     min-height: 100%;
+    opacity:0.5;
 }
 
 .bgimg-2 {

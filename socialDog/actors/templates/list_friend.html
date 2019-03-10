@@ -48,9 +48,9 @@ Amigos
                     <tr>
                         <th>Nombre</th>
                         <!--<th>Usuario</th> -->
-                        <!-- Enviar mensaje-->
-                        <th></th>
                         <!-- Ver perfil-->
+                        <th></th>
+                        <!-- Enviar mensaje-->
                         <th></th>
                         <!-- Dejar de ser amigo-->
                         <th></th>
@@ -84,42 +84,50 @@ Amigos
 
                             {% if friend.follower != actor %}
                                 <td>
+                                        {% if not friend.follower.customer %}
+                                            <button class="btn btn-info" onclick="location.href='/actors/profile/{{ friend.follower.pk }}';">
+                                                <span class="fa fa-user"></span>
+                                            </button>
+                                        {% endif %}
+                                </td>
+                                <td>
                                     <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.follower.pk }}';">
-                                        <span class="fa fa-envelope pull-right" >
-                                        </span>Mensaje
+                                        <span class="fa fa-envelope">
+                                        </span>
                                     </button>
                                 </td>
-                                <td>
-                                    {% if not friend.follower.customer %}
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ friend.follower.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            Ver perfil
-                                        </button>
-                                    {% endif %}
-                                </td>
+
                             {% elif friend.followed != actor %}
-                                <td>
-                                    <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
-                                        <span class="fa fa-envelope pull-right" >
-                                        </span>Mensaje
-                                    </button>
-                                </td>
                                 <td>
                                     {% if not friend.followed.customer %}
                                         <button class="btn btn-info" onclick="location.href='/actors/profile/{{ friend.followed.pk }}';">
                                             <span class="fa fa-user"></span>
-                                            Ver perfil
                                         </button>
                                     {% endif %}
                                 </td>
+                                <td>
+                                    <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
+                                        <span class="fa fa-envelope">
+                                        </span>
+                                    </button>
+                                </td>
+
                             {% endif %}
 
 
 
                             {% if friend.follower != actor %}
-                                <td> <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %} ">Borrar amigo</a></td>
+                                <td>
+                                    <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             {% elif friend.followed != actor %}
-                                <td> <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">Borrar amigo</a></td>
+                                <td>
+                                    <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             {% endif %}
 
                         </tr>

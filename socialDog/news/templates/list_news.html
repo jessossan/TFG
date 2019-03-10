@@ -5,8 +5,7 @@ Mis noticias
 {% block content %}
 
     <div class="container-fluid">
-        <br/>
-        <h1>Mis noticias</h1>
+        <h3>Mis noticias</h3>
         <br/>
 
         <!-- Listado -->
@@ -28,8 +27,6 @@ Mis noticias
                         {% if ownNews %}
                         <th></th>
                         {% endif %}
-                        <!-- Para la columna de ver detalles-->
-                        <th></th>
 
                     </tr>
                   </thead>
@@ -48,14 +45,13 @@ Mis noticias
                             {% if ownNews %}
                             <td>
                                 <a  title="Editar"  class="btn editbutton" href="edit/{{ news.pk }}">
-                                        Editar
+                                        <i class="fa fa-pencil" style="font-size:18px"></i>
                                 </a>
                                 <a class="btn btn-danger" href="delete/{{ news.pk }}">
-                                    Borrar
+                                    <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                             {% endif %}
-                            <td> <a title="Ver detalles"  class="btn editbutton" href=""> Ver detalles</a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

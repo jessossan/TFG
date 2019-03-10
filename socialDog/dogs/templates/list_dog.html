@@ -6,11 +6,10 @@ Animales
 
     <div class="container-fluid">
 
-        <br/>
         {% if ownDog %}
-            <h1>Mis animales</h1>
+            <h3>Mis animales</h3>
         {% else %}
-            <h1>Animales</h1>
+            <h3>Animales</h3>
         {% endif %}
         <br/>
 {% if user.actor.breeder %}
@@ -55,7 +54,9 @@ Animales
                         <th></th>
                         {% endif %}
                         <!-- Para la columna de ver perfil-->
-                        <th></th>
+                        {% if user.is_authenticated %}
+                            <th></th>
+                        {% endif %}
 
                     </tr>
                   </thead>
@@ -84,12 +85,14 @@ Animales
                                 </a>
                             </td>
                             {% endif %}
-                            <td>
-                                <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
-                                    <span class="fas fa-dog">
-                                    </span>Ver perfil
-                                </button>
-                            </td>
+                            {% if user.is_authenticated %}
+                                <td>
+                                    <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
+                                        <span class="fas fa-dog">
+                                        </span>
+                                    </button>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

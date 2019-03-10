@@ -69,7 +69,11 @@ Solicitudes
                                     <b style="color:red;">{{ request.status }}</b>
                                 {% endif %}
                             </td>
-                            <td><a class="btn btn-danger" href="{% url 'delete_request_sent' request.pk %}">Borrar</a></td>
+                            <td>
+                                <a class="btn btn-danger" href="{% url 'delete_request_sent' request.pk %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
