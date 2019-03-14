@@ -4,16 +4,13 @@ Animales
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
-
         {% if ownDog %}
-            <h3>Mis animales</h3>
+            <h3 style="padding: 0 20px 0">Mis animales</h3>
         {% else %}
-            <h3>Animales</h3>
+            <h3 style="padding: 0 20px 0">Animales</h3>
         {% endif %}
-        <br/>
 {% if user.actor.breeder %}
-        <div align="left">
+        <div align="left" style="padding: 0 20px 0">
             {% if ownDog %}
                 <input type="button" class="btn editbutton"
                                        onclick="location.href='/dogs/list';"
@@ -30,75 +27,82 @@ Animales
                                        value="Mis animales"/>
             {% endif %}
         </div>
-        </br>
 {% endif %}
-        <!-- Listado -->
-        {% if dog_list %}
-        <div class="panel panel-default panel-table mb-3">
-          <div class="panel-heading">
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped table-curved table-hover table-bordered">
-
-
-                    <thead class="thead-primary">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Género</th>
-                        <th>Raza</th>
-                        <!-- Para la columna de la foto-->
-                        <th></th>
-                        <!-- Si es del creador para la columna editar -->
-                        {% if ownDog %}
-                        <th></th>
-                        {% endif %}
-                        <!-- Para la columna de ver perfil-->
-                        {% if user.is_authenticated %}
-                            <th></th>
-                        {% endif %}
-
-                    </tr>
-                  </thead>
-
-                    <tbody>
+</br>
+                {% if dog_list %}
                     {% for dog in dog_list %}
-
-                        <tr>
-                            <td>{{ dog.name }}</td>
-                            <td>{{ dog.age }}</td>
-                            <td>{{ dog.gender }}</td>
-                            <td>{{ dog.breed }}</td>
-                            <td>
+                        <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                            <!-- IMAGEN DEL PERRO -->
+                            <div style="float: left;">
                                 {% if dog.photo %}
-                                    <img src="{{ dog.photo.url }}" alt="photo's dog" width="150px" height="150px">
+                                    <img src="{{ dog.photo.url }}"  alt="photo's dog" width="400px" height="300px">
                                 {% endif %}
-                            </td>
-                            <!-- Si es del creador para  editar -->
-                            {% if ownDog %}
-                            <td>
-                                <a  title="Editar"  class="btn editbutton" href="edit/{{ dog.pk }}">
-                                    Editar
-                                </a>
-                                <a class="btn btn-danger" href="delete/{{ dog.pk }}">
-                                    Borrar
-                                </a>
-                            </td>
-                            {% endif %}
-                            {% if user.is_authenticated %}
-                                <td>
+                            </div>
+                            <!-- DATOS RELEVANTES DEL PERRO -->
+                            <div style="float: left;width:400px;padding:40px">
+                                <p class="card-text" align="left"> <b>Nombre: </b>{{ dog.name }}</p>
+                                <!-- COMPRUEBA LA S DE AÑO -->
+                                {% if dog.age == 1 %}
+                                    <p class="card-text" align="left"><b>Edad: </b>{{ dog.age }} año</p>
+                                {% else %}
+                                    <p class="card-text" align="left"><b>Edad: </b>{{ dog.age }} años</p>
+                                {% endif %}
+                                    <p class="card-text" align="left"><b>Género: </b>{{ dog.gender }}</p>
+                                    <p class="card-text" align="left"><b>Raza: </b>{{ dog.breed }}</p>
+
+                                <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
+                                {% if dog.breeder.private %}
+                                    <p class="card-text" align="left"><b>Criador: </b>{{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}</p>
+                                {% else %}
+                                    <div align="left">
+                                        <button class="btn btn-info" onclick="location.href='/web/profile/{{ dog.breeder.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- CAMPOS DE TEXTO DEL PERRO -->
+                                <div style="float: left;width:400px;padding:40px">
+                                    {% if dog.details %}
+                                    <p class="card-text" align="left"> <b>Detalles: </b>{{ dog.details }}</p>
+                                    {% else %}
+                                    <p class="card-text" align="left"> <b>Detalles: </b>ninguno</p>
+                                    {% endif %}
+                                    {% if dog.awards %}
+                                    <p class="card-text" align="left"><b>Premios: </b>{{ dog.awards }}</p>
+                                    {% else %}
+                                    <p class="card-text" align="left"> <b>Premios: </b>ninguno</p>
+                                    {% endif %}
+                                </div>
+
+                            <!-- BOTONES SI ESTA LOGUEADO -->
+                                <div style="float: left;width:100px;padding:40px">
+                                    {% if user.is_authenticated %}
+                                    <!-- PERFIL DEL PERRO -->
                                     <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
                                         <span class="fas fa-dog">
                                         </span>
                                     </button>
-                                </td>
-                            {% endif %}
-                        </tr>
+                                    <p></p>
+                                    {% endif %}
+                                    <!-- SI ES EL PERRO DEL CRIADOR LOGUEADO, EDITAR Y BORRAR -->
+                                    {% if ownDog %}
+                                    <p style="padding:50px 0 0"><a  title="Editar"  class="btn editbutton" href="edit/{{ dog.pk }}">
+                                        Editar
+                                    </a></p>
+                                    <p></p>
+                                    <p style="padding:0 0 0"><a class="btn btn-danger" href="delete/{{ dog.pk }}">
+                                        Borrar
+                                    </a>
+                                    </p>
+                                    <p></p>
+                                    {% endif %}
+                                </div>
+                           </div>
+                           <hr>
                     {% endfor %}
-                    </tbody>
 
-            </table>
-          </div>
           <div class="panel-footer table-header-primary table-footer">
             {% if dog_list.has_other_pages %}
                 <ul class="pagination">
@@ -146,16 +150,17 @@ Animales
                 </ul>
               {% endif %}
           </div>
-        </div>
 
         {% else %}
             <p></p>
             <p>No existen perros.</p>
         {% endif %}
 
+        <!-- SI ES CRIADOR, REGISTRAR -->
         {% if user.actor.breeder %}
-            <div class="create">
-                <input type="button" class="btn editbutton"
+            </br>
+            <div class="create" align="right" style="padding: 0 20px 20px">
+                <input type="button"  style="font-size: 24px;" class="btn editbutton"
                        onclick="location.href='/dogs/register';"
                        value="Registrar perro"/>
 
@@ -163,7 +168,4 @@ Animales
 
         {% endif %}
 
-
-
-    </div>
 {% endblock %}
