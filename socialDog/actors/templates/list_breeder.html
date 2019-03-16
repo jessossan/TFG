@@ -24,8 +24,17 @@ Criadores
                             <div style="float: left;width:400px;padding:40px">
 
                                 <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
-                                {% if breeder.private %}
+                                {% if not user.is_authenticated and breeder.private %}
                                     <p class="card-text" align="left"> <b>Nombre: </b>{{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}</p>
+
+                                {% elif user.is_authenticated %}
+                                     <div align="left">
+                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ breeder.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}
+                                        </button>
+                                         <p></p>
+                                     </div>
                                 {% else %}
                                     <div align="left">
                                         <button class="btn btn-info" onclick="location.href='/web/profile/{{ breeder.pk }}';">

@@ -7,50 +7,76 @@ Perfil
 
 <div>
     </br>
-    	 <div class="well profile">
-            <div class="col-sm-12" align="center">
-                <div class="col-xs-12 col-sm-8">
-                    <img src="{{ dog.photo.url }}" alt="Dog photo" width="300px" height="300px">
-                    <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ dog.breeder.pk }}';">
-                        <span class="fa fa-user"></span>
-                        {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
-                    </button>
+    	 <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                            <!-- IMAGEN DEL PERRO -->
+                            <div style="float: left;">
+                                {% if dog.photo %}
+                                    <img src="{{ dog.photo.url }}"  alt="photo's dog" width="400px" height="300px">
+                                {% endif %}
+                            </div>
+                            <!-- DATOS RELEVANTES DEL PERRO -->
+                            <div style="float: left;width:400px;padding:40px">
+                                <p class="card-text" align="left"> <b>Nombre: </b>{{ dog.name }}</p>
+                                <!-- COMPRUEBA LA S DE AÑO -->
+                                {% if dog.age == 1 %}
+                                    <p class="card-text" align="left"><b>Edad: </b>{{ dog.age }} año</p>
+                                {% else %}
+                                    <p class="card-text" align="left"><b>Edad: </b>{{ dog.age }} años</p>
+                                {% endif %}
+                                    <p class="card-text" align="left"><b>Género: </b>{{ dog.gender }}</p>
+                                    <p class="card-text" align="left"><b>Raza: </b>{{ dog.breed }}</p>
 
-                <div class="col-sm-5 text-left">
+                                <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
+                                {% if not user.is_authenticated and dog.breeder.private %}
+                                    <p class="card-text" align="left"><b>Criador: </b>{{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}</p>
 
-                        <p><strong>Nombre: </strong> {{ dog.name }} </p>
-                        <p><strong>Edad: </strong> {{ dog.age }} años</p>
-                        <p><strong>Género: </strong> {{ dog.gender }}</p>
-                        <p><strong>Raza: </strong> {{ dog.breed }}</p>
-                        {% if dog.details %}
-                            <p>{{ dog.details }}</p>
-                        {% endif %}
-                        {% if dog.awards %}
-                            <p>{{ dog.awards }}</p>
-                        {% endif %}
-                        {% if dog.descendant %}
-                            <p>{{ dog.descendant }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-2 text-center">
+                                {% elif user.is_authenticated %}
+                                     <div align="left">
+                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ dog.breeder.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
+                                        </button>
+                                         <p></p>
+                                     </div>
+                                {% else %}
+                                    <div align="left">
+                                        <button class="btn btn-info" onclick="location.href='/web/profile/{{ dog.breeder.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- CAMPOS DE TEXTO DEL PERRO -->
+                                <div style="float: left;width:400px;padding:40px">
+                                    {% if dog.details %}
+                                    <p class="card-text" align="left"> <b>Detalles: </b>{{ dog.details }}</p>
+                                    {% else %}
+                                    <p class="card-text" align="left"> <b>Detalles: </b>ninguno</p>
+                                    {% endif %}
+                                    {% if dog.awards %}
+                                    <p class="card-text" align="left"><b>Premios: </b>{{ dog.awards }}</p>
+                                    {% else %}
+                                    <p class="card-text" align="left"> <b>Premios: </b>ninguno</p>
+                                    {% endif %}
+                                </div>
 
-                 <!--Comentar -->
-                {% if not ownDog %}
-                    <button class="btn btn-success btn-block" onclick="location.href='/comments/create/dog/{{ dog.pk }}';">
-                        <span class="fa fa-comment" >
-                        </span>Comentar
-                    </button>
-                    <button class="btn btn-success btn-block" onclick="location.href='/rates/create/dog/{{ dog.pk }}';">
-                        <span class="fa fa-star" >
-                        </span>Valorar
-                    </button>
-                {% endif %}
-                </div>
-            </div>
-
-
-            </div>
+                            <!-- BOTONES SI ESTA LOGUEADO -->
+                                <div style="float: left;width:30px;padding:40px 0 0">
+                                    <!--BOTON PARA COMENTAR Y VALORAR-->
+                                    {% if not ownDog %}
+                                        <button class="btn btn-success " onclick="location.href='/comments/create/dog/{{ dog.pk }}';">
+                                            <span class="fa fa-comment">
+                                            </span>
+                                        </button>
+                                    <p></p>
+                                        <button class="btn btn-success " onclick="location.href='/rates/create/dog/{{ dog.pk }}';">
+                                            <span class="fa fa-star" >
+                                            </span>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                           </div>
 
 </div>
 

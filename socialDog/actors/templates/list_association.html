@@ -24,9 +24,18 @@ Asociaciones
                             <div style="float: left;width:400px;padding:40px">
 
                                 <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
-                                {% if association.private %}
+                                {% if not user.is_authenticated and association.private %}
                                     <p class="card-text" align="left"> <b>Nombre: </b>{{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</p>
+                                {% elif user.is_authenticated %}
+                                     <div align="left">
+                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ association.pk }}';">
+                                            <span class="fa fa-user"></span>
+                                            {{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}
+                                        </button>
+                                         <p></p>
+                                     </div>
                                 {% else %}
+
                                     <div align="left">
                                         <button class="btn btn-info" onclick="location.href='/web/profile/{{ association.pk }}';">
                                             <span class="fa fa-user"></span>

@@ -4,28 +4,37 @@ Perfil
 {% endblock %}
 {% block content %}
 
-<div>
-    </br>
-    	 <div class="well profile">
-                <div class="col-sm-12" align="center">
-                    <div class="col-xs-12 col-sm-8">
-                        <img src="{{ actor.photo.url }}" alt="Actor photo" width="300px" height="300px">
-                             <h2>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</h2>
+<div class="container-fluid">
+    	 <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                            <div style="float: left;width:50px;padding:5px">
 
-                        <div class="col-sm-5 text-left">
-                            <p><strong>Centro: </strong> {{ actor.centerName }} </p>
-                            <p><strong>Horario: </strong> De {{ actor.opening|time:'H' }}:{{ actor.opening|time:'i' }}  a {{ actor.closing|time:'H' }}:{{ actor.closing|time:'i' }}</p>
-                            {% if actor.notes %}
-                                <p><i>{{ actor.notes }}</i></p>
-                            {% endif %}
-                            <p><strong>Dirección: </strong> {{ actor.address }} </p>
-                            <p><strong>Contacto: </strong> {{ actor.userAccount.email }}</p>
-                            <p><strong>Tlf: </strong> {{ actor.phone }}</p>
-                            <p align="center"><strong> {{ actor.province }} - C.P. {{ actor.postalCode }}</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </div>
+                            <!-- IMAGEN DE LA ASOCIACIÓN -->
+                            <div style="float: left;">
+                                {% if actor.photo %}
+                                    <img src="{{ actor.photo.url }}"  alt="photo's actor" width="300px" height="300px">
+                                {% endif %}
+                            </div>
+                            <p class="card-text" style="font-size:27px;padding:0 300px 0" align="center"> <b>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</b></p>
+                            <div style="float: left;width:400px;padding:40px">
+
+
+
+                                <p class="card-text" align="left"><b>Centro: </b>{{ actor.centerName }}</p>
+                                <p class="card-text" align="left"><b>Horario: </b>De {{ actor.opening|time:'H' }}:{{ actor.opening|time:'i' }}  a {{ actor.closing|time:'H' }}:{{ actor.closing|time:'i' }}</p>
+                                {% if actor.notes %}
+                                    <p class="card-text" align="left"><i>{{ actor.notes }}</i></p>
+                                {% endif %}
+                                <p class="card-text" align="left"><b>Dirección: </b>{{ actor.address }}</p>
+                            </div>
+
+                                <div style="float: left;width:400px;padding:40px">
+                                    <p class="card-text" align="left"><b>Contacto: </b>{{ actor.userAccount.email }}</p>
+                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ actor.phone }}</p>
+                                    <p class="card-text" align="left"><b> {{ actor.province }} - C.P. {{ actor.postalCode }}</b></p>
+                                </div>
+
+                           </div>
 
 </div>
 {% endblock %}
