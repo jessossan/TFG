@@ -108,13 +108,13 @@ def list_myNews(request):
     if hasattr(request.user.actor, 'breeder'):
         # Recupera el criador
         breeder = request.user.actor.breeder
-        news_list_aux = News.objects.filter(breeder=breeder)
+        news_list_aux = News.objects.filter(breeder=breeder).order_by('title')
         ownNews = True
 
     elif hasattr(request.user.actor, 'association'):
         # Recupera la asociación
         association = request.user.actor.association
-        news_list_aux = News.objects.filter(association=association)
+        news_list_aux = News.objects.filter(association=association).order_by('title')
         ownNews = True
 
     else:

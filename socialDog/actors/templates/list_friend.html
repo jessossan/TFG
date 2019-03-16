@@ -6,7 +6,6 @@ Amigos
 
     <div class="container-fluid">
 
-        <br/>
         <h1>Lista de amigos</h1>
         <br/>
 
@@ -18,9 +17,7 @@ Amigos
         <input type="button"  class="btn editbutton"
                                onclick="location.href='/actors/users';"
                                value="Buscar usuarios"/>&nbsp
-        <input type="button"  class="btn editbutton"
-                               onclick="location.href='/requests/listReceived';"
-                               value="Ir a solicitudes"/>
+
     {% elif isAllUsers %}
         <input type="button"  class="btn editbutton"
                                onclick="location.href='/actors/friends';"
@@ -28,9 +25,7 @@ Amigos
         <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/actors/users';"
                                value="Buscar usuarios"/>&nbsp
-        <input type="button"  class="btn editbutton"
-                               onclick="location.href='/requests/listReceived';"
-                               value="Ir a solicitudes"/>
+
 
     {% endif %}
 </div>

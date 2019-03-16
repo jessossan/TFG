@@ -514,10 +514,10 @@ def list_friends(request):
         acceptedStatus = Request.StatusType[1][0]
 
         # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
-        actorFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+        actorFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus).order_by('follower')
 
         # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
-        actorFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+        actorFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus).order_by('followed')
 
         # Unimos ambas listas
         friend_list_aux = actorFollowers | actorFolloweds
@@ -609,7 +609,7 @@ def list_actors(request):
             actor_list_aux = actor_list_aux.exclude(pk=actPend.pk)
 
         # Excluye el actor logueado
-        actor_list_aux = actor_list_aux.exclude(pk=actor.pk)
+        actor_list_aux = actor_list_aux.exclude(pk=actor.pk).order_by('userAccount')
     except Exception as e:
 
         actor_list_aux = Actor.objects.none()
@@ -639,14 +639,14 @@ def list_actors(request):
 
 def list_associations(request):
     try:
-        associacion_list_aux = Association.objects.all()
+        associacion_list_aux = Association.objects.all().order_by('actor_ptr')
 
         if hasattr(request.user.actor, 'association'):
-            associacion_list_aux = Association.objects.all().exclude(pk=request.user.actor.pk)
+            associacion_list_aux = Association.objects.all().exclude(pk=request.user.actor.pk).order_by('actor_ptr')
 
     except Exception as e:
 
-        associacion_list_aux = Association.objects.all()
+        associacion_list_aux = Association.objects.all().order_by('actor_ptr')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(associacion_list_aux, 6)
@@ -670,14 +670,14 @@ def list_associations(request):
 
 def list_breeders(request):
     try:
-        breeder_list_aux = Breeder.objects.all()
+        breeder_list_aux = Breeder.objects.all().order_by('actor_ptr')
 
         if hasattr(request.user.actor, 'breeder'):
-            breeder_list_aux = Breeder.objects.all().exclude(pk=request.user.actor.pk)
+            breeder_list_aux = Breeder.objects.all().exclude(pk=request.user.actor.pk).order_by('actor_ptr')
 
     except Exception as e:
 
-        breeder_list_aux = Breeder.objects.all()
+        breeder_list_aux = Breeder.objects.all().order_by('actor_ptr')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(breeder_list_aux, 6)

@@ -23,7 +23,7 @@ from rates.models import Rate
 def list_dogs(request):
     ownDog = False
     try:
-        dog_list_aux = Dog.objects.all()
+        dog_list_aux = Dog.objects.all().order_by('name')
 
     except Exception as e:
 

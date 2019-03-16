@@ -124,13 +124,13 @@ def list_myEvents(request):
     if hasattr(request.user.actor, 'breeder'):
         # Recupera el criador
         breeder = request.user.actor.breeder
-        event_list_aux = Event.objects.filter(breeder=breeder)
+        event_list_aux = Event.objects.filter(breeder=breeder).order_by('title')
         ownEvent = True
 
     elif hasattr(request.user.actor, 'association'):
         # Recupera la asociación
         association = request.user.actor.association
-        event_list_aux = Event.objects.filter(association=association)
+        event_list_aux = Event.objects.filter(association=association).order_by('title')
         ownEvent = True
 
     else:
@@ -183,13 +183,13 @@ def list_myFutureEvents(request):
         # Recupera el criador
         breeder = request.user.actor.breeder
         # Filtro para recuperar los eventos del criador        Filtro para recuperar los eventos de hoy y futuros
-        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__gte=date.today())
+        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__gte=date.today()).order_by('title')
         ownEvent = True
 
     elif hasattr(request.user.actor, 'association'):
         # Recupera la asociación
         association = request.user.actor.association
-        event_list_aux = Event.objects.filter(association=association).filter(startDate__gte=date.today())
+        event_list_aux = Event.objects.filter(association=association).filter(startDate__gte=date.today()).order_by('title')
         ownEvent = True
 
     else:
@@ -242,13 +242,13 @@ def list_myPastEvents(request):
         # Recupera el criador
         breeder = request.user.actor.breeder
         # Filtro para recuperar los eventos del criador        Filtro para recuperar los eventos de hoy y futuros
-        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__lt=date.today())
+        event_list_aux = Event.objects.filter(breeder=breeder).filter(startDate__lt=date.today()).order_by('title')
         ownEvent = True
 
     elif hasattr(request.user.actor, 'association'):
         # Recupera la asociación
         association = request.user.actor.association
-        event_list_aux = Event.objects.filter(association=association).filter(startDate__lt=date.today())
+        event_list_aux = Event.objects.filter(association=association).filter(startDate__lt=date.today()).order_by('title')
         ownEvent = True
 
     else:
