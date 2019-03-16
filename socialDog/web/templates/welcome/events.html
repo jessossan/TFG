@@ -4,7 +4,6 @@ Eventos
 {% endblock %}
 {% block content %}
 
-</br>
 <div align="center">
 
     {% if isEvent %}
@@ -26,48 +25,51 @@ Eventos
 
 
 <div align="center">
-</br>
-<h1 align="center"> Eventos</h1>
-</br>
+
+<h3 align="center"> Eventos</h3>
 
 {% if event_list %}
     {% for event in event_list %}
-        <div class="card border-dark mb-4" style="max-width: 60rem;">
-          <div class="card-header" align="center"><h4><b>{{ event.title }}</b></h4></div>
-          <div class="card-body text-dark">
-            <h4 class="card-title">{{ event.place }}</h4>
-            <p class="card-text">{{ event.description }}</p>
+        <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                <div style="float: left;width:50px;padding:5px">
 
-              {% if event.photo %}
-                  <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px" align="right">
+                </div>
+                <!-- IMAGEN DE LA ASOCIACIÓN -->
+                <div style="float: left;">
+                    {% if event.photo %}
+                        <img src="{{ event.photo.url }}"  alt="photo's event" width="300px" height="300px">
+                    {% endif %}
+                    <p></p>
+                </div>
+            <!--  -->
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:27px;"><b> Comienzo: {{ event.startDate|date:'d/m/y' }}</b></p>
+                <p class="card-text" align="center" style="font-size:27px;"><b> Termina:&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</b></p>
+                {% if event.length %}
+                    <p class="card-text" align="center" style="font-size:27px;"><b> Duración:&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</b></p>
                 {% endif %}
-
-              </br>
-
-              <h5 class="card-text" align="left">Comienzo: {{ event.startDate|date:'d/m/y' }}</h5>
-              <h5 class="card-text" align="left">Termina:&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</h5>
-              <h5 class="card-text" align="left">
-                  {% if event.length %}
-                    Duración:&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m
-                  {% endif %}
-              </h5>
-                </br>
-                </br>
-              <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
-                  {% if event.breeder %}
+                <div align="center">
+                    {% if event.breeder %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  event.breeder.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}
                         </button>
-                  {% elif event.association %}
+                    {% elif event.association %}
                       <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}
                         </button>
-                  {% endif %}
-              </p>
-          </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.title }}</b></p>
+                <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.place }}</b></p>
+                <p class="card-text" align="left">{{ event.description }}</p>
+            </div>
+
         </div>
+    <hr>
     {% endfor %}
 {% else %}
     <p style="padding: 0px 250px 0px">no existen eventos</p>

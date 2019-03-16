@@ -116,7 +116,7 @@ Mis noticias
         {% endif %}
         </br>
         {% if user.actor.breeder %}
-            <div class="create">
+            <div class="create" style="padding: 0 20px 20px;">
                 <input type="button" class="btn editbutton"
                        onclick="location.href='/news/breeder/create';"
                        value="Crear noticia"/>
@@ -126,7 +126,7 @@ Mis noticias
         {% endif %}
 
         {% if user.actor.association %}
-            <div class="create">
+            <div class="create" style="padding: 0 20px 20px;">
                 <input type="button" class="btn editbutton"
                        onclick="location.href='/news/association/create';"
                        value="Crear noticia"/>

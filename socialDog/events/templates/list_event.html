@@ -12,7 +12,6 @@ Mis eventos
         {% else %}
             <h3>Mis eventos finalizados</h3>
         {% endif %}
-        <br/>
 
         {% if myEvents %}
             <input type="button" class="btn pulsado" style="border-color:#2c539e"
@@ -48,69 +47,64 @@ Mis eventos
 
         <!-- Listado -->
         {% if event_list %}
-        <div class="panel panel-default panel-table mb-1">
-          <div class="panel-heading">
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped table-curved table-hover table-bordered">
+            {% for event in event_list %}
+            <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                    <div style="float: left;width:50px;padding:5px">
 
-
-                    <thead class="thead-primary">
-                    <tr>
-                        <th>Título</th>
-                        <th>Lugar</th>
-                        <th>Fecha de comienzo</th>
-                        <th>Fecha fin</th>
-                        <th>Duración</th>
-                        <!-- Foto -->
-                        <th></th>
-
-                        <!-- Si es del creador para la columna editar -->
-                        {% if ownEvent %}
-                        <th></th>
+                    </div>
+                    <!-- IMAGEN DE LA ASOCIACIÓN -->
+                    <div style="float: left;">
+                        {% if event.photo %}
+                            <img src="{{ event.photo.url }}"  alt="photo's event" width="300px" height="300px">
                         {% endif %}
-                    </tr>
-                  </thead>
+                        <p></p>
+                    </div>
+                <!--  -->
+                <div style="float: left;width:400px;padding:40px">
+                    <p class="card-text" align="center" style="font-size:27px;"><b> Comienzo: {{ event.startDate|date:'d/m/y' }}</b></p>
+                    <p class="card-text" align="center" style="font-size:27px;"><b> Termina:&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</b></p>
+                    {% if event.length %}
+                        <p class="card-text" align="center" style="font-size:27px;"><b> Duración:&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</b></p>
+                    {% endif %}
+                    <div align="center">
+                        {% if event.breeder %}
+                            <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  event.breeder.pk }}';">
+                                <span class="fa fa-user"></span>
+                                {{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}
+                            </button>
+                        {% elif event.association %}
+                          <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
+                                <span class="fa fa-user"></span>
+                                {{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="float: left;width:400px;padding:40px">
+                    <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.title }}</b></p>
+                    <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.place }}</b></p>
+                    <p class="card-text" align="left">{{ event.description }}</p>
+                </div>
+                <!--BOTONES DE EDICION Y BORRADO -->
+                <div style="float: left;width:100px;padding:40px">
+                    {% if ownEvent %}
+                        <!--Si es un evento con fecha pasada o con menos de un dia de antelacion no se muestra -->
+                        {% if event.startDate > today and event.startDate != tomorrow %}
+                            <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
+                                <i class="fa fa-pencil" style="font-size:18px"></i>
+                            </a>
+                        {% endif %}
+                        <p></p>
+                        <a class="btn btn-danger" href="delete/{{ event.pk }}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    {% endif %}
+                </div>
 
-                    <tbody>
-                    {% for event in event_list %}
+            </div>
+            <hr>
+    {% endfor %}
 
-                        <tr>
-                            <td>{{ event.title }}</td>
-                            <td>{{ event.place }}</td>
-                            <td>{{ event.startDate|date:'d/m/y' }} &nbsp;- {{ event.startTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                                <td>{{ event.finishDate|date:'d/m/y' }} &nbsp;- {{ event.finishTime|time:'H' }}:{{ event.finishTime|time:'i' }}</td>
-                            {% if event.length %}
-                                <td>{{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</td>
-                            {% else %}
-                                <td align="center">--</td>
-                            {% endif %}
-                            <td>
-                                {% if event.photo %}
-                                    <img src="{{ event.photo.url }}" alt="photo's event" width="150px" height="150px">
-                                {% endif %}
-                            </td>
-
-                            <!-- Si es del creador para  editar -->
-                            {% if ownEvent %}
-                            <td>
-                                <!--Si es un evento con fecha pasada o con menos de un dia de antelacion no se muestra -->
-                                {% if event.startDate > today and event.startDate != tomorrow %}
-                                    <a  title="Editar"  class="btn editbutton" href="edit/{{ event.pk }}">
-                                        <i class="fa fa-pencil" style="font-size:18px"></i>
-                                    </a>
-                                {% endif %}
-                                <a class="btn btn-danger" href="delete/{{ event.pk }}">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-
-            </table>
-          </div>
           <div class="panel-footer table-header-primary table-footer">
             {% if event_list.has_other_pages %}
                 <ul class="pagination">
@@ -164,9 +158,10 @@ Mis eventos
             <p></p>
             <p>No existen eventos.</p>
         {% endif %}
-
+        <p></p>
         {% if user.actor.breeder %}
-            <div class="create">
+            <div class="create" style="padding: 0 20px 20px;">
+
                 <input type="button" class="btn editbutton"
                        onclick="location.href='/events/breeder/create';"
                        value="Crear evento"/>
@@ -176,7 +171,7 @@ Mis eventos
         {% endif %}
 
         {% if user.actor.association %}
-            <div class="create">
+            <div class="create" style="padding: 0 20px 20px;">
                 <input type="button" class="btn editbutton"
                        onclick="location.href='/events/association/create';"
                        value="Crear evento"/>
@@ -187,5 +182,4 @@ Mis eventos
 
 
 
-    </div>
 {% endblock %}
