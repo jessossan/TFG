@@ -4,7 +4,6 @@ Noticias
 {% endblock %}
 {% block content %}
 
-</br>
 <div align="center">
     {% if isEvent %}
         <input type="button" style="font-size: 24px;border-color:#2c539e" class="btn pulsado"
@@ -24,39 +23,46 @@ Noticias
 </div>
 
 <div align="center">
-</br>
-<h1 align="center"> Noticias</h1>
-</br>
+<h3 align="center"> Noticias</h3>
 
 {% if news_list %}
     {% for news in news_list %}
-        <div class="card border-dark mb-4" style="max-width: 60rem;">
-              <div class="card-header" align="center"><h4><b>{{ news.title }}</b></h4></div>
+        <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                <div style="float: left;width:50px;padding:5px">
 
-              <div class="card-body text-dark">
-                <h5 class="card-text" align="right">Fecha: {{ news.creationDate|date:'d/m/y' }}</h5>
-                <p class="card-text">{{ news.description }}</p>
+                </div>
+                <!-- IMAGEN DE LA ASOCIACIÓN -->
+                <div style="float: left;">
                     {% if news.photo %}
-                      <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px" align="right">
+                        <img src="{{ news.photo.url }}"  alt="photo's news" width="300px" height="300px">
                     {% endif %}
+                    <p></p>
+                </div>
+            <!--  -->
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:27px;"><b> {{ news.creationDate|date:'d/m/y' }}</b></p>
 
-                    </br>
-
-                    <p class="card-text" style="position: absolute;bottom: 30px;left: 20px;">
-                        {% if news.breeder %}
+                <div align="center">
+                    {% if news.breeder %}
                             <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  news.breeder.pk }}';">
                                 <span class="fa fa-user"></span>
                                 {{ news.breeder.userAccount.first_name }} {{ news.breeder.userAccount.last_name }}
                             </button>
-                        {% elif news.association %}
+                    {% elif news.association %}
                             <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  news.association.pk }}';">
                                     <span class="fa fa-user"></span>
                                     {{ news.association.userAccount.first_name }} {{ news.association.userAccount.last_name }}
                             </button>
-                        {% endif %}
-                    </p>
-              </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
+                <p class="card-text" align="left">{{ news.description }}</p>
+            </div>
+
         </div>
+    <hr>
     {% endfor %}
 {% else %}
     <p style="padding: 0px 250px 0px">no existen noticias</p>

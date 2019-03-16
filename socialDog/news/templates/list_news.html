@@ -6,58 +6,61 @@ Mis noticias
 
     <div class="container-fluid">
         <h3>Mis noticias</h3>
-        <br/>
 
         <!-- Listado -->
         {% if news_list %}
-        <div class="panel panel-default panel-table mb-3">
-          <div class="panel-heading">
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped table-curved table-hover table-bordered">
+            {% for news in news_list %}
+        <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                <div style="float: left;width:50px;padding:5px">
 
+                </div>
+                <!-- IMAGEN DE LA ASOCIACIÓN -->
+                <div style="float: left;">
+                    {% if news.photo %}
+                        <img src="{{ news.photo.url }}"  alt="photo's news" width="300px" height="300px">
+                    {% endif %}
+                    <p></p>
+                </div>
+            <!--  -->
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:27px;"><b> {{ news.creationDate|date:'d/m/y' }}</b></p>
 
-                    <thead class="thead-primary">
-                    <tr>
-                        <th>Título</th>
-                        <!-- Foto-->
-                        <th></th>
+                <div align="center">
+                    {% if news.breeder %}
+                            <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  news.breeder.pk }}';">
+                                <span class="fa fa-user"></span>
+                                {{ news.breeder.userAccount.first_name }} {{ news.breeder.userAccount.last_name }}
+                            </button>
+                    {% elif news.association %}
+                            <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  news.association.pk }}';">
+                                    <span class="fa fa-user"></span>
+                                    {{ news.association.userAccount.first_name }} {{ news.association.userAccount.last_name }}
+                            </button>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="float: left;width:400px;padding:40px">
+                <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
+                <p class="card-text" align="left">{{ news.description }}</p>
+            </div>
+            <!--BOTONES DE EDICION Y BORRADO -->
+            <div style="float: left;width:100px;padding:40px">
+                {% if ownNews %}
+                    <a  title="Editar"  class="btn editbutton" href="edit/{{ news.pk }}">
+                        <i class="fa fa-pencil" style="font-size:18px"></i>
+                    </a>
+                <p></p>
+                    <a class="btn btn-danger" href="delete/{{ news.pk }}">
+                        <i class="fa fa-trash"></i>
+                    </a>
 
-                        <!-- Si es del creador para la columna editar -->
-                        {% if ownNews %}
-                        <th></th>
-                        {% endif %}
+                {% endif %}
+            </div>
 
-                    </tr>
-                  </thead>
+        </div>
+            <hr>
+    {% endfor %}
 
-                    <tbody>
-                    {% for news in news_list %}
-
-                        <tr>
-                            <td>{{ news.title }}</td>
-                            <td>
-                                {% if news.photo %}
-                                    <img src="{{ news.photo.url }}" alt="photo's news" width="150px" height="150px">
-                                {% endif %}
-                            </td>
-                            <!-- Si es del creador para  editar -->
-                            {% if ownNews %}
-                            <td>
-                                <a  title="Editar"  class="btn editbutton" href="edit/{{ news.pk }}">
-                                        <i class="fa fa-pencil" style="font-size:18px"></i>
-                                </a>
-                                <a class="btn btn-danger" href="delete/{{ news.pk }}">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-
-            </table>
-          </div>
           <div class="panel-footer table-header-primary table-footer">
             {% if news_list.has_other_pages %}
                 <ul class="pagination">
@@ -111,7 +114,7 @@ Mis noticias
             <p></p>
             <p>No existen noticias.</p>
         {% endif %}
-
+        </br>
         {% if user.actor.breeder %}
             <div class="create">
                 <input type="button" class="btn editbutton"
@@ -134,5 +137,4 @@ Mis noticias
 
 
 
-    </div>
 {% endblock %}
