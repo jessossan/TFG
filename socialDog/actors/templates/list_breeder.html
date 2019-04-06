@@ -6,44 +6,20 @@ Criadores
 
     <div class="container-fluid">
 
-        <h3>Criadores</h3>
+        <h3 style="padding: 0 20px 0">Criadores</h3>
 
         {% if breeder_list %}
                     {% for breeder in breeder_list %}
-                        <div align="center" style="overflow: auto;padding: 0 20px 0;">
-                            <div style="float: left;width:50px;padding:5px">
-
-                            </div>
-                            <!-- IMAGEN DE LA CRIADOR -->
+                        <div align="center" style="overflow: auto;padding: 0px 20px 0px;">
+                            <!-- IMAGEN DEL CRIADOR -->
                             <div style="float: left;">
                                 {% if breeder.photo %}
-                                    <img src="{{ breeder.photo.url }}"  alt="photo's breeder" width="300px" height="300px">
+                                    <img src="{{ breeder.photo.url }}"  alt="photo's breeder" width="200px" height="200px">
                                 {% endif %}
                             </div>
-                            <!--  -->
-                            <div style="float: left;width:400px;padding:40px">
 
-                                <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
-                                {% if not user.is_authenticated and breeder.private %}
-                                    <p class="card-text" align="left"> <b>Nombre: </b>{{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}</p>
-
-                                {% elif user.is_authenticated %}
-                                     <div align="left">
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ breeder.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            {{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}
-                                        </button>
-                                         <p></p>
-                                     </div>
-                                {% else %}
-                                    <div align="left">
-                                        <button class="btn btn-info" onclick="location.href='/web/profile/{{ breeder.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            {{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}
-                                        </button>
-                                        <p></p>
-                                    </div>
-                                {% endif %}
+                            <div style="float: left;width:400px;padding:0px 20px 0px">
+                                <p class="card-text"  align="left" style="font-size:24px;"> <b>{{ breeder.userAccount.first_name }}  {{ breeder.userAccount.last_name }}</b></p>
                                 <p class="card-text" align="left"><b>Centro: </b>{{ breeder.centerName }}</p>
                                 <p class="card-text" align="left"><b>Horario: </b>De {{ breeder.opening|time:'H' }}:{{ breeder.opening|time:'i' }}  a {{ breeder.closing|time:'H' }}:{{ breeder.closing|time:'i' }}</p>
                                 {% if breeder.notes %}
@@ -51,12 +27,12 @@ Criadores
                                 {% endif %}
                                 <p class="card-text" align="left"><b>Dirección: </b>{{ breeder.address }}</p>
                             </div>
-                            <!--  -->
-                                <div style="float: left;width:400px;padding:40px">
-                                    <p class="card-text" align="left"><b>Contacto: </b>{{ breeder.userAccount.email }}</p>
-                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ breeder.phone }}</p>
-                                    <p class="card-text" align="left"><b> {{ breeder.province }} - C.P. {{ breeder.postalCode }}</b></p>
-                                </div>
+
+                            <div style="float: left;width:400px;padding:0px 20px 0px">
+                                <p class="card-text" align="left"><b>Contacto: </b>{{ breeder.userAccount.email }}</p>
+                                <p class="card-text" align="left"><b>Teléfono: </b>{{ breeder.phone }}</p>
+                                <p class="card-text" align="left"><b> {{ breeder.province }} - C.P. {{ breeder.postalCode }}</b></p>
+                            </div>
 
                            </div>
                            <hr>

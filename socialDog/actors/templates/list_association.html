@@ -6,44 +6,21 @@ Asociaciones
 
     <div class="container-fluid">
 
-        <h3>Asociaciones</h3>
+        <h3 style="padding: 0 20px 0">Asociaciones</h3>
 
         {% if association_list %}
                     {% for association in association_list %}
                         <div align="center" style="overflow: auto;padding: 0 20px 0;">
-                            <div style="float: left;width:50px;padding:5px">
-
-                            </div>
                             <!-- IMAGEN DE LA ASOCIACIÓN -->
                             <div style="float: left;">
                                 {% if association.photo %}
-                                    <img src="{{ association.photo.url }}"  alt="photo's association" width="300px" height="300px">
+                                    <img src="{{ association.photo.url }}"  alt="photo's association" width="200px" height="200px">
                                 {% endif %}
                             </div>
                             <!--  -->
-                            <div style="float: left;width:400px;padding:40px">
+                            <div style="float: left;width:400px;padding:0px 20px 0px">
 
-                                <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
-                                {% if not user.is_authenticated and association.private %}
-                                    <p class="card-text" align="left"> <b>Nombre: </b>{{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</p>
-                                {% elif user.is_authenticated %}
-                                     <div align="left">
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ association.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            {{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}
-                                        </button>
-                                         <p></p>
-                                     </div>
-                                {% else %}
-
-                                    <div align="left">
-                                        <button class="btn btn-info" onclick="location.href='/web/profile/{{ association.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            {{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}
-                                        </button>
-                                        <p></p>
-                                    </div>
-                                {% endif %}
+                                <p class="card-text" align="left" style="font-size:24px;"><b> {{ association.userAccount.first_name }}  {{ association.userAccount.last_name }}</b></p>
                                 <p class="card-text" align="left"><b>Centro: </b>{{ association.centerName }}</p>
                                 <p class="card-text" align="left"><b>Horario: </b>De {{ association.opening|time:'H' }}:{{ association.opening|time:'i' }}  a {{ association.closing|time:'H' }}:{{ association.closing|time:'i' }}</p>
                                 {% if association.notes %}
@@ -52,7 +29,7 @@ Asociaciones
                                 <p class="card-text" align="left"><b>Dirección: </b>{{ association.address }}</p>
                             </div>
                             <!--  -->
-                                <div style="float: left;width:400px;padding:40px">
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
                                     <p class="card-text" align="left"><b>Contacto: </b>{{ association.userAccount.email }}</p>
                                     <p class="card-text" align="left"><b>Teléfono: </b>{{ association.phone }}</p>
                                     <p class="card-text" align="left"><b> {{ association.province }} - C.P. {{ association.postalCode }}</b></p>
