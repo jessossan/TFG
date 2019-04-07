@@ -5,12 +5,10 @@
 <!-- CONTENIDO -->
 {% block content %}
 <div class="container">
-    <br />
-    <h2>{{ title }} para <b> {{ dog.name }} </b></h2>
+    <p style="font-size:40px">{{ title }} para <b> {{ dog.name }} </b></p>
 
     <div class="row">
 
-        <div class="container-fluid">
             <div class="col-md-12">
 
                 <!-- FORMULARIO -->
@@ -18,7 +16,6 @@
                     {% csrf_token %}
 
                     <!-- Crear valoración -->
-                    <br/>
 
                     <div class="row">
 
@@ -88,7 +85,6 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 

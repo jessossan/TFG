@@ -13,6 +13,7 @@ Perfil
                                 {% if dog.photo %}
                                     <img src="{{ dog.photo.url }}"  alt="photo's dog" width="400px" height="300px">
                                 {% endif %}
+
                             </div>
                             <!-- DATOS RELEVANTES DEL PERRO -->
                             <div style="float: left;width:400px;padding:40px">
@@ -104,7 +105,8 @@ Perfil
 
               <p class="card-text" >
                 <img src="{{ comment.creator_comment.photo.url }}" alt="Dog photo" width="75px" height="75px">
-                  </br>
+              <p></p>
+
                   {% if comment.creator_comment.breeder %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
                             <span class="fa fa-user"></span>
@@ -241,6 +243,7 @@ Perfil
               <p class="card-text" >
                 <img src="{{ rate.creator_rate.photo.url }}" alt="Dog photo" width="75px" height="75px">
                   </br>
+                  <p></p>
                   {% if rate.creator_rate.breeder %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
                             <span class="fa fa-user"></span>
