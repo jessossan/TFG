@@ -107,54 +107,32 @@ Mis eventos
             <hr>
     {% endfor %}
 
-          <div class="panel-footer table-header-primary table-footer">
-            {% if event_list.has_other_pages %}
-                <ul class="pagination">
-                    {% if event_list.has_previous %}
-                        <li>
-                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ event_list.previous_page_number }}">
-                            <i class="fas fa-angle-double-left"></i>
-                          </a>
-                        </li>
-                    {% else %}
-                    <li>
-                      <a  class="ui-button ui-pagination ui-pagination-prev ui-pagination-disabled" href="#">
-                        <i class="fas fa-angle-double-left"></i>
-                      </a>
-                    </li>
-                    {% endif %}
-                    {% for i in event_list.paginator.page_range %}
-                        {% if event_list.number == i %}
-                        <li>
-                          <a class="ui-button ui-pagination ui-pagination-current" href="#">
-                            <span>{{ i }}</span>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li>
-                          <a class="ui-button ui-pagination ui-pagination-page" href="?page={{ i }}">
-                            <span>{{ i }}</span>
-                          </a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if event_list.has_next %}
-                    <li>
-                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ event_list.next_page_number }}">
-                        <i class="fas fa-angle-double-right"></i>
-                      </a>
-                    </li>
-                    {% else %}
-                    <li>
-                      <a class="ui-button ui-pagination ui-pagination-next ui-pagination-disabled" href="#">
-                        <i class="fas fa-angle-double-right"></i>
-                      </a>
-                    </li>
-                    {% endif %}
-                </ul>
-              {% endif %}
-          </div>
 
+            {% if event_list.has_other_pages %}
+                <div class="table-footer">
+                    <div  align="center" class="pagination" style="padding:0 20px 0">
+                        <ul>
+                            {% if event_list.has_previous %}
+                            <li class="previous"><a href="?page={{ event_list.previous_page_number }}" class="fa fa-arrow-left"></a></li>
+                            {% else %}
+                            <li class="previous disabled"><a href="#" class="fa fa-arrow-left"></a></li>
+                            {% endif %}
+                            {% for i in event_list.paginator.page_range %}
+                                {% if event_list.number == i %}
+                                <li class="active"><a href="#">{{ i }}</a></li>
+                                {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if event_list.has_next %}
+                            <li class="next"><a href="?page={{ event_list.next_page_number }}" class="fa fa-arrow-right"></a></li>
+                            {% else %}
+                            <li class="previous disabled"><a href="#" class="fa fa-arrow-right"></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
             <p style="padding: 0px 20px 0px">No existen eventos.</p>
         {% endif %}

@@ -12,14 +12,14 @@ Mis noticias
         <div align="center" style="overflow: auto;padding: 0 20px 0;">
             <p class="card-text" align="right" style="font-size:25px;"><b> <b>Publicación: </b> {{ news.creationDate|date:'d/m/y' }}</b></p>
                 <!-- IMAGEN DE LA NOTICIA -->
-                <div style="float: left;">
+               <div style="float: left;padding:0px 120px 0px">
                     {% if news.photo %}
                         <img src="{{ news.photo.url }}"  alt="photo's news" width="300px" height="300px">
                     {% endif %}
                     <p></p>
                 </div>
             <!--  -->
-            <div style="float: left;width:400px;padding:40px">
+            <div style="float: left;width:500px;">
                 <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
                 <p class="card-text" align="left">{{ news.description }}</p>
                 <div align="center">
@@ -35,10 +35,6 @@ Mis noticias
                             </button>
                     {% endif %}
                 </div>
-            </div>
-            <div style="float: left;width:400px;padding:40px">
-                <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
-                <p class="card-text" align="left">{{ news.description }}</p>
             </div>
             <!--BOTONES DE EDICION Y BORRADO -->
             <div style="float: left;width:100px;padding:40px">
@@ -57,57 +53,33 @@ Mis noticias
         </div>
             <hr>
     {% endfor %}
-
-          <div class="panel-footer table-header-primary table-footer">
             {% if news_list.has_other_pages %}
-                <ul class="pagination">
-                    {% if news_list.has_previous %}
-                        <li>
-                          <a  class="ui-button ui-pagination ui-pagination-prev" href="?page={{ news_list.previous_page_number }}">
-                            <i class="fas fa-angle-double-left"></i>
-                          </a>
-                        </li>
-                    {% else %}
-                    <li>
-                      <a  class="ui-button ui-pagination ui-pagination-prev ui-pagination-disabled" href="#">
-                        <i class="fas fa-angle-double-left"></i>
-                      </a>
-                    </li>
-                    {% endif %}
-                    {% for i in news_list.paginator.page_range %}
-                        {% if news_list.number == i %}
-                        <li>
-                          <a class="ui-button ui-pagination ui-pagination-current" href="#">
-                            <span>{{ i }}</span>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li>
-                          <a class="ui-button ui-pagination ui-pagination-page" href="?page={{ i }}">
-                            <span>{{ i }}</span>
-                          </a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if news_list.has_next %}
-                    <li>
-                      <a class="ui-button ui-pagination ui-pagination-next" href="?page={{ news_list.next_page_number }}">
-                        <i class="fas fa-angle-double-right"></i>
-                      </a>
-                    </li>
-                    {% else %}
-                    <li>
-                      <a class="ui-button ui-pagination ui-pagination-next ui-pagination-disabled" href="#">
-                        <i class="fas fa-angle-double-right"></i>
-                      </a>
-                    </li>
-                    {% endif %}
-                </ul>
-              {% endif %}
-          </div>
+                  <div class="table-footer">
+                        <div  align="center" class="pagination" style="padding:0 20px 0">
+                            <ul>
+                                {% if news_list.has_previous %}
+                                <li class="previous"><a href="?page={{ news_list.previous_page_number }}" class="fa fa-arrow-left"></a></li>
+                                {% else %}
+                                <li class="previous disabled"><a href="#" class="fa fa-arrow-left"></a></li>
+                                {% endif %}
+                                {% for i in news_list.paginator.page_range %}
+                                    {% if news_list.number == i %}
+                                    <li class="active"><a href="#">{{ i }}</a></li>
+                                    {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if news_list.has_next %}
+                                <li class="next"><a href="?page={{ news_list.next_page_number }}" class="fa fa-arrow-right"></a></li>
+                                {% else %}
+                                <li class="previous disabled"><a href="#" class="fa fa-arrow-right"></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+            {% endif %}
 
         {% else %}
-
             <p style="padding: 0px 20px 0px">No existen noticias.</p>
         {% endif %}
 <br/>
