@@ -3,23 +3,17 @@
 <!-- CONTENIDO -->
 {% block content %}
 
-    <h2>{{ titulo }}</h2>
-
-    <div class="row">
-
         <div class="container-fluid">
-            <br/>
             <div class="col-md-12">
 
                 <!-- Formulario Borrado -->
                 <form id="borrar" enctype="multipart/form-data" method="post" action="" class="form" role="form">
                     {% csrf_token %}
-                    <h2><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h2>
-                    <br>
+                    <h4><b>    {{ actor.userAccount.first_name }} {{ actor.userAccount.last_name }},</b></h4>
                     {% if requestSent.status != 'Pendiente' %}
-                        <h3>¿Está seguro que desea eliminar (solo para ti) la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>
+                        <p style="font-size:25px">¿Está seguro que desea eliminar (solo para ti) la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</p>
                     {% else %}
-                        <h3>¿Está seguro que desea cancelar la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</h3>
+                        <p style="font-size:25px">¿Está seguro que desea cancelar la solicitud enviada, <b>{{ requestSent.followed.userAccount.first_name }} {{ requestSent.followed.userAccount.last_name }}</b>?</p>
                     {% endif %}
                     <br>
                     <button class="btn btn-danger" type="submit">Sí, eliminar</button>
@@ -29,7 +23,6 @@
 
             </div>
         </div>
-    </div>
 
 {% endblock %}
 

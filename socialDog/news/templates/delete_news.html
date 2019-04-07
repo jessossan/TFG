@@ -2,11 +2,6 @@
 
 <!-- CONTENIDO -->
 {% block content %}
-<div class="container">
-
-    <h3>{{ titulo }}</h3>
-
-    <div class="row">
 
         <div class="container-fluid">
             <div class="col-md-12">
@@ -16,12 +11,11 @@
                     {% csrf_token %}
 
                     {% if user.actor.breeder %}
-                        <h2><b>    {{ breeder.userAccount.first_name }} {{ breeder.userAccount.last_name }},</b></h2>
+                        <h4><b>    {{ breeder.userAccount.first_name }} {{ breeder.userAccount.last_name }},</b></h4>
                     {% else %}
-                        <h2><b>    {{ association.userAccount.first_name }} {{ association.userAccount.last_name }},</b></h2>
+                        <h4><b>    {{ association.userAccount.first_name }} {{ association.userAccount.last_name }},</b></h4>
                     {% endif %}
-                    <br>
-                    <h3>¿Está seguro que desea eliminar la noticia <b>{{ news.title }}</b>?</h3>
+                    <p style="font-size:25px">¿Está seguro que desea eliminar la noticia <b>{{ news.title }}</b>?</p>
                     <br>
                     <button class="btn btn-danger" type="submit">Sí, eliminar</button>
                     <a class="btn cancelbutton" href="/news/ownList">Cancelar</a>
@@ -30,8 +24,6 @@
 
             </div>
         </div>
-    </div>
-</div>
 {% endblock %}
 
 
