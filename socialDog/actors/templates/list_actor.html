@@ -6,8 +6,7 @@ Usuarios
 
     <div class="container-fluid">
 
-        <h1>Buscar usuarios</h1>
-        <br/>
+        <h3>Buscar usuarios</h3>
 
 <div align="left">
     {% if isFriends %}
@@ -28,58 +27,87 @@ Usuarios
 
     {% endif %}
 </div>
-        </br>
+</br>
 
         <!-- Listado -->
         {% if actor_list %}
-        <div class="panel panel-default panel-table mb-3">
-          <div class="panel-heading">
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped table-curved table-hover table-bordered">
 
-
-                    <thead class="thead-primary">
-                    <tr>
-                        <th>Nombre</th>
-                       <!-- <th>Usuario</th> -->
-                        <!-- Enviar petición de amistad-->
-                        <th></th>
-                        <!-- Ver perfil-->
-                        <th></th>
-                    </tr>
-                  </thead>
-
-                    <tbody>
-                    {% for actor in actor_list %}
-                        <tr>
-                            <td>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</td>
-                                <!--{% if actor.breeder %}
-                                    <td>Criador</td>
-                                {% elif actor.association %}
-                                    <td>Asociación</td>
-                                {% elif actor.customer %}
-                                    <td>Usuario</td>
-                                {% endif %} -->
-                            <td>
-                                <button class="btn btn-success" onclick="location.href='/requests/send/{{ actor.pk }}';">
-                                    <span class="fa fa-plus-circle">
-                                    </span>Amistad
-                                </button>
-                            </td>
-                            <td>
-                                {% if not actor.customer %}
-                                    <button class="btn btn-info" onclick="location.href='/actors/profile/{{ actor.pk }}';">
-                                        <span class="fa fa-user"></span>
-                                    </button>
+                {% for actor in actor_list %}
+                    <div align="center" style="overflow: auto;padding: 0px 20px 0px;">
+                            <!-- IMAGEN DEL ACTOR -->
+                            <div style="float: left;">
+                                {% if actor.photo %}
+                                    <img src="{{ actor.photo.url }}"  alt="photo's actor" width="200px" height="200px">
                                 {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
+                            </div>
+                                <!--SI EL ACTOR ES CRIADOR -->
+                                {% if actor.breeder %}
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text"  align="left" style="font-size:24px;"> <b>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</b></p>
+                                        <p class="card-text" align="left"><b>Centro: </b>{{ actor.breeder.centerName }}</p>
+                                        <p class="card-text" align="left"><b>Horario: </b>De {{ actor.breeder.opening|time:'H' }}:{{ actor.breeder.opening|time:'i' }}  a {{ actor.breeder.closing|time:'H' }}:{{ actor.breeder.closing|time:'i' }}</p>
+                                        {% if actor.breeder.notes %}
+                                            <p class="card-text" align="left"><i>{{ actor.breeder.notes }}</i></p>
+                                        {% endif %}
+                                        <p class="card-text" align="left"><b>Dirección: </b>{{ actor.breeder.address }}</p>
+                                    </div>
 
-            </table>
-          </div>
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text" align="left"><b>Contacto: </b>{{ actor.userAccount.email }}</p>
+                                        <p class="card-text" align="left"><b>Teléfono: </b>{{ actor.phone }}</p>
+                                        <p class="card-text" align="left"><b> {{ actor.breeder.province }} - C.P. {{ actor.breeder.postalCode }}</b></p>
+                                        <div align="left">
+                                             <button class="btn btn-success" onclick="location.href='/requests/send/{{ actor.pk }}';">
+                                                <span class="fa fa-plus-circle">
+                                                </span>Amistad
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                <!-- SI EL ACTOR ES ASOCIACION -->
+                                {% elif actor.association %}
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text"  align="left" style="font-size:24px;"> <b>{{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</b></p>
+                                        <p class="card-text" align="left"><b>Centro: </b>{{ actor.association.centerName }}</p>
+                                        <p class="card-text" align="left"><b>Horario: </b>De {{ actor.association.opening|time:'H' }}:{{ actor.association.opening|time:'i' }}  a {{ actor.association.closing|time:'H' }}:{{ actor.association.closing|time:'i' }}</p>
+                                        {% if actor.association.notes %}
+                                            <p class="card-text" align="left"><i>{{ actor.association.notes }}</i></p>
+                                        {% endif %}
+                                        <p class="card-text" align="left"><b>Dirección: </b>{{ actor.association.address }}</p>
+                                    </div>
+
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text" align="left"><b>Contacto: </b>{{ actor.userAccount.email }}</p>
+                                        <p class="card-text" align="left"><b>Teléfono: </b>{{ actor.phone }}</p>
+                                        <p class="card-text" align="left"><b> {{ actor.association.province }} - C.P. {{ actor.association.postalCode }}</b></p>
+                                        <div align="left">
+                                             <button class="btn btn-success" onclick="location.href='/requests/send/{{ actor.pk }}';">
+                                                <span class="fa fa-plus-circle">
+                                                </span>Amistad
+                                            </button>
+                                        </div>
+                                    </div>
+                                <!-- SI EL ACTOR ES USUARIO -->
+                                {% else %}
+                                     <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text" align="left" style="font-size:24px;"><b> {{ actor.userAccount.first_name }}  {{ actor.userAccount.last_name }}</b></p>
+                                        <p class="card-text" align="left"><b>Contacto: </b>{{ actor.customer.userAccount.email }}</p>
+                                        <p class="card-text" align="left"><b>Teléfono: </b>{{ actor.customer.phone }}</p>
+
+                                    </div>
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <div align="left">
+                                             <button class="btn btn-success" onclick="location.href='/requests/send/{{ actor.pk }}';">
+                                                <span class="fa fa-plus-circle">
+                                                </span>Amistad
+                                            </button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                    </div>
+                    <hr>
+                {% endfor %}
 
           <!-- PAGINACION -->
           <div class="panel-footer table-header-primary table-footer">
@@ -132,8 +160,6 @@ Usuarios
         </div>
 
         {% else %}
-            <p></p>
-            <p>No hay usuarios registrados.</p>
+            <p style="padding: 0 20px 0">No hay usuarios registrados.</p>
         {% endif %}
-    </div>
 {% endblock %}

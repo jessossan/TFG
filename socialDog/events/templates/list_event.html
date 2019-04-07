@@ -4,55 +4,55 @@ Mis eventos
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
-        {% if myEvents %}
-            <h3>Mis eventos</h3>
-        {% elif myFutureEvents %}
-            <h3>Mis eventos por realizar</h3>
-        {% else %}
-            <h3>Mis eventos finalizados</h3>
-        {% endif %}
 
         {% if myEvents %}
-            <input type="button" class="btn pulsado" style="border-color:#2c539e"
-                           onclick="location.href='/events/ownList';"
-                           value="Mis eventos"/>
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownFutureList';"
-                           value="Por realizar"/>
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownPastList';"
-                           value="Finalizados"/><br/><br/>
+            <h3 style="padding: 0 20px 0">Mis eventos</h3>
         {% elif myFutureEvents %}
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownList';"
-                           value="Mis eventos"/>
-            <input type="button" class="btn pulsado" style="border-color:#2c539e"
-                           onclick="location.href='/events/ownFutureList';"
-                           value="Por realizar"/>
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownPastList';"
-                           value="Finalizados"/><br/><br/>
+            <h3 style="padding: 0 20px 0">Mis eventos por realizar</h3>
         {% else %}
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownList';"
-                           value="Mis eventos"/>
-            <input type="button" class="btn editbutton"
-                           onclick="location.href='/events/ownFutureList';"
-                           value="Por realizar"/>
-            <input type="button" class="btn pulsado" style="border-color:#2c539e"
-                           onclick="location.href='/events/ownPastList';"
-                           value="Finalizados"/><br/><br/>
+            <h3 style="padding: 0 20px 0">Mis eventos finalizados</h3>
         {% endif %}
+
+        <div align="left" style="padding: 0 20px 0">
+            {% if myEvents %}
+                <input type="button" class="btn pulsado" style="border-color:#2c539e;"
+                               onclick="location.href='/events/ownList';"
+                               value="Mis eventos"/>
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownFutureList';"
+                               value="Por realizar"/>
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownPastList';"
+                               value="Finalizados"/><br/><br/>
+            {% elif myFutureEvents %}
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownList';"
+                               value="Mis eventos"/>
+                <input type="button" class="btn pulsado" style="border-color:#2c539e"
+                               onclick="location.href='/events/ownFutureList';"
+                               value="Por realizar"/>
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownPastList';"
+                               value="Finalizados"/><br/><br/>
+            {% else %}
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownList';"
+                               value="Mis eventos"/>
+                <input type="button" class="btn editbutton"
+                               onclick="location.href='/events/ownFutureList';"
+                               value="Por realizar"/>
+                <input type="button" class="btn pulsado" style="border-color:#2c539e"
+                               onclick="location.href='/events/ownPastList';"
+                               value="Finalizados"/><br/><br/>
+            {% endif %}
+        </div>
 
         <!-- Listado -->
         {% if event_list %}
             {% for event in event_list %}
             <div align="center" style="overflow: auto;padding: 0 20px 0;">
-                    <div style="float: left;width:50px;padding:5px">
 
-                    </div>
-                    <!-- IMAGEN DE LA ASOCIACIÓN -->
+                    <!-- IMAGEN DEK EVENTO -->
                     <div style="float: left;">
                         {% if event.photo %}
                             <img src="{{ event.photo.url }}"  alt="photo's event" width="300px" height="300px">
@@ -61,19 +61,16 @@ Mis eventos
                     </div>
                 <!--  -->
                 <div style="float: left;width:400px;padding:40px">
-                    <p class="card-text" align="center" style="font-size:27px;"><b> Comienzo: {{ event.startDate|date:'d/m/y' }}</b></p>
-                    <p class="card-text" align="center" style="font-size:27px;"><b> Termina:&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</b></p>
-                    {% if event.length %}
-                        <p class="card-text" align="center" style="font-size:27px;"><b> Duración:&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</b></p>
-                    {% endif %}
+                    <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.title }}</b></p>
+                    <p class="card-text" align="left">{{ event.description }}</p>
                     <div align="center">
                         {% if event.breeder %}
                             <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  event.breeder.pk }}';">
                                 <span class="fa fa-user"></span>
                                 {{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}
                             </button>
-                        {% elif event.association %}
-                          <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
+                            {% elif event.association %}
+                            <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
                                 <span class="fa fa-user"></span>
                                 {{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}
                             </button>
@@ -81,9 +78,14 @@ Mis eventos
                     </div>
                 </div>
                 <div style="float: left;width:400px;padding:40px">
-                    <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.title }}</b></p>
-                    <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.place }}</b></p>
-                    <p class="card-text" align="left">{{ event.description }}</p>
+                    <p class="card-text" align="left"><b>Lugar: </b>{{ event.place }}</p>
+                    <p class="card-text" align="left" ><b> Comienzo:</b> {{ event.startDate|date:'d/m/y' }}</p>
+
+                    {% if event.length %}
+                        <p class="card-text" align="left"><b> Duración:</b>&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</p>
+                    {% else %}
+                        <p class="card-text" align="left" ><b> Termina:</b>&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</p>
+                    {% endif %}
                 </div>
                 <!--BOTONES DE EDICION Y BORRADO -->
                 <div style="float: left;width:100px;padding:40px">
@@ -152,11 +154,9 @@ Mis eventos
                 </ul>
               {% endif %}
           </div>
-        </div>
 
         {% else %}
-            <p></p>
-            <p>No existen eventos.</p>
+            <p style="padding: 0px 20px 0px">No existen eventos.</p>
         {% endif %}
         <p></p>
         {% if user.actor.breeder %}

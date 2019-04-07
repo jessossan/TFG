@@ -6,9 +6,7 @@ Solicitudes
 
     <div class="container-fluid">
 
-        <br/>
-        <h1>Solicitudes</h1>
-        <br/>
+        <h3>Solicitudes</h3>
 
 <div align="left">
 
@@ -30,7 +28,7 @@ Solicitudes
 
     {% endif %}
 </div>
-        </br>
+</br>
 
         <!-- Listado -->
         {% if request_list %}
@@ -58,11 +56,11 @@ Solicitudes
                             <td>{{ request.description }}</td>
                             <td>
                                 {% if request.status == 'Pendiente' %}
-                                    <b>{{ request.status }}</b>
+                                   <i class="fa fa-question-circle" style="font-size:30px;"></i>
                                 {% elif request.status == 'Aceptada' %}
-                                    <b style="color:green;">{{ request.status }}</b>
+                                    <i class="fa fa-check" style="color:green;font-size:30px;"></i>
                                 {% else %}
-                                    <b style="color:red;">{{ request.status }}</b>
+                                    <i class="fa fa-close" style="color:red;font-size:30px;"></i>
                                 {% endif %}
                             </td>
                             <td>

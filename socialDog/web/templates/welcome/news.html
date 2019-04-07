@@ -24,24 +24,25 @@ Noticias
 
 <div align="center">
 <h3 align="center"> Noticias</h3>
-
+<hr>
 {% if news_list %}
     {% for news in news_list %}
         <div align="center" style="overflow: auto;padding: 0 20px 0;">
+            <p class="card-text" align="right" style="font-size:25px;"><b> <b>Publicación: </b> {{ news.creationDate|date:'d/m/y' }}</b></p>
                 <div style="float: left;width:50px;padding:5px">
 
                 </div>
-                <!-- IMAGEN DE LA ASOCIACIÓN -->
-                <div style="float: left;">
+                <!-- IMAGEN DE LA NOTICIA-->
+                <div style="float: left;padding:0px 120px 0px">
                     {% if news.photo %}
                         <img src="{{ news.photo.url }}"  alt="photo's news" width="300px" height="300px">
                     {% endif %}
                     <p></p>
                 </div>
             <!--  -->
-            <div style="float: left;width:400px;padding:40px">
-                <p class="card-text" align="center" style="font-size:27px;"><b> {{ news.creationDate|date:'d/m/y' }}</b></p>
-
+            <div style="float: left;width:500px;">
+                <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
+                <p class="card-text" align="left">{{ news.description }}</p>
                 <div align="center">
                     {% if news.breeder %}
                             <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  news.breeder.pk }}';">
@@ -55,10 +56,6 @@ Noticias
                             </button>
                     {% endif %}
                 </div>
-            </div>
-            <div style="float: left;width:400px;padding:40px">
-                <p class="card-text" align="center" style="font-size:25px;"><b>{{ news.title }}</b></p>
-                <p class="card-text" align="left">{{ news.description }}</p>
             </div>
 
         </div>

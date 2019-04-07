@@ -4,12 +4,9 @@ Amigos
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
+<h3 style="padding: 0 20px 0">Lista de amigos</h3>
 
-        <h1>Lista de amigos</h1>
-        <br/>
-
-<div align="left">
+<div align="left" style="padding: 0 20px 0">
     {% if isFriends %}
         <input type="button"  class="btn pulsado" style="border-color:#2c539e"
                                onclick="location.href='/actors/friends';"
@@ -26,114 +23,188 @@ Amigos
                                onclick="location.href='/actors/users';"
                                value="Buscar usuarios"/>&nbsp
 
-
     {% endif %}
 </div>
-        </br>
+</br>
         <!-- Listado -->
         {% if friend_list %}
-        <div class="panel panel-default panel-table mb-3">
-          <div class="panel-heading">
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped table-curved table-hover table-bordered">
 
-
-                    <thead class="thead-primary">
-                    <tr>
-                        <th>Nombre</th>
-                        <!--<th>Usuario</th> -->
-                        <!-- Ver perfil-->
-                        <th></th>
-                        <!-- Enviar mensaje-->
-                        <th></th>
-                        <!-- Dejar de ser amigo-->
-                        <th></th>
-                    </tr>
-                  </thead>
-
-                    <tbody>
-                    {% for friend in friend_list %}
-                        <tr>
-                            <!-- Recibe lista de solicitudes, coge el follower si no es el actor logueado -->
+            {% for friend in friend_list %}
+                <div align="center" style="overflow: auto;padding: 0 20px 0;">
+                    <!-- Recibe lista de solicitudes, coge el follower si no es el actor logueado -->
                             {% if friend.follower != actor %}
-                                <td>{{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</td>
-                                    <!--{% if friend.follower.breeder %}
-                                        <td>Criador</td>
-                                    {% elif friend.follower.association %}
-                                        <td>Asociación</td>
-                                    {% elif friend.follower.customer %}
-                                        <td>Usuario</td>
-                                    {% endif %}-->
+                                <!-- FOTO DEL ACTOR SEGUIDOR -->
+                                <div style="float: left;">
+                                    {% if friend.follower.photo %}
+                                        <img src="{{ friend.follower.photo.url }}"  alt="friend's dog" width="200px" height="200px">
+                                    {% endif %}
+                                </div>
+                                <!-- SI EL ACTOR SEGUIDOR ES ASOCIACION MUESTRA SUS DATOS -->
+                                {% if friend.follower.association %}
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</b></p>
+                                    <p class="card-text" align="left"><b>Centro: </b>{{ friend.follower.association.centerName }}</p>
+                                    <p class="card-text" align="left"><b>Horario: </b>De {{ friend.follower.association.opening|time:'H' }}:{{ friend.follower.association.opening|time:'i' }}  a {{ friend.follower.association.closing|time:'H' }}:{{ friend.follower.association.closing|time:'i' }}</p>
+                                    {% if friend.follower.association.notes %}
+                                        <p class="card-text" align="left"><i>{{ friend.follower.association.notes }}</i></p>
+                                    {% endif %}
+                                    <p class="card-text" align="left"><b>Dirección: </b>{{ friend.follower.association.address }}</p>
+                                </div>
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left"><b>Contacto: </b>{{ friend.follower.association.userAccount.email }}</p>
+                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.follower.association.phone }}</p>
+                                    <p class="card-text" align="left"><b> {{ friend.follower.association.province }} - C.P. {{ friend.follower.association.postalCode }}</b></p>
+                                     <div align="left">
+                                        <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.follower.pk }}';">
+                                            <span class="fa fa-envelope">
+                                            </span>
+                                        </button>
+
+                                        <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- SI EL ACTOR SEGUIDOR ES CRIADOR MUESTRA SUS DATOS -->
+                                {% elif friend.follower.breeder %}
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</b></p>
+                                    <p class="card-text" align="left"><b>Centro: </b>{{ friend.follower.breeder.centerName }}</p>
+                                    <p class="card-text" align="left"><b>Horario: </b>De {{ friend.follower.breeder.opening|time:'H' }}:{{ friend.follower.breeder.opening|time:'i' }}  a {{ friend.follower.breeder.closing|time:'H' }}:{{ friend.follower.breeder.closing|time:'i' }}</p>
+                                    {% if friend.follower.breeder.notes %}
+                                        <p class="card-text" align="left"><i>{{ friend.follower.breeder.notes }}</i></p>
+                                    {% endif %}
+                                    <p class="card-text" align="left"><b>Dirección: </b>{{ friend.follower.breeder.address }}</p>
+                                </div>
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left"><b>Contacto: </b>{{ friend.follower.breeder.userAccount.email }}</p>
+                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.follower.breeder.phone }}</p>
+                                    <p class="card-text" align="left"><b> {{ friend.follower.breeder.province }} - C.P. {{ friend.follower.breeder.postalCode }}</b></p>
+                                    <div align="left">
+                                        <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.follower.pk }}';">
+                                            <span class="fa fa-envelope">
+                                            </span>
+                                        </button>
+
+                                        <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                 <!-- SI EL ACTOR SEGUIDOR ES USUARIO MUESTRA SUS DATOS-->
+                                {% else %}
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.follower.userAccount.first_name }}  {{ friend.follower.userAccount.last_name }}</b></p>
+                                        <p class="card-text" align="left"><b>Contacto: </b>{{ friend.follower.customer.userAccount.email }}</p>
+                                        <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.follower.customer.phone }}</p>
+
+                                    </div>
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <div align="left">
+                                            <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.follower.pk }}';">
+                                                <span class="fa fa-envelope">
+                                                </span>
+                                            </button>
+
+                                            <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
                              <!-- Recibe lista de solicitudes, coge  followed si no es el actor logueado -->
                             {% elif friend.followed != actor %}
-                                <td>{{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</td>
-                                     <!--{% if friend.followed.breeder %}
-                                        <td>Criador</td>
-                                    {% elif friend.followed.association %}
-                                        <td>Asociación</td>
-                                    {% elif friend.followed.customer %}
-                                        <td>Usuario</td>
-                                    {% endif %}-->
-                            {% endif %}
-
-                            {% if friend.follower != actor %}
-                                <td>
-                                        {% if not friend.follower.customer %}
-                                            <button class="btn btn-info" onclick="location.href='/actors/profile/{{ friend.follower.pk }}';">
-                                                <span class="fa fa-user"></span>
-                                            </button>
-                                        {% endif %}
-                                </td>
-                                <td>
-                                    <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.follower.pk }}';">
-                                        <span class="fa fa-envelope">
-                                        </span>
-                                    </button>
-                                </td>
-
-                            {% elif friend.followed != actor %}
-                                <td>
-                                    {% if not friend.followed.customer %}
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ friend.followed.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                        </button>
+                                 <!-- MUESTRA LA IMAGEN DEL ACTOR SEGUIDO-->
+                                <div style="float: left;">
+                                    {% if friend.followed.photo %}
+                                        <img src="{{ friend.followed.photo.url }}"  alt="friend's dog" width="200px" height="200px">
                                     {% endif %}
-                                </td>
-                                <td>
-                                    <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
-                                        <span class="fa fa-envelope">
-                                        </span>
-                                    </button>
-                                </td>
+                                </div>
+
+                                <!-- SI EL ACTOR SEGUIDO ES ASOCIACION MUESTRA SUS DATOS -->
+                                {% if friend.followed.association %}
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+
+                                    <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</b></p>
+                                    <p class="card-text" align="left"><b>Centro: </b>{{ friend.followed.association.centerName }}</p>
+                                    <p class="card-text" align="left"><b>Horario: </b>De {{ friend.followed.association.opening|time:'H' }}:{{ friend.followed.association.opening|time:'i' }}  a {{ friend.followed.association.closing|time:'H' }}:{{ friend.followed.association.closing|time:'i' }}</p>
+                                    {% if friend.followed.association.notes %}
+                                        <p class="card-text" align="left"><i>{{ friend.followed.association.notes }}</i></p>
+                                    {% endif %}
+                                    <p class="card-text" align="left"><b>Dirección: </b>{{ friend.followed.association.address }}</p>
+                                </div>
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left"><b>Contacto: </b>{{ friend.followed.association.userAccount.email }}</p>
+                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.followed.association.phone }}</p>
+                                    <p class="card-text" align="left"><b> {{ friend.followed.association.province }} - C.P. {{ friend.followed.association.postalCode }}</b></p>
+                                    <div align="left">
+                                        <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
+                                            <span class="fa fa-envelope">
+                                            </span>
+                                        </button>
+
+                                        <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- SI EL ACTOR SEGUIDO ES CRIADOR MUESTRA SUS DATOS -->
+                                {% elif friend.followed.breeder %}
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</b></p>
+                                    <p class="card-text" align="left"><b>Centro: </b>{{ friend.followed.breeder.centerName }}</p>
+                                    <p class="card-text" align="left"><b>Horario: </b>De {{ friend.followed.breeder.opening|time:'H' }}:{{ friend.followed.breeder.opening|time:'i' }}  a {{ friend.followed.breeder.closing|time:'H' }}:{{ friend.followed.breeder.closing|time:'i' }}</p>
+                                    {% if friend.followed.breeder.notes %}
+                                        <p class="card-text" align="left"><i>{{ friend.followed.breeder.notes }}</i></p>
+                                    {% endif %}
+                                    <p class="card-text" align="left"><b>Dirección: </b>{{ friend.followed.breeder.address }}</p>
+                                </div>
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                    <p class="card-text" align="left"><b>Contacto: </b>{{ friend.followed.breeder.userAccount.email }}</p>
+                                    <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.followed.breeder.phone }}</p>
+                                    <p class="card-text" align="left"><b> {{ friend.followed.breeder.province }} - C.P. {{ friend.followed.breeder.postalCode }}</b></p>
+                                    <div align="left">
+                                        <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
+                                            <span class="fa fa-envelope">
+                                            </span>
+                                        </button>
+
+                                        <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                 <!-- SI EL ACTOR SEGUIDO ES USUARIO MUESTRA SUS DATOS-->
+                                {% else %}
+                                    <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <p class="card-text" align="left" style="font-size:24px;"><b> {{ friend.followed.userAccount.first_name }}  {{ friend.followed.userAccount.last_name }}</b></p>
+                                        <p class="card-text" align="left"><b>Contacto: </b>{{ friend.followed.customer.userAccount.email }}</p>
+                                        <p class="card-text" align="left"><b>Teléfono: </b>{{ friend.followed.customer.phone }}</p>
+
+                                    </div>
+                                <div style="float: left;width:400px;padding:0px 20px 0px">
+                                        <div align="left">
+                                            <button class="btn btn-success" onclick="location.href='/messages/send/{{ friend.followed.pk }}';">
+                                                <span class="fa fa-envelope">
+                                                </span>
+                                            </button>
+
+                                            <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                </div>
+                                {% endif %}
 
                             {% endif %}
+                </div>
+                <hr>
+                {% endfor %}
 
-
-
-                            {% if friend.follower != actor %}
-                                <td>
-                                    <a class="btn btn-danger" href="{% url 'delete_friend' friend.follower.pk %}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            {% elif friend.followed != actor %}
-                                <td>
-                                    <a class="btn btn-danger" href="{% url 'delete_friend' friend.followed.pk %}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            {% endif %}
-
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-
-            </table>
-          </div>
 
           <!-- PAGINACION -->
-          <div class="panel-footer table-header-primary table-footer">
+        <div class="panel-footer table-header-primary table-footer">
             {% if friend_list.has_other_pages %}
                 <ul class="pagination">
                     {% if friend_list.has_previous %}
@@ -180,11 +251,10 @@ Amigos
                 </ul>
               {% endif %}
           </div>
-        </div>
 
         {% else %}
-            <p></p>
-            <p>Aún tienes amigos.</p>
+
+            <p style="padding: 0 20px 0">Aún tienes amigos.</p>
         {% endif %}
-    </div>
+
 {% endblock %}

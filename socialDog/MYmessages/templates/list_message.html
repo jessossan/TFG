@@ -11,7 +11,6 @@ Mensajes
         {% else %}
             <h3>Mensajes enviados</h3>
         {% endif %}
-        <br/>
 
 <div align="left">
     {% if received %}
@@ -70,10 +69,14 @@ Mensajes
                             <!-- Si es Mensaje recibido -->
                             {% if message.copy %}
                                     <td>
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ message.sender.pk }}';">
-                                            <span class="fa fa-user"></span>
+                                        {% if not message.sender.customer %}
+                                            <button class="btn btn-info" onclick="location.href='/actors/profile/{{ message.sender.pk }}';">
+                                                <span class="fa fa-user"></span>
+                                                {{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}
+                                            </button>
+                                        {% else %}
                                             {{ message.sender.userAccount.first_name }} {{ message.sender.userAccount.last_name }}
-                                        </button>
+                                        {% endif %}
                                     </td>
                                     <td>
                                         {% for friend in friends %}
@@ -89,10 +92,14 @@ Mensajes
                             <!-- Si es Mensaje enviado -->
                             {% else %}
                                     <td>
+                                        {% if not message.recipient.customer %}
                                         <button class="btn btn-info" onclick="location.href='/actors/profile/{{  message.recipient.pk }}';">
                                             <span class="fa fa-user"></span>
                                             {{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}
                                         </button>
+                                        {% else %}
+                                            {{ message.recipient.userAccount.first_name }} {{ message.recipient.userAccount.last_name }}
+                                        {% endif %}
                                     </td>
                                     <td>
                                         {% for friend in friends %}

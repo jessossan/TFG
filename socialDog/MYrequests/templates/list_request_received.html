@@ -6,9 +6,7 @@ Solicitudes
 
     <div class="container-fluid">
 
-        <br/>
-        <h1>Solicitudes</h1>
-        <br/>
+        <h3>Solicitudes</h3>
 
 <div align="left">
     {% if isSent %}
@@ -63,9 +61,9 @@ Solicitudes
                                     <a href="{% url 'accept_request' request.pk %}">Aceptar</a>
                                     <a href="{% url 'reject_request' request.pk %}">Denegar</a>
                                 {% elif request.status == 'Aceptada' %}
-                                    <b style="color:green;">{{ request.status }}</b>
+                                    <i class="fa fa-check" style="color:green;font-size:30px;"></i>
                                 {% else %}
-                                    <b style="color:red;">{{ request.status }}</b>
+                                    <i class="fa fa-close" style="color:red;font-size:30px;"></i>
                                 {% endif %}
                             </td>
                             <td>
