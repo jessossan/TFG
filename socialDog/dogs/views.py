@@ -291,8 +291,50 @@ def dog_profile(request, pk):
         comment_list_aux = paginator.page(paginator.num_pages)
 
     ######### VALORACIONES ########################
+    rate_average = 0
     try:
         rate_list_aux = Rate.objects.all().filter(dog=dog).order_by('-creationDate')
+        # Calculamos la media de valoraciones
+        for rate in rate_list_aux:
+            rate_average += rate.stars
+        if rate_average != 0:
+            rate_average = rate_average/rate_list_aux.count()
+
+        # Redondeo
+        rate_average = round(rate_average, 1)
+        # Comprobación 0
+        if rate_average <= 0.2:
+            rate_average = 0
+        # Comprobación 0.5
+        elif rate_average > 0.2 and rate_average <= 0.6 :
+            rate_average = 0.5
+        # Comprobación 1
+        elif rate_average > 0.6 and rate_average <= 1.2:
+            rate_average = 1
+        # Comprobación 1.5
+        elif rate_average > 1.2 and rate_average <= 1.6:
+            rate_average = 1.5
+        # Comprobación 2
+        elif rate_average > 1.6 and rate_average <= 2.2:
+            rate_average = 2
+        # Comprobación 2.5
+        elif rate_average > 2.2 and rate_average <= 2.6:
+            rate_average = 2.5
+        # Comprobación 3
+        elif rate_average > 2.6 and rate_average <= 3.2:
+            rate_average = 3
+        # Comprobación 3.5
+        elif rate_average > 3.2 and rate_average <= 3.6:
+            rate_average = 3.5
+        # Comprobación 4
+        elif rate_average > 3.6 and rate_average <= 4.2:
+            rate_average = 4
+        # Comprobación 4.5
+        elif rate_average > 4.2 and rate_average <= 4.6:
+            rate_average = 4.5
+        # Comprobación 5
+        elif rate_average >= 4.6:
+            rate_average = 5
 
     except Exception as e:
 
@@ -332,14 +374,16 @@ def dog_profile(request, pk):
     except EmptyPage:
         rate_list_aux = paginator.page(paginator.num_pages)
 
+    rate_size = Rate.objects.all().filter(dog=dog).count()
     data = {
         'dog': dog,
         'actor': actor,
         'comment_list': comment_list_aux,
-        'rate_list': rate_list_aux,
         'ownDog': ownDog,
         'title': 'Perfil del perro',
         'commentWithLikes': commentWithLikes,
         'commentWithDislikes': commentWithDislikes,
+        'average': rate_average,
+        'rateSize': rate_size,
     }
     return render(request, 'dog_profile.html', data)

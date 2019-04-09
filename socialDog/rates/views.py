@@ -1,4 +1,7 @@
 from datetime import datetime
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 from dogs.models import Dog
 from rates.forms import CreateRateForm, EditRateForm
 from rates.models import Rate
@@ -139,3 +142,36 @@ def edit_rate(request, pk):
     }
 
     return render(request, 'edit_rate.html', data)
+
+
+# listar valoraciones de un perro
+@login_required(login_url='/login/')
+def list_dog_rates(request, pk):
+    dog = get_object_or_404(Dog, pk=pk)
+
+    actor = request.user.actor
+
+    try:
+        rate_list_aux = Rate.objects.all().filter(dog=dog).order_by('-creationDate')
+
+    except Exception as e:
+
+        rate_list_aux = Rate.objects.none()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(rate_list_aux, 6)
+
+    try:
+        rate_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        rate_list_aux = paginator.page(1)
+    except EmptyPage:
+        rate_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'actor': actor,
+        'rate_list': rate_list_aux,
+        'dog': dog,
+    }
+
+    return render(request, 'list_dog_rate.html', data)

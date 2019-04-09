@@ -15,4 +15,7 @@ urlpatterns = [
     # Borrar valoración al perro
     path('delete/<int:pk>', views.delete_rate, name='delete_rate'),
 
+    # Listar las valoraciones de un perro
+    path('list/rates/<int:pk>', views.list_dog_rates, name='list_dog_rates'),
+
 ]

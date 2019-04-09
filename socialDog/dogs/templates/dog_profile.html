@@ -60,6 +60,112 @@ Perfil
                                     {% else %}
                                     <p class="card-text" align="left"> <b>Premios: </b>ninguno</p>
                                     {% endif %}
+                                    <p>&nbsp</p>
+                                    <p class="card-text" align="left">
+                                              {% if average == 0 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                              {% elif average == 0.5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                              {% elif average == 1 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                              {% elif average == 1.5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                              {% elif average == 2 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 2.5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 3 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 3.5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 4 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 4.5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
+                                                    </a>
+                                             {% elif average == 5 %}
+                                                    <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                        <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
+                                                    </a>
+                                             {% endif %}
+                                    </p>
+                                    {% if rateSize == 0 %}
+                                        <p class="card-text" align="left">
+                                            No tiene valoraciones
+                                        </p>
+                                    {% elif rateSize == 1 %}
+                                        <p class="card-text" align="left">
+                                            <a href="{% url 'list_dog_rates' dog.pk %}">{{ rateSize }} valoración </a>
+                                        </p>
+                                    {% else %}
+                                        <p class="card-text" align="left">
+                                            <a href="{% url 'list_dog_rates' dog.pk %}">{{ rateSize }} valoraciones </a>
+                                        </p>
+                                    {% endif %}
+
                                 </div>
 
                             <!-- BOTONES SI ESTA LOGUEADO -->
@@ -81,24 +187,14 @@ Perfil
 
 </div>
 
-</br>
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" href="#menu1" style="font-size:30px;"> Comentarios</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-    <li><a data-toggle="tab" href="#menu2" style="font-size:30px;">Valoraciones</a></li>
-  </ul>
-
-
-  <div class="tab-content">
-      <!--COMENTARIOS -->
-    <div id="menu1" class="tab-pane fade">
-     <div align="center">
-</br>
-</br>
+<br/>
+<div align="center">
 
 {% if comment_list %}
     {% for comment in comment_list %}
-        <div class="card border-dark mb-4" style="max-width: 60rem;">
+         <div align="center" style="overflow: auto;padding: 0 20px 0;">
+
+           <div class="card mb-4" style="max-width: 60rem;">
           <div class="card-header" align="center"><h4><b>{{ comment.title }}</b></h4></div>
           <div class="card-body text-dark">
             <p class="card-text">{{ comment.text }}</p>
@@ -148,14 +244,14 @@ Perfil
                                 <i class="fa fa-thumbs-up" style="font-size:30px;color:green"></i>
                                     {{ comment.likes }}
                                 &nbsp;&nbsp;
-                                <a href="{% url 'dislike_comment' comment.pk %}">
+                                <a href="{% url 'dislike_comment' comment.pk %}" style="color:inherit;text-decoration: none;">
                                     <i class="fa fa-thumbs-o-down" style="font-size:30px"></i>
 
                                 </a>{{ comment.dislikes }}
                                 &nbsp;&nbsp;
                             <!-- Si tiene dislike, muestra la mano roja y la otra oscura -->
                             {% elif comment in commentWithDislikes  %}
-                                <a href="{% url 'like_comment' comment.pk %}">
+                                <a href="{% url 'like_comment' comment.pk %}" style="color:inherit;text-decoration: none;">
                                     <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
 
                                 </a>{{ comment.likes }}
@@ -166,12 +262,12 @@ Perfil
 
                                 &nbsp;&nbsp;
                             {% else %}
-                                <a href="{% url 'like_comment' comment.pk %}">
+                                <a href="{% url 'like_comment' comment.pk %}" style="color:inherit;text-decoration: none;">
                                     <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
 
                                 </a>{{ comment.likes }}
                                 &nbsp;&nbsp;
-                                <a href="{% url 'dislike_comment' comment.pk %}">
+                                <a href="{% url 'dislike_comment' comment.pk %}" style="color:inherit;text-decoration: none;">
                                     <i class="fa fa-thumbs-o-down" style="font-size:30px"></i>
 
                                 </a>{{ comment.dislikes }}
@@ -181,106 +277,41 @@ Perfil
 
             {% endif %}
         </div>
+
+        </div>
     {% endfor %}
+
+    <!-- PAGINACION -->
+    {% if comment_list.has_other_pages %}
+          <div class="table-footer">
+                <div  align="center" class="pagination" style="padding:0 20px 0">
+                    <ul>
+                        {% if comment_list.has_previous %}
+                        <li class="previous"><a href="?page={{ comment_list.previous_page_number }}" class="fa fa-arrow-left"></a></li>
+                        {% else %}
+                        <li class="previous disabled"><a href="#" class="fa fa-arrow-left"></a></li>
+                        {% endif %}
+                        {% for i in comment_list.paginator.page_range %}
+                            {% if comment_list.number == i %}
+                            <li class="active"><a href="#">{{ i }}</a></li>
+                            {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if comment_list.has_next %}
+                        <li class="next"><a href="?page={{ comment_list.next_page_number }}" class="fa fa-arrow-right"></a></li>
+                        {% else %}
+                        <li class="previous disabled"><a href="#" class="fa fa-arrow-right"></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+          </div>
+    {% endif %}
+
 {% else %}
     <p style="padding: 0px 250px 0px">no hay comentarios</p>
 {% endif %}
 </div>
-    </div>
 
-      <!--Valoraciones -->
-    <div id="menu2" class="tab-pane fade">
-
-        <div align="center">
-</br>
-</br>
-
-{% if rate_list %}
-    {% for rate in rate_list %}
-        <div class="card border-dark mb-4" style="max-width: 60rem;">
-          <div class="card-header" align="center">
-              {% if rate.stars == 0 %}
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-              {% elif rate.stars == 1 %}
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-              {% elif rate.stars == 2 %}
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-              {% elif rate.stars == 3 %}
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-              {% elif rate.stars == 4 %}
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star"></span>
-              {% elif rate.stars == 5 %}
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-                    <span class="fa fa-star " style="color: orange;"></span>
-              {% endif %}
-          </div>
-          <div class="card-body text-dark">
-            <p class="card-text">{{ rate.description }}</p>
-
-              <p class="card-text" >
-                <img src="{{ rate.creator_rate.photo.url }}" alt="Dog photo" width="75px" height="75px">
-                  </br>
-                  <p></p>
-                  {% if rate.creator_rate.breeder %}
-                        <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
-                            <span class="fa fa-user"></span>
-                            {{ rate.creator_rate.breeder.userAccount.first_name }} {{ rate.creator_rate.breeder.userAccount.last_name }}
-                        </button>
-                  {% elif rate.creator_rate.association %}
-                      <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ rate.creator_rate.association.pk }}';">
-                            <span class="fa fa-user"></span>
-                            {{ rate.creator_rate.association.userAccount.first_name }} {{ rate.creator_rate.association.userAccount.last_name }}
-                        </button>
-                  {% else %}
-                            {{ rate.creator_rate.userAccount.first_name }} {{ rate.creator_rate.userAccount.last_name }}
-                  {% endif %}
-
-              </p>
-
-          </div>
-            <!-- Edición  y Borrado del comentario -->
-            {% if rate.creator_rate == actor %}
-                <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
-                    <a href="{% url 'edit_rate' rate.pk %}" style="font-size:20px;" >Editar</a>
-                    <a  class="btn btn-danger" href="{% url 'delete_rate' rate.pk %}">Borrar</a>
-                </div>
-            {% endif %}
-        </div>
-    {% endfor %}
-{% else %}
-    <p style="padding: 0px 250px 0px">no hay valoraciones</p>
-{% endif %}
-</div>
-    </div>
-
-    </div>
-  </div>
-
-
-
-</div>
 
 {% endblock %}

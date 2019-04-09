@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+
+{% block title %}SocialDog{% endblock %}
+
+<!-- CONTENIDO -->
+{% block content %}
+
+<div align="left" style="padding: 0 20px 0">
+
+                <input type="button" class="btn editbutton" style="font-size:25px"
+                                       onclick="location.href='/dogs/profile/{{ dog.pk }}';"
+                                       value="Volver al perfil"/>
+</div>
+
+
+<p align="center" style="font-size:35px;padding: 0 20px 0">Valoraciones a <b>{{ dog.name }}</b></p>
+<div align="center">
+
+{% if rate_list %}
+    {% for rate in rate_list %}
+        <div class="card mb-4" style="max-width: 60rem;">
+          <div class="card-header" align="center">
+              {% if rate.stars == 0 %}
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 1 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 2 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 3 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 4 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star"></span>
+              {% elif rate.stars == 5 %}
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+                    <span class="fa fa-star " style="color: orange;"></span>
+              {% endif %}
+          </div>
+          <div class="card-body text-dark">
+            <p class="card-text">{{ rate.description }}</p>
+
+              <p class="card-text" >
+                <img src="{{ rate.creator_rate.photo.url }}" alt="Dog photo" width="75px" height="75px">
+                  </br>
+                  <p></p>
+                  {% if rate.creator_rate.breeder %}
+                        <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ rate.creator_rate.breeder.userAccount.first_name }} {{ rate.creator_rate.breeder.userAccount.last_name }}
+                        </button>
+                  {% elif rate.creator_rate.association %}
+                      <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ rate.creator_rate.association.pk }}';">
+                            <span class="fa fa-user"></span>
+                            {{ rate.creator_rate.association.userAccount.first_name }} {{ rate.creator_rate.association.userAccount.last_name }}
+                        </button>
+                  {% else %}
+                            {{ rate.creator_rate.userAccount.first_name }} {{ rate.creator_rate.userAccount.last_name }}
+                  {% endif %}
+
+              </p>
+
+          </div>
+            <!-- Edición  y Borrado del comentario -->
+            {% if rate.creator_rate == actor %}
+                <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
+                    <a href="{% url 'edit_rate' rate.pk %}" style="font-size:20px;" >Editar</a>
+                    <a  class="btn btn-danger" href="{% url 'delete_rate' rate.pk %}">Borrar</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="padding: 0px 250px 0px">no hay valoraciones</p>
+{% endif %}
+</div>
+
+<!-- PAGINACION -->
+    {% if rate_list.has_other_pages %}
+          <div class="table-footer">
+                <div  align="center" class="pagination" style="padding:0 20px 0">
+                    <ul>
+                        {% if rate_list.has_previous %}
+                        <li class="previous"><a href="?page={{ rate_list.previous_page_number }}" class="fa fa-arrow-left"></a></li>
+                        {% else %}
+                        <li class="previous disabled"><a href="#" class="fa fa-arrow-left"></a></li>
+                        {% endif %}
+                        {% for i in rate_list.paginator.page_range %}
+                            {% if rate_list.number == i %}
+                            <li class="active"><a href="#">{{ i }}</a></li>
+                            {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if rate_list.has_next %}
+                        <li class="next"><a href="?page={{ rate_list.next_page_number }}" class="fa fa-arrow-right"></a></li>
+                        {% else %}
+                        <li class="previous disabled"><a href="#" class="fa fa-arrow-right"></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+          </div>
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block scripts %}
+{% endblock %}
