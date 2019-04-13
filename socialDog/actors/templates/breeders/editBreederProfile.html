@@ -15,12 +15,6 @@ Edición de perfil
                 <div class="col-md-12">
                     <h3>{{ titulo }}</h3>
 
-                    <div class="container" align="right"  style="padding: 0px 120px 0px">
-                        <a  class="btn btn-danger" href="/actors/breeder/edit/profile/delete/{{ breeder.pk }}">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </div>
-
                     <!-- Si tiene foto la muestra -->
                     {% if breeder.photo %}
                         <img src="{{ breeder.photo.url }}" alt="Breeder photo" width="200px" height="200px">
@@ -83,6 +77,7 @@ Edición de perfil
                                        required/>
                             </div>
                         </div>
+                        <hr/>
                         <div class="row">
                             <div class="col-xs-6 col-md-6 form-group">
                                 <label for="cif" class="control-label">CIF o código del centro</label>
@@ -121,23 +116,6 @@ Edición de perfil
                                 <label for="notes" class="control-label">Observaciones sobre el horario</label>
                                 <textarea class="form-control" name="notes" id="notes" maxlength="200" rows="3" placeholder="Opcional"> {{ form.notes.value|default:'' }}</textarea>
                             </div>
-
-                            {% if breeder.private == True %}
-                                <div class="col-xs-12 col-md-12 form-group">
-                                    <label for="private" class="control-label">Perfil privado
-                                        <input type=checkbox checked class="form-control" name="private" id="private" /></label>
-                                </div>
-                            {% else %}
-                                <div class="col-xs-12 col-md-12 form-group">
-                                    <label for="private" class="control-label">Perfil privado
-                                        <input type=checkbox class="form-control" name="private" id="private" /></label>
-                                </div>
-                            {% endif %}
-                                <div class="col-xs-12 col-md-12 form-group">
-                                    <span style="font-style:italic;">
-                                        Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil
-                                    </span>
-                                </div>
 
                             <hr/>
 
@@ -204,15 +182,21 @@ Edición de perfil
                         {% endif %}
                         <!-- Botones -->
                         <div class="row">
-                            <div class="col-xs-6 col-md-6 form-group">
+                            <div class="col-xs-5 col-md-5 form-group">
                                 <input type="hidden" name="next" value="/"/>
                                 <input type="submit" value="Editar" class="btn editbutton btn-block"/>
                             </div>
-                            <div class="col-xs-6 col-md-6 form-group">
+                            <div class="col-xs-5 col-md-5 form-group">
                                 <input type="hidden" name="next" value="/"/>
                                 <input type="button" class="btn cancelbutton btn-block" onclick="location.href='/web/news';"
                                        value="Cancelar"/>
                             </div>
+                            <div class="col-xs-1 col-md-1 form-group">
+                                <a  class="btn btn-danger" href="/actors/breeder/edit/profile/delete/{{ breeder.pk }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+
                         </div>
                     </form>
 

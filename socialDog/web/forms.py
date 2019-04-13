@@ -98,7 +98,7 @@ class RegisterAssociationForm(forms.Form):
     closing = forms.TimeField(label='Hora de cierre')
     cif = forms.CharField(max_length=9,
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
-                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
+                                                     message='El código de identificación fiscal debe comenzar con G seguido de 8 dígitos.')],
                           label="C.I.F.")
     private = forms.BooleanField(label='Perfil privado',required=False)
 
@@ -176,7 +176,7 @@ class RegisterBreederForm(forms.Form):
     closing = forms.TimeField(label='Hora de cierre')
     cif = forms.CharField(max_length=9,
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
-                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
+                                                     message='El código de identificación fiscal debe comenzar con G seguido de 8 dígitos.')],
                           label="C.I.F.")
     notes = forms.CharField(max_length=200, required=False, label="Observaciones sobre el horario")
     private = forms.BooleanField(label='Perfil privado',required=False)

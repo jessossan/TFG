@@ -26,8 +26,10 @@ Animales
                                        onclick="location.href='/dogs/ownList';"
                                        value="Mis animales"/>
             {% endif %}
+
         </div>
 {% endif %}
+<br/>
                 {% if dog_list %}
                     {% for dog in dog_list %}
                         <div align="center" style="overflow: auto;padding: 0 20px 0;">
@@ -49,24 +51,36 @@ Animales
                                     <p class="card-text" align="left"><b>Género: </b>{{ dog.gender }}</p>
                                     <p class="card-text" align="left"><b>Raza: </b>{{ dog.breed }}</p>
 
-                                <!-- SI TIENE PERFIL PRIVADO NO SE MUESTRA BOTON -->
-                                {% if not user.is_authenticated and dog.breeder.private %}
-                                    <p class="card-text" align="left"><b>Criador: </b>{{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}</p>
-
-                                {% elif user.is_authenticated %}
-                                     <div align="left">
-                                        <button class="btn btn-info" onclick="location.href='/actors/profile/{{ dog.breeder.pk }}';">
-                                            <span class="fa fa-user"></span>
-                                            {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
-                                        </button>
-                                         <p></p>
-                                     </div>
-                                {% else %}
+                                <!-- Si el usuario no esta registrado muestra otro botón -->
+                                {% if not user.is_authenticated %}
                                     <div align="left">
                                         <button class="btn btn-info" onclick="location.href='/web/profile/{{ dog.breeder.pk }}';">
                                             <span class="fa fa-user"></span>
                                             {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
                                         </button>
+                                    </div>
+                                <!-- si esta logueado y no es el mismo actor del perfil se muestra boton -->
+                                {% elif user.is_authenticated and dog.breeder.userAccount != actor.userAccount %}
+                                     <div class="row" align="left">
+                                            <button class="btn btn-info" onclick="location.href='/actors/profile/{{ dog.breeder.pk }}';">
+                                                <span class="fa fa-user"></span>
+                                                {{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}
+                                            </button>
+                                             <p>&nbsp</p>
+                                            <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
+                                                <span class="fas fa-dog">
+                                                </span>
+                                            </button>
+
+                                     </div>
+                                <!-- Si esta logueado y es el mismo actor, no muestro el boton -->
+                                {% else %}
+                                    <p class="card-text" align="left"><b>Criador: </b>{{ dog.breeder.userAccount.first_name }}  {{ dog.breeder.userAccount.last_name }}</p>
+                                    <div align="left">
+                                            <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
+                                                <span class="fas fa-dog">
+                                                </span>
+                                            </button>
                                     </div>
                                 {% endif %}
                             </div>
@@ -86,14 +100,6 @@ Animales
 
                             <!-- BOTONES SI ESTA LOGUEADO -->
                                 <div style="float: left;width:100px;padding:40px">
-                                    {% if user.is_authenticated %}
-                                    <!-- PERFIL DEL PERRO -->
-                                    <button class="btn editbutton" onclick="location.href='/dogs/profile/{{ dog.pk }}';">
-                                        <span class="fas fa-dog">
-                                        </span>
-                                    </button>
-                                    <p></p>
-                                    {% endif %}
                                     <!-- SI ES EL PERRO DEL CRIADOR LOGUEADO, EDITAR Y BORRAR -->
                                     {% if ownDog %}
                                     <p style="padding:50px 0 0"><a  title="Editar"  class="btn editbutton" href="edit/{{ dog.pk }}">

@@ -30,19 +30,19 @@
                         <a class="dropdown-item" href="/admin/">Panel Administración</a>
                         <hr/>
                     {% elif user.actor.customer %}
-                    <li><a class="dropdown-item" href="{% url 'list_friends' %}" style="text-align:center;">Amigos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_messages_received' %}" style="text-align:center;">Mensajes</a></li>
                     <li><a href="{% url 'list_requests_received' %}" style="text-align:center;">Solicitudes de amistad</a></li>
                     <li class="divider"></li>
                     <li><a href="{% url 'edit_profile_customer' %}" style="text-align:center;">Editar perfil</a></li>
 
                     {% elif user.actor.breeder %}
-                    <li><a class="dropdown-item" href="{% url 'list_friends' %}" style="text-align:center;">Amigos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_messages_received' %}" style="text-align:center;">Mensajes</a></li>
                     <li><a href="{% url 'list_requests_received' %}" style="text-align:center;">Solicitudes de amistad</a></li>
                     <li class="divider"></li>
                     <li><a href="{% url 'edit_profile_breeder' %}" style="text-align:center;">Editar perfil</a></li>
                     {% elif user.actor.association %}
 
-                    <li><a class="dropdown-item" href="{% url 'list_friends' %}" style="text-align:center;">Amigos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list_messages_received' %}" style="text-align:center;">Mensajes</a></li>
                     <li><a class="dropdown-item" href="{% url 'list_requests_received' %}" style="text-align:center;">Solicitudes de amistad</a></li>
                     <li class="divider"></li>
                     <li><a class="dropdown-item" href="{% url 'edit_profile_association' %}" style="text-align:center;">Editar perfil</a></li>

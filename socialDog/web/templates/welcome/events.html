@@ -43,18 +43,22 @@ Eventos
             <div style="float: left;width:400px;">
 
                 <p class="card-text" align="center" style="font-size:25px;"><b>{{ event.title }}</b></p>
-                <p class="card-text" align="left">{{ event.description }}</p>
+                <p class="card-text" align="center">{{ event.description }}</p>
                 <div align="center">
-                    {% if event.breeder %}
+                    {% if event.breeder and event.breeder.userAccount != actor.userAccount %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  event.breeder.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ event.breeder.userAccount.first_name }} {{ event.breeder.userAccount.last_name }}
                         </button>
-                        {% elif event.association %}
+                    {% elif event.breeder and event.breeder.userAccount == actor.userAccount %}
+                        <p class="card-text" align="center"><b>{{ event.breeder.userAccount.first_name }}  {{ event.breeder.userAccount.last_name }}</b></p>
+                    {% elif event.association and event.association.userAccount != actor.userAccount %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{ event.association.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ event.association.userAccount.first_name }} {{ event.association.userAccount.last_name }}
                         </button>
+                    {% elif event.association and event.association.userAccount == actor.userAccount %}
+                        <p class="card-text" align="center"><b>{{ event.association.userAccount.first_name }}  {{ event.association.userAccount.last_name }}</b></p>
                     {% endif %}
                 </div>
             </div>

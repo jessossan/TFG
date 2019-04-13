@@ -13,10 +13,10 @@
 </div>
 
 
-<p align="center" style="font-size:35px;padding: 0 20px 0">Valoraciones a <b>{{ dog.name }}</b></p>
 <div align="center">
 
 {% if rate_list %}
+    <p align="center" style="font-size:35px;padding: 0 20px 0">Valoraciones a <b>{{ dog.name }}</b></p>
     {% for rate in rate_list %}
         <div class="card mb-4" style="max-width: 60rem;">
           <div class="card-header" align="center">
@@ -92,7 +92,7 @@
         </div>
     {% endfor %}
 {% else %}
-    <p style="padding: 0px 250px 0px">no hay valoraciones</p>
+    <p align="center" style="font-size:35px;padding: 0 20px 0">No hay valoraciones a <b>{{ dog.name }}</b></p>
 {% endif %}
 </div>
 

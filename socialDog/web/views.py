@@ -97,7 +97,7 @@ def register_customer(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
 
     # Si se accede al form vía GET o cualquier otro método
     else:
@@ -169,7 +169,7 @@ def register_association(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
         else:
             provinces = Province.objects.all()
 
@@ -261,7 +261,7 @@ def register_breeder(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
 
         else:
             provinces = Province.objects.all()
@@ -317,16 +317,30 @@ def register_breeder(request):
 
 @login_required(login_url='/login/')
 def list_events(request):
+    noActor = False
+    try:
+        actor = request.user.actor
+    except:
+        noActor = True
+
     # Orden inverso para que los eventos nuevos creados salgan arriba de la lista
     events_list = Event.objects.all().order_by('-creationDate')
 
-    data = {
-        'event_list': events_list,
-        'title': 'Listado de eventos',
-        # Comprobación para controlar el color de boton de la vista
-        'isEvent': True,
-
-    }
+    if noActor:
+        data = {
+            'event_list': events_list,
+            'title': 'Listado de eventos',
+            # Comprobación para controlar el color de boton de la vista
+            'isEvent': True,
+        }
+    else:
+        data = {
+            'event_list': events_list,
+            'title': 'Listado de eventos',
+            # Comprobación para controlar el color de boton de la vista
+            'isEvent': True,
+            'actor': actor,
+        }
     return render(request, 'welcome/events.html', data)
 
 
@@ -334,16 +348,31 @@ def list_events(request):
 
 @login_required(login_url='/login/')
 def list_news(request):
+    noActor = False
+    try:
+        actor = request.user.actor
+    except:
+        noActor = True
+
     # Orden inverso para que las noticias nuevas creados salgan arriba de la lista
     news_list = News.objects.all().order_by('-creationDate')
 
-    data = {
-        'news_list': news_list,
-        'title': 'Listado de noticias',
-        # Comprobación para controlar el color de boton de la vista
-        'isEvent': False,
+    if noActor:
+        data = {
+            'news_list': news_list,
+            'title': 'Listado de noticias',
+            # Comprobación para controlar el color de boton de la vista
+            'isEvent': False,
+        }
+    else:
+        data = {
+            'news_list': news_list,
+            'title': 'Listado de noticias',
+            # Comprobación para controlar el color de boton de la vista
+            'isEvent': False,
+            'actor': actor,
+        }
 
-    }
     return render(request, 'welcome/news.html', data)
 
 
@@ -356,14 +385,10 @@ def profile(request, pk):
     try:
         if actor.breeder:
             actor = get_object_or_404(Breeder, pk=pk)
-            if actor.private:
-                return HttpResponseRedirect('/login/')
     except:
         try:
             if actor.association:
                 actor = get_object_or_404(Association, pk=pk)
-                if actor.private:
-                    return HttpResponseRedirect('/login/')
         except:
             return HttpResponseForbidden()
 

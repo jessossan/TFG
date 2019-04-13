@@ -91,7 +91,7 @@ class EditBreederProfile(forms.Form):
     photo = forms.ImageField(required=False)
     cif = forms.CharField(max_length=9,
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
-                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
+                                                     message='El código de identificación fiscal debe comenzar con G seguido de 8 dígitos.')],
                           label="C.I.F.")
     opening = forms.TimeField(label='Hora de apertura')
     closing = forms.TimeField(label='Hora de cierre')
@@ -207,7 +207,7 @@ class EditAssociationProfile(forms.Form):
     photo = forms.ImageField(required=False)
     cif = forms.CharField(max_length=9,
                           validators=[RegexValidator(regex=r'^([G]{1})(\d{8})$',
-                                                     message='El código de identificación fiscal debe estar compuesto de 9 dígitos.')],
+                                                     message='El código de identificación fiscal debe comenzar con G seguido de 8 dígitos.')],
                           label="C.I.F.")
     opening = forms.TimeField(label='Hora de apertura')
     closing = forms.TimeField(label='Hora de cierre')

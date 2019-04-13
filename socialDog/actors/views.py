@@ -67,7 +67,7 @@ def edit_profile_customer(request):
             customer.email = email
             customer.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
 
     # Si se accede al form vía GET o cualquier otro método
     else:
@@ -215,7 +215,7 @@ def edit_profile_breeder(request):
 
             breeder.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
         # En el caso de que falle el form
         else:
             # Recupera las fechas de cierre y apertura cuando falla el form
@@ -399,7 +399,7 @@ def edit_profile_association(request):
 
             association.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/web/news')
         # En el caso de que falle el form
         else:
             # Recupera las horas de cierre y apertura en el caso de que falle el form
@@ -706,6 +706,10 @@ def show_profile(request, pk):
 
     # Recupera el actor logueado
     actor = request.user.actor
+
+    # No puede ver su propio perfil
+    if recipient == actor:
+        return HttpResponseForbidden()
 
     # COMPROBUEBA QUE SEA SU AMIGO
     acceptedStatus = Request.StatusType[1][0]

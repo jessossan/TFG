@@ -5,12 +5,10 @@
 <!-- CONTENIDO -->
 {% block content %}
 <div class="container">
-    <br />
-    <h2>{{ title }}</h2>
+    <h3>{{ title }}</h3>
 
     <div class="row">
 
-        <div class="container-fluid">
             <div class="col-md-12">
 
                 <!-- FORMULARIO -->
@@ -18,7 +16,6 @@
                     {% csrf_token %}
 
                     <!-- Criador -->
-                    <br/>
 
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
@@ -99,11 +96,7 @@
                                 <textarea class="form-control" name="notes" id="notes" maxlength="200" rows="3" placeholder="Opcional">{{ form.notes.value|default:'' }}</textarea>
                         </div>
                     </div>
-                    <hr/>
-                    <div class="col-xs-5 col-md-5 form-group">
-                            <label for="private" class="control-label">Perfil privado <input type=checkbox checked class="form-control" name="private" id="private" /></label>
-                    </div>
-                    <i>Si elige perfil privado, las personas que no estén registradas en el sistema no podrán ver su perfil</i>
+
                     <hr/>
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
@@ -153,10 +146,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                                 <label class="control-label"><i>Si quiere deseleccionar una raza o seleccionar más de una, pulse "Ctrl + click izquierdo" sobre la raza que desee</i></label>
-                            </div>
-                    </div>
-                    <div class="row">
-
+                        </div>
                     </div>
 
                     <div class="row">
@@ -183,7 +173,6 @@
                     {% endif %}
 
 
-
                     <!-- Botones -->
                     <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
@@ -201,7 +190,6 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 

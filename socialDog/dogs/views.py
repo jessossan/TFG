@@ -22,6 +22,13 @@ from rates.models import Rate
 
 def list_dogs(request):
     ownDog = False
+    noActor = False
+    try:
+        actor = request.user.actor
+    except Exception as e:
+        # Si es un actor no logueado
+        noActor = True
+
     try:
         dog_list_aux = Dog.objects.all().order_by('name')
 
@@ -39,11 +46,21 @@ def list_dogs(request):
     except EmptyPage:
         dog_list_aux = paginator.page(paginator.num_pages)
 
-    data = {
-        'dog_list': dog_list_aux,
-        'title': 'Listado de perros',
-        'ownDog': ownDog,
-    }
+    # Si es un actor no logueado, no le pasa el actor
+    if noActor:
+        data = {
+            'dog_list': dog_list_aux,
+            'title': 'Listado de perros',
+            'ownDog': ownDog,
+        }
+    else:
+        data = {
+            'dog_list': dog_list_aux,
+            'title': 'Listado de perros',
+            'ownDog': ownDog,
+            'actor': actor,
+        }
+
     return render(request, 'list_dog.html', data)
 
 
@@ -51,6 +68,8 @@ def list_dogs(request):
 @login_required(login_url='/login/')
 @user_is_breeder
 def list_myDogs(request):
+    actor = request.user.actor
+
     # Recupera el criador
     breeder = request.user.actor.breeder
     ownDog = True
@@ -76,6 +95,7 @@ def list_myDogs(request):
         'dog_list': dog_list_aux,
         'title': 'Listado de mis perros',
         'ownDog': ownDog,
+        'actor': actor,
     }
     return render(request, 'list_dog.html', data)
 

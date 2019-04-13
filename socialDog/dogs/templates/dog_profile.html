@@ -62,7 +62,9 @@ Perfil
                                     {% endif %}
                                     <p>&nbsp</p>
                                     <p class="card-text" align="left">
-                                              {% if average == 0 %}
+                                        <!--Si tiene valoraciones se muestra el link -->
+                                        {% if rateSize != 0 %}
+                                             {% if average == 0 %}
                                                     <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
@@ -70,7 +72,7 @@ Perfil
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                     </a>
-                                              {% elif average == 0.5 %}
+                                             {% elif average == 0.5 %}
                                                     <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
                                                         <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
@@ -78,7 +80,7 @@ Perfil
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                     </a>
-                                              {% elif average == 1 %}
+                                             {% elif average == 1 %}
                                                     <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
                                                         <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
@@ -86,7 +88,7 @@ Perfil
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                     </a>
-                                              {% elif average == 1.5 %}
+                                             {% elif average == 1.5 %}
                                                     <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
                                                         <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
                                                         <span class="fa fa-star-half-o" style="color: orange;font-size:40px;"></span>
@@ -94,7 +96,7 @@ Perfil
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                         <span class="fa fa-star" style="font-size:40px;"></span>
                                                     </a>
-                                              {% elif average == 2 %}
+                                             {% elif average == 2 %}
                                                     <a href="{% url 'list_dog_rates' dog.pk %}" style="color:inherit;text-decoration: none;">
                                                         <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
                                                         <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
@@ -151,6 +153,13 @@ Perfil
                                                         <span class="fa fa-star" style="color: orange;font-size:40px;"></span>
                                                     </a>
                                              {% endif %}
+                                        {% else %}
+                                             <span class="fa fa-star" style="font-size:40px;"></span>
+                                             <span class="fa fa-star" style="font-size:40px;"></span>
+                                             <span class="fa fa-star" style="font-size:40px;"></span>
+                                             <span class="fa fa-star" style="font-size:40px;"></span>
+                                             <span class="fa fa-star" style="font-size:40px;"></span>
+                                        {% endif %}
                                     </p>
                                     {% if rateSize == 0 %}
                                         <p class="card-text" align="left">

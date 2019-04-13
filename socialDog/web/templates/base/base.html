@@ -73,10 +73,10 @@
 										</li>
 
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_messages_received' %}" class="nav-link navbar-text">
-												Mensajes
-											</a>
-										</li>
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_friends' %}" class="nav-link navbar-text"  aria-expanded="false">
+													Amigos
+												</a>
+											</li>
 									</ul>
 
 									<!-- NAVBAR CRIADOR -->
@@ -110,10 +110,10 @@
 											</a>
 										</li>
 										<li class="dropdown flex-align-center">
-											<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_messages_received' %}" class="nav-link navbar-text">
-												Mensajes
-											</a>
-										</li>
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_friends' %}" class="nav-link navbar-text"  aria-expanded="false">
+													Amigos
+												</a>
+											</li>
 									</ul>
 									<!-- NAVBAR ASOCIACION -->
 									{% elif user.actor.association %}
@@ -144,8 +144,8 @@
 												</a>
 											</li>
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_messages_received' %}" class="nav-link navbar-text"   aria-expanded="false">
-													Mensajes
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_friends' %}" class="nav-link navbar-text"  aria-expanded="false">
+													Amigos
 												</a>
 											</li>
 										</ul>
@@ -178,8 +178,8 @@
 												</a>
 											</li>
 											<li class="dropdown flex-align-center">
-												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_messages_received' %}" class="nav-link navbar-text"   aria-expanded="false">
-													Mensajes
+												<a style="border-top: 5px solid;border-color: transparent;" href="{% url 'list_friends' %}" class="nav-link navbar-text"  aria-expanded="false">
+													Amigos
 												</a>
 											</li>
 										</ul>
@@ -261,7 +261,7 @@
 </div>
 
 {% block footer %}
-			<footer class="page-footer font-small blue pt-4 mt-4 bg-dark text-white">
+			<footer class="font-small blue pt-2 mt-2 bg-dark text-white">
 				<div class="container">
 					<div class="row">
 
@@ -277,14 +277,13 @@
 
 						<div class="col-sm-12 col-md-3">
 							<p class="column-title">Contacto</p>
-							<p class="footer-text">Para contactar con nosotros sólo tienes que mandar un correo a cualquiera de estas direcciones:</p>
 							<ul class="list-unstyled">
-								<li>jesosa94@gmail.com</li>
 								<li>jesosa.sanchez@gmail.com</li>
 							</ul>
 						</div>
-
 					</div>
+
+
 				</div>
 			</footer>
 {% endblock%}
