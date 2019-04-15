@@ -11,6 +11,7 @@ from breeds.models import Breed
 from comments.models import Comment
 from dogs.forms import RegisterDogForm, EditDogForm
 from dogs.models import Dog
+from django.db.models.query_utils import Q
 
 
 # Create your views here.
@@ -52,6 +53,7 @@ def list_dogs(request):
             'dog_list': dog_list_aux,
             'title': 'Listado de perros',
             'ownDog': ownDog,
+            'breeds': Breed.objects.all(),
         }
     else:
         data = {
@@ -59,6 +61,7 @@ def list_dogs(request):
             'title': 'Listado de perros',
             'ownDog': ownDog,
             'actor': actor,
+            'breeds': Breed.objects.all(),
         }
 
     return render(request, 'list_dog.html', data)
@@ -407,3 +410,105 @@ def dog_profile(request, pk):
         'rateSize': rate_size,
     }
     return render(request, 'dog_profile.html', data)
+
+
+@login_required(login_url='/login/')
+def search_dogs(request):
+    """ Lista los perros del sistema cuyo nombre o raza encajen con la cadena indicada """
+    assert isinstance(request, HttpRequest)
+
+    # Valida que el usuario no sea anónimo (esté registrado y logueado)
+    if not (request.user.is_authenticated):
+        return HttpResponseRedirect('/login/')
+    # Valida que el usuario sea usuario o criador o asociación
+    if not (hasattr(request.user.actor, 'customer') or hasattr(request.user.actor, 'breeder') or hasattr(
+            request.user.actor, 'association')):
+        return HttpResponseRedirect('/web/news')
+
+    actor = request.user.actor
+
+    try:
+        dog_list = Dog.objects.all()
+    except Exception as e:
+        dog_list = Dog.objects.none()
+
+
+    # Aplica el buscador
+    searcher = request.GET.get('q')
+    dog_list_complete = Dog.objects.none()
+    search_list = Dog.objects.none()
+    if (searcher) and (dog_list.count() > 0):
+        # Separa la búsqueda por espacio
+        name_splitted = searcher.split(" ")
+        # Si solo se busca por una palabra, busca en nombre
+        if len(name_splitted) == 1:
+            # Eliminar espacios
+            searcher = searcher.replace(" ", "")
+            search_list = dog_list.filter(Q(name__icontains=searcher))
+        elif len(name_splitted) >= 1:
+            i = 0
+            # Recorre el número de splits
+            for keyword in name_splitted:
+                if name_splitted[i] != '':
+                    keyword = name_splitted[i]
+                    # Busca los nombres que contengan la cadena pasada
+                    search_list = search_list | dog_list.filter(Q(name__icontains=keyword))
+                    try:
+                        # Si el numero de palabras por la que busca son 3
+                        if i >= 1 and name_splitted[i-1] != '' and name_splitted[i] != '' and name_splitted[i+1] != '':
+
+                            dog_list_complete = dog_list_complete | dog_list.filter(Q(name__icontains=name_splitted[i-1]),
+                                                                                    Q(name__icontains=keyword),
+                                                                                    Q(name__icontains=name_splitted[i+1]))
+                        # Si el número de palabras por la que busca son 2
+                        elif i >= 1 and name_splitted[i - 1] != '' and name_splitted[i] != '':
+                            dog_list_complete = dog_list_complete | dog_list.filter(Q(name__icontains=name_splitted[i - 1]),
+                                                                                    Q(name__icontains=keyword))
+                    except:
+                        try:
+                            # Si falla por fuera de rango del anterior, busca por número de palabras 2
+                            if i >= 1 and name_splitted[i - 1] != '' and name_splitted[i] != '':
+                                dog_list_complete = dog_list_complete | dog_list.filter(Q(name__icontains=name_splitted[i - 1]),
+                                                                                        Q(name__icontains=keyword))
+                        except:
+                            error = True
+                i += 1
+        else:
+            dog_list = Dog.objects.none()
+        # Si se hace búsqueda
+        dog_list = search_list
+    # Datos para la vista
+    if dog_list_complete and dog_list_complete is not None:
+        dog_list = dog_list_complete
+
+
+    # Aplica la dificultad
+    breed = request.GET.get('b')
+    if (breed) and (dog_list.count() > 0):
+        # Obtiene los perros que coincidan con la raza pasada
+        dog_list = dog_list.filter(breed_id=breed)
+
+    # Datos para la vista
+    isSearch = True
+    list(dog_list)
+
+    # Paginación
+    page = request.GET.get('page', 1)
+    paginator = Paginator(dog_list, 6)
+    try:
+        dog_list = paginator.page(page)
+    except PageNotAnInteger:
+        dog_list = paginator.page(1)
+    except EmptyPage:
+        dog_list = paginator.page(paginator.num_pages)
+
+    data = {
+        'breeds': Breed.objects.all(),
+        'dog_list': dog_list,
+        'isSearch': isSearch,
+        'title': 'Listado de perros',
+        'actor': actor,
+        'ownDog': False,
+    }
+
+    return render(request, 'list_dog.html', data)

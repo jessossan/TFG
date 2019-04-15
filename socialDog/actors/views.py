@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, HttpRes
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.db.models.query_utils import Q
 
 from MYrequests.models import Request
 from actors.decorators import user_is_customer, user_is_association, user_is_breeder
@@ -779,3 +780,162 @@ def show_profile(request, pk):
         'isRequested': isRequested,
     }
     return render(request, 'show_profile.html', data)
+
+
+@login_required(login_url='/login/')
+def search_actors(request):
+    """ Lista los actores del sistema cuyo nombre o apellidos encajen con la cadena indicada """
+    assert isinstance(request, HttpRequest)
+
+    # Valida que el usuario no sea anónimo (esté registrado y logueado)
+    if not (request.user.is_authenticated):
+        return HttpResponseRedirect('/login/')
+    # Valida que el usuario sea usuario o criador o asociación
+    if not (hasattr(request.user.actor, 'customer') or hasattr(request.user.actor, 'breeder') or hasattr(
+            request.user.actor, 'association')):
+        return HttpResponseRedirect('/web/news')
+
+    try:
+        actor = request.user.actor
+        acceptedStatus = Request.StatusType[1][0]
+
+        # Recupera todas las peticiones que ha enviado el actor y estan aceptadas
+        requestFollowers = Request.objects.filter(follower=actor, copy=False, status=acceptedStatus)
+
+        # Inicializa la lista que se va a devolver con todos los actores
+        actor_list_aux = Actor.objects.all()
+
+        actors = Actor.objects.none()
+        actorsFollower = Actor.objects.none()
+        actorsFollowed = Actor.objects.none()
+
+        actorsFollowerPending = Actor.objects.none()
+        actorsFollowedPending = Actor.objects.none()
+
+        # Recupera los actores de las solicitudes enviadas aceptadas
+        for reqFollower in requestFollowers:
+            actorsFollower = actorsFollower | Actor.objects.all().filter(pk=reqFollower.followed.pk)
+
+        # Recupera todas las peticiones que ha recibido el actor y estan aceptadas
+        requestFolloweds = Request.objects.filter(followed=actor, copy=False, status=acceptedStatus)
+
+        # Recupera todas las peticiones pendientes que ha recibido el actor
+        requestReceivedPending = Request.objects.filter(followed=actor, copy=False, status='Pendiente')
+
+        # Recupera los actores con solicitudes pendientes
+        for reqRecPending in requestReceivedPending:
+            actorsFollowerPending = actorsFollowerPending | Actor.objects.all().filter(pk=reqRecPending.follower.pk)
+
+        # Recupera todas las peticiones pendientes que ha enviado el actor
+        requestSentPending = Request.objects.filter(follower=actor, copy=False, status='Pendiente')
+
+        # Recupera los actores con solicitudes pendientes
+        for reqSentPending in requestSentPending:
+            actorsFollowedPending = actorsFollowedPending | Actor.objects.all().filter(pk=reqSentPending.followed.pk)
+
+        actorsPending = actorsFollowerPending | actorsFollowedPending
+        # Elimina duplicados
+        actorsPending = actorsPending.distinct()
+
+        # Recupera los actores de las solicitudes recibidas aceptadas
+        for reqFollowed in requestFolloweds:
+            actorsFollowed = actorsFollowed | Actor.objects.all().filter(pk=reqFollowed.follower.pk)
+
+        # Lista de amigos del actor logueado
+        actors = actorsFollower | actorsFollowed
+
+        # Recorremos la lista de amigos y lo quitamos de la lista de actores
+        for friend in actors:
+            actor_list_aux = actor_list_aux.exclude(pk=friend.pk)
+
+        # Excluye la lista de actores con solicitudes pendientes
+        for actPend in actorsPending:
+            actor_list_aux = actor_list_aux.exclude(pk=actPend.pk)
+
+        # Excluye el actor logueado
+        actor_list_aux = actor_list_aux.exclude(pk=actor.pk).order_by('userAccount')
+    except Exception as e:
+
+        actor_list_aux = Actor.objects.none()
+
+    # Aplica el buscador
+    user_list = User.objects.none()
+    search_list = User.objects.none()
+    search_list_complete = User.objects.none()
+    searcher = request.GET.get('q')
+    if (searcher) and (actor_list_aux.count() > 0):
+        # Obtiene los usuarios de la licta de actores, para buscar por su nombre
+        for a in actor_list_aux:
+            user_list = user_list | User.objects.all().filter(pk=a.pk)
+        # Separa la búsqueda por espacio
+        name_splitted = searcher.split(" ")
+        # Si solo se busca por una palabra, busca en nombre o apellidos
+        if len(name_splitted) == 1:
+            # Eliminar espacios
+            searcher = searcher.replace(" ", "")
+            search_list = user_list.filter(Q(first_name__icontains=searcher) | Q(last_name__icontains=searcher))
+        elif len(name_splitted) >= 1:
+            i = 0
+            # Recorre el número de splits
+            for keyword in name_splitted:
+                if name_splitted[i] != '':
+                    keyword = name_splitted[i]
+                    # Busca por nombre o apellidos y por nombre y apellidos
+                    search_list = search_list | user_list.filter(Q(first_name__icontains=keyword) | Q(last_name__icontains=keyword))
+                    search_list = search_list | user_list.filter(Q(first_name__icontains=keyword), Q(last_name__icontains=keyword))
+                    try:
+                        # Si el numero de palabras por la que busca son 3
+                        if i >= 1 and name_splitted[i-1] != '' and name_splitted[i] != '' and name_splitted[i+1] != '':
+                            # Busca el nombre y primer y segundo apellido
+                            search_list_complete = search_list_complete | user_list.filter(Q(first_name__icontains=name_splitted[i-1]), Q(last_name__icontains=keyword),
+                                                                                       Q(last_name__icontains=name_splitted[i+1]))
+                        # Si el número de palabras por la que busca son 2
+                        elif i >= 1 and name_splitted[i - 1] != '' and name_splitted[i] != '':
+                            # Busca por nombre y apellido o por primer apellido y segundo apellido
+                            search_list_complete = search_list_complete | user_list.filter(
+                                Q(first_name__icontains=name_splitted[i - 1]), Q(last_name__icontains=keyword)) \
+                                                   | user_list.filter(Q(last_name__icontains=name_splitted[i - 1]),
+                                                                      Q(last_name__icontains=keyword))
+                    except:
+                        try:
+                            # Si falla por fuera de rango del anterior, busca por número de palabras 2
+                            if i >= 1 and name_splitted[i - 1] != '' and name_splitted[i] != '':
+                                # Busca por nombre y apellido o por primer apellido y segundo apellido
+                                search_list_complete = search_list_complete | user_list.filter(Q(first_name__icontains=name_splitted[i - 1]), Q(last_name__icontains=keyword)) \
+                                                   | user_list.filter(Q(last_name__icontains=name_splitted[i - 1]),Q(last_name__icontains=keyword))
+                        except:
+                            error = True
+                i += 1
+
+        else:
+            search_list = Actor.objects.none()
+        # Datos para la vista
+        actor_list = Actor.objects.none()
+        if search_list_complete and search_list_complete is not None:
+            search_list = search_list_complete
+        for u in search_list:
+            actor_list = actor_list | Actor.objects.all().filter(pk=u.pk)
+        # Devuelve el resultado de la búsqueda
+        actor_list_aux = actor_list
+    isSearch = True
+    list(actor_list_aux)
+
+
+    # Paginación
+    page = request.GET.get('page', 1)
+    paginator = Paginator(actor_list_aux, 6)
+    try:
+        actor_list_aux = paginator.page(page)
+    except PageNotAnInteger:
+        actor_list_aux = paginator.page(1)
+    except EmptyPage:
+        actor_list_aux = paginator.page(paginator.num_pages)
+
+    data = {
+        'actor_list': actor_list_aux,
+        'isSearch': isSearch,
+        'title': 'Listado de actores',
+        'isAllUsers': True,
+    }
+
+    return render(request, 'list_actor.html', data)

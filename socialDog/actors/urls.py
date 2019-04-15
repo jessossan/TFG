@@ -45,4 +45,7 @@ urlpatterns = [
     # Perfil del actor
     path('profile/<int:pk>', views.show_profile, name='show_profile'),
 
+    # Buscador de actores
+    path('search', views.search_actors, name='search_actors'),
+
 ]

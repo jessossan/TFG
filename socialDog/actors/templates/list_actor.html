@@ -4,7 +4,6 @@ Usuarios
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
 
         <h3 style="padding: 0 20px 0">Buscar usuarios</h3>
 
@@ -28,6 +27,23 @@ Usuarios
     {% endif %}
 </div>
 </br>
+
+        <!-- Buscador -->
+        <div class="input-group" style="padding: 0 20px 0">
+                <form class="form-inline" action="{% url 'search_actors' %}" method="get">
+                    <div class="form-group">
+                        <!-- Texto -->
+                        <input type="text" class="form-control" placeholder="Buscar usuarios" name="q"
+                               maxlength="30">
+                    </div> &nbsp;
+                    &nbsp;
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+            <hr/>
+
 
         <!-- Listado -->
         {% if actor_list %}
@@ -135,9 +151,8 @@ Usuarios
                     </div>
                 </div>
             {% endif %}
-        </div>
 
         {% else %}
-            <p style="padding: 0 20px 0">No hay usuarios registrados.</p>
+            <p style="padding: 0 20px 0">No hay usuarios.</p>
         {% endif %}
 {% endblock %}

@@ -25,4 +25,6 @@ urlpatterns = [
     # Perfil del perro
     path('profile/<int:pk>', views.dog_profile, name='dog_profile'),
 
+    # Buscador de perros
+    path('search', views.search_dogs, name='search_dogs'),
 ]

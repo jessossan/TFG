@@ -30,6 +30,32 @@ Animales
         </div>
 {% endif %}
 <br/>
+        {% if not ownDog %}
+             <!-- Buscador -->
+                <div style="padding: 0 20px 0" class="input-group">
+                    <form class="form-inline" action="{% url 'search_dogs' %}" method="get">
+                        <div class="form-group">
+                            <!-- Texto -->
+                            <input type="text" class="form-control" placeholder="Buscador de perros" name="q"
+                                   maxlength="30">
+                        </div> &nbsp;
+                        <div class="form-group">
+                            <!-- Raza -->
+                            <select class="form-control" id="breed" name="b">
+                                <option value="" selected="selected">Raza</option>
+                                {% for b in breeds %}
+                                    <option value="{{ b.id }}">{{ b.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> &nbsp;
+                        &nbsp;
+                        <div class="form-group">
+                            <button class="btn btn-info" type="submit">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+                <hr/>
+        {% endif %}
                 {% if dog_list %}
                     {% for dog in dog_list %}
                         <div align="center" style="overflow: auto;padding: 0 20px 0;">
@@ -143,7 +169,7 @@ Animales
     {% endif %}
         {% else %}
             <p></p>
-            <p>No existen perros.</p>
+            <p style="padding: 0 20px 0px">No se han encontrado perros.</p>
         {% endif %}
 
         <!-- SI ES CRIADOR, REGISTRAR -->
