@@ -4,9 +4,8 @@ Solicitudes
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
-
-        <h3>Solicitudes</h3>
+<div class="container-fluid">
+        <h3 >Solicitudes</h3>
 
 <div align="left">
 
@@ -104,15 +103,15 @@ Solicitudes
         </div>
 
         {% else %}
-            <p></p>
-            <p>No tienes solicitudes enviadas.</p>
+            <p >No tienes solicitudes enviadas.</p>
         {% endif %}
 
+<br/>
         <div class="create">
             <input type="button" class="btn editbutton"
                                onclick="location.href='/requests/create';"
                                value="Crear solicitud"/>
         </div>
 
-    </div>
+</div>
 {% endblock %}

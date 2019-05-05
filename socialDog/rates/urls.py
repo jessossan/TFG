@@ -10,7 +10,6 @@ urlpatterns = [
     path('create/dog/<int:pk>', views.create_rate, name='create_rate'),
 
     # Editar valoración al perro
-    path('edit/<int:pk>', views.edit_rate, name='edit_rate'),
 
     # Borrar valoración al perro
     path('delete/<int:pk>', views.delete_rate, name='delete_rate'),

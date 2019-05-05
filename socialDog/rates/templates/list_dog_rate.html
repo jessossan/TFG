@@ -85,7 +85,6 @@
             <!-- Edición  y Borrado del comentario -->
             {% if rate.creator_rate == actor %}
                 <div align="right" style="padding-right: 30px; padding-bottom: 10px;">
-                    <a href="{% url 'edit_rate' rate.pk %}" style="font-size:20px;" >Editar</a>
                     <a  class="btn btn-danger" href="{% url 'delete_rate' rate.pk %}">Borrar</a>
                 </div>
             {% endif %}

@@ -30,7 +30,7 @@ Animales
         </div>
 {% endif %}
 <br/>
-        {% if not ownDog %}
+        {% if not ownDog and user.is_authenticated %}
              <!-- Buscador -->
                 <div style="padding: 0 20px 0" class="input-group">
                     <form class="form-inline" action="{% url 'search_dogs' %}" method="get">

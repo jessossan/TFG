@@ -4,11 +4,10 @@ Solicitudes
 {% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
+<div class="container-fluid">
+<h3 >Solicitudes</h3>
 
-        <h3>Solicitudes</h3>
-
-<div align="left">
+<div align="left" >
     {% if isSent %}
         <input type="button"  class="btn editbutton"
                                onclick="location.href='/requests/listReceived';"
@@ -113,15 +112,15 @@ Solicitudes
             {% endif %}
 
         {% else %}
-            <p></p>
-            <p>No has recibido peticiones.</p>
+            <p >No has recibido peticiones.</p>
         {% endif %}
-
-        <div class="create">
+<br/>
+        <div class="create" >
             <input type="button" class="btn editbutton"
                                onclick="location.href='/requests/create';"
                                value="Crear solicitud"/>
         </div>
 
     </div>
+</div>
 {% endblock %}
