@@ -40,13 +40,10 @@
 								background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
 								filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
-							<a class="navbar-brand flex-align-center" href="{% url 'list_news' %}">
-									<img style="width: auto; height: 40x; border-bottom: 0.4px solid;
-  border-color: transparent;
-                    justify-content: center;
-  align-items: center;
-  display: flex;" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
+							<a  href="{% url 'list_news' %}">
+							<img style="width:140px;height:85px" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
 							</a>
+
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon"></span>
 							</button>
@@ -207,15 +204,14 @@
                     background: -webkit-linear-gradient(left, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
                     background: linear-gradient(to right, rgba(23,77,84,1) 0%,rgba(44,83,158,1) 61%,rgba(44,83,158,1) 61%,rgba(107,75,183,1) 80%);
                     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#174d54', endColorstr='#6b4bb7',GradientType=1 );">
-					<a class="navbar-brand flex-align-center" href="/">
-					<a class="navbar-brand flex-align-center" href="/">
-							<img style="width: auto; height: 50px; border-bottom: 0.4px solid;
-  border-color: transparent;
-                    justify-content: center;
-  align-items: center;
-  display: flex;" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
-					</a>
 
+					<a  href="{% url 'list_news' %}">
+							<img  style="width:120px;height:70px" src="{% static 'img/SocialDog.png' %}" alt="SocialDog" class="brand-icon"/>
+					</a>
+					<a  href="{% url 'list_news' %}">
+									<img style="width:120px;height:30px"
+										 src="{% static 'img/textSocialDog.png' %}"  alt="SocialDog" class="brand-icon"/>
+					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 					</button>

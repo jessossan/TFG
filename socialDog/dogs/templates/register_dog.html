@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for="descendant" class="control-label">Descendencia</label>
-                            <input class="form-control" name="descendant" maxlength="200" id="descendant" type="text" placeholder="Descendencia" value="{{ form.descendant.value|default:'' }}"/>
+                            <textarea class="form-control" name="descendant" id="descendant" maxlength="200" rows="3" placeholder="Descendencia" >{{ form.descendant.value|default:'' }}</textarea>
                         </div>
                     </div>
 

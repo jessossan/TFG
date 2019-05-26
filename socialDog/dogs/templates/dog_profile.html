@@ -204,7 +204,9 @@ Perfil
                 <img src="{{ comment.creator_comment.photo.url }}" alt="Dog photo" width="75px" height="75px">
               <p></p>
 
-                  {% if comment.creator_comment.breeder %}
+                  {% if comment.creator_comment == actor %}
+                            {{ comment.creator_comment.userAccount.first_name }} {{ comment.creator_comment.userAccount.last_name }}
+                  {% elif comment.creator_comment.breeder %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ comment.creator_comment.breeder.userAccount.first_name }} {{ comment.creator_comment.breeder.userAccount.last_name }}

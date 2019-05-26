@@ -65,7 +65,9 @@
                 <img src="{{ rate.creator_rate.photo.url }}" alt="Dog photo" width="75px" height="75px">
                   </br>
                   <p></p>
-                  {% if rate.creator_rate.breeder %}
+                  {% if rate.creator_rate == actor %}
+                        {{ rate.creator_rate.userAccount.first_name }} {{ rate.creator_rate.userAccount.last_name }}
+                  {% elif rate.creator_rate.breeder %}
                         <button class="btn btn-info"  onclick="location.href='/actors/profile/{{  comment.creator_comment.breeder.pk }}';">
                             <span class="fa fa-user"></span>
                             {{ rate.creator_rate.breeder.userAccount.first_name }} {{ rate.creator_rate.breeder.userAccount.last_name }}

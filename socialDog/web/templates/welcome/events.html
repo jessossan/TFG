@@ -35,7 +35,7 @@ Eventos
                 <!-- IMAGEN DEL EVENTO -->
                 <div style="float: left;padding:0px 80px 0px">
                     {% if event.photo %}
-                        <img src="{{ event.photo.url }}"  alt="photo's event" width="300px" height="300px">
+                        <img src="{{ event.photo.url }}"  alt="photo's event" width="250px" height="250px">
                     {% endif %}
 
                 </div>
@@ -64,12 +64,12 @@ Eventos
             </div>
             <div style="float: left;width:400px;padding:0px 40px 0px">
                 <p class="card-text" align="left"><b>Lugar: </b>{{ event.place }}</p>
-                <p class="card-text" align="left" ><b> Comienzo:</b> {{ event.startDate|date:'d/m/y' }}</p>
+                <p class="card-text" align="left" ><b> Comienzo:</b> {{ event.startDate|date:'d/m/y' }} a las {{ event.startTime|time:'h:i' }}</p>
 
                 {% if event.length %}
                     <p class="card-text" align="left"><b> Duración:</b>&nbsp&nbsp {{ event.length|time:'H' }}h : {{ event.length|time:'i' }}m</p>
                 {% else %}
-                    <p class="card-text" align="left" ><b> Termina:</b>&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }}</p>
+                    <p class="card-text" align="left" ><b> Termina:</b>&nbsp &nbsp&nbsp{{ event.finishDate|date:'d/m/y' }} a las {{ event.finishTime|time:'h:i' }}</p>
                 {% endif %}
 
             </div>

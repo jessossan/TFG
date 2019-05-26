@@ -161,6 +161,9 @@ def register_dog(request):
 @login_required(login_url='/login/')
 @user_is_breeder
 def delete_dog(request, pk):
+    """
+    	Eliminación del perro.
+    """
     breeder = request.user.actor.breeder
     dog = get_object_or_404(Dog, pk=pk)
 
