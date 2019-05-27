@@ -3,28 +3,42 @@
   <component name="ChangeListManager">
     <list default="true" id="2a9b4435-b66f-4f2a-9129-730cd971fa24" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/templates/associations/editAssociationPass.html" beforeDir="false" afterPath="$PROJECT_DIR$/actors/templates/associations/editAssociationPass.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/templates/breeders/editBreederPass.html" beforeDir="false" afterPath="$PROJECT_DIR$/actors/templates/breeders/editBreederPass.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors/templates/users/editUserPass.html" beforeDir="false" afterPath="$PROJECT_DIR$/actors/templates/users/editUserPass.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/dog_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/templates/dog_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/list_dog.html" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/templates/list_dog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/templates/register_dog.html" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/templates/register_dog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dogs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYmessages/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYmessages/migrations/0002_auto_20181209_2240.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0002_auto_20181209_2240.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0003_auto_20190102_2128.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0004_auto_20190102_2135.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0005_request_copy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYrequests/migrations/0006_request_deleted.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0002_auto_20181218_2032.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0003_auto_20181218_2033.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0004_auto_20181218_2034.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0005_auto_20181218_2037.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0006_auto_20181218_2038.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0007_auto_20181218_2039.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0008_association_notes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors/migrations/0009_breeder_notes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breeds/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breeds/migrations/0002_remove_breed_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comments/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comments/migrations/0002_auto_20190102_2128.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dogs/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dogs/migrations/0002_auto_20190105_2052.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0002_auto_20190112_1429.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0003_auto_20190112_1801.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0004_auto_20190112_1856.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0005_event_photo.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/events/migrations/0006_auto_20190126_1337.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/templates/list_event.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/list_event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rates/templates/list_dog_rate.html" beforeDir="false" afterPath="$PROJECT_DIR$/rates/templates/list_dog_rate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/img/SocialDog.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/welcome/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/welcome/events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/welcome/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/welcome/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/likesDislikes/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0002_news_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provinces/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rates/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rates/migrations/0002_auto_20190102_2128.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rates/migrations/0003_rate_creationdate.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +100,7 @@
     <session id="-719933603">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="92" />
+          <entry key="project.closed" value="93" />
           <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="7" />
           <entry key="project.open.time.10" value="3" />
@@ -100,7 +114,7 @@
           <entry key="project.open.time.21" value="3" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="4" />
-          <entry key="project.open.time.24" value="3" />
+          <entry key="project.open.time.24" value="4" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.26" value="5" />
           <entry key="project.open.time.27" value="4" />
@@ -122,7 +136,7 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="99" />
+          <entry key="project.opened" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -172,83 +186,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/events/templates/list_event.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="90" column="22" lean-forward="true" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
-              <folding>
-                <element signature="e#4510#4532#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/static/img/textSocialDog.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/templates/base/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/static/img/loading.gif">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/templates/registration/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/templates/welcome/events.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="102" selection-start-line="37" selection-start-column="102" selection-end-line="37" selection-end-column="102" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/templates/welcome/news.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="85" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dogs/templates/register_dog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="164" selection-start-line="41" selection-start-column="164" selection-end-line="41" selection-end-column="164" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -381,17 +319,6 @@
             <path>
               <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socialDog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socialDog" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -640,9 +567,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22395833" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22395833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -651,9 +577,9 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39892185" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.583921" weight="0.32614556" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.583921" weight="0.32459018" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32884097" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49627978" weight="0.19836065" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49627978" visible="true" weight="0.42131147" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41607898" side_tool="true" weight="0.32614556" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32786885" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1023,25 +949,14 @@
     <entry file="file://$PROJECT_DIR$/events/templates/list_event.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
-          <caret line="90" column="22" lean-forward="true" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
-          <folding>
-            <element signature="e#4510#4532#0" expanded="true" />
-          </folding>
+          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/static/img/textSocialDog.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/web/templates/base/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,9 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1078,6 +990,9 @@
           <caret line="41" column="164" selection-start-line="41" selection-start-column="164" selection-end-line="41" selection-end-column="164" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/img/textSocialDog.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
